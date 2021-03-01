@@ -1,4 +1,4 @@
-# Hygieia
+# HYGIEIA
 
 Servicio de recomendación de una dieta a largo plazo con un objetivo saludable determinado en base a un criterio nutricional y las preferencias del usuario.
 
