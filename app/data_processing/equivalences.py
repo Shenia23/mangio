@@ -98,4 +98,3 @@ measurements_to_grams= {'cucharillas':5,
                         'mililitro':0.001}
 
 
-unicode_fractions = {"¾":}
