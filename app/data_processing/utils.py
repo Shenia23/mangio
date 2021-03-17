@@ -70,7 +70,10 @@ def extract_quantity(ingredient):
     for fraction in mixed_unicode_fractions_conversions:
         if fraction in ingredient:
             return mixed_unicode_fractions_conversions.get(fraction)
-
+    
+    if len(re.findall(r"[-+]?\d*/\d+", ingredient)) != 0:
+        return eval((re.findall(r"[-+]?\d*/\d+", ingredient)[0]).replace('⁄', '/').replace('⅟', '1/'))
+    
     if len(re.findall(r"[-+]?\d*\.\d+|\d+", ingredient)) != 0:
         return re.findall(r"[-+]?\d*\.\d+|\d+", ingredient)
     
@@ -78,20 +81,19 @@ def extract_quantity(ingredient):
         if fraction in ingredient:
             return unicode_fraction_conversions.get(fraction)
 
-    if len(re.findall(r"[-+]?\d*/\d+", ingredient)) != 0:
-        return eval((re.findall(r"[-+]?\d*/\d+", ingredient)[0]).replace('⁄', '/').replace('⅟', '1/'))
+
 
     return re.findall(r"[-+]?\d*\.\d+|\d+", ingredient)
 
 
 def extract_measurement_unit(ingredient):
     # list of measurement units for parsing ingredient
-    measurement_units = ['cucharillas', 'cucharaditas', 'cucharadas', 'cucharadas soperas', 'cucharadas de postre', 'cucharadas de postre', 'tazas', 'vasos', 'cuencos', 'envases', 'paquetes', 'bolsas', 'latas', 'botellas',
+    measurement_units = ['cucharillas','tarro', 'cucharaditas', 'cucharadas', 'cucharadas soperas', 'cucharadas de postre', 'cucharadas de postre', 'tazas', 'vasos', 'cuencos', 'envases', 'paquetes', 'bolsas', 'latas', 'botellas',
                          'litros', 'paquetes', 'frascos', 'gotas', 'cabezas', 'pellizcos', 'sobres', 'dientes', 'puñados', 'barras', 'cajas', 'copas', 'pizcas', 'chorros', 'chorritos', 'unidades', 'unidad', 'racimos',
                          'lonchas', 'recetas', 'capas', 'rebanadas', 'gajos', 'tallos', 'cuadrados', 'ramas', 'ramitas', 'filetes', 'trozos', 'patas', 'muslos', 'cubos', 'tiras', 'bandejas', 'láminas', 'hojas', 'mitad',
                          'gramos', 'mililitros', 'cucharilla', 'cucharadita', 'cucharada', 'cucharada sopera', 'taza', 'vaso', 'cuenco', 'envase', 'paquete', 'bolsa', 'lata', 'botella', 'litro', 'paquete',
                          'frasco', 'gota', 'cabeza', 'pellizco', 'sobre', 'diente', 'puñado', 'barra', 'caja', 'copa', 'pizca', 'chorro', 'chorrito', 'unidad', 'racimo', 'loncha', 'receta',
-                         'capa', 'rebanada', 'gajo', 'tallo', 'cuadrado', 'rama', 'ramita', 'filete', 'trozo', 'pata', 'muslo', 'cubo', 'tira', 'bandeja', 'lámina', 'hoja', 'gramo', 'mililitro']
+                         'capa', 'rebanada', 'gajo', 'tallo', 'cuadrado','pechuga', 'rama', 'ramita', 'filete', 'trozo', 'pata', 'muslo', 'cubo', 'tira', 'bandeja', 'lámina', 'hoja', 'gramo', 'mililitro','al gusto']
 
     extracted_1_grams = extract_n_grams(ingredient, 1, measurement_units)
     extracted_2_grams = extract_n_grams(ingredient, 2, measurement_units)
@@ -139,8 +141,7 @@ def parse_ingredient_string(ingredients_string, bedca_ingredients):
     for ingredient in ingredient_list:
         extracted_ingredient = {}
 
-        extracted_ingredient["Ingrediente"] = extract_ingredient(
-            ingredient, bedca_ingredients)
+        extracted_ingredient["Ingrediente"] = extract_ingredient(ingredient, bedca_ingredients)
         extracted_ingredient["Cantidad"] = extract_quantity(ingredient)
         extracted_ingredient["Unidad"] = extract_measurement_unit(ingredient)
 
@@ -157,9 +158,10 @@ def parse_ingredient_string(ingredients_string, bedca_ingredients):
 
 def main():
     recipes = pd.read_csv('../../data/recetas.csv', sep='|')
-    recipes_ingredients = recipes["Ingredientes"]
-    recipes_ingredients.dropna(inplace=True)
+    recipes = recipes[recipes['Ingredientes'].notna()]
 
+    recipes_ingredients = recipes[["Id","Ingredientes"]].copy()
+    
     ingredients = pd.read_csv('../../data/bedca.csv')
     ingredients_names = ingredients["nombre"].tolist()
 
@@ -170,8 +172,14 @@ def main():
     print("NUM_RECETAS: ", recipes_ingredients.shape[0])
 
     # TODO 45 -> pilla nuez y nuez moscada, arreglar alubias y frijoles
-    ingredients_string = recipes_ingredients.loc[1000]
-    print("RAW INGREDIENT STRING: ", ingredients_string)
+    # TODO -> Añadir soporte para las tildes
+    # TODO -> Añadir ingrediente agua (aunque luego no se tenga en cuenta para el cálculo)
+    # TODO -> Reemplazar bonito por atún
+    
+    test_ingredients = recipes_ingredients.iloc[62,:]
+    ingredients_id = test_ingredients["Id"]
+    ingredients_string = test_ingredients["Ingredientes"]  # Recetas para testing -> [74146, 73727, 74020 , 73919, 73818, 73799,73756, 73360, 73314, 73269, 72692, 72311, 72126,66092, 65997, 71629]
+    print("RAW INGREDIENT STRING for recipe", ingredients_id,  ":",  ingredients_string)
 
     #clean_ingr, rate=clean_ingredients(ingredient_list)
     print("EXTRACTED_INGREDIENTS: ", parse_ingredient_string(

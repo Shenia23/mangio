@@ -23,6 +23,7 @@ def parse_quantity(ingredient):
            return unicode_fraction_conversions.get(fraction) 
 
    if len(re.findall(r"[-+]?\d*/\d+", ingredient)) !=0: 
+       print("Hola")
        return eval((re.findall(r"[-+]?\d*/\d+", ingredient)[0]).replace('⁄', '/').replace('⅟', '1/'))
    
    return re.findall(r"[-+]?\d*\.\d+|\d+", ingredient)
@@ -31,7 +32,7 @@ def parse_quantity(ingredient):
 
 
 
-ingredient = "2/3ml caldo pollo"
+ingredient = "1/2 aguacate"
 
 
 print(parse_quantity(ingredient))
