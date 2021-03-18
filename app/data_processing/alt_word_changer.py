@@ -28,17 +28,28 @@ words = {
     "camote": "boniato",
     "chicharo": "garbanzo",
     "salame": "salchichón",
-    "Salsa blanca": "salsa bechamel",
+    "salsa blanca": "salsa bechamel",
+    "jamón de pavo":"pavo",
     "guinda": "cereza",
     "durazno": "melocotón",
     "arveja": "guisante",
     "ejote": "judía verde",
     "cohombro": "pepino",
     "bife": "bacon",
+    "paprika":"pimentón",
+    "chalota" : "cebolla",
+    "echalote" : "cebolla",
+    "chalote" : "cebolla",
+    "cilantro" : "perejil",
+    "coca-cola" : "refresco de cola",
+    "jamón york":"jamón de york",
+    "soya":"soja",
+    "mahonesa":"mayonesa",
     "callampo": "champiñón",
     "chancho": "cerdo",
     "puerco": "cerdo",
-
+    "pan molido": "pan rallado",
+    "hierbabuena":"menta"
 }
 
 

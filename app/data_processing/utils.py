@@ -175,8 +175,8 @@ def main():
     # TODO -> Añadir soporte para las tildes
     # TODO -> Añadir ingrediente agua (aunque luego no se tenga en cuenta para el cálculo)
     # TODO -> Reemplazar bonito por atún
-    
-    test_ingredients = recipes_ingredients.iloc[191,:]
+
+    test_ingredients = recipes_ingredients.iloc[4491,:]
     ingredients_id = test_ingredients["Id"]
     ingredients_string = test_ingredients["Ingredientes"]  # Recetas para testing -> [74146, 73727, 74020 , 73919, 73818, 73799,73756, 73360, 73314, 73269, 72692, 72311, 72126,66092, 65997, 71629]
     print("RAW INGREDIENT STRING for recipe", ingredients_id,  ":",  ingredients_string)
