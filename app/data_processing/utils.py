@@ -47,16 +47,7 @@ def get_number_of_extracted_ingredients(extracted_ingredients):
     return total, extracted, rate
 
 
-def measure_average_rate(recipes_ingredients):  # TODO: reformatear
-    find_rates = []
 
-    for index, value in recipes_ingredients.iteritems():
-        # print(index/recipes.shape[0])
-        clean_ingr, rate = clean_ingredients(value.split(","))
-        find_rates.append(rate)
-
-    print("AVERAGE PERCENT OF INGREDIENTS EXTRACTED: ",
-          sum(find_rates)/len(find_rates))
 
 
 def extract_quantity(ingredient):
@@ -88,7 +79,7 @@ def extract_quantity(ingredient):
 
 def extract_measurement_unit(ingredient):
     # list of measurement units for parsing ingredient
-    measurement_units = ['cucharillas','tarro', 'cucharaditas', 'cucharadas', 'cucharadas soperas', 'cucharadas de postre', 'cucharadas de postre', 'tazas', 'vasos', 'cuencos', 'envases', 'paquetes', 'bolsas', 'latas', 'botellas',
+    measurement_units = ['gr','grs','cucharillas','tarro', 'cucharaditas', 'cucharadas', 'cucharadas soperas', 'cucharadas de postre', 'cucharadas de postre', 'tazas', 'vasos', 'cuencos', 'envases', 'paquetes', 'bolsas', 'latas', 'botellas',
                          'litros', 'paquetes', 'frascos', 'gotas', 'cabezas', 'pellizcos', 'sobres', 'dientes', 'puñados', 'barras', 'cajas', 'copas', 'pizcas', 'chorros', 'chorritos', 'unidades', 'unidad', 'racimos',
                          'lonchas', 'recetas', 'capas', 'rebanadas', 'gajos', 'tallos', 'cuadrados', 'ramas', 'ramitas', 'filetes', 'trozos', 'patas', 'muslos', 'cubos', 'tiras', 'bandejas', 'láminas', 'hojas', 'mitad',
                          'gramos', 'mililitros', 'cucharilla', 'cucharadita', 'cucharada', 'cucharada sopera', 'taza', 'vaso', 'cuenco', 'envase', 'paquete', 'bolsa', 'lata', 'botella', 'litro', 'paquete',
@@ -132,7 +123,7 @@ def extract_ingredient(ingredient, bedca_ingredients):
         return max(extracted_ingredient, key=len)
 
 
-def parse_ingredient_string(ingredients_string, bedca_ingredients):
+def parse_ingredient_string(ingredients_string, bedca_ingredients, log_console = False):
     # TO DO: añadir soporte para ingredientes de la forma (1 limón) (sin unidades de medida) --> Sería comprobar si no existen unidades de medida entre las soportadas
     ingredient_list = ingredients_string.split(',')
 
@@ -149,12 +140,70 @@ def parse_ingredient_string(ingredients_string, bedca_ingredients):
 
     total, extracted, rate = get_number_of_extracted_ingredients(
         parsed_ingredients)
-    print("TOTAL: ", total)
-    print("EXTRACTED: ", extracted)
-    print("RATE: ", rate)
+    
+    if log_console== True:
+        print("TOTAL: ", total)
+        print("EXTRACTED: ", extracted)
+        print("RATE: ", rate)
 
-    return parsed_ingredients
+    return parsed_ingredients, rate, total, extracted
 
+def measure_average_rate(recipes, bedca_ingredients):  # TODO: reformatear
+    '''
+    
+    Itera todo el dataset de recetas extrayendo los ingredientes y calculando el
+    ratio de extracción, el número total de ingredientes y el total de ingredientes
+    extraídos.
+    
+    Retorna el promedio de extracción
+    
+    '''
+    rates=[]
+    error_index=[]
+
+
+    recipes_ingredients = recipes["Ingredientes"].copy()
+    
+    ingredients = pd.read_csv('../../data/bedca.csv')
+    ingredients_names = ingredients["nombre"].tolist()
+
+    all_ingredients = ingredients_to_plural(
+        ingredients_names)  # ingredientes originales + plurales
+    bedca_ingredients = [x.lower() for x in all_ingredients]
+
+    print ("recipes size: ", recipes_ingredients.size)
+    
+    for index, value in recipes_ingredients.iteritems():
+        print ("current/recipes size: ", index,"/",recipes_ingredients.size)
+        try:
+            clean_ingr, rate, total, extracted = parse_ingredient_string(value, bedca_ingredients)
+            rates.append(rate)
+            recipes.loc[index,'parse_rate'] = rate
+            recipes.loc[index,'total_ingredients'] = total
+            recipes.loc[index,'parsed_ingredients'] = extracted
+        except:
+            print("Error in recipe ", index)
+            error_index.append(index)
+            rates.append(0)
+            recipes.loc[index,'parse_rate'] = 0
+            recipes.loc[index,'total_ingredients'] = 0
+            recipes.loc[index,'parsed_ingredients'] = 0
+
+    print("AVERAGE PERCENT OF INGREDIENTS EXTRACTED= ", sum(rates)/len(rates))
+    print("Errors in recipes: ", error_index)
+    recipes.to_csv ('../../data/output_with_rates.csv', index = False, header=True,sep='|')
+    
+    return
+
+
+def extraction_analysis():
+    recipes = pd.read_csv('../../data/output_with_rates.csv', sep='|')
+    
+    print("# of recipes with 100% extracted rate:",len(recipes[(recipes['parse_rate']==1.0)]))
+    print("# of recipes with >90% and <100% extracted rate:",len(recipes[(recipes['parse_rate']>=0.90) & (recipes['parse_rate']<1.0)]))
+    print("# of recipes with >85% and <90% extracted rate:",len(recipes[(recipes['parse_rate']>=0.8) & (recipes['parse_rate']<0.90)]))
+
+    return
 
 def main():
     recipes = pd.read_csv('../../data/output.csv', sep='|')
@@ -169,24 +218,24 @@ def main():
         ingredients_names)  # ingredientes originales + plurales
     bedca_ingredients = [x.lower() for x in all_ingredients]
     recipes.reset_index(drop=True, inplace=True)
+    
     print("NUM_RECETAS: ", recipes_ingredients.shape[0])
-
     # TODO 45 -> pilla nuez y nuez moscada, arreglar alubias y frijoles
     # TODO -> Añadir soporte para las tildes
     # TODO -> Añadir ingrediente agua (aunque luego no se tenga en cuenta para el cálculo)
     # TODO -> Reemplazar bonito por atún
 
-    test_ingredients = recipes_ingredients.iloc[4491,:]
+    '''test_ingredients = recipes_ingredients.iloc[1892,:]
     ingredients_id = test_ingredients["Id"]
     ingredients_string = test_ingredients["Ingredientes"]  # Recetas para testing -> [74146, 73727, 74020 , 73919, 73818, 73799,73756, 73360, 73314, 73269, 72692, 72311, 72126,66092, 65997, 71629]
     print("RAW INGREDIENT STRING for recipe", ingredients_id,  ":",  ingredients_string)
 
     #clean_ingr, rate=clean_ingredients(ingredient_list)
     print("EXTRACTED_INGREDIENTS: ", parse_ingredient_string(
-        ingredients_string, bedca_ingredients))
+        ingredients_string, bedca_ingredients,log_console=True))'''
 
-    # measure_average_rate(recipes_ingredients)
-
+    #measure_average_rate(recipes, bedca_ingredients)
+    extraction_analysis()
 
 if __name__ == "__main__":
     main()

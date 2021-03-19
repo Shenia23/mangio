@@ -1,4 +1,6 @@
 equivalences={
+    'gr':1,
+    'grs':1,
     'cucharillas': 5,
     'cucharaditas': 7,
     'cucharadas': 10,
