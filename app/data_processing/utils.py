@@ -48,8 +48,6 @@ def get_number_of_extracted_ingredients(extracted_ingredients):
 
 
 
-
-
 def extract_quantity(ingredient):
     mixed_unicode_fractions_conversions = {
         '1⅓': 4/3, '1½': 1.5, '2½': 2.5, '3½': 3.5, '4½': 4.5, '5½': 5.5, '6½': 6.5}
@@ -71,8 +69,6 @@ def extract_quantity(ingredient):
     for fraction in unicode_fractions:
         if fraction in ingredient:
             return unicode_fraction_conversions.get(fraction)
-
-
 
     return re.findall(r"[-+]?\d*\.\d+|\d+", ingredient)
 
@@ -225,17 +221,20 @@ def main():
     # TODO -> Añadir ingrediente agua (aunque luego no se tenga en cuenta para el cálculo)
     # TODO -> Reemplazar bonito por atún
 
-    '''test_ingredients = recipes_ingredients.iloc[1892,:]
+    '''
+    test_ingredients = recipes_ingredients.iloc[1892,:]
     ingredients_id = test_ingredients["Id"]
     ingredients_string = test_ingredients["Ingredientes"]  # Recetas para testing -> [74146, 73727, 74020 , 73919, 73818, 73799,73756, 73360, 73314, 73269, 72692, 72311, 72126,66092, 65997, 71629]
     print("RAW INGREDIENT STRING for recipe", ingredients_id,  ":",  ingredients_string)
 
     #clean_ingr, rate=clean_ingredients(ingredient_list)
     print("EXTRACTED_INGREDIENTS: ", parse_ingredient_string(
-        ingredients_string, bedca_ingredients,log_console=True))'''
+        ingredients_string, bedca_ingredients,log_console=True))
+    
 
-    #measure_average_rate(recipes, bedca_ingredients)
+    measure_average_rate(recipes, bedca_ingredients)
     extraction_analysis()
+    '''
 
 if __name__ == "__main__":
     main()
