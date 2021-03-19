@@ -11,11 +11,47 @@ output_path = '../../data/output.csv'
 
 #esto podría ir en un json aparte
 words = {
-    'papa': 'patata',
-    'jitomate': 'tomate',
-     "jugo": "zumo",
-     "trotilla": "tortilla"
+    "jitomate": "tomate",
+    "papa": "patata",
+    "jugo": "zumo",
+    "res": "vaca",
+    "catsup": "ketchup",
+    "olivas": "aceitunas",
+    "maní": "cacahuete",
+    "banana": "plátano",
+    "toronja": "pomelo",
+    "habichuela": "alubia",
+    "frijol": "alubia",
+    "alcaucil": "alcachofa",
+    "poroto": "alubia",
+    "batata": "boniato",
+    "camote": "boniato",
+    "chicharo": "garbanzo",
+    "salame": "salchichón",
+    "salsa blanca": "salsa bechamel",
+    "jamón de pavo":"pavo",
+    "guinda": "cereza",
+    "durazno": "melocotón",
+    "arveja": "guisante",
+    "ejote": "judía verde",
+    "cohombro": "pepino",
+    "bife": "bacon",
+    "paprika":"pimentón",
+    "chalota" : "cebolla",
+    "echalote" : "cebolla",
+    "chalote" : "cebolla",
+    "cilantro" : "perejil",
+    "coca-cola" : "refresco de cola",
+    "jamón york":"jamón de york",
+    "soya":"soja",
+    "mahonesa":"mayonesa",
+    "callampo": "champiñón",
+    "chancho": "cerdo",
+    "puerco": "cerdo",
+    "pan molido": "pan rallado",
+    "hierbabuena":"menta"
 }
+
 
 def ingredients_to_plural(ingredients):
     '''
