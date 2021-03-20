@@ -171,8 +171,6 @@ def extract_quantity(ingredient):
         if fraction in ingredient:
             return unicode_fraction_conversions.get(fraction)
 
-
-
     return re.findall(r"[-+]?\d*\.\d+|\d+", ingredient)
 
 
