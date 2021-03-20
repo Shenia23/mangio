@@ -25,23 +25,18 @@ equivalences={
     'dientes': 3,
     'puñados': 100,
     'barras': 250,
-    # ?
     'cajas' : 43,
-    # ?
     'copas' : 300,
     'pizcas': 1,
     'chorros': 2,
     'chorritos': 1,
     'unidades': 0,
     'unidad': 0,
-    #tratar de manera independiente por ejemplo,1 unidad de naranja se coge el peso de la naranja '
     'racimos': 300,
     'lonchas': 17,
-    #descartar de alguna manera(6 veces en el dataset)
     'capas': 0,
     'rebanadas': 60,
     'gajos': 0,
-    # ?
     'tallos' : 250,
     'cuadrados': 43,
     'ramas': 50,
@@ -54,7 +49,6 @@ equivalences={
     'tiras': 35,
     'bandejas': 430,
     'láminas': 410,
-    #de hojaldre 'hojas': 10,
     'gramos': 1,
     'mililitros': 0.001,
     'cucharilla': 5,
@@ -79,19 +73,15 @@ equivalences={
     'puñado': 100,
     'barra': 250,
     'pechuga':400,
-    'caja' : 43,
-    # ?
     'copa' : 300,
     'pizca': 1,
     'chorro': 2,
     'chorrito': 1,
     'racimo': 300,
     'loncha': 17,
-    #descartar de alguna manera(6 veces en el dataset)
     'capa': 0,
     'rebanada': 60,
     'gajo': 0,
-    # ?
     'tallo' : 250,
     'cuadrado': 43,
     'rama': 50,
@@ -103,8 +93,7 @@ equivalences={
     'cubo': 10,
     'tira': 35,
     'bandeja': 430,
-    'lámina': 410,
-    #de hojaldre 'hoja': 10,
+    'lámina': 410,#de hojaldre 'hoja': 10,
     'gramo': 1,
     'mililitro': 0.001
 }
