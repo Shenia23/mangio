@@ -49,7 +49,8 @@ words = {
     "chancho": "cerdo",
     "puerco": "cerdo",
     "pan molido": "pan rallado",
-    "hierbabuena":"menta"
+    "hierbabuena":"menta",
+    "carne molida":"carne picada"
 }
 
 
