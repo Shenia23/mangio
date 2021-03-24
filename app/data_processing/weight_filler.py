@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 pesos = pd.read_csv('../../data/pesos_vegetales.csv', index_col = False)
 bedca = pd.read_csv('../../data/bedca.csv')
@@ -10,10 +11,13 @@ def fill_grams(df):
         -The ingredients present in the weights dataset are substituted accordingly.
         -For the remaining ingredients: weight(ingredient) = mean(weight(ingredient))
     '''
-    df['Index'] = df.index
-    original_columns = list(df.columns)
-    
-    weights = df[df['Unidad']=='None']
+    result = df.copy()
+    result['Index'] = df.index
+    original_columns = list(result.columns)
+
+    result['Grams'] = result['Grams'].replace(0,np.nan)
+    weights = result[result['Grams'].isna()]
+
     weights = pd.merge(weights, pesos, how='inner', on='Ingrediente')
 
     weights['Grams'] = weights['Peso x Unidad']
@@ -23,7 +27,6 @@ def fill_grams(df):
     # replacing new weights in original df
     weights = weights[original_columns]
     weights.set_index(weights['Index'], inplace=True)
-    result = df.copy()
     result.loc[weights['Index'],:] = weights
 
     #n comensales
@@ -33,8 +36,8 @@ def fill_grams(df):
     # TODO poner GRAMOS por PERSONA en otra columna (ajustar nutri_value_extractor tambien)
     
     # mean values for remaining ingredients + drop na
-    result[['Grams','Total_Grams']] = result.groupby(['Ingrediente'])[['Grams','Total_Grams']].transform(lambda x: x.fillna(x.mean()).round())
-    na_count = result['Total_Grams'].isna().groupby(result['Recipe_id']).sum()
+    result[['Grams','Total_Grams']] = result.groupby(['Ingrediente'])[['Grams','Total_Grams']].transform(lambda x: x.fillna(x.mean()).round(5))
+    na_count = result['Grams'].isna().groupby(result['Recipe_id']).sum()
     missing = list(na_count[na_count != 0].index)
     result = result[~result['Recipe_id'].isin(missing)]
     
@@ -48,7 +51,7 @@ def drop_evaluation(original,result):
     print(dropped_recipe_ids)
 
 if __name__ == "__main__":
-    ing = pd.read_csv('../../data/ingredientes.csv',sep = '|')
+    ing = pd.read_csv('../../data/ingredientes.csv')
     result = fill_grams(ing)
     drop_evaluation(ing,result)
     result.to_csv('../../data/ingredients_100.csv',index=False)
