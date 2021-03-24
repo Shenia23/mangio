@@ -30,6 +30,7 @@ def fill_grams(df):
     result = pd.merge(result,recipes['Num_comensales'], how='left', left_on='Recipe_id', right_index=True)
     result['Num_comensales'] = result['Num_comensales'].fillna(1)
     result['Total_Grams'] = result['Total_Grams'].divide(result['Num_comensales']).round(5)
+    # TODO poner GRAMOS por PERSONA en otra columna (ajustar nutri_value_extractor tambien)
     
     # mean values for remaining ingredients + drop na
     result[['Grams','Total_Grams']] = result.groupby(['Ingrediente'])[['Grams','Total_Grams']].transform(lambda x: x.fillna(x.mean()).round())

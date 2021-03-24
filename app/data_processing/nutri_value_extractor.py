@@ -15,8 +15,8 @@ def nutri_value_extractor(ingredients):
     join = pd.merge(ingredients, bedca, left_on="Indice", right_on='indice')
     join[bedca_columns] = join[bedca_columns].multiply(join['Total_Grams']/100, axis='index')
     bedca_columns.append('Recipe_id')
+    bedca_columns.append('Total_Grams')
     nutritional_values = join[bedca_columns].groupby('Recipe_id').sum().round(6)
-    nutritional_values['Gramos'] = join['Total_Grams'].sum()
 
     return nutritional_values
 
