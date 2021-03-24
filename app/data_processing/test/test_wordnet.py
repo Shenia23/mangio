@@ -1,6 +1,7 @@
-import pattern.es as es
+import re
 
 
+ingredient = "2 tazas de pollo (450 g)"
 
-print (es.pluralize("Chile"))
-print(es.singularize("chiles"))
+if len(re.findall(r"[-+]?\d*\.\d+|\d+", ingredient)) != 0:
+        print( max(re.findall(r"[-+]?\d*\.\d+|\d+", ingredient)))
