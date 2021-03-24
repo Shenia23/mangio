@@ -7,15 +7,21 @@ import numpy as np
 
 
 equivalences = {
+    'grms':1,
+    'grms.':1,
+    'kgs.': 1000,
+    'kgs':1000,
     'kg': 1000,
     'kilos': 1000,
     'kilogramo': 1000,
     'kilogramos': 1000,
     'kilo': 1000,
     'kgr': 1000,
+    'g.':1,
     'g': 1,
     'gr': 1,
     'grs': 1,
+    'k.':1000,
     'cucharillas': 5,
     'cucharaditas': 7,
     'cucharadas': 10,
@@ -196,7 +202,7 @@ def extract_quantity(ingredient):
 
 def extract_measurement_unit(ingredient):
     # list of measurement units for parsing ingredient
-    measurement_units = ['kg', 'kilos',    'kilogramo',    'kilogramos',    'kilo', 'kgr', 'g', 'gr', 'grs', 'cucharillas', 'tarro', 'cucharaditas', 'cucharadas', 'cucharadas soperas', 'cucharadas de postre', 'cucharadas de postre', 'tazas', 'vasos', 'cuencos', 'envases', 'paquetes', 'bolsas', 'latas', 'botellas',
+    measurement_units = ['grms','grms.','kgs','kgs.','k.','kg', 'kilos',    'kilogramo',    'kilogramos',    'kilo', 'kgr', 'g.','g', 'gr', 'grs', 'cucharillas', 'tarro', 'cucharaditas', 'cucharadas', 'cucharadas soperas', 'cucharadas de postre', 'cucharadas de postre', 'tazas', 'vasos', 'cuencos', 'envases', 'paquetes', 'bolsas', 'latas', 'botellas',
                          'litros', 'paquetes', 'frascos', 'gotas', 'cabezas', 'pellizcos', 'sobres', 'dientes', 'puñados', 'barras', 'cajas', 'copas', 'pizcas', 'chorros', 'chorritos', 'unidades', 'unidad', 'racimos',
                          'lonchas', 'recetas', 'capas', 'rebanadas', 'gajos', 'tallos', 'cuadrados', 'ramas', 'ramitas', 'filetes', 'trozos', 'patas', 'muslos', 'cubos', 'tiras', 'bandejas', 'láminas', 'hojas', 'mitad',
                          'gramos', 'mililitros', 'cucharilla', 'cucharadita', 'cucharada', 'cucharada sopera', 'taza', 'vaso', 'cuenco', 'envase', 'paquete', 'bolsa', 'lata', 'botella', 'litro', 'paquete',
@@ -218,7 +224,7 @@ def extract_measurement_unit(ingredient):
         return extracted_measurement_unit[0]
     elif len(extracted_measurement_unit) > 1:
         for item in extracted_measurement_unit:
-            if item in ['g', 'gr', 'grs','gramos','gramo']: #comprobar si alguna de las coincidencias parseadas es gramos, si lo es la devuelve
+            if item in ['g', 'gr', 'grs','gramos','gramo','g.','ml','mililitros','mls','grms','grms.']: #comprobar si alguna de las coincidencias parseadas es gramos, si lo es la devuelve
                 return item 
         return max(extracted_measurement_unit, key=len) #si ninguna es, devuelve la más larga
 
