@@ -6,8 +6,8 @@ Código para cambiar palabras en el CSV de recetas, se introducen las equivalenc
 que deben ser cambiadas en la lista.
 
 '''
-input_path = '../../data/recetas.csv'
-output_path = '../../data/output.csv'
+input_path = '../../data/filtered_recipes_100.csv'
+output_path = '../../data/filtered_recipes_100_out.csv'
 
 #esto podría ir en un json aparte
 words = {
@@ -50,7 +50,12 @@ words = {
     "puerco": "cerdo",
     "pan molido": "pan rallado",
     "hierbabuena":"menta",
-    "carne molida":"carne picada"
+    "carne molida":"carne picada",
+    "salsa de tomate":"tomate frito",
+    "35%":" ",
+    "70%":" ",
+    "36%":" ",
+    "35 %":" "
 }
 
 

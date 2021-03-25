@@ -7,8 +7,15 @@ import numpy as np
 
 
 equivalences = {
+    'cc':1,
+    'ccs':1,
+    'cc.':1,
+    'gm':1,
+    'gm.':1,
     'grms':1,
     'grms.':1,
+    'gms':1,
+    'gms.':1,
     'kgs.': 1000,
     'kgs':1000,
     'kg': 1000,
@@ -17,6 +24,8 @@ equivalences = {
     'kilogramos': 1000,
     'kilo': 1000,
     'kgr': 1000,
+    'kl':1000,
+    'kl,':1000,
     'g.':1,
     'g': 1,
     'gr': 1,
@@ -69,7 +78,7 @@ equivalences = {
     'cubos': 10,
     'tiras': 35,
     'bandejas': 430,
-    'láminas': 410,
+    'láminas': 10,
     'gramos': 1,
     'mililitros': 0.001,
     'cucharilla': 5,
@@ -113,10 +122,22 @@ equivalences = {
     'muslo': 390,
     'cubo': 10,
     'tira': 35,
-    'bandeja': 430,
-    'lámina': 410,  # de hojaldre 'hoja': 10,
+    'bandeja': 43,
+    'lámina': 10, 
     'gramo': 1,
-    'mililitro': 0.001
+    'mililitro': 1,
+    'ml.':1,
+    'ml':1,
+    'mililitros':1,
+    'dl':100,
+    'dl.':100,
+    'decilitro':100,
+    'decilitros':100,
+    'centilitro':10,
+    'cl':10,
+    'cl.':10,
+    'centilitros':1
+    
 }
 
 
@@ -202,16 +223,18 @@ def extract_quantity(ingredient):
 
 def extract_measurement_unit(ingredient):
     # list of measurement units for parsing ingredient
-    measurement_units = ['grms','grms.','kgs','kgs.','k.','kg', 'kilos',    'kilogramo',    'kilogramos',    'kilo', 'kgr', 'g.','g', 'gr', 'grs', 'cucharillas', 'tarro', 'cucharaditas', 'cucharadas', 'cucharadas soperas', 'cucharadas de postre', 'cucharadas de postre', 'tazas', 'vasos', 'cuencos', 'envases', 'paquetes', 'bolsas', 'latas', 'botellas',
+    measurement_units = ['gms.','gms','cc.','cc','ccs','gm','gm.','kl.','kl','centilitro','centilitros','cl','cl.','decilitros','decilitro','dl.','dl','grms','grms.','kgs','kgs.','k.','kg', 'kilos',    'kilogramo',    'kilogramos',    'kilo', 'kgr', 'g.','g', 'gr', 'grs', 'cucharillas', 'tarro', 'cucharaditas', 'cucharadas', 'cucharadas soperas', 'cucharadas de postre', 'cucharadas de postre', 'tazas', 'vasos', 'cuencos', 'envases', 'paquetes', 'bolsas', 'latas', 'botellas',
                          'litros', 'paquetes', 'frascos', 'gotas', 'cabezas', 'pellizcos', 'sobres', 'dientes', 'puñados', 'barras', 'cajas', 'copas', 'pizcas', 'chorros', 'chorritos', 'unidades', 'unidad', 'racimos',
                          'lonchas', 'recetas', 'capas', 'rebanadas', 'gajos', 'tallos', 'cuadrados', 'ramas', 'ramitas', 'filetes', 'trozos', 'patas', 'muslos', 'cubos', 'tiras', 'bandejas', 'láminas', 'hojas', 'mitad',
                          'gramos', 'mililitros', 'cucharilla', 'cucharadita', 'cucharada', 'cucharada sopera', 'taza', 'vaso', 'cuenco', 'envase', 'paquete', 'bolsa', 'lata', 'botella', 'litro', 'paquete',
                          'frasco', 'gota', 'cabeza', 'pellizco', 'sobre', 'diente', 'puñado', 'barra', 'caja', 'copa', 'pizca', 'chorro', 'chorrito', 'unidad', 'racimo', 'loncha', 'receta',
-                         'capa', 'rebanada', 'gajo', 'tallo', 'cuadrado', 'pechuga', 'rama', 'ramita', 'filete', 'trozo', 'pata', 'muslo', 'cubo', 'tira', 'bandeja', 'lámina', 'hoja', 'gramo', 'mililitro', 'al gusto']
+                         'capa', 'rebanada', 'gajo', 'tallo', 'cuadrado', 'pechuga', 'rama', 'ramita', 'filete', 'trozo', 'pata', 'muslo', 'cubo', 'tira', 'bandeja', 'lámina', 'hoja', 'gramo', 'mililitro', 'al gusto','ml','mililitros','ml.','mls','mls.']
 
-    extracted_1_grams = extract_n_grams(ingredient, 1, measurement_units)
-    extracted_2_grams = extract_n_grams(ingredient, 2, measurement_units)
-    extracted_3_grams = extract_n_grams(ingredient, 3, measurement_units)
+    ingredient_without_digits=''.join(i for i in ingredient if not i.isdigit())
+    
+    extracted_1_grams = extract_n_grams(ingredient_without_digits, 1, measurement_units)
+    extracted_2_grams = extract_n_grams(ingredient_without_digits, 2, measurement_units)
+    extracted_3_grams = extract_n_grams(ingredient_without_digits, 3, measurement_units)
 
     extracted_measurement_unit_raw = extracted_1_grams + \
         extracted_2_grams + extracted_3_grams
@@ -224,7 +247,8 @@ def extract_measurement_unit(ingredient):
         return extracted_measurement_unit[0]
     elif len(extracted_measurement_unit) > 1:
         for item in extracted_measurement_unit:
-            if item in ['g', 'gr', 'grs','gramos','gramo','g.','ml','mililitros','mls','grms','grms.']: #comprobar si alguna de las coincidencias parseadas es gramos, si lo es la devuelve
+            if item in ['g', 'gr', 'grs','gramos','gramo','g.','ml','mililitros','ml.','grms','grms.','dl','dl.','decilitro','decilitros',
+                        'centilitro','centilitros','cl','cl.','kl.','kl','gm','gm.','cc.','cc','ccs','gms.','gms']: #comprobar si alguna de las coincidencias parseadas es gramos, si lo es la devuelve
                 return item 
         return max(extracted_measurement_unit, key=len) #si ninguna es, devuelve la más larga
 
@@ -374,8 +398,7 @@ def add_recipe_ingredients_to_df(df, clean_ingr, recipe_id, bedca_ingredients, b
             # in python 3, you'll need `list(i.keys())`
             keys = list(bedca_ingredients_lower_plurals_dict.keys())
             values = list(bedca_ingredients_lower_plurals_dict.values())
-            ingredient_name = keys[values.index(
-                clean_ingr[index]["Ingrediente"])]
+            ingredient_name = keys[values.index(clean_ingr[index]["Ingrediente"])]
 
         recipe_id = int(recipe_id)
 
@@ -464,7 +487,7 @@ def main():
     # TODO 45 -> pilla nuez y nuez moscada, arreglar alubias y frijoles
     # TODO -> Añadir soporte para las tildes
 
-    test_ingredients = recipes_ingredients.iloc[1021, :]
+    test_ingredients = recipes_ingredients.iloc[4668, :]
     ingredients_id = test_ingredients["Id"]
     # Recetas para testing -> [74146, 73727, 74020 , 73919, 73818, 73799,73756, 73360, 73314, 73269, 72692, 72311, 72126,66092, 65997, 71629]
     ingredients_string = test_ingredients["Ingredientes"]
@@ -474,10 +497,9 @@ def main():
     recipe_ingredients_df = pd.read_csv('../../data/ingredientes.csv', sep='|', names=[
                                         'Recipe_id', 'Ingrediente', 'Cantidad', 'Unidad', 'Indice', 'Grams', 'Total_Grams'])
 
-    clean_ingr, rate, total, extracted = parse_ingredient_string(
-        ingredients_string, bedca_ingredients_lower_with_plurals, log_console=True)
+    #clean_ingr, rate, total, extracted = parse_ingredient_string(ingredients_string, bedca_ingredients_lower_with_plurals, log_console=True)
     # add_recipe_ingredients_to_df(recipe_ingredients_df,clean_ingr,ingredients_id,bedca_ingredients_lower,bedca_ingredients_lower_plurals_dict)
-    print("EXTRACTED_INGREDIENTS: ", clean_ingr)
+    #print("EXTRACTED_INGREDIENTS: ", clean_ingr)
 
     #measure_average_rate(recipes, bedca_ingredients,ingredients_id,bedca_ingredients_lower)
 
