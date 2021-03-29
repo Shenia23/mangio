@@ -1,4 +1,21 @@
 #CUSTOM
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Node.js
+frontend/node_modules/
+
+
+# Python
+__pycache__
+backend/venv
+*.pyc
+
+# macOs
+.DS_Store
+
 #data
 .DS_Store
 

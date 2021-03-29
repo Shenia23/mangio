@@ -274,7 +274,6 @@ def extract_ingredient(ingredient, bedca_ingredients):
 
 
 def parse_ingredient_string(ingredients_string, bedca_ingredients, log_console=False):
-    # TO DO: añadir soporte para ingredientes de la forma (1 limón) (sin unidades de medida) --> Sería comprobar si no existen unidades de medida entre las soportadas
     ingredient_list = ingredients_string.split(',')
 
     parsed_ingredients = []

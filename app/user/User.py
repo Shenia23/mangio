@@ -22,11 +22,11 @@ class User:
         self.body_water = body_water
         self.bone_mass = bone_mass
         
-    def get_tdee(self, bmr, activity_level):
+    def get_tdee(self):
         
-        '''Cálculo del consumo calórico total en función del metabolismo basal y del factor de actividad física'''
+        '''Cálculo del consumo calórico total diario en función del metabolismo basal y del factor de actividad física'''
 
-        factor={ #Factor de ajuste correspondiente al nivel de actividad física
+        factor= { #Factor de ajuste correspondiente al nivel de actividad física
             1: 1.2,   # 1- Sedentary (little to no exercise + work a desk job)
             2: 1.375, # 2- Lightly Active (light exercise 1-3 days / week)
             3: 1.55,  # 3- Moderately Active (moderate exercise 3-5 days / week)
@@ -34,7 +34,7 @@ class User:
             5: 1.9    # 5-Extremely Active (very heavy exercise, hard labor job, training 2x / day)
         }
         
-        return bmr*factor.get(activity_level)
+        return self.bmr * factor.get(self.activity_level)
     
     
 def main():
