@@ -11,6 +11,8 @@ class User:
         self.weight = weight
         self.body_type = body_type # Ectomorfo, mesomorfo, o endomorfo
         self.activity_level  # Nivel de actividad física del usuario (de los definidos en el Excel)
+        self.liked_ingredients = liked_ingredients
+        self.disliked_ingredients = disliked_ingredients
         
     def set_xiaomi_parameters(self, ):
         self.weight = weight
