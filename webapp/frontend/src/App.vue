@@ -1,20 +1,18 @@
 
 <template >
-
-  <v-app >
-    
-
-
-    <v-toolbar max-height=9% app class="toolbar">
-      
-      <v-toolbar-title >
-        <router-link to='/' tag='span' style='cursor: pointer'>
-          <h1> {{appTitle}}</h1>
+  <v-app  >
+    <v-toolbar color="light-green" class="vToolbar" app>
+      <span class='hidden-sm-and-up'>
+        <v-toolbar-side-icon @click='sidebar = !sidebar'> </v-toolbar-side-icon>
+      </span>
+      <v-toolbar-title class="vTitle" >
+        <router-link to='/' tag='span' >
+          {{ appTitle }}
         </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class='hidden-xs-only'>
-        <v-btn flat v-for='item in menuItems' :key='item.title' :to='item.path'>
+        <v-btn color="light-green" depressed='true' v-for='item in menuItems' :key='item.title' :to='item.path'>
           <v-icon left dark>{{ item.icon }}</v-icon>
           {{ item.title }}
         </v-btn>
@@ -39,12 +37,12 @@ export default {
     return {
       appTitle: 'Mangio!',
       sidebar: false,
-      height: '1px',
-      width: '100%',
       menuItems: [
-        { title: 'Nuevo usuario', path: '/nuevoUsuario', icon: 'logo.png' },
-        { title: 'Plan de alimentación', path: '/planalimentacion', icon: 'face' },
-        { title: 'Nuevas recetas', path: '/nuevasrecetas', icon: 'lock_open' }
+        { title: 'Perfiles prediseñados', path: '/perfiles', icon: 'folder_shared' },
+        { title: 'Nuevo usuario', path: '/nuevoUsuario', icon: 'fiber_new' },
+        { title: 'Plan de alimentación', path: '/planalimentacion', icon: 'fastfood' },
+        { title: 'Perfil de usuario', path: '/perfilusuario', icon: 'account_circle' },
+        { title: 'Nuevas recetas', path: '/nuevasrecetas', icon: 'add_circle' }
       ]
     }
   }
@@ -53,13 +51,29 @@ export default {
 
 
 <style>
+
+
+.vTitle{
+font-family: "Gill Sans";
+font-size: 300%;
+    cursor: pointer;
+
+}
+
+.vToolbar{
+  color: rgb(141, 254, 141);
+   max-height: 10%;
+
+}
+
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+   font-family: "Bodoni MT", Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #137d2c;
-}
+  color: #2c3e50;
+  background: rgb(185, 236, 185);
 
+}
 </style>
 

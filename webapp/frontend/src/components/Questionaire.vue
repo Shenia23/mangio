@@ -18,15 +18,17 @@
       style="margin-bottom:10px;"
 
     ></v-text-field>
-
     <v-text-field
       v-model="numberValue"
-      hide-details
-      single-line
-      type="number"
       label="Edad"
-      style="margin-bottom:40px;"
-    />
+      required
+      type="number"
+
+      style="margin-bottom:10px;"
+
+    ></v-text-field>
+
+
         
     <v-slider
       v-model="height.val"
