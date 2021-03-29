@@ -2,22 +2,8 @@
 <template >
 
   <v-app >
-    <v-navigation-drawer v-model='sidebar' app>
-      <v-list>
-        <v-list-tile
-          v-for='item in menuItems'
-          :key='item.title'
-          :to='item.path'
-        >
-          <v-list-tile-action >
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>{{ item.title }}</v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-
-    <v-toolbar  height=30% app>
+    
+    <v-toolbar  height=100% app class="toolbar">
       <span class='hidden-sm-and-up'>
         <v-toolbar-side-icon @click='sidebar = !sidebar'> </v-toolbar-side-icon>
       </span>
@@ -50,8 +36,8 @@ export default {
     return {
       appTitle: 'Mangio!',
       sidebar: false,
-      height: '225px',
-      width: '222%',
+      height: '10px',
+      width: '100%',
       menuItems: [
         { title: 'Nuevo usuario', path: '/new', icon: 'logo.png' },
         { title: 'Plan de alimentación', path: '/planalimentacion', icon: 'face' },
@@ -74,7 +60,7 @@ export default {
 }
 
 #toolbar{
-  height : '3px'
+  height : '10 px'
 }
 .toolbar{
   height : '3px';
