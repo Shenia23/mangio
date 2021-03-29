@@ -1,34 +1,18 @@
 
 <template >
-
-  <v-app >
-    <v-navigation-drawer v-model='sidebar' app>
-      <v-list>
-        <v-list-tile
-          v-for='item in menuItems'
-          :key='item.title'
-          :to='item.path'
-        >
-          <v-list-tile-action >
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>{{ item.title }}</v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-
-    <v-toolbar  height=30% app>
+  <v-app  >
+    <v-toolbar color="light-green" class="vToolbar" app>
       <span class='hidden-sm-and-up'>
         <v-toolbar-side-icon @click='sidebar = !sidebar'> </v-toolbar-side-icon>
       </span>
-      <v-toolbar-title>
-        <router-link to='/' tag='span' style='cursor: pointer'>
+      <v-toolbar-title >
+        <router-link to='/' tag='span' class="vTitle">
           {{ appTitle }}
         </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class='hidden-xs-only'>
-        <v-btn flat v-for='item in menuItems' :key='item.title' :to='item.path'>
+        <v-btn color="light-green" depressed='true' v-for='item in menuItems' :key='item.title' :to='item.path'>
           <v-icon left dark>{{ item.icon }}</v-icon>
           {{ item.title }}
         </v-btn>
@@ -36,6 +20,7 @@
     </v-toolbar>
 
     <v-content>
+      <p></p>
       <router-view></router-view>
     </v-content>
   </v-app>
@@ -50,12 +35,12 @@ export default {
     return {
       appTitle: 'Mangio!',
       sidebar: false,
-      height: '225px',
-      width: '222%',
       menuItems: [
-        { title: 'Nuevo usuario', path: '/new', icon: 'logo.png' },
-        { title: 'Plan de alimentación', path: '/planalimentacion', icon: 'face' },
-        { title: 'Nuevas recetas', path: '/nuevasrecetas', icon: 'lock_open' }
+        { title: 'Perfiles prediseñados', path: '/perfiles', icon: 'folder_shared' },
+        { title: 'Nuevo usuario', path: '/nuevousuario', icon: 'fiber_new' },
+        { title: 'Plan de alimentación', path: '/planalimentacion', icon: 'fastfood' },
+        { title: 'Perfil de usuario', path: '/perfilusuario', icon: 'account_circle' },
+        { title: 'Nuevas recetas', path: '/nuevasrecetas', icon: 'add_circle' }
       ]
     }
   }
@@ -64,20 +49,28 @@ export default {
 
 
 <style>
+
+
+.vTitle{
+  cursor: pointer;
+  font-family: "Gill Sans Extrabold";
+  font-size: 150%;
+}
+
+.vToolbar{
+  color: green;
+   max-height: 6.6%;
+
+}
+
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+   font-family: "Gill Sans Extrabold", Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
-}
+  background: linear-gradient(lightgreen, white);
 
-#toolbar{
-  height : '3px'
-}
-.toolbar{
-  height : '3px';
 }
 </style>
 

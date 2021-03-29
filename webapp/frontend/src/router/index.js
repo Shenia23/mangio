@@ -1,12 +1,16 @@
+
 import Vue from 'vue'
 import Router from 'vue-router'
 const routerOptions = [
   { path: '/', component: 'Home' },
   { path: '/about', component: 'About' },
   { path: '*', component: 'NotFound' },
-  {path: '/new', component: 'About'},
+  {path: '/nuevousuario', component: 'About'},
+  {path: '/perfilusuario', component: 'About'},
   {path: '/planalimentacion', component: 'About'},
-  {path: '/nuevasrecetas', component: 'About'}
+  {path: '/nuevasrecetas', component: 'About'},
+  {path: '/perfiles', component: 'About'}
+
 ]
 const routes = routerOptions.map(route => {
   return {
