@@ -7,7 +7,7 @@ const routerOptions = [
   { path: '*', component: 'NotFound' },
   {path: '/nuevoUsuario', component: 'Questionaire'},
   {path: '/perfilusuario', component: 'About'},
-  {path: '/planalimentacion', component: 'About'},
+  {path: '/planalimentacion', component: 'Recomendacion'},
   {path: '/nuevasrecetas', component: 'About'},
   {path: '/perfiles', component: 'About'}
 

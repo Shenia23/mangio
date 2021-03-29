@@ -15,6 +15,23 @@ def random_number():
     }
     return jsonify(response)
 
+@app.route('/recomendacion', methods=['GET'])
+def get_recomendacion():
+    recomendacion = [
+        {
+        'nombre': 'Receta de croquetas de pollo caseras de la abuela',
+        'tipo': 'Desayuno',
+        'calorias': 200,
+        },
+        {
+        'nombre': 'Receta2',
+        'tipo': 'Comida',
+        'calorias': 354,
+        }
+    ]
+    print('[INFO] answering: ', jsonify(recomendacion))
+    return jsonify(recomendacion)
+
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
