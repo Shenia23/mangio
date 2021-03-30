@@ -1,0 +1,14 @@
+.receta{
+    border-style: solid;
+    border-radius: 20px;
+    border-width: 1pt;
+    border-color:green;
+    transition: 0.3s;
+}
+
+.info_receta{
+    background-color: transparent;
+}
+.receta:hover{
+    background-color:lightyellow;
+}

@@ -19,7 +19,7 @@ def random_number():
 def get_recomendacion():
     recomendacion = [
         {
-        'nombre': 'Receta de croquetas de pollo caseras de la abuela',
+        'nombre': 'Receta1: croquetas con cosas',
         'tipo': 'Desayuno',
         'calorias': 200,
         },
@@ -27,6 +27,11 @@ def get_recomendacion():
         'nombre': 'Receta2',
         'tipo': 'Comida',
         'calorias': 354,
+        },
+        {
+        'nombre': 'Receta3',
+        'tipo': 'Comida',
+        'calorias': 360,
         }
     ]
     print('[INFO] answering: ', jsonify(recomendacion))
