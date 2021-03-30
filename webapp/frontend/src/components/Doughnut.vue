@@ -1,5 +1,6 @@
 <template>
   <mdb-container>
+    <div>{{values}}</div>
     <mdb-doughnut-chart
       :data="doughnutChartData"
       :options="doughnutChartOptions"
@@ -13,6 +14,9 @@
   import { mdbDoughnutChart, mdbContainer } from "mdbvue";
   export default {
     name: "ChartPage",
+    props: {
+      values: Array,
+    },
     components: {
       mdbDoughnutChart,
       mdbContainer

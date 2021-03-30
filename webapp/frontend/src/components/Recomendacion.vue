@@ -50,7 +50,9 @@
     <v-col cols="12" md=4 >
     <!-- COL 2: STATS de las comidas + EXPLICACIÓN-->
         <p class="headline mb-2"> Stats </p>
-          <Doughnut></Doughnut>
+
+          <Doughnut :values="values"></Doughnut>
+          
         <p class="headline mb-2"> Explicación</p>
     </v-col>
   </div>
@@ -63,13 +65,12 @@ import Doughnut from './Doughnut.vue'
 export default {
   name: "Recomendacion",
   components: { Doughnut},
-  data() {
- 
-       return {
+  data:() => ({
       rec: [],
       comidas: ['desayuno','snack','comida','merienda','cena'],
-    };
-  },
+      values: [100,150,200,250,300]
+    
+  }),
   methods: {
     getRecomendacion() {
       const path = "http://localhost:5000/recomendacion";
