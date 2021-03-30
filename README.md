@@ -14,7 +14,6 @@ Se emplea un dataset de recetas españolas para las recomendaciones y se usa la 
 
 ```
 Mangio!  
-.
 ├── run.py                      # flask app
 ├── app                         # mangio app
 │   ├── data_processing         # data scripts for ingredient extraction...
