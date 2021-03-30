@@ -12,8 +12,8 @@ Se emplea un dataset de recetas españolas para las recomendaciones y se usa la 
 
 ## Estructura
 
+```
 Mangio!  
-
 .
 ├── run.py                      # flask app
 ├── app                         # mangio app
@@ -23,18 +23,12 @@ Mangio!
 ├── data                        # app data as csv 
 ├── notebooks                   # jupyter notebooks to test the application
 └── webapp                      # vue front-end
-
-.
-    ├── ...
-    ├── test                    # Test files (alternatively `spec` or `tests`)
-    │   ├── benchmarks          # Load and stress tests
-    │   ├── integration         # End-to-end, integration tests (alternatively `e2e`)
-    │   └── unit                # Unit tests
-    └── ...
+```
 
 ## Tecnologías
 
 Dependencias de python en requirements.txt
+
 `pip install -r requiriments.txt`
 
 ## Sources
