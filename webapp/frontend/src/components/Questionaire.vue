@@ -19,13 +19,10 @@
 
     ></v-text-field>
     <v-text-field
-      v-model="numberValue"
       label="Edad"
       required
       type="number"
-
       style="margin-bottom:10px;"
-
     ></v-text-field>
 
 
@@ -52,14 +49,9 @@
       required
     ></v-slider>
 
-      <v-select
-        :items="body_types"
-        label="Qué tipo de cuerpo tienes?"
-        solo
-      ></v-select>
-
     
-     <BodyType></BodyType>
+     <BodyType :body_type="body_type" @changeBodyType="body_type = $event">
+     </BodyType>
 
       <v-select
         :items="activity_types"
@@ -68,7 +60,8 @@
       ></v-select>
 
 
-    <Ingredients></Ingredients>
+    <Ingredients :ingredients="ingredients" @changeSelectedIngredients="ingredients_list = $event"></Ingredients>
+
 
     <v-btn
       :disabled="!valid"
@@ -112,7 +105,6 @@ import Ingredients from './Ingredients.vue'
         v => (v && v.length <= 20) || 'Name must be less than 10 characters',
       ],
       select: null,
-      body_types: ["Ectomorfo", "Mesomorfo", "Endomorfo"],
       activity_types: [
                 "Sedentario (nada de ejercicio / trabajo de oficina)",
                 "Ligeramente activo (ejercicio ligero de 1 a 3 días semanales)",
@@ -121,10 +113,10 @@ import Ingredients from './Ingredients.vue'
                 "Extremadamente activo (ejercio diario muy intenso, 2 entrenamientos diarios)"
             ],
       height: { label: 'Altura (cm)', val: 165, color: 'red' },
-      weight: { label: 'Peso (kg)', val: 65, color: 'blue' }
-
+      weight: { label: 'Peso (kg)', val: 65, color: 'blue' },
+      body_type : "default",
+      ingredients: ["empty"]
     }),
-
     methods: {
       validate () {
         this.$refs.form.validate()
@@ -134,7 +126,7 @@ import Ingredients from './Ingredients.vue'
       },
       resetValidation () {
         this.$refs.form.resetValidation()
-      },
+      }
     },
   }
 </script>
