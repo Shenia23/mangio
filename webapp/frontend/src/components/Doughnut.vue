@@ -1,6 +1,6 @@
 <template>
   <mdb-container>
-    <div>{{values}}</div>
+    <div> {{values}}</div>
     <mdb-doughnut-chart
       :data="doughnutChartData"
       :options="doughnutChartOptions"

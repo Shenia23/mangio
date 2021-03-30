@@ -72,7 +72,7 @@ font-size: 300%;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background: rgb(185, 236, 185);
+  background: #ffffff;
 
 }
 </style>

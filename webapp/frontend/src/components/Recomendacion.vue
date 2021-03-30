@@ -1,6 +1,6 @@
 <template>
   <div class="row recommendation-body">
-    <v-col cols="12" md="4" style="margin-left:40px">
+    <v-col cols="12" md="7" style="margin-left:40px">
     <!-- COL 1: cards de RECOMENDACIONES y RECETAS-->
         <p></p>
         <v-title class="headline mb-2"> Recomendación para Hoy </v-title>
@@ -51,33 +51,44 @@
     <!-- COL 2: STATS de las comidas + EXPLICACIÓN-->
         <div class="nutri-info">
             <h3>Información Nutricional</h3>
-            <doughnut-chart :new_data="chart_sum"></doughnut-chart>
+            <DoughnutChart ref="doughnutChild" :new_data="chartData"
+            :width="600"
+            :height="400"></DoughnutChart>
         </div>
-        <p> {{ chart_sum }}</p>
-        <p class="headline mb-2"> Stats </p>
 
-          <Doughnut :values="values"></Doughnut>
-          
-        <p class="headline mb-2"> Explicación</p>
     </v-col>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import DoughnutChart from '@/components/DoughnutChart';
-import Doughnut from '@/components/Doughnut.vue';
+import DoughnutChart from '@/components/DoughnutChart.vue';
+//import Doughnut from '@/components/Doughnut.vue';
 
 export default {
   name: "Recomendacion",
-  components: { Doughnut},
+  components: { DoughnutChart},
   data() {
       return {
           rec: [],
           comidas: ['desayuno','snack','comida','merienda','cena'],
-          chart_sum: [],
-          test: [10,20,40],
-          values: [100,150,200,250,300]
+          chartData: {
+            labels: ["Proteínas","Grasas","Carbohidratos"],
+            datasets: [{
+                borderWidth: 1,
+                borderColor: [
+                '#184d47',
+                '#96bb7c',
+                '#fad586'              
+                ],
+                backgroundColor: [
+                '#184d47',
+                '#96bb7c',
+                '#fad586',        
+                ],
+                data: []
+                }]
+          }
     };
   },
   methods: {
@@ -90,8 +101,9 @@ export default {
           let values = ['proteina','grasa','carbohidratos']
           values.forEach(element => {
               var e_sum = this.getSum(element,this.rec)
-              this.chart_sum.push(e_sum.toFixed(1))
+              this.chartData.datasets[0].data.push(e_sum.toFixed(1))
           });
+          this.$refs.doughnutChild.renderChart(this.chartData);
         })
         .catch((error) => {
           console.error(error);
@@ -103,7 +115,7 @@ export default {
             sum += element[type]
         });
         return sum;
-    },
+    }
   },
   created() {
       this.getRecomendacion();
