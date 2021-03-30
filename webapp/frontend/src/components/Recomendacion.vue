@@ -21,17 +21,17 @@
             </div>
             <div v-for="(r, index) in rec"
                 :key="index"
-            >
-                <v-list-item v-if="r.tipo==comida" class="receta">
+            >   
+                <v-list-item v-if="r.Comida==comida" class="receta">
                     <v-list class="info_receta">
                         <v-list-item-title class="body-1 mb-1" >
                         <p class="text-left font-weight-bold">
-                                {{ r.nombre }}
+                                {{ r.Nombre }}
                             </p> 
                         </v-list-item-title>
                         <v-list-item-subtitle> 
                             <p class="text-left caption">
-                                {{ r.calorias }} kcal
+                                {{ r.energia }} kcal
                             </p> 
                         </v-list-item-subtitle>
                     </v-list>
@@ -67,7 +67,7 @@ export default {
  
        return {
       rec: [],
-      comidas: ['Desayuno','Snack','Comida','Merienda','Cena'],
+      comidas: ['desayuno','snack','comida','merienda','cena'],
     };
   },
   methods: {
@@ -77,6 +77,7 @@ export default {
         .get(path)
         .then((res) => {
           this.rec = res.data;
+          console.log(res)
         })
         .catch((error) => {
           // eslint-disable-next-line

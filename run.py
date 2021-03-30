@@ -1,9 +1,10 @@
 from flask import Flask, render_template, jsonify
 from random import *
+import json 
 from flask_cors import CORS
 import requests
 
-from app.recommender.recommender import recommend
+from app.recommender.recommender import getRecommendation
 
 app = Flask(__name__,
             static_folder = "./dist/static",
@@ -19,9 +20,13 @@ def random_number():
 
 @app.route('/recomendacion', methods=['GET'])
 def get_recomendacion():
-    recomendacion = recommend()
-    print('[INFO] answering: ', jsonify(recomendacion))
-    return jsonify(recomendacion)
+    data = getRecommendation()
+    response = app.response_class(
+        response=json.dumps(data),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
