@@ -1,6 +1,6 @@
 <template>
   <div class="row recommendation-body">
-    <v-col cols="12" md="8">
+    <v-col cols="12" md="4" style="margin-left:40px">
     <!-- COL 1: cards de RECOMENDACIONES y RECETAS-->
         <p></p>
         <v-title class="headline mb-2"> Recomendación para Hoy </v-title>
@@ -47,21 +47,25 @@
         </v-container>
     </v-col>
 
-    <v-col cols="12" md="4">
+    <v-col cols="12" md=4 >
     <!-- COL 2: STATS de las comidas + EXPLICACIÓN-->
-        <p> Stats </p>
-        <p> Explicación</p>
+        <p class="headline mb-2"> Stats </p>
+          <Doughnut></Doughnut>
+        <p class="headline mb-2"> Explicación</p>
     </v-col>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import Doughnut from './Doughnut.vue'
 
 export default {
   name: "Recomendacion",
+  components: { Doughnut},
   data() {
-    return {
+ 
+       return {
       rec: [],
       comidas: ['Desayuno','Snack','Comida','Merienda','Cena'],
     };

@@ -1,5 +1,6 @@
-<template>
+<template type="default">
   <v-container class="pa-4 text-center">
+    
     <v-row
       class="fill-height"
       align="center"
@@ -15,6 +16,7 @@
             <v-card
               :elevation="hover ? 14 : 2"
               :class="{ 'on-hover': hover }"
+              :id="item.title"
               height="450px"
             >
            <v-img
@@ -34,7 +36,10 @@
                 </v-img>
                 <v-btn :class="{ 'show-btns': hover }"
                         :color="transparent"
-                        v-on:click.stop="action2"> {{ item.title }}
+                        @click="change_opacity(item.title)"
+                        > 
+                        
+                        {{ item.title }}
 
                 </v-btn>
 
@@ -51,6 +56,9 @@
 
 <script>
   export default {
+    props: {
+      body_type: String
+    },
     data: () => ({
       items: [
         {
@@ -68,6 +76,21 @@
       ],
       transparent: 'rgba(255, 255, 255, 0)',
     }),
+    methods:{
+      change_opacity: function(id){
+        var ids = ["Ectomorfo", "Endomorfo", "Mesomorfo"]
+        var vcards = document.getElementsByTagName('on-hover');
+        for (var i = 0; i < ids.length; i++) {
+          if (ids[i] == id){
+              this.$emit('changeBodyType',id)
+              document.getElementById(id).style.opacity=1;
+          }else{
+              document.getElementById(ids[i]).style.opacity=0.7;
+
+          } 
+        }
+      }
+    }
   }
 </script>
 
@@ -77,7 +100,7 @@
 }
 
 .v-card:not(.on-hover) {
-  opacity: 0.8;
+  opacity: 0.7;
  }
 
 .show-btns {
