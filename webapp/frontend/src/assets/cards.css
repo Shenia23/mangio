@@ -12,6 +12,14 @@
     transition: 0.3s;
 }
 
+.nutri-info{
+    margin-top: 1rem;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+
 .info_receta{
     background-color: transparent;
 }

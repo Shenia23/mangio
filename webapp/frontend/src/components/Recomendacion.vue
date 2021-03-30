@@ -1,6 +1,6 @@
 <template>
   <div class="row recommendation-body">
-    <v-col cols="12" md="8">
+    <v-col cols="12" md="7">
     <!-- COL 1: cards de RECOMENDACIONES y RECETAS-->
         <p></p>
         <v-title class="headline mb-2"> Recomendación para Hoy </v-title>
@@ -49,40 +49,60 @@
 
     <v-col cols="12" md="4">
     <!-- COL 2: STATS de las comidas + EXPLICACIÓN-->
-        <p> Stats </p>
-        <p> Explicación</p>
+        <div class="nutri-info">
+            <h3>Información Nutricional</h3>
+            <doughnut-chart v-bind:new_data="test"></doughnut-chart>
+        </div>
+        <p> {{ chart_sum }}</p>
     </v-col>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import DoughnutChart from '@/components/DoughnutChart';
 
 export default {
   name: "Recomendacion",
   data() {
-    return {
-      rec: [],
-      comidas: ['desayuno','snack','comida','merienda','cena'],
+      return {
+          rec: [],
+          comidas: ['desayuno','snack','comida','merienda','cena'],
+          chart_sum: [],
+          test: [10,20,40]
     };
   },
   methods: {
     getRecomendacion() {
-      const path = "http://localhost:5000/recomendacion";
-      axios
+        const path = "http://localhost:5000/recomendacion";
+        axios
         .get(path)
         .then((res) => {
           this.rec = res.data;
-          console.log(res)
+          let values = ['proteina','grasa','carbohidratos']
+          values.forEach(element => {
+              var e_sum = this.getSum(element,this.rec)
+              this.chart_sum.push(e_sum.toFixed(1))
+          });
         })
         .catch((error) => {
-          // eslint-disable-next-line
           console.error(error);
         });
     },
+    getSum(type,rec) {
+        var sum = 0;
+        rec.forEach(element=>{
+            sum += element[type]
+        });
+        return sum;
+    },
   },
   created() {
-    this.getRecomendacion();
+      this.getRecomendacion();
+      console.log(this.chart_sum);
   },
+  components: {
+    DoughnutChart
+  }
 };
 </script>
