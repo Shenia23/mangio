@@ -3,6 +3,8 @@ from random import *
 from flask_cors import CORS
 import requests
 
+from app.recommender.recommender import recommend
+
 app = Flask(__name__,
             static_folder = "./dist/static",
             template_folder = "./dist")
@@ -17,23 +19,7 @@ def random_number():
 
 @app.route('/recomendacion', methods=['GET'])
 def get_recomendacion():
-    recomendacion = [
-        {
-        'nombre': 'Receta1: croquetas con cosas',
-        'tipo': 'Desayuno',
-        'calorias': 200,
-        },
-        {
-        'nombre': 'Receta2',
-        'tipo': 'Comida',
-        'calorias': 354,
-        },
-        {
-        'nombre': 'Receta3',
-        'tipo': 'Comida',
-        'calorias': 360,
-        }
-    ]
+    recomendacion = recommend()
     print('[INFO] answering: ', jsonify(recomendacion))
     return jsonify(recomendacion)
 
