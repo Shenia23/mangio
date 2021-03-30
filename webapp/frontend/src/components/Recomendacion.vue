@@ -51,7 +51,7 @@
     <!-- COL 2: STATS de las comidas + EXPLICACIÓN-->
         <div class="nutri-info">
             <h3>Información Nutricional</h3>
-            <doughnut-chart v-bind:new_data="test"></doughnut-chart>
+            <doughnut-chart :new_data="chart_sum"></doughnut-chart>
         </div>
         <p> {{ chart_sum }}</p>
     </v-col>
@@ -69,7 +69,7 @@ export default {
           rec: [],
           comidas: ['desayuno','snack','comida','merienda','cena'],
           chart_sum: [],
-          test: [10,20,40]
+          test: [10,20,40],
     };
   },
   methods: {
@@ -99,7 +99,6 @@ export default {
   },
   created() {
       this.getRecomendacion();
-      console.log(this.chart_sum);
   },
   components: {
     DoughnutChart

@@ -7,10 +7,7 @@
       return {
         name: 'DoughnutChart',
         props: {
-          new_data: {
-            type: Array,
-            default: [10,20,30]
-          }
+          new_data: Array
         },
         chartData: {
           labels: ["Proteínas",	"Grasas",	"Carbohidratos"],
@@ -39,8 +36,16 @@
       }
     },
     mounted () {
-      console.log(this.new_data)
+      console.log('mounted: ',this.new_data)
+      console.log(this.props.new_data)
+      this.chartData.data = this.new_data
       this.renderChart(this.chartData, this.options)
+    },
+    created () {
+      console.log("created",this.new_data)
+    },
+    beforeUpdate () {
+      console.log('be:',this.new_data)
     }
   }
 </script>
