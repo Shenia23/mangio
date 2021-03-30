@@ -8,7 +8,7 @@ const routerOptions = [
   {path: '/nuevoUsuario', component: 'Questionaire'},
   {path: '/perfilusuario', component: 'About'},
   {path: '/planalimentacion', component: 'Recomendacion'},
-  {path: '/nuevasrecetas', component: 'About'},
+  {path: '/nuevasrecetas', component: 'RecipeCreation'},
   {path: '/perfiles', component: 'About'}
 
 ]

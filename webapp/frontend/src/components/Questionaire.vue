@@ -60,7 +60,7 @@
       ></v-select>
 
 
-    <Ingredients :ingredients="ingredients" @changeSelectedIngredients="ingredients_list = $event"></Ingredients>
+    <Ingredients id="ingredients" :ingredients="ingredients" @changeSelectedIngredients="ingredients_list = $event"></Ingredients>
 
 
     <v-btn

@@ -55,7 +55,9 @@
         </div>
         <p> {{ chart_sum }}</p>
         <p class="headline mb-2"> Stats </p>
-          <Doughnut></Doughnut>
+
+          <Doughnut :values="values"></Doughnut>
+          
         <p class="headline mb-2"> Explicación</p>
     </v-col>
   </div>
@@ -75,6 +77,7 @@ export default {
           comidas: ['desayuno','snack','comida','merienda','cena'],
           chart_sum: [],
           test: [10,20,40],
+          values: [100,150,200,250,300]
     };
   },
   methods: {

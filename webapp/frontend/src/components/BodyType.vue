@@ -1,6 +1,10 @@
 <template type="default">
   <v-container class="pa-4 text-center">
     
+    <div>
+      {{body_type}}
+    </div>
+    
     <v-row
       class="fill-height"
       align="center"
