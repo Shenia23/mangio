@@ -38,6 +38,11 @@ class User:
         
         return self.bmr * factor.get(self.activity_level)
     
+    def get_daily_water_intake():
+        '''Cálculo del consumo de agua diario en función del metabolismo basal y del factor de actividad física'''
+
+        return 0.96 * get_tdee()
+    
     
 def main():
     print("Clase usuario")
