@@ -39,6 +39,15 @@
                 "Very Active (heavy exercise 6-7 days / week)",
                 "Extremely Active"
             ]
+        }, 
+        {
+            "type": "Select",
+            "question": "¿Que objetivo persigues?",
+            "options": [
+                "Adelgazar",
+                "Mantenerse",
+                "Ganar masa muscular"
+            ]
         },
         {
             "alergiasMultipleChoice": {
