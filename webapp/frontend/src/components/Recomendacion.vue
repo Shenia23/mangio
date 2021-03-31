@@ -3,7 +3,19 @@
     <v-col cols="12" md="7" style="margin-left:40px">
     <!-- COL 1: cards de RECOMENDACIONES y RECETAS-->
         <p></p>
-        <h3 class="headline mb-2"> Plan de Alimentación de Hoy </h3>
+        <v-row width="80%">
+            <v-col cols="12" md="9">
+                <h3 class="headline mb-2"> Plan de Alimentación de Hoy </h3>
+            </v-col>
+            <v-col cols="12" md="1">
+                <v-icon 
+                @click="reload"
+                height="25px"
+                width="25px">
+                mdi-autorenew
+                </v-icon>
+            </v-col>
+        </v-row>
         <v-container>
         <v-card
         class="mx-auto"
@@ -12,19 +24,40 @@
         v-for="(comida, index) in comidas"
         :key="index"
         >  
-        <div class="d-flex flex-no-wrap justify-space-between">
+        <div class="d-flex flex-no-wrap justify-space-between" :key="recom_key">
         <v-list-item three-line
         >
             <v-list-item-content>
-            <div class="overline mb-1">
+            <div class="overline">
                 {{ comida }}
             </div>
             <div v-for="(r, index) in rec"
                 :key="index"
             >   
-                <v-list-item v-if="r.Comida==comida" class="receta">
+                <v-list-item 
+                    v-if="r.Comida==comida" 
+                    class="receta"
+                    @click="displayInfo(index,r)"
+                >
+                <v-overlay
+                :z-index="zIndex"
+                :value="r.overlay"
+                >
+                <div class="recipe-info-card">
+                    <recipe-info :recipe="r"></recipe-info>
+                    <div class="close-icon">
+                        <v-icon
+                            class="white--text"
+                            color="black"
+                            @click="exitOverlay(index)"
+                        >
+                            mdi-close 
+                        </v-icon>
+                    </div>
+                </div>
+                </v-overlay>
                     <v-list class="info_receta">
-                        <v-list-item-title class="body-1 mb-1" >
+                        <v-list-item-title class="body-1" >
                         <p class="text-left font-weight-bold">
                                 {{ r.Nombre }}
                             </p> 
@@ -65,17 +98,23 @@
 import axios from "axios";
 import ExplanationCard from './ExplanationCard.vue';
 import DoughnutChart from './DoughnutChart.vue';
-import BodyType from './BodyType.vue';
+import RecipeInfo from './RecipeInfo.vue';
 //import Doughnut from '@/components/Doughnut.vue';
 
 export default {
   name: "Recomendacion",
   components: { 
       'doughnut-chart': DoughnutChart, 
-      'explanation-card': ExplanationCard },
+      'explanation-card': ExplanationCard,
+      'recipe-info': RecipeInfo  },
   data() {
       return {
-          rec: [],
+          rec: [], // recommendation full json
+          overlay: false,
+          zIndex: 1,
+          recom_key: 0,
+          recipes: [], // overlay values for each recipe
+          reset_img: require('@/assets/reset.png'),
           comidas: ['desayuno','snack','comida','merienda','cena'],
           chartData: {
             labels: ["Proteínas","Grasas","Carbohidratos"],
@@ -103,10 +142,14 @@ export default {
         .get(path)
         .then((res) => {
           this.rec = res.data;
-          let values = ['proteina','grasa','carbohidratos']
+          this.rec.forEach(element => {
+            element.overlay = false
+          })
+          // set graph data
+          let values = ['proteina','grasa','carbohidratos'];
           values.forEach(element => {
-              var e_sum = this.getSum(element,this.rec)
-              this.chartData.datasets[0].data.push(e_sum.toFixed(1))
+              var e_sum = this.getSum(element,this.rec);
+              this.chartData.datasets[0].data.push(e_sum.toFixed(1));
           });
           this.$refs.doughnutChild.renderChart(this.chartData);
         })
@@ -114,13 +157,38 @@ export default {
           console.error(error);
         });
     },
+    reload(){
+        this.chartData.datasets[0].data = []
+        this.getRecomendacion()
+    },
+    //overlay methods
+    displayInfo(index,recipe){
+        this.rec.map((a) => a.overlay = false);
+        this.rec[index].overlay = true;
+        console.log("overlay index, ",index)
+        console.log(this.rec[index])
+        this.forceRerender() //fix!
+    },
+    exitOverlay(index){
+        this.rec.map((a) => a.overlay = false);
+        this.forceRerender() //fix!
+    },
     getSum(type,rec) {
         var sum = 0;
         rec.forEach(element=>{
             sum += element[type]
         });
         return sum;
-    }
+    },
+    forceRerender() {
+      this.recom_key += 1; 
+    },
+    recipeOverlay(index){
+        if(typeof this.rec[index] !== "undefined")
+            return this.rec[index].overlay
+        else
+            return false
+    },
   },
   created() {
       this.getRecomendacion();

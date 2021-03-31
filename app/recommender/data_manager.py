@@ -3,7 +3,7 @@ import numpy as np
 
 from config import recipes, ingredients, nvalues
 
-wanted_columns = ['Id','Categoria','Nombre','Dificultad','Tipo']
+wanted_columns = ['Id','Categoria','Nombre','Valoracion','Dificultad','Tipo']
 macros = ['energia','grasa','proteina','fibra','carbohidratos','Recipe_id']
 
 def recipes2dict(recommendations):
@@ -13,10 +13,11 @@ def recipes2dict(recommendations):
 
     :return recom: dictionary containing all the relevant information regarding the recipes
     '''
-    recom = recipes[recipes.Id.isin(recommendations)].replace(np.nan,None)
-    ing = ingredients[ingredients['Recipe_id'].isin(recommendations)].replace(np.nan,None)
+    recom = recipes[recipes.Id.isin(recommendations)].replace(np.nan,'None')
+    ing = ingredients[ingredients['Recipe_id'].isin(recommendations)].replace(np.nan,'None')
 
     recom = recom[wanted_columns]
+
     recom['Comida'] = recom['Id'].apply(lambda x: recommendations[x]) # set type of food
     recom = recom.merge(nvalues[macros], left_on='Id', right_on='Recipe_id') # add nutritional values
     recom.drop(['Recipe_id'],axis=1,inplace=True)

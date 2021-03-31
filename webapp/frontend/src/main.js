@@ -12,6 +12,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  iconfont: 'md',
   vuetify,
   render: h => h(App)
 })

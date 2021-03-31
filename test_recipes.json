@@ -1,0 +1,413 @@
+[
+    {
+        "Id": 74146,
+        "Categoria": "Recetas de Aperitivos y tapas",
+        "Nombre": "Receta de croquetas de pollo caseras de la abuela",
+        "Valoracion": "None",
+        "Dificultad": "baja",
+        "Tipo": "Entrante",
+        "Comida": "merienda",
+        "energia": 7069.6,
+        "grasa": 640.376,
+        "proteina": 144.868,
+        "fibra": 12.808,
+        "carbohidratos": 194.3909,
+        "Ingredientes": [
+            {
+                "Ingrediente": "pollo",
+                "Cantidad": 1.0,
+                "Unidad": "pechuga",
+                "Indice": 242,
+                "Grams": 400.0,
+                "Total_Grams": 400.0,
+                "Num_comensales": 1.0
+            },
+            {
+                "Ingrediente": "nuez moscada",
+                "Cantidad": 1.0,
+                "Unidad": "pellizco",
+                "Indice": 891,
+                "Grams": 1.0,
+                "Total_Grams": 1.0,
+                "Num_comensales": 1.0
+            },
+            {
+                "Ingrediente": "mantequilla",
+                "Cantidad": 150.0,
+                "Unidad": "gramos",
+                "Indice": 419,
+                "Grams": 1.0,
+                "Total_Grams": 150.0,
+                "Num_comensales": 1.0
+            },
+            {
+                "Ingrediente": "huevo",
+                "Cantidad": 2.0,
+                "Unidad": "unidad",
+                "Indice": 150,
+                "Grams": 65.0,
+                "Total_Grams": 130.0,
+                "Num_comensales": 1.0
+            },
+            {
+                "Ingrediente": "cebolla",
+                "Cantidad": 1.0,
+                "Unidad": "trozo",
+                "Indice": 610,
+                "Grams": 100.0,
+                "Total_Grams": 100.0,
+                "Num_comensales": 1.0
+            },
+            {
+                "Ingrediente": "leche",
+                "Cantidad": 2.0,
+                "Unidad": "vasos",
+                "Indice": 27,
+                "Grams": 250.0,
+                "Total_Grams": 500.0,
+                "Num_comensales": 1.0
+            },
+            {
+                "Ingrediente": "pan rallado",
+                "Cantidad": 1.0,
+                "Unidad": "tarro",
+                "Indice": 507,
+                "Grams": 250.0,
+                "Total_Grams": 250.0,
+                "Num_comensales": 1.0
+            },
+            {
+                "Ingrediente": "sal",
+                "Cantidad": 1.0,
+                "Unidad": "pellizco",
+                "Indice": 908,
+                "Grams": 1.0,
+                "Total_Grams": 1.0,
+                "Num_comensales": 1.0
+            },
+            {
+                "Ingrediente": "harina",
+                "Cantidad": 3.0,
+                "Unidad": "cucharadas soperas",
+                "Indice": 482,
+                "Grams": 17.0,
+                "Total_Grams": 51.0,
+                "Num_comensales": 1.0
+            },
+            {
+                "Ingrediente": "aceite de girasol",
+                "Cantidad": 2.0,
+                "Unidad": "vasos",
+                "Indice": 404,
+                "Grams": 250.0,
+                "Total_Grams": 500.0,
+                "Num_comensales": 1.0
+            },
+            {
+                "Ingrediente": "pimienta negra",
+                "Cantidad": 1.0,
+                "Unidad": "pellizco",
+                "Indice": 902,
+                "Grams": 1.0,
+                "Total_Grams": 1.0,
+                "Num_comensales": 1.0
+            }
+        ]
+    },
+    {
+        "Id": 50719,
+        "Categoria": "Recetas de Aperitivos y tapas",
+        "Nombre": "Receta de aguacate con at\u00fan para el verano",
+        "Valoracion": 1.0,
+        "Dificultad": "None",
+        "Tipo": "None",
+        "Comida": "desayuno",
+        "energia": 1301.243084,
+        "grasa": 93.224925,
+        "proteina": 111.199074,
+        "fibra": 2.031337,
+        "carbohidratos": 3.773922,
+        "Ingredientes": [
+            {
+                "Ingrediente": "at\u00fan",
+                "Cantidad": 400.0,
+                "Unidad": "gramos",
+                "Indice": 282,
+                "Grams": 1.0,
+                "Total_Grams": 400.0,
+                "Num_comensales": 1.0
+            },
+            {
+                "Ingrediente": "aguacate",
+                "Cantidad": 1.0,
+                "Unidad": "None",
+                "Indice": 675,
+                "Grams": 334.0,
+                "Total_Grams": 18.21429,
+                "Num_comensales": 1.0
+            },
+            {
+                "Ingrediente": "aceite de oliva",
+                "Cantidad": "None",
+                "Unidad": "None",
+                "Indice": 410,
+                "Grams": 41.58968,
+                "Total_Grams": 58.66397,
+                "Num_comensales": 1.0
+            },
+            {
+                "Ingrediente": "salsa de soja",
+                "Cantidad": "None",
+                "Unidad": "None",
+                "Indice": 917,
+                "Grams": 33.0885,
+                "Total_Grams": 55.23977,
+                "Num_comensales": 1.0
+            }
+        ]
+    },
+    {
+        "Id": 64737,
+        "Categoria": "Recetas de Carne",
+        "Nombre": "Receta de milanesas de carne picada al horno",
+        "Valoracion": "None",
+        "Dificultad": "media",
+        "Tipo": "Plato principal",
+        "Comida": "comida",
+        "energia": 2807.870617,
+        "grasa": 233.225175,
+        "proteina": 119.631832,
+        "fibra": 10.065204,
+        "carbohidratos": 60.828146,
+        "Ingredientes": [
+            {
+                "Ingrediente": "carne picada",
+                "Cantidad": 500.0,
+                "Unidad": "gramos",
+                "Indice": 168,
+                "Grams": 1.0,
+                "Total_Grams": 500.0,
+                "Num_comensales": 1.0
+            },
+            {
+                "Ingrediente": "huevo",
+                "Cantidad": 4.0,
+                "Unidad": "unidad",
+                "Indice": 150,
+                "Grams": 65.0,
+                "Total_Grams": 260.0,
+                "Num_comensales": 1.0
+            },
+            {
+                "Ingrediente": "aceite",
+                "Cantidad": "None",
+                "Unidad": "None",
+                "Indice": 409,
+                "Grams": 77.3929,
+                "Total_Grams": 98.75302,
+                "Num_comensales": 1.0
+            },
+            {
+                "Ingrediente": "ajo",
+                "Cantidad": 2.0,
+                "Unidad": "dientes",
+                "Indice": 587,
+                "Grams": 3.0,
+                "Total_Grams": 6.0,
+                "Num_comensales": 1.0
+            },
+            {
+                "Ingrediente": "or\u00e9gano",
+                "Cantidad": "None",
+                "Unidad": "None",
+                "Indice": 892,
+                "Grams": 8.83456,
+                "Total_Grams": 10.36222,
+                "Num_comensales": 1.0
+            },
+            {
+                "Ingrediente": "sal",
+                "Cantidad": "None",
+                "Unidad": "None",
+                "Indice": 908,
+                "Grams": 6.95504,
+                "Total_Grams": 9.4185,
+                "Num_comensales": 1.0
+            },
+            {
+                "Ingrediente": "pan rallado",
+                "Cantidad": "None",
+                "Unidad": "None",
+                "Indice": 507,
+                "Grams": 69.01117,
+                "Total_Grams": 99.22816,
+                "Num_comensales": 1.0
+            },
+            {
+                "Ingrediente": "perejil",
+                "Cantidad": "None",
+                "Unidad": "None",
+                "Indice": 899,
+                "Grams": 32.25071,
+                "Total_Grams": 41.70376,
+                "Num_comensales": 1.0
+            }
+        ]
+    },
+    {
+        "Id": 19602,
+        "Categoria": "C\u00f3cteles y bebidas",
+        "Nombre": "Batido de d\u00e1tiles con leche de almendra",
+        "Valoracion": 3.3,
+        "Dificultad": "baja",
+        "Tipo": "Desayuno",
+        "Comida": "snack",
+        "energia": 1652.1,
+        "grasa": 113.42,
+        "proteina": 49.56325,
+        "fibra": 25.77875,
+        "carbohidratos": 57.0095,
+        "Ingredientes": [
+            {
+                "Ingrediente": "almendra",
+                "Cantidad": 2.0,
+                "Unidad": "vasos",
+                "Indice": 530,
+                "Grams": 250.0,
+                "Total_Grams": 250.0,
+                "Num_comensales": 2.0
+            },
+            {
+                "Ingrediente": "pl\u00e1tano",
+                "Cantidad": 1.0,
+                "Unidad": "unidad",
+                "Indice": 721,
+                "Grams": 80.0,
+                "Total_Grams": 40.0,
+                "Num_comensales": 2.0
+            },
+            {
+                "Ingrediente": "d\u00e1til",
+                "Cantidad": 10.0,
+                "Unidad": "unidad",
+                "Indice": 687,
+                "Grams": 10.0,
+                "Total_Grams": 50.0,
+                "Num_comensales": 2.0
+            }
+        ]
+    },
+    {
+        "Id": 58107,
+        "Categoria": "Recetas de Postres",
+        "Nombre": "Receta de gelatina de fresa y yogur",
+        "Valoracion": 5.0,
+        "Dificultad": "baja",
+        "Tipo": "Postre",
+        "Comida": "snack",
+        "energia": 945.86,
+        "grasa": 1.0395,
+        "proteina": 16.4995,
+        "fibra": 4.125,
+        "carbohidratos": 217.067,
+        "Ingredientes": [
+            {
+                "Ingrediente": "az\u00facar",
+                "Cantidad": 200.0,
+                "Unidad": "mililitros",
+                "Indice": 936,
+                "Grams": 1.0,
+                "Total_Grams": 200.0,
+                "Num_comensales": 1.0
+            },
+            {
+                "Ingrediente": "fresa",
+                "Cantidad": 6.0,
+                "Unidad": "unidad",
+                "Indice": 689,
+                "Grams": 31.25,
+                "Total_Grams": 187.5,
+                "Num_comensales": 1.0
+            },
+            {
+                "Ingrediente": "az\u00facar",
+                "Cantidad": 2.0,
+                "Unidad": "gramos",
+                "Indice": 936,
+                "Grams": 1.0,
+                "Total_Grams": 2.0,
+                "Num_comensales": 1.0
+            },
+            {
+                "Ingrediente": "gelatina",
+                "Cantidad": 1.0,
+                "Unidad": "sobre",
+                "Indice": 874,
+                "Grams": 16.0,
+                "Total_Grams": 16.0,
+                "Num_comensales": 1.0
+            },
+            {
+                "Ingrediente": "leche",
+                "Cantidad": 3.0,
+                "Unidad": "cucharadas soperas",
+                "Indice": 27,
+                "Grams": 17.0,
+                "Total_Grams": 51.0,
+                "Num_comensales": 1.0
+            }
+        ]
+    },
+    {
+        "Id": 45889,
+        "Categoria": "Recetas de Sopas y cremas",
+        "Nombre": "Receta de arroz con queso y huevos",
+        "Valoracion": 4.0,
+        "Dificultad": "None",
+        "Tipo": "None",
+        "Comida": "cena",
+        "energia": 3303.502871,
+        "grasa": 82.620285,
+        "proteina": 113.389267,
+        "fibra": 1.764979,
+        "carbohidratos": 516.914318,
+        "Ingredientes": [
+            {
+                "Ingrediente": "arroz",
+                "Cantidad": 4.0,
+                "Unidad": "taza",
+                "Indice": 428,
+                "Grams": 150.0,
+                "Total_Grams": 600.0,
+                "Num_comensales": 1.0
+            },
+            {
+                "Ingrediente": "queso",
+                "Cantidad": 1.0,
+                "Unidad": "taza",
+                "Indice": 77,
+                "Grams": 150.0,
+                "Total_Grams": 150.0,
+                "Num_comensales": 1.0
+            },
+            {
+                "Ingrediente": "huevo",
+                "Cantidad": 5.0,
+                "Unidad": "unidad",
+                "Indice": 150,
+                "Grams": 65.0,
+                "Total_Grams": 325.0,
+                "Num_comensales": 1.0
+            },
+            {
+                "Ingrediente": "pimienta",
+                "Cantidad": "None",
+                "Unidad": "None",
+                "Indice": 901,
+                "Grams": 1.67918,
+                "Total_Grams": 2.15641,
+                "Num_comensales": 1.0
+            }
+        ]
+    }
+]
