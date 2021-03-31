@@ -28,7 +28,7 @@ Mangio!
 
 Dependencias de python en requirements.txt
 
-`pip install -r requiriments.txt`
+`pip install -r requirements.txt`
 
 ## Sources
 

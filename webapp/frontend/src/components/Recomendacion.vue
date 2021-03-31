@@ -8,11 +8,12 @@
                 <h3 class="headline mb-2"> Plan de Alimentación de Hoy </h3>
             </v-col>
             <v-col cols="12" md="1">
-                <v-icon 
+                <v-icon class="reload"
+                :ripple="false"
                 @click="reload"
                 height="25px"
                 width="25px">
-                mdi-autorenew
+                mdi-cached
                 </v-icon>
             </v-col>
         </v-row>
