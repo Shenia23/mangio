@@ -61,13 +61,13 @@ font-size: 300%;
 }
 
 .vToolbar{
-  color: rgb(141, 254, 141);
+  color: #96bb7c;
    max-height: 10%;
 
 }
 
 #app {
-   font-family: "Bodoni MT", Helvetica, sans-serif;
+  font-family: "Bodoni MT", Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

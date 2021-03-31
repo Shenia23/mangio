@@ -6,7 +6,9 @@
     data () {
       return {
         name: 'DoughnutChart',
-        props: ['chartData'],
+        props: {
+          chartData: Array
+        },
         options: {
           legend: {
             display: true
@@ -17,8 +19,7 @@
       }
     },
     mounted () {
-      console.log(this.chartData)
-      this.renderChart(this.chartData, this.options)
+      this.renderChart(this.chartData, this.options);
     },
   }
 </script>

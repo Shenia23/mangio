@@ -3,7 +3,7 @@
     <v-col cols="12" md="7" style="margin-left:40px">
     <!-- COL 1: cards de RECOMENDACIONES y RECETAS-->
         <p></p>
-        <v-title class="headline mb-2"> Recomendación para Hoy </v-title>
+        <h3 class="headline mb-2"> Plan de Alimentación de Hoy </h3>
         <v-container>
         <v-card
         class="mx-auto"
@@ -31,7 +31,7 @@
                         </v-list-item-title>
                         <v-list-item-subtitle> 
                             <p class="text-left caption">
-                                {{ r.energia }} kcal
+                                {{ r.energia.toFixed(1) }} kcal
                             </p> 
                         </v-list-item-subtitle>
                     </v-list>
@@ -46,28 +46,33 @@
         </v-card>
         </v-container>
     </v-col>
-
     <v-col cols="12" md=4 >
     <!-- COL 2: STATS de las comidas + EXPLICACIÓN-->
         <div class="nutri-info">
-            <h3>Información Nutricional</h3>
-            <DoughnutChart ref="doughnutChild" :new_data="chartData"
-            :width="600"
-            :height="400"></DoughnutChart>
-        </div>
-
+            <h3 class="headline mb-3"> Información Nutricional </h3>
+            <doughnut-chart ref="doughnutChild" :new_data="chartData"
+            :width="500"
+            :height="300"></doughnut-chart>
+       </div>
+       <div class="explanation">
+            <explanation-card></explanation-card>
+       </div>
     </v-col>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import DoughnutChart from '@/components/DoughnutChart.vue';
+import ExplanationCard from './ExplanationCard.vue';
+import DoughnutChart from './DoughnutChart.vue';
+import BodyType from './BodyType.vue';
 //import Doughnut from '@/components/Doughnut.vue';
 
 export default {
   name: "Recomendacion",
-  components: { DoughnutChart},
+  components: { 
+      'doughnut-chart': DoughnutChart, 
+      'explanation-card': ExplanationCard },
   data() {
       return {
           rec: [],
@@ -119,9 +124,6 @@ export default {
   },
   created() {
       this.getRecomendacion();
-  },
-  components: {
-    DoughnutChart
   }
 };
 </script>

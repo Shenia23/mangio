@@ -6,10 +6,10 @@
 
 .receta{
     border-style: solid;
-    border-radius: 20px;
+    border-radius: 10px;
     border-width: 1pt;
     border-color:transparent;
-    transition: 0.3s;
+    transition: 0.2s;
 }
 
 .nutri-info{
