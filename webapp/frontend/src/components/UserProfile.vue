@@ -1,40 +1,107 @@
 <template>
-  <div>
-    <p>Aquí se realizan las mediciones de la báscula</p>
+  <div class="cdiv">
+          <p class="text" style="font-size:300%">Perfil de usuario</p>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <v-card class="mx-auto" max-width="344">
+            <v-card-text>
+              <p class="display-1 text--primary">177</p>
+              <div style="font-size: 145%" class="text--primary">Altura</div>
+            </v-card-text>
+          </v-card>
 
-
-    <v-btn
-      color="success"
-      class="mr-4"
-      @click="scan"
-    >
-      Scan
-    </v-btn>
-
-
-  </div> 
+          <v-card class="mx-auto" max-width="344">
+            <v-card-text>
+              <p class="display-1 text--primary">Ectomorfo</p>
+              <div style="font-size: 145%" class="text--primary">
+                Tipo de cuerpo
+              </div>
+            </v-card-text>
+          </v-card>
+              <v-card class="mx-auto" max-width="344">
+            <v-card-text>
+              <p class="display-1 text--primary">1980</p>
+              <div style="font-size: 145%" class="text--primary">
+                Metabolismo basal
+              </div>
+            </v-card-text>
+          </v-card>
+        </div>
+        <div class="col-sm">
+          <v-card class="mx-auto" max-width="344">
+            <v-card-text>
+              <p class="display-1 text--primary">Pedro</p>
+              <div style="font-size: 145%" class="text--primary">Nombre</div>
+            </v-card-text>
+          </v-card>
+              <v-card class="mx-auto" max-width="344">
+            <v-card-text>
+              <p class="display-1 text--primary">Hombre</p>
+              <div style="font-size: 145%" class="text--primary">
+                Sexo
+              </div>
+            </v-card-text>
+          </v-card>
+          <v-card class="mx-auto" max-width="344">
+            <v-card-text>
+              <p class="display-1 text--primary">25.5%</p>
+              <div style="font-size: 145%" class="text--primary">
+                Índice de masa corporal
+              </div>
+            </v-card-text>
+          </v-card>
+        </div>
+        <div class="col-sm">
+          <v-card class="mx-auto" max-width="344">
+            <v-card-text>
+              <p class="display-1 text--primary">24</p>
+              <div style="font-size: 145%" class="text--primary">Edad</div>
+            </v-card-text>
+          </v-card>
+              <v-card class="mx-auto" max-width="344">
+            <v-card-text>
+              <p class="display-1 text--primary">60</p>
+              <div style="font-size: 145%" class="text--primary">
+                Peso
+              </div>
+            </v-card-text>
+          </v-card>
+          <v-card class="mx-auto" max-width="344">
+            <v-card-text>
+              <p class="display-1 text--primary">24%</p>
+              <div style="font-size: 145%" class="text--primary">
+                Grasa vísceral
+              </div>
+            </v-card-text>
+          </v-card>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-export default {
-  data: () => ({
-      name: ''    }),
-methods: {
-    call_wrappersh: function () {
-/*         var exec = require('child process').exec, child;
-        child = exec('/home/pablo/Desktop/mangio/app/MiScale/src/wrapper.sh', 
-        function (error,stdout,stderr){
-
-            console.log('stdout' + stdout)
-            console.log('stderr' + stderr)
-            if(error!==null){
-                console.log('exec_error:' + error);
-            }
-        }); */
-            }
-
-
-        }
-    }
+export default {};
 </script>
 
+<style scoped>
+.cdiv {
+  margin-top: 0.5em;
+  margin-bottom: 0.1em;
+  background-color: white;
+  margin: auto;
+  width: 80%;
+  border: 3px solid #96bb7c;
+  padding: 10px;
+
+  justify-content: flex-end;
+  line-height: 200px;
+}
+
+.mx-auto{
+
+  background: #8bc34a;
+
+}
+</style>
