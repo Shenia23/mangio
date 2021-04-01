@@ -36,35 +36,35 @@
       required
     ></v-slider>
 
-        <input type="checkbox" value="balanza" v-model="checkedBalanza">
-    <label for="jack">Usar Balanza</label>
+    <input type="checkbox" value="balanza" v-model="checkedBalanza">
+      <label>Usar Balanza</label>
     <br>
 
     <div v-if="checkedBalanza=='balanza'" class="if-balanza">
-    <span> Aquí meter conector ble con balanza {{ checkedNames }}</span>
+      <span> Aquí meter conector ble con balanza</span>
     </div>
 
     <div v-else class="if-not-balanza">
-    <v-slider
-      v-model="weight.val"
-      :label="weight.label"
-      :thumb-color="weight.color"
-      thumb-label="always"
-      max="150"
-      min="40"
-      style="margin-bottom:10px;"
-      required
-    ></v-slider>
-    
-     <BodyType :body_type="body_type" @changeBodyType="body_type = $event" 
-     >
-     </BodyType>
+      <v-slider
+        v-model="weight.val"
+        :label="weight.label"
+        :thumb-color="weight.color"
+        thumb-label="always"
+        max="150"
+        min="40"
+        style="margin-bottom:10px;"
+        required
+      ></v-slider>
+      
+      <BodyType :body_type="body_type" @changeBodyType="body_type = $event" 
+      >
+      </BodyType>
 
-      <v-select
-        :items="activity_types"
-        label="Cuánta actividad física realizas?"
-        solo
-      ></v-select>
+        <v-select
+          :items="activity_types"
+          label="Cuánta actividad física realizas?"
+          solo
+        ></v-select>
 
     </div>
 
