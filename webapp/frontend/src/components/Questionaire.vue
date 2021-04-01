@@ -38,6 +38,11 @@
       required
     ></v-slider>
 
+        <input type="checkbox" value="balanza" v-model="checkedBalanza">
+    <label for="jack">Usar Balanza</label>
+    <br>
+    <span v-if="checkedBalanza=='balanza'"> Aquí meter conector ble con balanza {{ checkedNames }}</span>
+
     <v-slider
       v-model="weight.val"
       :label="weight.label"
@@ -47,10 +52,14 @@
       min="40"
       style="margin-bottom:10px;"
       required
+      v-else
     ></v-slider>
 
+
     
-     <BodyType :body_type="body_type" @changeBodyType="body_type = $event">
+    
+     <BodyType :body_type="body_type" @changeBodyType="body_type = $event" 
+     v-else>
      </BodyType>
 
       <v-select
@@ -115,7 +124,8 @@ import Ingredients from './Ingredients.vue'
       height: { label: 'Altura (cm)', val: 165, color: 'red' },
       weight: { label: 'Peso (kg)', val: 65, color: 'blue' },
       body_type : "default",
-      ingredients: ["empty"]
+      ingredients: ["empty"],
+      checkedBalanza: []
     }),
     methods: {
       validate () {
