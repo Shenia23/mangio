@@ -13,6 +13,7 @@ class User:
         self.activity_level  # Nivel de actividad física del usuario (de los definidos en el Excel)
         self.liked_ingredients = liked_ingredients
         self.disliked_ingredients = disliked_ingredients
+        self.user_objective = user_objective # Ganar masa muscular, mantenerse, adelgazar
         
     def set_xiaomi_parameters(self, ):
         self.weight = weight
