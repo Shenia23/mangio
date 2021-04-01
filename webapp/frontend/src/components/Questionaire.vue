@@ -183,4 +183,81 @@ input {
   flex: 0 0 200px;
   margin-left: 10px;
 }
+
+.checkbox-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.checkbox-form .answers {
+	display: flex;
+	flex-direction: column;
+	align-items: left;
+	width: 100%;
+}
+
+.checkbox-form label {
+	margin-left: 1em;
+}
+
+.checkbox-form .item {
+	display: block;
+	position: relative;
+	padding-left: 35px;
+	margin-bottom: 12px;
+	cursor: pointer;
+	font-size: 1em;
+	height: 25px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	display: flex;
+	align-items: center;
+}
+
+.checkbox-form .item input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+
+.checkbox-form .checkmark {
+	position: absolute;
+	top: 1;
+	left: 0;
+  border-radius: 45%;
+	height: 20px;
+	width: 20px;
+	background-color: white;
+}
+
+.checkbox-form .item input:checked ~ .checkmark {
+	background-color: green;
+}
+
+.checkbox-form .checkmark:after {
+	content: "";
+	position: absolute;
+	display: none;
+}
+
+.checkbox-form .item input:checked ~ .checkmark:after {
+	display: block;
+}
+
+.checkbox-form .item .checkmark:after {
+	left: 7px;
+	top: 4px;
+	width: 6px;
+	height: 10px;
+	border: solid white;
+	border-width: 0 3px 3px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
 </style>
