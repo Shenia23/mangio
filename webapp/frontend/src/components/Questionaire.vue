@@ -11,7 +11,7 @@
   >
     <v-text-field
       v-model="name"
-      :counter="10"
+      :counter="30"
       :rules="nameRules"
       label="Nombre"
       required
@@ -22,8 +22,24 @@
       label="Edad"
       required
       type="number"
-      style="margin-bottom:10px;"
+      style="margin-bottom:20px;"
     ></v-text-field>
+
+    <v-radio-group v-model="radios">
+      <template v-slot:label>
+        <div> Selecciona tu <strong> sexo:</strong></div>
+      </template>
+      <v-radio value="Mujer">
+        <template v-slot:label>
+          <div> Mujer </div>
+        </template>
+      </v-radio>
+      <v-radio value="Hombre">
+        <template v-slot:label>
+          <div> Hombre </div>
+        </template>
+      </v-radio>
+    </v-radio-group>
    
     <v-slider
       v-model="height.val"
@@ -36,10 +52,16 @@
       required
     ></v-slider>
 
-    <input type="checkbox" value="balanza" v-model="checkedBalanza">
-      <label>Usar Balanza</label>
-    <br>
 
+    <v-checkbox
+              v-model="checkedBalanza"
+              label="Va a utilizar la balanza Xiaomi Mi Body Composition Scale 2 ?"
+              color="red"
+              value="balanza"
+              style="margin-bottom:10px;"
+              hide-details
+    ></v-checkbox>
+    
     <div v-if="checkedBalanza=='balanza'" class="if-balanza">
       <span> Aquí meter conector ble con balanza</span>
     </div>
@@ -52,10 +74,11 @@
         thumb-label="always"
         max="150"
         min="40"
-        style="margin-bottom:10px;"
+        style="margin-bottom:10px;margin-top:40px;"
         required
       ></v-slider>
-      
+        </div>
+
       <BodyType :body_type="body_type" @changeBodyType="body_type = $event" 
       >
       </BodyType>
@@ -66,8 +89,7 @@
           solo
         ></v-select>
 
-    </div>
-
+  
 
     <Ingredients id="ingredients" :ingredients="ingredients" @changeSelectedIngredients="ingredients_list = $event"></Ingredients>
 
@@ -148,7 +170,7 @@ import Ingredients from './Ingredients.vue'
   margin-top: 1cm;
   background-color: rgb(155, 245, 158);
   margin: auto;
-  width: 80%;
+  width: 90%;
   border: 3px solid rgb(97, 213, 97);
   padding: 10px;
 

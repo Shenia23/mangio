@@ -15,7 +15,7 @@ class User:
         self.disliked_ingredients = disliked_ingredients
         self.user_objective = user_objective # Ganar masa muscular, mantenerse, adelgazar
         
-    def set_xiaomi_parameters(self, ):
+    def set_xiaomi_parameters(self ):
         self.weight = weight
         self.bmi = bmi
         self.bmr = bmr 
@@ -24,6 +24,14 @@ class User:
         self.muscle_mass = muscle_mass
         self.body_water = body_water
         self.bone_mass = bone_mass
+        
+    def get_bmr():
+        
+        '''Cálculo del BMR (metabolismo basal) para el caso de no conectar con la báscula'''
+        if self.sex == "Hombre":
+            return 66,473 + (13,751 x self.weight) + (5,0033 x self.height) - (6,7550 x self.age)
+        elif self.sex == "Mujer":
+            return 655,1 + (9,463 x self.weight) + (1,8 x self.height) - (4,6756 x self.age)
         
     def get_tdee(self):
         

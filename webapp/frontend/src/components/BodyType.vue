@@ -1,9 +1,8 @@
 <template type="default">
   <v-container class="pa-4 text-center">
-    
-    <div>
-      {{body_type}}
-    </div>
+
+  <div> Selecciona tu <strong> tipo de cuerpo:</strong></div>
+
     
     <v-row
       class="fill-height"
@@ -25,7 +24,7 @@
             >
            <v-img
                 :src="item.img"
-                height="300px"
+                size="200px"
               >
 
                 <v-card-title class="title black--text">
