@@ -9,10 +9,7 @@
             </v-col>
             <v-col cols="12" md="1">
                 <v-icon class="reload"
-                :ripple="false"
-                @click="reload"
-                height="25px"
-                width="25px">
+                @click="reload">
                 mdi-cached
                 </v-icon>
             </v-col>
