@@ -1,31 +1,24 @@
 <template>
   <v-card
-    :loading="loading"
     class="mx-auto my-12"
     max-width="500"
+    color="white"
   >
-    <template slot="progress">
-      <v-progress-linear
-        color="deep-purple"
-        height="10"
-        indeterminate
-      ></v-progress-linear>
-    </template>
+    <div>
+     <v-img v-if="recipe.image_src !== 'None'" :src="recipe.image_src" height="150"/>
+     <v-icon v-else size="50" color="green" id="default-icon"> {{ default_icon[recipe.Comida] }} </v-icon>
+    </div>
 
-    <v-img
-      height="200"
-      src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
-    ></v-img>
+    <v-card-title class="black--text">{{ recipe.Nombre }}</v-card-title>
 
-    <v-card-title>{{ recipe.Nombre }}</v-card-title>
-
-    <v-card-text>
+    <v-card-text class="black--text">
       <v-row v-if="recipe.Valoracion !== 'None'"
         align="center"
         class="mx-0"
       >
         <v-rating 
           :value="recipe.Valoracion"
+          background-color="green lighten-3"
           color="green"
           dense
           half-increments
@@ -43,18 +36,18 @@
       </div>
       
       <div v-for="(ing, index) in recipe.Ingredientes" :key="index">
-          <div v-if="ing.Unidad !== 'None'">
-            {{ ing.Ingrediente }}: {{ ing.Cantidad}} {{ ing.Unidad}}
-          </div>
-          <div v-else>
-            {{ ing.Ingrediente }}: {{ ing.Total_Grams.toFixed(0) }} gramos
-          </div>
+          <v-row v-if="ing.Unidad !== 'None'" class="ing-list">
+            – {{ ing.Ingrediente }}: {{ ing.Cantidad}} {{ ing.Unidad}}
+          </v-row>
+          <v-row v-else class="ing-list"> 
+            – {{ ing.Ingrediente }}: {{ ing.Total_Grams.toFixed(0) }} gramos
+          </v-row>
       </div>
     </v-card-text>
 
-    <v-divider class="mx-4"></v-divider>
+    <v-divider color="grey" class="mx-4"></v-divider>
 
-    <v-card-title>Información Nutricional</v-card-title>
+    <v-card-title class="black--text">Información Nutricional</v-card-title>
 
     <v-card-text>
       <v-chip-group
@@ -76,9 +69,21 @@
         name: 'recipe-info',
     }),
     props: {
-        recipe: Object
+        recipe: Object,
+        default_icon: Object
     },
     methods: {
     },
   }
 </script>
+
+<style scoped>
+
+.ing-list {
+  padding-left: 20px;
+  padding-bottom: 10px;
+}
+#default-icon{
+  padding-top: 10px;
+}
+</style>

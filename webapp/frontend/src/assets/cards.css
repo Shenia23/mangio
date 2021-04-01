@@ -37,9 +37,7 @@
     transition-property: transform;
 }
 
-.reload:active {
-    transform: translate(100%) rotate(180deg);
-}
+
 .info_receta{
     background-color: transparent;
 }

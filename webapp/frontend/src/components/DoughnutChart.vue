@@ -18,6 +18,21 @@
         },
       }
     },
+    watch: {
+      deep: true,
+      chartData: { // watch it
+        deep: true,
+        handler: function(newVal, oldVal){
+          console.log('Prop changed: ', newVal, ' | was: ', oldVal)
+          this.chartData = newVal
+        }
+      }
+    },
+    methods: {
+        reload(){
+            this.renderChart(this.chartData, this.options);
+        },
+    },
     mounted () {
       this.renderChart(this.chartData, this.options);
     },

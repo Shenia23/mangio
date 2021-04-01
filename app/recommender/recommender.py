@@ -1,5 +1,6 @@
 import pandas as pd
 import json
+from random import randint
 
 from config import recipes
 from app.recommender.data_manager import recipes2dict
@@ -13,12 +14,17 @@ class Recommender:
         '''
         :return: ids y tipo de comida recomendada, posible formato de recomendación  "final", por ahora devuelve ids estáticas
         '''
-        recommendation_ids = {74146: 'merienda', 
-                            19602: 'snack', 
-                            58107:'snack', 
-                            64737: 'comida', 
-                            50719: 'desayuno', 
-                            45889: 'cena'}
+        random_ids = []
+        for i in range(6):
+            random_index = randint(1,len(recipes))
+            random_ids.append( recipes['Id'][random_index] )
+
+        recommendation_ids = {random_ids[0]: 'merienda', 
+                            random_ids[1]: 'snack', 
+                            random_ids[2]:'snack', 
+                            random_ids[3]: 'comida', 
+                            random_ids[4]: 'desayuno', 
+                            random_ids[5]: 'cena'}
         return recommendation_ids
 
 def getRecommendation():

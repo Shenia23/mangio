@@ -1,23 +1,23 @@
 <template>
-  <div class="row recommendation-body">
+  <div class="recommendation-body">
+    <v-row id="title-row">
+        <v-col cols="12" md="9">
+            <h3 class="headline mb-2"> Plan de Alimentación de Hoy </h3>
+        </v-col>
+        <v-col cols="12" md="1">
+            <v-icon class="reload"
+            @click="reload">
+            mdi-cached
+            </v-icon>
+        </v-col>
+    </v-row>
+    <v-row>
     <v-col cols="12" md="7" style="margin-left:40px">
     <!-- COL 1: cards de RECOMENDACIONES y RECETAS-->
-        <p></p>
-        <v-row width="80%">
-            <v-col cols="12" md="9">
-                <h3 class="headline mb-2"> Plan de Alimentación de Hoy </h3>
-            </v-col>
-            <v-col cols="12" md="1">
-                <v-icon class="reload"
-                @click="reload">
-                mdi-cached
-                </v-icon>
-            </v-col>
-        </v-row>
         <v-container>
         <v-card
         class="mx-auto"
-        max-width="550"
+        max-width="700"
         outlined
         v-for="(comida, index) in comidas"
         :key="index"
@@ -42,11 +42,12 @@
                 :value="r.overlay"
                 >
                 <div class="recipe-info-card">
-                    <recipe-info :recipe="r"></recipe-info>
+                    <recipe-info :recipe="r" :default_icon="default_icon"></recipe-info>
                     <div class="close-icon">
                         <v-icon
                             class="white--text"
-                            color="black"
+                            size="30px"
+                            color="orange"
                             @click="exitOverlay(index)"
                         >
                             mdi-close 
@@ -67,7 +68,13 @@
                         </v-list-item-subtitle>
                     </v-list>
                     <v-divider></v-divider>
-                    <v-list-item-avatar tile size="50" color="grey"></v-list-item-avatar>
+                    <v-list-item-avatar 
+                    size="60" 
+                    color="#FAD7A0"
+                    rounded>
+                        <img v-if="r.image_src !== 'None'" :src="getImageSrc(index)" />
+                        <v-icon size="35" v-else> {{ default_icon[comida] }} </v-icon>
+                    </v-list-item-avatar>
                 </v-list-item>
             </div>
             </v-list-item-content>
@@ -80,57 +87,48 @@
     <v-col cols="12" md=4 >
     <!-- COL 2: STATS de las comidas + EXPLICACIÓN-->
         <div class="nutri-info">
-            <h3 class="headline mb-3"> Información Nutricional </h3>
-            <doughnut-chart ref="doughnutChild" :new_data="chartData"
-            :width="500"
-            :height="300"></doughnut-chart>
+            <nutritional-info :recipes="rec" ref="nutritionalInfoChild"></nutritional-info>
+
+
        </div>
        <div class="explanation">
             <explanation-card></explanation-card>
        </div>
     </v-col>
+    </v-row>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import ExplanationCard from './ExplanationCard.vue';
+import NutritionalInfo from './NutritionalInfo';
 import DoughnutChart from './DoughnutChart.vue';
 import RecipeInfo from './RecipeInfo.vue';
-//import Doughnut from '@/components/Doughnut.vue';
 
 export default {
   name: "Recomendacion",
   components: { 
       'doughnut-chart': DoughnutChart, 
       'explanation-card': ExplanationCard,
-      'recipe-info': RecipeInfo  },
+      'recipe-info': RecipeInfo,
+      'nutritional-info': NutritionalInfo  },
   data() {
+    NutritionalInfo
       return {
           rec: [], // recommendation full json
           overlay: false,
           zIndex: 1,
           recom_key: 0,
           recipes: [], // overlay values for each recipe
-          reset_img: require('@/assets/reset.png'),
           comidas: ['desayuno','snack','comida','merienda','cena'],
-          chartData: {
-            labels: ["Proteínas","Grasas","Carbohidratos"],
-            datasets: [{
-                borderWidth: 1,
-                borderColor: [
-                '#184d47',
-                '#96bb7c',
-                '#fad586'              
-                ],
-                backgroundColor: [
-                '#184d47',
-                '#96bb7c',
-                '#fad586',        
-                ],
-                data: []
-                }]
-          }
+          default_icon: {
+                'desayuno': 'mdi-food-variant',
+                'snack': 'mdi-food-apple',
+                'comida': 'mdi-pasta',
+                'merienda': 'mdi-food-croissant',
+                'cena': 'mdi-noodles'
+              }
     };
   },
   methods: {
@@ -143,40 +141,23 @@ export default {
           this.rec.forEach(element => {
             element.overlay = false
           })
-          // set graph data
-          let values = ['proteina','grasa','carbohidratos'];
-          values.forEach(element => {
-              var e_sum = this.getSum(element,this.rec);
-              this.chartData.datasets[0].data.push(e_sum.toFixed(1));
-          });
-          this.$refs.doughnutChild.renderChart(this.chartData);
         })
         .catch((error) => {
           console.error(error);
         });
     },
     reload(){
-        this.chartData.datasets[0].data = []
         this.getRecomendacion()
     },
     //overlay methods
     displayInfo(index,recipe){
         this.rec.map((a) => a.overlay = false);
         this.rec[index].overlay = true;
-        console.log("overlay index, ",index)
-        console.log(this.rec[index])
         this.forceRerender() //fix!
     },
     exitOverlay(index){
         this.rec.map((a) => a.overlay = false);
         this.forceRerender() //fix!
-    },
-    getSum(type,rec) {
-        var sum = 0;
-        rec.forEach(element=>{
-            sum += element[type]
-        });
-        return sum;
     },
     forceRerender() {
       this.recom_key += 1; 
@@ -187,9 +168,19 @@ export default {
         else
             return false
     },
+    getImageSrc(index){
+        return this.rec[index].image_src
+    }
   },
   created() {
       this.getRecomendacion();
   }
 };
 </script>
+
+<style scoped>
+
+#title-row {
+  padding-top: 50px;
+}
+</style>
