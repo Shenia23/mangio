@@ -3,7 +3,7 @@ from random import *
 import json 
 from flask_cors import CORS, cross_origin
 import requests
-
+from app.user.user import User
 from app.recommender.recommender import getRecommendation
 
 app = Flask(__name__,
@@ -28,6 +28,22 @@ def get_recomendacion():
         mimetype='application/json'
     )
     return response
+
+@app.route('/newUser', methods=['POST'])
+@cross_origin()
+def create_user():
+    
+    print("User creation")
+    
+    #data = getRecommendation()
+    '''response = app.response_class(
+        response=json.dumps(data),
+        status=200,
+        mimetype='application/json'
+    )'''
+    return response
+
+
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')

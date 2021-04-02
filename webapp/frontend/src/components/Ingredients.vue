@@ -1,5 +1,5 @@
 <template>
-  <v-container class="pa-4 text-center">
+  <v-container class="pa-4 text-center" >
       <div> Selecciona tus <strong> ingredientes favoritos:</strong></div>
 
     <v-sheet class="mx-auto" elevation="8" max-width="900">

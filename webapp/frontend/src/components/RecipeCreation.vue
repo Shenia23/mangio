@@ -17,10 +17,11 @@
         :items="ingredients"
         dense
         filled
-        label="Filled"
+        label="Escoge un ingrediente"
       ></v-autocomplete>
 
       <v-text-field
+      v-model="selected_quantity"
       label="Cantidad"
       required
       type="number"
@@ -32,10 +33,10 @@
         :items="units"
         dense
         filled
-        label="Filled"
+        label="Escoge la unidad"
       ></v-autocomplete>
 
-      <v-btn color="green" fab dark style="margin-right: 20px">
+      <v-btn color="green" fab dark style="margin-right: 20px" @click="addIngredient(selected_ingredient, selected_quantity,selected_unit)">
         <v-icon> add_circle_outline</v-icon>
       </v-btn>
 
@@ -43,6 +44,35 @@
         CREATE RECIPE
       </v-btn>
     </v-form>
+
+<v-simple-table class="table">
+    <template v-slot:default>
+      <thead>
+        <tr>
+          <th class="text-left">
+            Ingrediente
+          </th>
+          <th class="text-left">
+            Cantidad
+          </th>
+          <th class="text-left">
+            Unidad
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          v-for="item in recipe_ingredients"
+          :key="item.name"
+        >
+          <td class="text-left">{{ item.name }}</td>
+          <td class="text-left">{{ item.quantity }}</td>
+          <td class="text-left">{{ item.unit }}</td>
+        </tr>
+      </tbody>
+    </template>
+  </v-simple-table>
+
   </v-container>
 </template>
 
@@ -54,6 +84,10 @@ export default {
   data: () => ({
     valid: true,
     name: "",
+    selected_ingredient: "",
+    selected_unit:"",
+    selected_quantity:"",
+    recipe_ingredients: [],
     ingredients: [
       "Arroz con leche",
       "Batido de chocolate",
@@ -1039,7 +1073,7 @@ export default {
       "gramo",
       "ml",
     ],
-    recipe_ingredients: [],
+    
   }),
   methods: {
     validate() {
@@ -1051,6 +1085,17 @@ export default {
     resetValidation() {
       this.$refs.form.resetValidation();
     },
+    clean_ingredient_inputs(){
+      this.selected_ingredient="";
+      this.selected_quantity="";
+      this.selected_unit="";
+    },
+    addIngredient(selected_ingredient,selected_quantity, selected_unit) {
+      var new_ingredient = { "name":selected_ingredient, "quantity":selected_quantity, "unit":selected_unit };
+      this.recipe_ingredients.push(new_ingredient); // push item to existing array
+      this.clean_ingredient_inputs();
+    },
+    
   },
 };
 </script>
@@ -1064,10 +1109,11 @@ export default {
   width: 80%;
   border: 3px solid rgb(97, 213, 97);
   padding: 10px;
+  border-radius: 25px;
 
   justify-content: flex-end;
   text-align: right;
-  line-height: 200px;
+  line-height: 50px;
 }
 input {
   height: 20px;
@@ -1080,5 +1126,18 @@ input {
   align-items: center;
   width: 100px;
   height: 100px;
+}
+
+.table{
+  margin-top:20px;
+  border: 3px solid rgb(141, 232, 141);
+  width: 80%;
+  margin: auto;
+  margin-top:40px;
+
+  justify-content: flex-end;
+  background-color: rgb(177, 235, 179);
+
+
 }
 </style>
