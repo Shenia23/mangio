@@ -1,24 +1,26 @@
+import json
+import os
 class User:
     
     '''Esta clase define un perfil de un usuario de nuestro sistema, con todos los datos necesarios para generar recomendaciones.
         Además, almacena los parámetros necesarios para la monitorización de su estado físico a través de la bascula Xiaomi.'''
     
     def __init__(self, name, sex, age, height, weight, 
-                 body_type, activity_level, liked_ingredients, disliked_ingredients = None,
-                 user_objective, using_scale = False, scale_parameters):
+                 body_type, activity_level, liked_ingredients,
+                 user_objective, disliked_ingredients = None,scale_data = None ,using_scale = False ):
         
-        '''Constructor de la clase de usuario, scale_parameters es un dict con los parámetros de la báscula'''
+        '''Constructor de la clase de usuario, scale_data es un dict con los parámetros de la báscula'''
         
         self.name = name
         self.sex = sex
         self.age = age
         self.height = height
         self.body_type = body_type # Ectomorfo, mesomorfo, o endomorfo
-        self.activity_level  # Nivel de actividad física del usuario (de los definidos en el Excel)
+        self.activity_level= activity_level  # Nivel de actividad física del usuario (de los definidos en el Excel)
         self.liked_ingredients = liked_ingredients
         self.disliked_ingredients = disliked_ingredients
         self.user_objective = user_objective # Ganar masa muscular, mantenerse, adelgazar
-    
+
         if using_scale == False:
             
             self.weight = weight
@@ -26,22 +28,35 @@ class User:
             self.bmr = self.get_bmr()
             self.tdee= self.get_tdee()
             self.water_intake = self.get_daily_water_intake()
-        
         elif using_scale == True:
             
-            self.weight = scale_parameters["weight"]
-            self.bmi = scale_parameters["bmi"]
-            self.bmr = scale_parameters["bmr"] 
-            self.body_fat = scale_parameters["body_fat"]
-            self.visceral_fat = scale_parameters["visceral_fat"]
-            self.muscle_mass = scale_parameters["muscle_mass"]
-            self.body_water = scale_parameters["body_water"]
-            self.bone_mass = scale_parameters["bone_mass"]
+            self.weight = scale_data["weight"]
+            self.bmi = scale_data["bmi"]
+            self.lean_body_mass = scale_data["lean_body_mass"]
+            self.bmr = scale_data["basal_metabolism"] 
+            self.body_fat = scale_data["body_fat"]
+            self.visceral_fat = scale_data["visceral_fat"]
+            self.muscle_mass = scale_data["muscle_mass"]
+            self.body_water = scale_data["water"]
+            self.bone_mass = scale_data["bone_mass"]
+            self.protein = scale_data["protein"]
+            self.body_condition =  scale_data["body_type"]
+            self.metabolic_age = scale_data["metabolic_age"]
             self.tdee= self.get_tdee()
             self.water_intake = self.get_daily_water_intake()
 
+        self.user_to_json()
 
-    
+    def user_to_json(self):
+        #print("Current path:",os.getcwd())
+        file_name= "./app/user/users/"+self.name+"_data.json"
+        with open(file_name, 'w+') as f:
+            new_user_json = json.dumps(self.__dict__)
+            json.dump(new_user_json, f)
+        
+        return
+        
+        
     def get_bmi(self):
         
         '''Cálculo del BMI (índice de masa corporal) para el caso de no conectar con la báscula'''
@@ -52,9 +67,9 @@ class User:
         
         '''Cálculo del BMR (metabolismo basal) para el caso de no conectar con la báscula'''
         if self.sex == "Hombre":
-            return 66,473 + (13,751 x self.weight) + (5,0033 x self.height) - (6,7550 x self.age)
+            return 66.473 + (13.751 * self.weight) + (5.0033 * self.height) - (6.7550 * self.age)
         elif self.sex == "Mujer":
-            return 655,1 + (9,463 x self.weight) + (1,8 x self.height) - (4,6756 x self.age)
+            return 655.1 + (9.463 * self.weight) + (1.8 * self.height) - (4.6756 * self.age)
         
     def get_tdee(self):
         
@@ -70,11 +85,11 @@ class User:
         
         return self.bmr * factor.get(self.activity_level)
     
-    def get_daily_water_intake():
+    def get_daily_water_intake(self):
         
         '''Cálculo del consumo de agua diario en función del metabolismo basal y del factor de actividad física'''
 
-        return 0.96 * get_tdee()
+        return 0.96 * self.get_tdee()
     
     
 def main():

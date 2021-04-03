@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 from random import *
 import json 
 from flask_cors import CORS, cross_origin
@@ -33,15 +33,28 @@ def get_recomendacion():
 @cross_origin()
 def create_user():
     
+    '''Crea un nuevo usuario del sistema y almacena sus datos en un JSON'''
     print("User creation")
+    print ("Is request json: ", request.is_json)
+    new_user_data = request.get_json()
+    print ("JSON content: ",new_user_data)
+
+    new_user = User(name= new_user_data['name'],
+                    age= new_user_data['age'],
+                    sex = new_user_data['sex'],
+                    weight = new_user_data['weight'],
+                    height = new_user_data['height'],
+                    body_type = new_user_data ['body_type'],
+                    activity_level = new_user_data['activity_level'],
+                    liked_ingredients = new_user_data['liked_ingredients'],
+                    user_objective = new_user_data['objective'],
+                    using_scale = new_user_data ['using_scale'])
     
-    #data = getRecommendation()
-    '''response = app.response_class(
-        response=json.dumps(data),
-        status=200,
-        mimetype='application/json'
-    )'''
-    return response
+    new_user_json = json.dumps(new_user.__dict__)
+
+    print("NEW USER CLASS: ", new_user_json)
+    return 'JSON posted'
+    
 
 
 

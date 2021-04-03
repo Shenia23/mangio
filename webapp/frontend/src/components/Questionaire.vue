@@ -22,7 +22,7 @@
       ></v-text-field>
 
       <v-select
-        v-model="sex"
+        v-model="selected_sex"
         :items="sex_options"
         label="Selecciona tu sexo"
         solo
@@ -40,15 +40,14 @@
       ></v-slider>
 
       <v-checkbox
-        v-model="checkedBalanza"
+        v-model="using_scale"
         label="Va a utilizar la balanza Xiaomi Mi Body Composition Scale 2 ?"
         color="red"
-        value="balanza"
         hide-details
       ></v-checkbox>
 
       <div
-        v-if="checkedBalanza == 'balanza'"
+        v-if="using_scale == true"
         class="if-balanza"
         style="width: 50%; padding: 5px"
       >
@@ -115,6 +114,8 @@
 <script>
 import BodyType from "./BodyType.vue";
 import Ingredients from "./Ingredients.vue";
+import axios from "axios";
+
 export default {
   components: { BodyType, Ingredients },
   data: () => ({
@@ -127,23 +128,67 @@ export default {
       "5. Extremadamente activo (ejercio diario muy intenso, 2 entrenamientos diarios)",
     ],
     name: "",
+    using_scale: false,
     objectives: ["Perder peso", "Mantener", "Ganar peso"],
     height: { label: "Altura (cm)", val: 165, color: "red" },
     weight: { label: "Peso (kg)", val: 65, color: "blue" },
     body_type: "default",
     ingredients: ["empty"],
     age: "",
-    checkedBalanza: [],
     selected_activity: "",
     selected_sex: "",
+    mi_scale_data: {
+      weight: 63.95,
+      weight_unit: "kg",
+      bmi: 28.42,
+      basal_metabolism: 1264.14,
+      visceral_fat: 8.02,
+      lean_body_mass: 48.59,
+      body_fat: 40.94,
+      water: 42.17,
+      bone_mass: 2.36,
+      muscle_mass: 35.41,
+      protein: 13.2,
+      body_type: "Overweight",
+      metabolic_age: 48,
+    },
   }),
   methods: {
+    toggle_using_scale() {
+      if (this.using_scale) {
+        this.using_scale = false;
+      } else {
+        this.using_scale = true;
+      }
+    },
     createUser() {
-      var new_user= {"name":this.name,"age":this.age,"sex":this.selected_sex,"weight":this.weight.val,"height":this.height.val,
-                "body_type":this.body_type,"activity_level":(this.activity_types.indexOf(this.selected_activity) + 1),
-                "objective":(this.objectives.indexOf(this.selected_activity) + 1),"liked_ingredients":this.ingredients};
-      console.log(new_user)
+      var new_user = {
+        name: this.name,
+        age: parseInt(this.age,10),
+        sex: this.selected_sex,
+        weight: this.weight.val,
+        height: this.height.val,
+        body_type: this.body_type,
+        activity_level: this.activity_types.indexOf(this.selected_activity) + 1,
+        objective: this.objectives.indexOf(this.selected_activity) + 1,
+        liked_ingredients: this.ingredients,
+        using_scale: this.using_scale,
+        scale_data: this.mi_scale_data
+      };
+      console.log(new_user);
 
+      axios({
+        baseURL: "http://localhost:5000",
+        url: "/newUser",
+        method: "post",
+        data: new_user,
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };
