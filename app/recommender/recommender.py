@@ -5,7 +5,7 @@ from random import randint
 from config import recipes
 from app.recommender.data_manager import recipes2dict
 
-FOOD_CAT = ['Plato principal','Entrante','Acompñamiento','Cena']
+FOOD_CAT = ['Plato principal','Entrante','Acompañamiento','Cena']
 SNACK_CAT = ['Merienda','Cumpleaños','Postre']
 BREAKFAST_CAT = ['Desayuno']
 
