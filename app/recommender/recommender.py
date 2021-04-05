@@ -5,27 +5,35 @@ from random import randint
 from config import recipes
 from app.recommender.data_manager import recipes2dict
 
+FOOD_CAT = ['Plato principal','Entrante','Acompñamiento','Cena']
+SNACK_CAT = ['Merienda','Cumpleaños','Postre']
+BREAKFAST_CAT = ['Desayuno']
+
 class Recommender:
 
     def __init__(self):
-        pass 
+        self.categories= {'Desayuno': BREAKFAST_CAT,
+                    'Comida': FOOD_CAT,
+                    'Snack': SNACK_CAT
+                    }
 
     def recommend(self):
         '''
-        :return: ids y tipo de comida recomendada, posible formato de recomendación  "final", por ahora devuelve ids estáticas
+        :return: ids y tipo de comida recomendada, posible formato de recomendación final
         '''
-        random_ids = []
-        for i in range(6):
-            random_index = randint(1,len(recipes))
-            random_ids.append( recipes['Id'][random_index] )
 
-        recommendation_ids = {random_ids[0]: 'merienda', 
-                            random_ids[1]: 'snack', 
-                            random_ids[2]:'snack', 
-                            random_ids[3]: 'comida', 
-                            random_ids[4]: 'desayuno', 
-                            random_ids[5]: 'cena'}
+        recommendation_ids = {self.getRandomByCategory('Snack'): 'merienda', 
+                            self.getRandomByCategory('Snack'): 'snack', 
+                            self.getRandomByCategory('Snack'):'snack', 
+                            self.getRandomByCategory('Comida'): 'comida', 
+                            self.getRandomByCategory('Desayuno'): 'desayuno', 
+                            self.getRandomByCategory('Comida'): 'cena'}
         return recommendation_ids
+    
+    def getRandomByCategory(self, category):
+        selected_category = recipes[recipes['Tipo'].isin(self.categories[category])]
+        return int(selected_category['Id'].sample(n=1))
+        
 
 def getRecommendation():
     '''
