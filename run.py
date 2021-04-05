@@ -48,14 +48,12 @@ def create_user():
                     activity_level = new_user_data['activity_level'],
                     liked_ingredients = new_user_data['liked_ingredients'],
                     user_objective = new_user_data['objective'],
-                    using_scale = new_user_data ['using_scale'])
+                    using_scale = new_user_data['using_scale'])
     
     new_user_json = json.dumps(new_user.__dict__)
 
     print("NEW USER CLASS: ", new_user_json)
     return 'JSON posted'
-    
-
 
 
 @app.route('/', defaults={'path': ''})
