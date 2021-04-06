@@ -22,7 +22,7 @@
         text
         @click="show = !show"
       >
-       Más
+       {{ show ? 'Menos' : 'Más'}}
       </v-btn>
 
       <v-spacer></v-spacer>
