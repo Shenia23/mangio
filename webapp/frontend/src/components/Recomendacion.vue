@@ -2,7 +2,7 @@
   <div class="recommendation-body">
     <v-row id="title-row">
         <v-col cols="12" md="9">
-            <h3 class="headline mb-2"> Plan de Alimentación de Hoy </h3>
+            <h3 class="headline mb-2"> Plan de Alimentación de Hoy para {{this.$store.getters.username}} </h3>
         </v-col>
         <v-col cols="12" md="1">
             <v-icon class="reload"
@@ -92,8 +92,14 @@
 
        </div>
        <div class="explanation">
+            <user-card></user-card>
+       </div>
+       
+       <div class="explanation">
             <explanation-card></explanation-card>
        </div>
+
+       
     </v-col>
     </v-row>
   </div>
@@ -102,6 +108,7 @@
 <script>
 import axios from "axios";
 import ExplanationCard from './ExplanationCard.vue';
+import UserCard from './UserCard.vue';
 import NutritionalInfo from './NutritionalInfo';
 import DoughnutChart from './DoughnutChart.vue';
 import RecipeInfo from './RecipeInfo.vue';
@@ -112,7 +119,8 @@ export default {
       'doughnut-chart': DoughnutChart, 
       'explanation-card': ExplanationCard,
       'recipe-info': RecipeInfo,
-      'nutritional-info': NutritionalInfo  },
+      'nutritional-info': NutritionalInfo,
+      'user-card': UserCard  },
   data() {
     NutritionalInfo
       return {
@@ -134,8 +142,11 @@ export default {
   methods: {
     getRecomendacion() {
         const path = "http://localhost:5000/recomendacion";
+        var targetUser = {
+            username: this.$store.getters.username
+        }
         axios
-        .get(path)
+        .post(path, targetUser)
         .then((res) => {
           this.rec = res.data;
           this.rec.forEach(element => {
@@ -146,6 +157,21 @@ export default {
           console.error(error);
         });
     },
+    setUser() { // FUNCION a introducir en el código de usuarios!
+        var userData = {'name': 'Francesca', // este sería el usuario sacado del form o de una request a flask
+                        'age': 23, 
+                        'sex': 'Mujer', 
+                        'weight': 65, 
+                        'height': 165, 
+                        'body_type': 'Mesomorfo', 
+                        'activity_level': 2, 
+                        'objective': 0, 
+                        'tdee': 2762.46711,
+                        'water_intake': 2181.9684256}
+        this.$store.commit("setUserData", {
+            userdata: userData,
+        }); 
+    },  
     reload(){
         this.getRecomendacion()
     },
@@ -173,6 +199,7 @@ export default {
     }
   },
   created() {
+      this.setUser();
       this.getRecomendacion();
   }
 };
@@ -181,6 +208,6 @@ export default {
 <style scoped>
 
 #title-row {
-  padding-top: 50px;
+  padding-top: 40px;
 }
 </style>

@@ -3,37 +3,32 @@
     class="mx-auto"
     max-width="344"
   >
-    <v-img
-      :src="img"
-      height="100px"
-    ></v-img>
-
     <v-card-title>
-      Explicación
+      Información de Usuario
     </v-card-title>
 
     <v-card-subtitle>
-      La recomendación se basa en...
+      {{ this.$store.getters.userdata.name }}
     </v-card-subtitle>
 
     <v-card-actions>
-
+      <v-btn
+        color="orange lighten-2"
+        text
+        @click="show = !show"
+      >
+       {{ show ? 'Menos' : 'Más'}}
+      </v-btn>
 
       <v-spacer></v-spacer>
 
-      <v-btn
-        icon
-        @click="show = !show"
-      >
-        <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-      </v-btn>
     </v-card-actions>
 
     <v-expand-transition>
       <div v-show="show">
         <v-divider></v-divider>
         <v-card-text>
-          Info extra! Algún gráfico, whatever
+          {{ this.$store.getters.userdata.name }} tiene {{this.$store.getters.userdata.age}} años
         </v-card-text>
       </div>
     </v-expand-transition>
@@ -44,9 +39,8 @@
   export default {
     data () {
       return {
-       name: 'explanation-card',
-       img: require('../assets/fruit.jpg'),
-       show: false,
+       name: 'user-card',
+       show: false
       }
     },
   }

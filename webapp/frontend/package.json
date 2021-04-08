@@ -18,11 +18,13 @@
     "mdb-ui-kit": "^3.4.0",
     "mdbvue": "^6.7.2",
     "process": "^0.11.10",
+    "swing": "^3.1.4",
     "vue": "^2.5.2",
     "vue-chartjs": "3.4.0",
     "vue-router": "^3.0.1",
     "vue-swing": "^0.0.10",
-    "vuetify": "^2.4.8"
+    "vuetify": "^2.4.8",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@mdi/font": "^5.9.55",

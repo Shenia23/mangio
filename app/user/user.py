@@ -53,7 +53,7 @@ class User:
         file_name= "./app/user/users/"+self.name+"_data.json"
         with open(file_name, 'w+') as f:
             new_user_json = json.dumps(self.__dict__)
-            json.dump(new_user_json, f)
+            json.dump(new_user_json, f, indent=4, sort_keys=True)
         
         return
         
@@ -91,7 +91,39 @@ class User:
         '''Cálculo del consumo de agua diario en función del metabolismo basal y del factor de actividad física'''
 
         return 0.96 * self.get_tdee()
+
+def getUser(username):
+    file_name= "./app/user/users/"+username+"_data.json"
+    try:
+        with open(file_name, 'r') as f:
+            json_user = json.load(f)
+    except:
+        print(f"User {username} doesn't exist")
+        return None
     
+    user = json.loads(json_user) #es un DICT no un User
+    #user = json2User(json.loads(json_user)) # para la CLASE User
+
+    return user
+
+def json2User(json_user):
+    #TODO añadir todos los params aquí o usar esto:
+    # https://stackoverflow.com/questions/6578986/how-to-convert-json-data-into-a-python-object
+    # o guardar los objetos con pickle en vez de en json
+   pass
+
+def createNewUser(new_user_data):
+    new_user = User(name= new_user_data['name'],
+                    age= new_user_data['age'],
+                    sex = new_user_data['sex'],
+                    weight = new_user_data['weight'],
+                    height = new_user_data['height'],
+                    body_type = new_user_data ['body_type'],
+                    activity_level = new_user_data['activity_level'],
+                    liked_ingredients = new_user_data['liked_ingredients'],
+                    user_objective = new_user_data['objective'],
+                    using_scale = new_user_data['using_scale'])
+    return new_user
     
 def main():
     print("Clase usuario")

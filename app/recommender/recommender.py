@@ -3,6 +3,7 @@ import json
 from random import randint
 
 from config import recipes, nvalues
+from app.user.user import getUser
 from app.recommender.recom_constants import *
 from app.recommender.data_manager import recipes2dict
 
@@ -38,6 +39,7 @@ class Recommender:
         Pasos:
             1. Filtrado por categorías
             2. Filtrado por porcentaje de grasas, proteínas y carbohidratos
+                (ahora hace esto para cada comida pero luego lo cambiamos por combinatoria etc)
             3. Selección aleatoria
 
         :param type: tipo de comida a recomendar (desayuno, comida, cena...)
@@ -71,23 +73,28 @@ class Recommender:
         filtered_df = df[df[column].between(left=values[0], right=values[1])]
         return filtered_df
 
-def getRecommendation():
+def getRecommendation(username):
     '''
-    Método conectado con Flask, se instancia el recomendador (habria que ver dónde conviene hacer eso) 
+    Método conectado con Flask, se instancia el recomendador a partir de los datos de usuario
     y se obtienen las recomendaciones
+    #TODO guardar recomendadores para cada user / tipo de user?
     '''
-    tdee = 2500 # esto sería un param desde el perfil de usuario!
-    recommender = Recommender(tdee, 0)
+    user = getUser(username)
+    recommender = create_recommender(user) #posible nuevo metodo getRecommender (if exists) con pickle
     recommendation_ids = recommender.recommend()
-    print('Recommendation: ', recommendation_ids)
 
     return recipes2dict(recommendation_ids)
 
-def create_recommender(user_id):
+def create_recommender(user): 
     '''
-    #TODO
+    :param user: es un DICT con la info sacada del json correspondiente 
+    #TODO devolver la clase User
+    
     Método para crear recommender a partir de un perfil de usuario 
     '''
-    recommender = Recommender()
+    recommender = Recommender(
+                    tdee = user['tdee'],
+                    objective = user['user_objective']
+                  )
 
     return recommender

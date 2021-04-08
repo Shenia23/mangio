@@ -6,14 +6,16 @@
         <div class="col-sm">
           <v-card class="mx-auto" max-width="344">
             <v-card-text>
-              <p class="display-1 text--primary">177</p>
+              <p class="display-1 text--primary">
+                {{ this.$store.getters.userdata.height }} cm
+              </p>
               <div style="font-size: 145%" class="text--primary">Altura</div>
             </v-card-text>
           </v-card>
 
           <v-card class="mx-auto" max-width="344">
             <v-card-text>
-              <p class="display-1 text--primary">Ectomorfo</p>
+              <p class="display-1 text--primary">{{ this.$store.getters.userdata.body_type }}</p>
               <div style="font-size: 145%" class="text--primary">
                 Tipo de cuerpo
               </div>
@@ -31,13 +33,13 @@
         <div class="col-sm">
           <v-card class="mx-auto" max-width="344">
             <v-card-text>
-              <p class="display-1 text--primary">Pedro</p>
+              <p class="display-1 text--primary">{{ this.$store.getters.userdata.name }}</p>
               <div style="font-size: 145%" class="text--primary">Nombre</div>
             </v-card-text>
           </v-card>
               <v-card class="mx-auto" max-width="344">
             <v-card-text>
-              <p class="display-1 text--primary">Hombre</p>
+              <p class="display-1 text--primary">{{ this.$store.getters.userdata.sex }}</p>
               <div style="font-size: 145%" class="text--primary">
                 Sexo
               </div>
@@ -55,13 +57,13 @@
         <div class="col-sm">
           <v-card class="mx-auto" max-width="344">
             <v-card-text>
-              <p class="display-1 text--primary">24</p>
+              <p class="display-1 text--primary">{{ this.$store.getters.userdata.age }}</p>
               <div style="font-size: 145%" class="text--primary">Edad</div>
             </v-card-text>
           </v-card>
               <v-card class="mx-auto" max-width="344">
             <v-card-text>
-              <p class="display-1 text--primary">60</p>
+              <p class="display-1 text--primary">{{ this.$store.getters.userdata.weight }} kg</p>
               <div style="font-size: 145%" class="text--primary">
                 Peso
               </div>

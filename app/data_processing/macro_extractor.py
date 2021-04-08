@@ -10,9 +10,6 @@ def macro_extractor(nv):
     return nv
 
 
-
-
-
 if __name__ == "__main__":
     nutritional_values = pd.read_csv('../../data/nutritional_values.csv')
     nutri_values = macro_extractor(nutritional_values)

@@ -3,7 +3,7 @@ from random import *
 import json 
 from flask_cors import CORS, cross_origin
 import requests
-from app.user.user import User
+from app.user.user import User, createNewUser
 from app.recommender.recommender import getRecommendation
 
 app = Flask(__name__,
@@ -18,10 +18,11 @@ def random_number():
     }
     return jsonify(response)
 
-@app.route('/recomendacion', methods=['GET'])
+@app.route('/recomendacion', methods=['GET','POST'])
 @cross_origin()
 def get_recomendacion():
-    data = getRecommendation()
+    user = request.get_json()
+    data = getRecommendation(user['username'])
     response = app.response_class(
         response=json.dumps(data),
         status=200,
@@ -39,16 +40,7 @@ def create_user():
     new_user_data = request.get_json()
     print ("JSON content: ",new_user_data)
 
-    new_user = User(name= new_user_data['name'],
-                    age= new_user_data['age'],
-                    sex = new_user_data['sex'],
-                    weight = new_user_data['weight'],
-                    height = new_user_data['height'],
-                    body_type = new_user_data ['body_type'],
-                    activity_level = new_user_data['activity_level'],
-                    liked_ingredients = new_user_data['liked_ingredients'],
-                    user_objective = new_user_data['objective'],
-                    using_scale = new_user_data['using_scale'])
+    new_user = createNewUser(new_user_data)
     
     new_user_json = json.dumps(new_user.__dict__)
 

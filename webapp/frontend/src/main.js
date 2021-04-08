@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
 import vuetify from '@/plugins/vuetify' // path to vuetify export
 import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
@@ -14,5 +15,6 @@ new Vue({
   router,
   iconfont: 'md',
   vuetify,
+  store,
   render: h => h(App)
 })
