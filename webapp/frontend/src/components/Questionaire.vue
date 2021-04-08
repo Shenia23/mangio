@@ -35,7 +35,7 @@
         thumb-label="always"
         max="220"
         min="150"
-        style="margin-bottom: 10px"
+        style="margin-bottom: 20px"
         required
       ></v-slider>
 
@@ -98,15 +98,23 @@
         :ingredients="ingredients"
         @changeSelectedIngredients="ingredients = $event"
       ></Ingredients>
-
-      <v-btn
-        :disabled="!valid"
-        color="success"
-        class="mr-4"
-        @click="createUser"
-      >
-        Crear nuevo usuario
-      </v-btn>
+      <div style="margin-top: 20px">
+        <vue-swing @throwout="onThrowout" :config="config" ref="vueswing">
+          <div v-for="card in cards" :key="card" class="card">
+            <span>{{ card }}</span>
+          </div>
+        </vue-swing>
+      </div>
+      <div>
+        <v-btn
+          :disabled="!valid"
+          color="success"
+          class="mr-4"
+          @click="createUser"
+        >
+          Crear nuevo usuario
+        </v-btn>
+      </div>
     </v-form>
   </v-container>
 </template>
@@ -115,9 +123,10 @@
 import BodyType from "./BodyType.vue";
 import Ingredients from "./Ingredients.vue";
 import axios from "axios";
+import VueSwing from "vue-swing";
 
 export default {
-  components: { BodyType, Ingredients },
+  components: { BodyType, Ingredients, VueSwing },
   data: () => ({
     sex_options: ["Hombre", "Mujer"],
     activity_types: [
@@ -135,6 +144,12 @@ export default {
     body_type: "default",
     ingredients: ["empty"],
     age: "",
+    config: {
+      allowedDirections: [VueSwing.Direction.LEFT, VueSwing.Direction.RIGHT],
+      minThrowOutDistance: 250,
+      maxThrowOutDistance: 300,
+    },
+    cards: ["Pollo", "Lechuga", "Huevo", "Cacahuetes", "Pescado", "Espárragos"],
     selected_activity: "",
     selected_sex: "",
     mi_scale_data: {
@@ -164,7 +179,7 @@ export default {
     createUser() {
       var new_user = {
         name: this.name,
-        age: parseInt(this.age,10),
+        age: parseInt(this.age, 10),
         sex: this.selected_sex,
         weight: this.weight.val,
         height: this.height.val,
@@ -173,7 +188,7 @@ export default {
         objective: this.objectives.indexOf(this.selected_activity) + 1,
         liked_ingredients: this.ingredients,
         using_scale: this.using_scale,
-        scale_data: this.mi_scale_data
+        scale_data: this.mi_scale_data,
       };
       console.log(new_user);
 
@@ -190,6 +205,25 @@ export default {
           console.log(err);
         });
     },
+    add() {
+      this.cards.push(`${this.cards.length + 1}`);
+    },
+    remove() {
+      this.swing();
+      setTimeout(() => {
+        this.cards.pop();
+      }, 100);
+    },
+    swing() {
+      const cards = this.$refs.vueswing.cards;
+      cards[cards.length - 1].throwOut(
+        Math.random() * 100 - 50,
+        Math.random() * 100 - 50
+      );
+    },
+    onThrowout({ target, throwDirection }) {
+      console.log(`Threw out ${target.textContent}!`);
+    },
   },
 };
 </script>
@@ -200,13 +234,13 @@ export default {
   margin-top: 1cm;
   background-color: rgb(155, 245, 158);
   margin: auto;
-  width: 90%;
-  border: 3px solid rgb(97, 213, 97);
+  width: 95%;
+  border: 2px solid rgb(97, 213, 97);
   padding: 10px;
   border-radius: 25px;
   justify-content: flex-end;
-  text-align: right;
-  line-height: 200px;
+  text-align: left;
+  line-height: 300px;
 }
 input {
   height: 20px;
@@ -289,5 +323,20 @@ input {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+.card {
+  margin-top: 30 px;
+  align-items: center;
+  background-color: rgb(232, 254, 202);
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  font-size: 22px;
+  height: 300px;
+  justify-content: center;
+  left: calc(50% - 100px);
+  position: absolute;
+  width: 200px;
 }
 </style>

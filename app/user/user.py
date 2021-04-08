@@ -61,15 +61,15 @@ class User:
         
         '''Cálculo del BMI (índice de masa corporal) para el caso de no conectar con la báscula'''
 
-        return self.weight / (self.height ** 2)
+        return self.weight / ((self.height / 100) ** 2)
         
     def get_bmr(self):
         
         '''Cálculo del BMR (metabolismo basal) para el caso de no conectar con la báscula'''
         if self.sex == "Hombre":
-            return 66.473 + (13.751 * self.weight) + (5.0033 * self.height) - (6.7550 * self.age)
+            return 66.47 + (13.75 * self.weight) + (5.003 * self.height) - (6.755 * self.age)
         elif self.sex == "Mujer":
-            return 655.1 + (9.463 * self.weight) + (1.8 * self.height) - (4.6756 * self.age)
+            return 655.1 + (9.563 * self.weight) + (1.85 * self.height) - (4.676 * self.age)
         
     def get_tdee(self):
         

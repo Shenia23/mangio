@@ -41,7 +41,7 @@
       </v-btn>
 
       <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate">
-        CREATE RECIPE
+        CREACIÓN DE NUEVA RECETA
       </v-btn>
     </v-form>
 
