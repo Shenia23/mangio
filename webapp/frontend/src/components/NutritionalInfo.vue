@@ -9,9 +9,18 @@
 
     <v-divider></v-divider>
 
+    <v-list-item>
+      <v-list-item-subtitle class="body-1" >
+        <p class="text-left font-weight-bold">
+                {{ totalCalories }} kcal
+            </p> 
+      </v-list-item-subtitle>
+    </v-list-item>
+
     <div id="chart-div">
     <doughnut-chart key="chart_key" ref="dChart" :new_data="chartData"></doughnut-chart>
     </div>
+
   </v-card>
 </template>
 
@@ -48,6 +57,15 @@ import DoughnutChart from './DoughnutChart.vue'
           this.recipes = newVal
           this.load()
         }
+    },
+    computed: {
+      totalCalories: function() {
+        var calSum = 0
+        this.recipes.forEach( e =>{
+          calSum += e.energia
+        })
+        return calSum.toFixed(0)
+      }
     },
     methods: {
         load(){

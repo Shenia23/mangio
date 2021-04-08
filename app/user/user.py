@@ -1,5 +1,6 @@
 import json
 import os
+
 class User:
     
     '''Esta clase define un perfil de un usuario de nuestro sistema, con todos los datos necesarios para generar recomendaciones.
