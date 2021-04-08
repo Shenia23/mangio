@@ -16,6 +16,10 @@
             "type": "number"
         },
         {
+            "question": "Sexo",
+            "type": "boolean"
+        },
+        {
             "question": "Edad",
             "type": "number"
         },

@@ -1,8 +1,6 @@
 <template type="default">
   <v-container class="pa-4 text-center">
 
-  <div> Selecciona tu <strong> tipo de cuerpo:</strong></div>
-
     
     <v-row
       class="fill-height"
@@ -20,11 +18,11 @@
               :elevation="hover ? 14 : 2"
               :class="{ 'on-hover': hover }"
               :id="item.title"
-              height="450px"
+              height="500px"
             >
            <v-img
                 :src="item.img"
-                size="200px"
+                size="100px"
               >
 
                 <v-card-title class="title black--text">
