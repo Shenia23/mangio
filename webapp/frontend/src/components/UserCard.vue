@@ -1,4 +1,5 @@
 <template>
+<div>
   <v-card
     class="mx-auto"
     max-width="344"
@@ -33,6 +34,32 @@
       </div>
     </v-expand-transition>
   </v-card>
+
+      <v-card
+      class="mx-auto"
+      max-width="700">
+          <div class="media-left">
+            <figure class="image is-64x64">
+              <img :src="img" alt="Image">
+            </figure>
+          </div>
+          <div class="media-content">
+            <div class="content">
+              <p>
+                <strong>Nombre</strong> <small>Edad</small>
+                <br>
+                Cosas
+              </p>
+            </div>
+              <div class="level-left">
+                <a class="level-item">
+                  <span class="icon is-small"><i class="fas fa-heart"></i></span>
+                  <span class="likes">3</span>
+                </a>
+              </div>
+          </div>
+      </v-card> 
+    </div>
 </template>
 
 <script>
@@ -40,7 +67,8 @@
     data () {
       return {
        name: 'user-card',
-       show: false
+       show: false,
+       img: require('../assets/fruit.jpg'),
       }
     },
   }

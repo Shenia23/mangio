@@ -58,7 +58,7 @@
                     <v-list class="info_receta">
                         <v-list-item-title class="body-1" >
                         <p class="text-left font-weight-bold">
-                                {{ r.Nombre }}
+                                {{ r.Nombre }} {{ r.overlay }}
                             </p> 
                         </v-list-item-title>
                         <v-list-item-subtitle> 
@@ -94,7 +94,7 @@
        <div class="explanation">
             <user-card></user-card>
        </div>
-       
+
        <div class="explanation">
             <explanation-card></explanation-card>
        </div>
@@ -139,6 +139,11 @@ export default {
               }
     };
   },
+  watch: { 
+      	rec: function(newVal, oldVal) { // watch it
+          this.rec = newVal
+        }
+    },
   methods: {
     getRecomendacion() {
         const path = "http://localhost:5000/recomendacion";
@@ -177,22 +182,20 @@ export default {
     },
     //overlay methods
     displayInfo(index,recipe){
-        this.rec.map((a) => a.overlay = false);
-        this.rec[index].overlay = true;
-        this.forceRerender() //fix!
+        this.setOverlay(index,true)
     },
     exitOverlay(index){
-        this.rec.map((a) => a.overlay = false);
-        this.forceRerender() //fix!
+        this.setOverlay(index,false)
+        this.forceRerender()
     },
     forceRerender() {
       this.recom_key += 1; 
     },
-    recipeOverlay(index){
-        if(typeof this.rec[index] !== "undefined")
-            return this.rec[index].overlay
-        else
-            return false
+    setOverlay(index, value){
+        var updatedRec = this.rec[index]
+        updatedRec.overlay = value
+        this.$set(this.rec, index, updatedRec)
+        console.log(this.rec[index].overlay)
     },
     getImageSrc(index){
         return this.rec[index].image_src
