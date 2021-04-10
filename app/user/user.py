@@ -1,5 +1,7 @@
 import json
 import os
+from types import SimpleNamespace
+
 
 class User:
     
@@ -29,6 +31,7 @@ class User:
             self.bmr = self.get_bmr()
             self.tdee= self.get_tdee()
             self.water_intake = self.get_daily_water_intake()
+            
         elif using_scale == True:
             
             self.weight = scale_data["weight"]
@@ -110,7 +113,10 @@ def json2User(json_user):
     #TODO añadir todos los params aquí o usar esto:
     # https://stackoverflow.com/questions/6578986/how-to-convert-json-data-into-a-python-object
     # o guardar los objetos con pickle en vez de en json
-   pass
+    user = json.loads(json_user, object_hook=lambda d: SimpleNamespace(**d))
+    
+    return user
+   
 
 def createNewUser(new_user_data):
     new_user = User(name= new_user_data['name'],

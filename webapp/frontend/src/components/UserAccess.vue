@@ -3,7 +3,7 @@
       <v-card>
     <v-tabs
       v-model="tab"
-      background-color="green accent-4"
+      background-color="rgb(113, 192, 113)"
       centered
       dark
       icons-and-text
@@ -37,7 +37,7 @@
         :key="2"
         :value="'tab-2'"
       >
-      Perfiles predeterminados
+        <PredeterminedProfiles/>
       </v-tab-item>
       <v-tab-item
         :key="3"
@@ -56,9 +56,10 @@
 
 <script>
 import Questionaire from "./Questionaire.vue";
+import PredeterminedProfiles from "./PredeterminedProfiles.vue"
 
 export default {
-  components: { Questionaire },
+  components: { Questionaire, PredeterminedProfiles},
   data: () => ({
       tab: null,
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',

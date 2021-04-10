@@ -18,6 +18,25 @@ def random_number():
     }
     return jsonify(response)
 
+@app.route('/availableUsers', methods=['GET'])
+@cross_origin()
+def get_available_users():
+    '''
+    Devuelve lista de JSONs con todos los usuarios del sistema
+    '''
+    
+    pass
+
+
+@app.route('/predeterminedUserProfiles', methods=['GET'])
+@cross_origin()
+def get_predetermined_profiles():
+    '''
+    Devuelve lista de JSONs con todos los usuarios predeterminados del sistema.
+    '''
+    pass
+
+
 @app.route('/recomendacion', methods=['GET','POST'])
 @cross_origin()
 def get_recomendacion():
@@ -54,3 +73,4 @@ def catch_all(path):
     if app.debug:
         return requests.get('http://localhost:8080/{}'.format(path)).text
     return render_template("index.html")
+

@@ -6,7 +6,7 @@
     <v-card
       flat
       tile
-      class="green lighten-1 white--text text-center"
+      class="lighten-1 white--text text-center"
     >
       <v-card-text>
        
@@ -48,3 +48,9 @@
     }),
   }
 </script>
+
+<style scoped>
+.lighten-1 {
+  background: rgb(113, 192, 113);
+}
+</style>

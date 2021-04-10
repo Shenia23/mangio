@@ -64,7 +64,7 @@ font-size: 300%;
 }
 
 .vToolbar{
-  color: #96bb7c;
+  color:rgb(51, 161, 51);
    max-height: 10%;
    width: 100%;
 

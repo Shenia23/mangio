@@ -5,6 +5,14 @@
     </div>
     <v-form ref="form" v-model="valid" lazy-validation class="formulario">
       <v-text-field
+        v-model="username"
+        :counter="30"
+        label="Nombre de usuario"
+        required
+        style="margin-bottom: 10px"
+      ></v-text-field>
+
+      <v-text-field
         v-model="name"
         :counter="30"
         :rules="nameRules"
@@ -98,13 +106,7 @@
         :ingredients="ingredients"
         @changeSelectedIngredients="ingredients = $event"
       ></Ingredients>
-      <div style="margin-top: 20px">
-        <vue-swing @throwout="onThrowout" :config="config" ref="vueswing">
-          <div v-for="card in cards" :key="card" class="card">
-            <span>{{ card }}</span>
-          </div>
-        </vue-swing>
-      </div>
+
       <div>
         <v-btn
           :disabled="!valid"
@@ -136,6 +138,7 @@ export default {
       "4. Muy activo (ejercicio casi diario intenso)",
       "5. Extremadamente activo (ejercio diario muy intenso, 2 entrenamientos diarios)",
     ],
+    username:"",
     name: "",
     using_scale: false,
     objectives: ["Perder peso", "Mantener", "Ganar peso"],
@@ -144,12 +147,6 @@ export default {
     body_type: "default",
     ingredients: ["empty"],
     age: "",
-    config: {
-      allowedDirections: [VueSwing.Direction.LEFT, VueSwing.Direction.RIGHT],
-      minThrowOutDistance: 250,
-      maxThrowOutDistance: 300,
-    },
-    cards: ["Pollo", "Lechuga", "Huevo", "Cacahuetes", "Pescado", "Espárragos"],
     selected_activity: "",
     selected_sex: "",
     mi_scale_data: {
@@ -178,6 +175,7 @@ export default {
     },
     createUser() {
       var new_user = {
+        username: this.username,
         name: this.name,
         age: parseInt(this.age, 10),
         sex: this.selected_sex,
@@ -205,25 +203,8 @@ export default {
           console.log(err);
         });
     },
-    add() {
-      this.cards.push(`${this.cards.length + 1}`);
-    },
-    remove() {
-      this.swing();
-      setTimeout(() => {
-        this.cards.pop();
-      }, 100);
-    },
-    swing() {
-      const cards = this.$refs.vueswing.cards;
-      cards[cards.length - 1].throwOut(
-        Math.random() * 100 - 50,
-        Math.random() * 100 - 50
-      );
-    },
-    onThrowout({ target, throwDirection }) {
-      console.log(`Threw out ${target.textContent}!`);
-    },
+    
+    
   },
 };
 </script>
@@ -232,7 +213,7 @@ export default {
 <style scoped>
 .formulario {
   margin-top: 1cm;
-  background-color: rgb(155, 245, 158);
+  background-color:rgb(113, 192, 113);
   margin: auto;
   width: 95%;
   border: 2px solid rgb(97, 213, 97);
