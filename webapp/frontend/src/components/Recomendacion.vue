@@ -88,9 +88,8 @@
     <!-- COL 2: STATS de las comidas + EXPLICACIÓN-->
         <div class="nutri-info">
             <nutritional-info :recipes="rec" ref="nutritionalInfoChild"></nutritional-info>
-
-
        </div>
+       
        <div class="explanation">
             <user-card></user-card>
        </div>

@@ -24,15 +24,18 @@
       <router-view></router-view>
       
     </v-content>
-    
+
+    <Footer/>
   </v-app>
 
 </template>
 
 <script>
-
+import Footer from './components/Footer.vue'
 export default {
   name: 'app',
+  components: { Footer },
+
   data () {
     return {
       appTitle: 'Mangio!',
@@ -63,6 +66,7 @@ font-size: 300%;
 .vToolbar{
   color: #96bb7c;
    max-height: 10%;
+   width: 100%;
 
 }
 

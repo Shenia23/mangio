@@ -5,7 +5,7 @@ const routerOptions = [
   { path: '/', component: 'Home' },
   { path: '/about', component: 'About' },
   { path: '*', component: 'NotFound' },
-  {path: '/nuevoUsuario', component: 'Questionaire'},
+  {path: '/nuevoUsuario', component: 'UserAccess'},
   {path: '/perfilusuario', component: 'UserProfile'},
   {path: '/planalimentacion', component: 'Recomendacion'},
   {path: '/nuevasrecetas', component: 'RecipeCreation'},
