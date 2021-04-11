@@ -1,0 +1,20 @@
+{
+    "username": "giovanni_26",
+    "name": "Giovanni",
+    "sex": "Hombre",
+    "age": 35,
+    "height": 190,
+    "body_type": "Mesomorfo",
+    "activity_level": 3,
+    "liked_ingredients": [
+        "pollo"
+    ],
+    "disliked_ingredients": null,
+    "objective": 3,
+    "using_scale": false,
+    "weight": 85,
+    "bmi": 23.545706371191137,
+    "bmr": 1949.365,
+    "tdee": 3021.51575,
+    "water_intake": 2900.65512
+}

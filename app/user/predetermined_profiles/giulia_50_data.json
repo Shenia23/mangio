@@ -1,0 +1,18 @@
+{
+    "username": "giulia_50",
+    "name": "Giulia",
+    "sex": "Mujer",
+    "age": 65,
+    "height": 170,
+    "body_type": "Endomorfo",
+    "activity_level": 1,
+    "liked_ingredients": null,
+    "disliked_ingredients": null,
+    "objective": 1,
+    "using_scale": false,
+    "weight": 70,
+    "bmi": 24.221453287197235,
+    "bmr": 1335.0700000000002,
+    "tdee": 1602.084,
+    "water_intake": 1538.00064
+}

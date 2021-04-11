@@ -1,19 +1,19 @@
 import json
 import os
 from types import SimpleNamespace
-
+import jsonpickle
 
 class User:
     
     '''Esta clase define un perfil de un usuario de nuestro sistema, con todos los datos necesarios para generar recomendaciones.
         Además, almacena los parámetros necesarios para la monitorización de su estado físico a través de la bascula Xiaomi.'''
     
-    def __init__(self, name, sex, age, height, weight, 
+    def __init__(self, username,name, sex, age, height, weight, 
                  body_type, activity_level, liked_ingredients,
-                 user_objective, disliked_ingredients = None,scale_data = None ,using_scale = False ):
+                 objective, disliked_ingredients = None,scale_data = None ,using_scale = False, serialize  = False ):
         
         '''Constructor de la clase de usuario, scale_data es un dict con los parámetros de la báscula'''
-        
+        self.username = username
         self.name = name
         self.sex = sex
         self.age = age
@@ -22,8 +22,9 @@ class User:
         self.activity_level= activity_level  # Nivel de actividad física del usuario (de los definidos en el Excel)
         self.liked_ingredients = liked_ingredients
         self.disliked_ingredients = disliked_ingredients
-        self.user_objective = user_objective # Ganar masa muscular, mantenerse, adelgazar
-
+        self.objective = objective # Ganar masa muscular, mantenerse, adelgazar
+        self.using_scale = using_scale
+        
         if using_scale == False:
             
             self.weight = weight
@@ -48,18 +49,32 @@ class User:
             self.metabolic_age = scale_data["metabolic_age"]
             self.tdee= self.get_tdee()
             self.water_intake = self.get_daily_water_intake()
-
-        self.user_to_json()
+        
+        if self.serialize  == True:
+            self.user_to_json()
 
     def user_to_json(self):
         #print("Current path:",os.getcwd())
-        file_name= "./app/user/users/"+self.name+"_data.json"
-        with open(file_name, 'w+') as f:
-            new_user_json = json.dumps(self.__dict__)
-            json.dump(new_user_json, f, indent=4, sort_keys=True)
-        
+        #file_name= "./app/user/users/"+self.username+"_data.json"
+        file_name= "./users/"+self.username+"_data.json"
+        print("self.dict: ",self.__dict__)
+        with open(file_name, 'w') as f:
+            json.dump(self.__dict__, f, indent=4, sort_keys=False)
         return
         
+    def __str__(self):
+        user_str = ""
+        user_str += "{ username = "+ self.username +","
+        user_str += " name = "+ self.name +","
+        user_str += " age = "+ str(self.age) +","
+        user_str += " sex = "+ self.sex +","
+        user_str += " body_type = "+ self.body_type +","
+        user_str += " height = "+ str(self.height) +","
+        user_str += " weight = "+ str(self.weight) +","
+        user_str += " activity_level = "+ str(self.activity_level) +","
+        user_str += " objective = "+ str(self.objective) +","
+        user_str += " liked_ingredients = "+ str(self.liked_ingredients) +"}"
+        return user_str
         
     def get_bmi(self):
         
@@ -118,8 +133,9 @@ def json2User(json_user):
     return user
    
 
-def createNewUser(new_user_data):
-    new_user = User(name= new_user_data['name'],
+def  createNewUser(new_user_data, serialize  = True):
+    new_user = User(username=new_user_data['username'],
+                    name= new_user_data['name'],
                     age= new_user_data['age'],
                     sex = new_user_data['sex'],
                     weight = new_user_data['weight'],
@@ -127,8 +143,9 @@ def createNewUser(new_user_data):
                     body_type = new_user_data ['body_type'],
                     activity_level = new_user_data['activity_level'],
                     liked_ingredients = new_user_data['liked_ingredients'],
-                    user_objective = new_user_data['objective'],
-                    using_scale = new_user_data['using_scale'])
+                    objective = new_user_data['objective'],
+                    using_scale = new_user_data['using_scale'],
+                    serialize  = serialize )
     return new_user
     
 def main():

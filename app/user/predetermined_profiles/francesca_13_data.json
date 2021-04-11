@@ -1,0 +1,20 @@
+{
+    "username": "francesca_13",
+    "name": "Francesca",
+    "sex": "Mujer",
+    "age": 23,
+    "height": 165,
+    "body_type": "Mesomorfo",
+    "activity_level": 2,
+    "liked_ingredients": [
+        "pollo"
+    ],
+    "disliked_ingredients": null,
+    "objective": 1,
+    "using_scale": false,
+    "weight": 65,
+    "bmi": 23.875114784205696,
+    "bmr": 1474.3970000000002,
+    "tdee": 2027.2958750000003,
+    "water_intake": 1946.20404
+}

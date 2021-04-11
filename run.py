@@ -63,7 +63,7 @@ def create_user():
     
     new_user_json = json.dumps(new_user.__dict__)
 
-    print("NEW USER CLASS: ", new_user_json)
+    print("NEW USER HAS BEEN CREATED: ", new_user_json)
     return 'JSON posted'
 
 
