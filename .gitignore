@@ -1,4 +1,6 @@
 #CUSTOM
+/data/combined.csv
+
 # Logs
 logs
 *.log

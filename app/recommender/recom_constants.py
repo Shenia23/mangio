@@ -25,6 +25,7 @@ TDEE_MULTIPLIERS = {
 }
 
 FOOD_TYPES = [BREAKFAST, LUNCH, DINNER, SNACK, MERIENDA]
+FIXED_FOOD_TYPES = [BREAKFAST, SNACK, MERIENDA]
 
 #OBJECTIVES
 GAIN = 0
@@ -32,27 +33,31 @@ MANTAIN = 1
 LOSS = 2
 
 #MACROS
+KCAL = 'energia'
 CARBS = 'carbohidratos'
-PROTS = 'proteinas'
-GRASAS = 'grasas'
+PROTS = 'proteina'
+GRASAS = 'grasa'
+
+TARGET_MACROS = [KCAL, CARBS, PROTS, GRASAS]
+CAL_GRAM = 'calorias_por_gramo'
 
 MACROS = { 
-    CARBS: {
-        GAIN: [40,60],
-        MANTAIN: [30,50],
-        LOSS: [10,30],
-        "column": "grasa_cals_pctg"
+    GRASAS: {
+        GAIN: [15,25],
+        MANTAIN: [25,35],
+        LOSS: [30,40],
+        CAL_GRAM: 9
     },
     PROTS: {
         GAIN: [25,35],
         MANTAIN: [25,35],
         LOSS: [40,50],
-        "column": "proteina_cals_pctg"
+        CAL_GRAM: 4
     },
-    GRASAS: {
-        GAIN: [15,25],
-        MANTAIN: [25,35],
-        LOSS: [30,40],
-        "column": "carbos_cals_pctg"
+    CARBS: {
+        GAIN: [40,60],
+        MANTAIN: [30,50],
+        LOSS: [10,30],
+        CAL_GRAM: 4
     }
 }
