@@ -16,8 +16,8 @@ scaler = StandardScaler()
 
 combined[TARGET_MACROS] = scaler.fit_transform(combined[TARGET_MACROS])
 
-# TODO que no recomiende comidas de 100 kcal y cenas de 1000 kcal
-# TODO implementar backups
+# TODO filtrado extra para que no recomiende comidas de 100 kcal y cenas de 1000 kcal 
+# TODO implementar que se envíen recetas similares
 # TODO conectar con usuario (clase)
 
 class Recommender:
@@ -77,6 +77,7 @@ class Recommender:
     def get_combined_recommendation(self, target_values):
         '''
         Usa la distancia euclidiana para encontrar los valores más cercanos a los target_values
+        La receta con más kcal es la comida, y la que tiene menos la cena. 
 
         :param target_values: gramos restantes de cada macro tras haber fijado las meriendas y desayunos
         :return combined_recom: df formada por la mejor combinación de comida y cena
@@ -87,8 +88,9 @@ class Recommender:
 
         combined_ids = list(combined[['Recipe1','Recipe2']].iloc[min_ed_index[0]])
 
-        combined_recom = recipe_nvalues[recipe_nvalues['Recipe_id'].isin((combined_ids))].reset_index().copy()
-        # TODO asignar comida y cena en funcion de kcal
+        combined_recom = recipe_nvalues[recipe_nvalues['Recipe_id'].isin((combined_ids))].copy()
+        
+        combined_recom = combined_recom.sort_values('energia',ascending=False).reset_index()
         combined_recom['Comida'] = LUNCH
         combined_recom.at[1,'Comida'] = DINNER
         return combined_recom
