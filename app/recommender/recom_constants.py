@@ -38,7 +38,7 @@ CARBS = 'carbohidratos'
 PROTS = 'proteina'
 GRASAS = 'grasa'
 
-TARGET_MACROS = [KCAL, CARBS, PROTS, GRASAS]
+TARGET_MACROS = [KCAL, GRASAS, PROTS, CARBS]
 CAL_GRAM = 'calorias_por_gramo'
 
 MACROS = { 

@@ -16,6 +16,10 @@ scaler = StandardScaler()
 
 combined[TARGET_MACROS] = scaler.fit_transform(combined[TARGET_MACROS])
 
+# TODO que no recomiende comidas de 100 kcal y cenas de 1000 kcal
+# TODO implementar backups
+# TODO conectar con usuario (clase)
+
 class Recommender:
 
     def __init__(self, tdee, objective):
@@ -95,15 +99,21 @@ class Recommender:
         :return missing: df con las cantidades de macros que faltan por recomendar
         '''
         total = fixed_df[TARGET_MACROS].sum()
-
-        macros_mean = dict()
-        for macro, value in MACROS.items():
-            macros_mean[macro] = np.mean(value[self.objective])*value[CAL_GRAM]
-        macros_mean[KCAL] = self.tdee
-
-        missing = pd.Series(macros_mean)-total
+        macros_goals = self.get_macros_in_grams()
+        missing = macros_goals-total
         
         return missing
+
+    def get_macros_in_grams(self):
+        '''
+        :return macros_grams: pd.series con los gramos que corresponden a cada macro
+        '''
+        macros_grams = dict()
+        for macro, value in MACROS.items():
+            macros_grams[macro] = np.mean(value[self.objective])*self.tdee/(value[CAL_GRAM]*100)
+        macros_grams[KCAL] = self.tdee
+        
+        return pd.Series(macros_grams)
     
     @staticmethod
     def filter_by_range(df, column, values):
@@ -119,7 +129,7 @@ def getRecommendation(username):
     user = getUser(username)
     recommender = create_recommender(user) #posible nuevo metodo getRecommender (if exists) con pickle
     recommendation = recommender.recommend()
-
+    print(f'Recommendation for user with tdee={recommender.tdee} and objective={recommender.objective}')
     return recipes2dict(recommendation)
 
 def create_recommender(user): 

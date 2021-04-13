@@ -14,6 +14,7 @@
 
     <div class="top-right">
       <v-expansion-panels inset>
+        <!--
         <v-expansion-panel>
           <v-expansion-panel-header
             ><h2>Perfiles prediseñados</h2></v-expansion-panel-header
@@ -25,15 +26,14 @@
             </p></v-expansion-panel-content
           >
         </v-expansion-panel>
-
+        -->
         <v-expansion-panel>
           <v-expansion-panel-header
-            ><h2>Nuevos perfiles</h2></v-expansion-panel-header
+            ><h2>Acceso</h2></v-expansion-panel-header
           >
           <v-expansion-panel-content>
              <p>
-            En este apartado el usuario se registra, respondiendo un formulario
-            y tomando sus medidas con la báscula.
+            ¡Accede con tu perfil o crea uno nuevo! También puedes usar uno de nuestros perfiles prediseñados.
             </p>
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -44,7 +44,7 @@
           >
           <v-expansion-panel-content>
              <p>
-            Se disponen las comidas que se sugerirán al usuario.
+            Aquí podrás ver nuestra recomendación de recetas completamente personalizada.
             </p>
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -55,7 +55,7 @@
           >
           <v-expansion-panel-content>
              <p>
-            El usuario puede ver más datos sobre sí mismo.
+            Revisa tu perfil y todos tus datos.
             </p>
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -66,7 +66,7 @@
           >
           <v-expansion-panel-content>
              <p>
-            Añadir nuevas recetas y calcular sus valores nutricionales.
+            ¡Personaliza tus recomendaciones añadiendo recetas nuevas! Calculamos los valores nutricionales de cualquier receta para ti.
              </p>
           </v-expansion-panel-content>
         </v-expansion-panel>
