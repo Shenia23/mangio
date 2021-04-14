@@ -31,9 +31,9 @@
             ><h2>Nuevos perfiles</h2></v-expansion-panel-header
           >
           <v-expansion-panel-content>
-             <p>
-            En este apartado el usuario se registra, respondiendo un formulario
-            y tomando sus medidas con la báscula.
+            <p>
+              En este apartado el usuario se registra, respondiendo un
+              formulario y tomando sus medidas con la báscula.
             </p>
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -43,9 +43,7 @@
             ><h2>Plan de alimentación</h2></v-expansion-panel-header
           >
           <v-expansion-panel-content>
-             <p>
-            Se disponen las comidas que se sugerirán al usuario.
-            </p>
+            <p>Se disponen las comidas que se sugerirán al usuario.</p>
           </v-expansion-panel-content>
         </v-expansion-panel>
 
@@ -54,9 +52,7 @@
             ><h2>Perfil de usuario</h2></v-expansion-panel-header
           >
           <v-expansion-panel-content>
-             <p>
-            El usuario puede ver más datos sobre sí mismo.
-            </p>
+            <p>El usuario puede ver más datos sobre sí mismo.</p>
           </v-expansion-panel-content>
         </v-expansion-panel>
 
@@ -65,15 +61,26 @@
             ><h2>Nuevas recetas</h2></v-expansion-panel-header
           >
           <v-expansion-panel-content>
-             <p>
-            Añadir nuevas recetas y calcular sus valores nutricionales.
-             </p>
+            <p>Añadir nuevas recetas y calcular sus valores nutricionales.</p>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
     </div>
 
     <div class="row" style="margin-left: 15%">
+      <div class="column" style="margin-left: 18%">
+        <v-card class="mx-auto" max-width="100%">
+          <v-img
+            :src="require('../assets/receta.png')"
+            aspect-ratio="1"
+          ></v-img>
+
+          <v-card-title> +2000 RECETAS </v-card-title>
+
+          <v-card-subtitle> Una amplia selección de platos.</v-card-subtitle>
+        </v-card>
+      </div>
+
       <div class="column" style="margin-left: 18%">
         <v-card class="mx-auto" max-width="330">
           <v-img
@@ -86,22 +93,8 @@
           <v-card-subtitle> Una amplia selección de platos.</v-card-subtitle>
         </v-card>
       </div>
-    
-    <div class="column" style="margin-left: 18%">
-        <v-card class="mx-auto" max-width="330">
-          <v-img
-            :src="require('../assets/receta.png')"
-            aspect-ratio="1"
-          ></v-img>
 
-          <v-card-title> +2000 RECETAS </v-card-title>
-
-          <v-card-subtitle> Una amplia selección de platos.</v-card-subtitle>
-        </v-card>
-      </div>
-      
-
-       <div class="column" style="margin-left: 18%">
+      <div class="column" style="margin-left: 18%">
         <v-card class="mx-auto" max-width="330">
           <v-img
             :src="require('../assets/receta.png')"

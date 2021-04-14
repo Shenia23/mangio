@@ -73,6 +73,8 @@ class User:
         user_str += " weight = "+ str(self.weight) +","
         user_str += " activity_level = "+ str(self.activity_level) +","
         user_str += " objective = "+ str(self.objective) +","
+        user_str += " bmr = "+ str(self.bmr) +","
+        user_str += " tdee = "+ str(self.tdee) +","
         user_str += " liked_ingredients = "+ str(self.liked_ingredients) +"}"
         return user_str
         

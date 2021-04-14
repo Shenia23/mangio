@@ -1,6 +1,7 @@
 from user import User, createNewUser
 import json
-
+import os
+'''
 userData = {'username': 'giulia_50',
             'name': 'Giulia',  
             'age': 65,
@@ -25,3 +26,14 @@ with open("./users/giulia_50_data.json","r") as json_file:
     new_user_2 = createNewUser(data)
 
     print(new_user_2)
+'''
+files = os.listdir("./predetermined_profiles")
+predetermined_profiles = []
+for filename in files:
+    with open("./predetermined_profiles/"+filename,"r") as json_file:
+        predetermined_profiles.append(json.load(json_file))
+
+
+profiles_dict = {}
+profiles_dict["predetermined_profiles"]= predetermined_profiles
+print(profiles_dict)

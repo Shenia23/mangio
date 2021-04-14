@@ -24,7 +24,7 @@
                   <strong class="title"> Usuario {{ n }}</strong>
                   <v-spacer></v-spacer>
                   <v-btn icon>
-                    <v-icon>mdi-account</v-icon>
+                    <v-icon>mdi-chevron-double-right</v-icon>
                   </v-btn>
                 </v-row>
 
@@ -48,11 +48,15 @@
         </v-window>
       </v-col>
     </v-row>
+    <div>{{predetermined_profiles}}</div>
   </v-container>
 </template>
 
 <script>
 export default {
+  props: {
+   predetermined_profiles: Array
+ },
   data: () => ({
     length: 3,
     window: 0,
