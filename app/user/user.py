@@ -50,13 +50,13 @@ class User:
             self.tdee= self.get_tdee()
             self.water_intake = self.get_daily_water_intake()
         
-        if self.serialize  == True:
+        if serialize  == True:
             self.user_to_json()
 
     def user_to_json(self):
         #print("Current path:",os.getcwd())
         #file_name= "./app/user/users/"+self.username+"_data.json"
-        file_name= "./users/"+self.username+"_data.json"
+        file_name= "./app/user/users/"+self.username+"_data.json"
         print("self.dict: ",self.__dict__)
         with open(file_name, 'w') as f:
             json.dump(self.__dict__, f, indent=4, sort_keys=False)
@@ -73,6 +73,8 @@ class User:
         user_str += " weight = "+ str(self.weight) +","
         user_str += " activity_level = "+ str(self.activity_level) +","
         user_str += " objective = "+ str(self.objective) +","
+        user_str += " bmr = "+ str(self.bmr) +","
+        user_str += " tdee = "+ str(self.tdee) +","
         user_str += " liked_ingredients = "+ str(self.liked_ingredients) +"}"
         return user_str
         

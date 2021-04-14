@@ -52,5 +52,6 @@
 <style scoped>
 .lighten-1 {
   background: rgb(113, 192, 113);
+  width: 100%;
 }
 </style>

@@ -3,121 +3,155 @@
     <div>
       <h1 class="title">Cuestionario de preferencias nutricionales</h1>
     </div>
-    <v-form ref="form" v-model="valid" lazy-validation class="formulario">
-      <v-text-field
-        v-model="username"
-        :counter="30"
-        label="Nombre de usuario"
-        required
-        style="margin-bottom: 10px"
-      ></v-text-field>
-
-      <v-text-field
-        v-model="name"
-        :counter="30"
-        :rules="nameRules"
-        label="Nombre"
-        required
-        style="margin-bottom: 10px"
-      ></v-text-field>
-
-      <v-text-field
-        v-model="age"
-        label="Edad"
-        required
-        type="number"
-        style="margin-bottom: 20px"
-      ></v-text-field>
-
-      <v-select
-        v-model="selected_sex"
-        :items="sex_options"
-        label="Selecciona tu sexo"
-        solo
-      ></v-select>
-
-      <v-slider
-        v-model="height.val"
-        :label="height.label"
-        :thumb-color="height.color"
-        thumb-label="always"
-        max="220"
-        min="150"
-        style="margin-bottom: 20px"
-        required
-      ></v-slider>
-
-      <v-checkbox
-        v-model="using_scale"
-        label="Va a utilizar la balanza Xiaomi Mi Body Composition Scale 2 ?"
-        color="red"
-        hide-details
-      ></v-checkbox>
-
-      <div
-        v-if="using_scale == true"
-        class="if-balanza"
-        style="width: 50%; padding: 5px"
-      >
-        <v-btn
-          :loading="loading3"
-          :disabled="loading3"
-          color="blue-grey"
-          class="ma-2 white--text"
-          @click="loader = 'loading3'"
+    <v-stepper v-model="e6" vertical>
+      <v-stepper-step :complete="e6 > 4" step="1" editable>
+        ¿Quién eres?
+        <small style="margin-top: 3px"
+          >Cuéntanos un poco sobre ti, esto nos ayudará a personalizar tu plan
+          de alimentación</small
         >
-          Conectar con balanza
-          <v-icon right dark> mdi-bluetooth </v-icon>
-        </v-btn>
-      </div>
+      </v-stepper-step>
 
-      <div v-else class="if-not-balanza">
+      <v-stepper-content step="1">
+        <v-text-field
+          v-model="username"
+          :counter="30"
+          label="Nombre de usuario"
+          style="margin-bottom: 10px"
+        ></v-text-field>
+
+        <v-text-field
+          v-model="name"
+          :counter="30"
+          :rules="nameRules"
+          label="Nombre"
+          style="margin-bottom: 10px"
+        ></v-text-field>
+
+        <v-text-field
+          v-model="age"
+          label="Edad"
+          type="number"
+          style="margin-bottom: 20px"
+        ></v-text-field>
+
+        <v-select
+          v-model="selected_sex"
+          :items="sex_options"
+          label="Selecciona tu sexo"
+          solo
+        ></v-select>
+
         <v-slider
-          v-model="weight.val"
-          :label="weight.label"
-          :thumb-color="weight.color"
+          v-model="height.val"
+          :label="height.label"
+          :thumb-color="height.color"
           thumb-label="always"
-          max="150"
-          min="40"
-          style="margin-bottom: 10px; margin-top: 40px"
-          required
+          max="220"
+          min="150"
+          style="margin-bottom: 20px"
         ></v-slider>
-      </div>
+        <v-btn color="primary" @click="e6 = 2"> Continue </v-btn>
+        <v-btn text> Cancel </v-btn>
+      </v-stepper-content>
 
-      <BodyType :body_type="body_type" @changeBodyType="body_type = $event">
-      </BodyType>
-
-      <v-select
-        v-model="selected_activity"
-        :items="activity_types"
-        label="Cuánta actividad física realizas?"
-        solo
-      ></v-select>
-
-      <v-select
-        v-model="objective"
-        :items="objectives"
-        label="Selecciona tu objetivo nutricional"
-        solo
-      ></v-select>
-
-      <Ingredients
-        id="ingredients"
-        :ingredients="ingredients"
-        @changeSelectedIngredients="ingredients = $event"
-      ></Ingredients>
-
-      <div>
-        <v-btn
-          :disabled="!valid"
-          color="success"
-          class="mr-4"
-          @click="createUser"
+      <v-stepper-step :complete="e6 > 2" step="2" editable>
+        ¿Cuánto pesas?
+        <small style="margin-top: 3px">
+          Recuerda, puedes conectarte con una balanza Xiaomi para una estimación
+          más precisa</small
         >
+      </v-stepper-step>
+
+      <v-stepper-content step="2">
+        <v-checkbox
+          v-model="using_scale"
+          label="Va a utilizar la balanza Xiaomi Mi Body Composition Scale 2 ?"
+          color="red"
+          hide-details
+        ></v-checkbox>
+
+        <div
+          v-if="using_scale == true"
+          class="if-balanza"
+          style="width: 50%; padding: 5px"
+        >
+          <v-btn
+            :loading="loading3"
+            :disabled="loading3"
+            color="blue-grey"
+            class="ma-2 white--text"
+            @click="loader = 'loading3'"
+          >
+            Conectar con balanza
+            <v-icon right dark> mdi-bluetooth </v-icon>
+          </v-btn>
+        </div>
+
+        <div v-else class="if-not-balanza">
+          <v-slider
+            v-model="weight.val"
+            :label="weight.label"
+            :thumb-color="weight.color"
+            thumb-label="always"
+            max="150"
+            min="40"
+            style="margin-bottom: 10px; margin-top: 40px"
+            required
+          ></v-slider>
+          <BodyType :body_type="body_type" @changeBodyType="body_type = $event">
+          </BodyType>
+        </div>
+        <v-btn color="primary" @click="e6 = 3"> Continue </v-btn>
+        <v-btn text> Cancel </v-btn>
+      </v-stepper-content>
+
+      <v-stepper-step :complete="e6 > 3" step="3" editable>
+        Actividad física y objetivos nutricionales
+        <small style="margin-top: 3px">
+          Saber cuánto te mueves y cuál es tu objetivo nos ayudará a adaptar el
+          plan a tus necesidades</small
+        >
+      </v-stepper-step>
+
+      <v-stepper-content step="3">
+        <v-select
+          v-model="selected_activity"
+          :items="activity_types"
+          label="Cuánta actividad física realizas?"
+          solo
+        ></v-select>
+
+        <v-select
+          v-model="objective"
+          :items="objectives"
+          label="Selecciona tu objetivo nutricional"
+          solo
+        ></v-select>
+        <v-btn color="primary" @click="e6 = 4"> Continue </v-btn>
+        <v-btn text> Cancel </v-btn>
+      </v-stepper-content>
+
+      <v-stepper-step step="4" editable>
+        Tus preferencias de comida
+        <small style="margin-top: 3px">
+          Nos gustaría además recomendarte comida que te guste... aunque a veces
+          hay que hacer algún sacrificio ;)</small
+        >
+      </v-stepper-step>
+      <v-stepper-content step="4">
+        <Ingredients
+          id="ingredients"
+          :ingredients="ingredients"
+          @changeSelectedIngredients="ingredients = $event"
+        ></Ingredients>
+
+        <v-btn color="success" class="mr-4" @click="createUser">
           Crear nuevo usuario
         </v-btn>
-      </div>
-    </v-form>
+        <v-btn text> Cancel </v-btn>
+      </v-stepper-content>
+    </v-stepper>
   </v-container>
 </template>
 
@@ -130,6 +164,7 @@ import VueSwing from "vue-swing";
 export default {
   components: { BodyType, Ingredients, VueSwing },
   data: () => ({
+    e6: 1,
     sex_options: ["Hombre", "Mujer"],
     activity_types: [
       "1. Sedentario (nada de ejercicio / trabajo de oficina)",
@@ -138,7 +173,7 @@ export default {
       "4. Muy activo (ejercicio casi diario intenso)",
       "5. Extremadamente activo (ejercio diario muy intenso, 2 entrenamientos diarios)",
     ],
-    username:"",
+    username: "",
     name: "",
     using_scale: false,
     objectives: ["Perder peso", "Mantener", "Ganar peso"],
@@ -203,8 +238,6 @@ export default {
           console.log(err);
         });
     },
-    
-    
   },
 };
 </script>
@@ -213,7 +246,7 @@ export default {
 <style scoped>
 .formulario {
   margin-top: 1cm;
-  background-color:rgb(113, 192, 113);
+  background-color: rgb(113, 192, 113);
   margin: auto;
   width: 95%;
   border: 2px solid rgb(97, 213, 97);

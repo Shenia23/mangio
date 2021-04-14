@@ -5,6 +5,7 @@ from flask_cors import CORS, cross_origin
 import requests
 from app.user.user import User, createNewUser
 from app.recommender.recommender import getRecommendation
+import os
 
 app = Flask(__name__,
             static_folder = "./dist/static",
@@ -32,9 +33,26 @@ def get_available_users():
 @cross_origin()
 def get_predetermined_profiles():
     '''
-    Devuelve lista de JSONs con todos los usuarios predeterminados del sistema.
+    Devuelve array de JSONs con todos los usuarios predeterminados del sistema.
     '''
-    pass
+    
+    files = os.listdir("./app/user/predetermined_profiles")
+    predetermined_profiles = []
+    for filename in files:
+        with open("./app/user/predetermined_profiles/"+filename,"r") as json_file:
+            predetermined_profiles.append(json.load(json_file))
+
+    profiles_dict = {}
+    profiles_dict["predetermined_profiles"]= predetermined_profiles
+    
+    response = app.response_class(
+        response=json.dumps(profiles_dict),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
+    
+    return 
 
 
 @app.route('/recomendacion', methods=['GET','POST'])

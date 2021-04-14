@@ -75,6 +75,19 @@
 
     <div class="row" style="margin-left: 15%">
       <div class="column" style="margin-left: 18%">
+        <v-card class="mx-auto" max-width="100%">
+          <v-img
+            :src="require('../assets/receta.png')"
+            aspect-ratio="1"
+          ></v-img>
+
+          <v-card-title> +2000 RECETAS </v-card-title>
+
+          <v-card-subtitle> Una amplia selección de platos.</v-card-subtitle>
+        </v-card>
+      </div>
+
+      <div class="column" style="margin-left: 18%">
         <v-card class="mx-auto" max-width="330">
           <v-img
             :src="require('../assets/receta.png')"
@@ -86,22 +99,8 @@
           <v-card-subtitle> Una amplia selección de platos.</v-card-subtitle>
         </v-card>
       </div>
-    
-    <div class="column" style="margin-left: 18%">
-        <v-card class="mx-auto" max-width="330">
-          <v-img
-            :src="require('../assets/receta.png')"
-            aspect-ratio="1"
-          ></v-img>
 
-          <v-card-title> +2000 RECETAS </v-card-title>
-
-          <v-card-subtitle> Una amplia selección de platos.</v-card-subtitle>
-        </v-card>
-      </div>
-      
-
-       <div class="column" style="margin-left: 18%">
+      <div class="column" style="margin-left: 18%">
         <v-card class="mx-auto" max-width="330">
           <v-img
             :src="require('../assets/receta.png')"

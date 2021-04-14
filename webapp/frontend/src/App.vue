@@ -41,9 +41,7 @@ export default {
       appTitle: 'Mangio!',
       sidebar: false,
       menuItems: [
-        //{ title: 'Perfiles prediseñados', path: '/perfiles', icon: 'folder_shared' },
-        { title: 'Acceso', path: '/nuevoUsuario', icon: 'fiber_new' },
-        { title: 'Perfil', path: '/perfilusuario', icon: 'account_circle' },
+        { title: 'Nuevo usuario', path: '/nuevoUsuario', icon: 'fiber_new' },
         { title: 'Plan de alimentación', path: '/planalimentacion', icon: 'fastfood' },
         { title: 'Nuevas recetas', path: '/nuevasrecetas', icon: 'add_circle' }
       ]
