@@ -135,7 +135,7 @@ def json2User(json_user):
     return user
    
 
-def  createNewUser(new_user_data, serialize  = True):
+def createNewUser(new_user_data, serialize  = True):
     new_user = User(username=new_user_data['username'],
                     name= new_user_data['name'],
                     age= new_user_data['age'],

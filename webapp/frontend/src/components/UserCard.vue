@@ -1,16 +1,36 @@
 <template>
-<div>
   <v-card
     class="mx-auto"
-    max-width="344"
+    max-width="400"
   >
-    <v-card-title>
-      Información de Usuario
-    </v-card-title>
-
-    <v-card-subtitle>
-      {{ this.$store.getters.userdata.name }}
-    </v-card-subtitle>
+    <v-list-item 
+        >
+    <v-list-item-content>
+        <v-list-item>
+            <div class="avatar">
+                <v-list-item-avatar 
+                size="90" 
+                color="#FAD7A0"
+                id="avatar-icon"
+                >
+                    <img :src="img" />
+                </v-list-item-avatar>
+            </div>
+            <v-list>
+                <v-list-item-title class="body-1" >
+                    <p class="text-left font-weight-bold">
+                        {{ this.$store.getters.userdata.name }}
+                    </p> 
+                </v-list-item-title>
+                <v-list-item-subtitle> 
+                    <p class="text-left caption">
+                        {{ this.$store.getters.userdata.age }} años
+                    </p> 
+                </v-list-item-subtitle>
+            </v-list>
+        </v-list-item>
+    </v-list-item-content>
+    </v-list-item>
 
     <v-card-actions>
       <v-btn
@@ -35,31 +55,6 @@
     </v-expand-transition>
   </v-card>
 
-      <v-card
-      class="mx-auto"
-      max-width="700">
-          <div class="media-left">
-            <figure class="image is-64x64">
-              <img :src="img" alt="Image">
-            </figure>
-          </div>
-          <div class="media-content">
-            <div class="content">
-              <p>
-                <strong>Nombre</strong> <small>Edad</small>
-                <br>
-                Cosas
-              </p>
-            </div>
-              <div class="level-left">
-                <a class="level-item">
-                  <span class="icon is-small"><i class="fas fa-heart"></i></span>
-                  <span class="likes">3</span>
-                </a>
-              </div>
-          </div>
-      </v-card> 
-    </div>
 </template>
 
 <script>
@@ -73,3 +68,19 @@
     },
   }
 </script>
+
+<style scoped>
+
+.avatar{
+    border-style: dashed;
+    border-radius: 50%;
+    border-width: 1pt;
+    margin-right: 20px;
+    padding: 5px;
+} 
+
+#avatar-icon{
+    margin: auto;
+}
+
+</style>

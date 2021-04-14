@@ -58,7 +58,7 @@
                     <v-list class="info_receta">
                         <v-list-item-title class="body-1" >
                         <p class="text-left font-weight-bold">
-                                {{ r.Nombre }} {{ r.overlay }}
+                                {{ r.Nombre }}
                             </p> 
                         </v-list-item-title>
                         <v-list-item-subtitle> 
