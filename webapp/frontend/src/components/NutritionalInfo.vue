@@ -1,34 +1,62 @@
 <template>
-  <v-card
-    class="mx-auto"
-    max-width="400"
-  >
-    <v-card-title>
-      Información Nutricional
-    </v-card-title>
+  <v-row>
+    <v-col md="6">
+      <v-card
+        class="main"
+        max-width="400"
+      >
+        <div class="chart-div">
+        <doughnut-chart key="chart_key" ref="dChart" :chartData="chartData"></doughnut-chart>
+        </div>
+      </v-card>
+    </v-col>
 
-    <v-divider></v-divider>
-
-    <v-list-item>
-      <v-list-item-subtitle class="body-1" >
-        <p class="text-left font-weight-bold">
-                {{ totalCalories }} kcal
-            </p> 
-      </v-list-item-subtitle>
-    </v-list-item>
-
-    <div id="chart-div">
-    <doughnut-chart key="chart_key" ref="dChart" :new_data="chartData"></doughnut-chart>
+    <v-col md="6">
+      <v-card
+        class="ain"
+        max-width="400"
+      >
+        <div>
+        <bar-chart ref="bChart" :chartData="objectivesData"></bar-chart>
+        </div>
+      </v-card>
+    </v-col>
+    <!--
+    <div class="objectives subtitle-2">
+      <v-row class="font-weight-bold">
+        <v-col md="4"  >
+        </v-col>
+        <v-col md="4">
+            Valores
+        </v-col>
+        <v-col md="4">
+            Objetivos
+        </v-col>
+      </v-row>
+      <v-row 
+      v-for="objetivo in Object.keys(objectives)" :key="objetivo"
+      >
+          <v-col md="4" class="text-left">
+              {{ objetivo }}
+          </v-col>
+          <v-col md="4">
+              {{ objetivo=='energia' ? totalCalories + ' kcal' : getSum(objetivo) + ' g' }}
+          </v-col>
+          <v-col md="4" class="ml-auto">
+              {{ objectives[objetivo] }} {{ objetivo=='energia' ? 'kcal' : 'g' }}
+          </v-col>
+      </v-row>
     </div>
-
-  </v-card>
+    -->
+  </v-row>
 </template>
 
 <script>
-import DoughnutChart from './DoughnutChart.vue'
+import DoughnutChart from './graphs/DoughnutChart.vue'
+import BarChart from './graphs/BarChart.vue'
 
   export default {
-  components: { DoughnutChart },
+  components: { DoughnutChart, BarChart },
       data: () => ({
         name: 'nutritional-info',
         chartData: {
@@ -47,8 +75,51 @@ import DoughnutChart from './DoughnutChart.vue'
                 ],
                 data: []
                 }]
-          }
+          },
+        objectivesData: {
+          labels: ["Proteínas","Grasas","Carbohidratos"],
+          datasets: [
+              {
+                  label: "Valor",
+                  data: [4,6,7],
+                  borderWidth: 1,
+                  minBarLength: 100,
+                  borderColor: [
+                  '#184d47',
+                  '#96bb7c',
+                  '#fad586'              
+                  ],
+                  backgroundColor: [
+                  '#185d47',
+                  '#96bb7c',
+                  '#fad586',        
+                  ],
+              },
+              {
+                  label: "Objetivo",
+                  data: [7,8,6],
+                  borderWidth: 2,
+                  minBarLength: 2,
+                  borderColor: [
+                  '#184d47',
+                  '#96bb7c',
+                  '#fad586'              
+                  ],
+              },
+          ]
+      },
+      objectives: {
+        'energia': 2500,
+        'grasa': 83,
+        'proteina': 187,
+        'carbohidratos': 250
+      }
     }),
+    computed: {
+      obj: function () {
+        return this.$store.getters.objectives
+      }
+    },
     props: {
         recipes: Array
     },
@@ -70,23 +141,29 @@ import DoughnutChart from './DoughnutChart.vue'
     methods: {
         load(){
             //load doughnut graph
-            this.chartData.datasets[0].data = []
             var values = ['proteina','grasa','carbohidratos'];
+            var values_sum = []
+            var macro_goals = []
+
             values.forEach(element => {
-              var e_sum = this.getSum(element,this.recipes);
-              this.chartData.datasets[0].data.push(e_sum.toFixed(1));
+              var e_sum = this.getSum(element);
+              values_sum.push(e_sum)
+              macro_goals.push(this.objectives[element])
             });
-            this.$refs.dChart.renderChart(this.chartData);
+
+            this.chartData.datasets[0].data = values_sum;
+            this.objectivesData.datasets[0].data = values_sum;
+            this.objectivesData.datasets[1].data = macro_goals;
+
+            this.$refs.dChart.reload();
+            this.$refs.bChart.reload();
         },
-        getSum(type,rec) {
+        getSum(type) {
         var sum = 0;
-        rec.forEach(element=>{
+        this.recipes.forEach(element=>{
             sum += element[type]
         });
-        return sum;
-        },
-        updateChart() {
-            this.chart_key += 1; 
+        return sum.toFixed(0);
         },
     },
   }
@@ -94,11 +171,20 @@ import DoughnutChart from './DoughnutChart.vue'
 
 <style scoped>
 
-#chart-div{
-    width: 230px; 
-    margin: auto;
-    padding-top: 20px;
-    padding-bottom: 20px;
+.main{
+  padding: 20px;
 }
 
-</style>
+.chart-div{
+    width: 230px; 
+    margin: auto;
+}
+
+.objectives{
+  margin: auto;
+  padding: 5%;
+  border-radius: 10px;
+  background-color: rgb(197, 236, 182);
+}
+
+</style>s

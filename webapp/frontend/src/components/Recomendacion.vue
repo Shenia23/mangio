@@ -1,24 +1,27 @@
 <template>
-  <div class="recommendation-body">
-    <v-row id="title-row">
-        <v-col cols="12" md="9">
-            <h3 class="headline mb-2"> Plan de Alimentación de Hoy para {{this.$store.getters.username}} </h3>
-        </v-col>
-        <v-col cols="12" md="1">
-            <v-icon class="reload"
-            @click="reload">
-            mdi-cached
-            </v-icon>
-        </v-col>
-    </v-row>
-    <v-row>
-    <v-col cols="12" md="7" style="margin-left:40px">
+  <div class="recommendation-body" id="main-row">
+    
+    <v-row >
+    <v-col cols="12" md="6">
     <!-- COL 1: cards de RECOMENDACIONES y RECETAS-->
-        <v-container>
         <v-card
-        class="mx-auto"
         max-width="700"
-        outlined
+        class="division"
+        >
+        <v-row id="title-row">
+            <v-col cols="12" md="9">
+                <h3 class="headline mb-2"> Plan de Alimentación de Hoy para {{this.$store.getters.username}} </h3>
+            </v-col>
+            <v-col cols="12" md="1">
+                <v-icon class="reload"
+                @click="reload">
+                mdi-cached
+                </v-icon>
+            </v-col>
+        </v-row>
+        
+        <p class="overline text-left" style="margin-left:35px"> Vasos de awa: 2.5 </p>
+        <div
         v-for="(comida, index) in comidas"
         :key="index"
         >  
@@ -26,11 +29,12 @@
         <v-list-item three-line
         >
             <v-list-item-content>
-            <div class="overline">
+            <div class="overline text-left" style="margin-left:20px"> 
                 {{ comida }}
             </div>
             <div v-for="(r, index) in rec"
                 :key="index"
+                class="recipe-card-div"
             >   
                 <v-list-item 
                     v-if="r.Comida==comida" 
@@ -81,20 +85,21 @@
 
         </v-list-item>
         </div>
+        </div>
         </v-card>
-        </v-container>
     </v-col>
-    <v-col cols="12" md=4 >
+    <v-col cols="12" md=6 class="stats">
     <!-- COL 2: STATS de las comidas + EXPLICACIÓN-->
-        <div class="nutri-info">
-            <nutritional-info :recipes="rec" ref="nutritionalInfoChild"></nutritional-info>
-       </div>
-       
-       <div class="explanation">
+
+        <div class="infos">
             <user-card></user-card>
        </div>
 
-       <div class="explanation">
+        <div class="infos">
+            <nutritional-info :recipes="rec" ref="nutritionalInfoChild"></nutritional-info>
+       </div>
+       
+       <div class="infos">
             <explanation-card></explanation-card>
        </div>
 
@@ -109,7 +114,8 @@ import axios from "axios";
 import ExplanationCard from './ExplanationCard.vue';
 import UserCard from './UserCard.vue';
 import NutritionalInfo from './NutritionalInfo';
-import DoughnutChart from './DoughnutChart.vue';
+import DoughnutChart from './graphs/DoughnutChart.vue';
+import BarChart from './graphs/BarChart.vue';
 import RecipeInfo from './RecipeInfo.vue';
 
 export default {
@@ -119,7 +125,8 @@ export default {
       'explanation-card': ExplanationCard,
       'recipe-info': RecipeInfo,
       'nutritional-info': NutritionalInfo,
-      'user-card': UserCard  },
+      'user-card': UserCard,
+      'bar-chart': BarChart  },
   data() {
     NutritionalInfo
       return {
@@ -127,7 +134,6 @@ export default {
           overlay: false,
           zIndex: 1,
           recom_key: 0,
-          recipes: [], // overlay values for each recipe
           comidas: ['desayuno','snack','comida','merienda','cena'],
           default_icon: {
                 'desayuno': 'mdi-food-variant',
@@ -209,7 +215,22 @@ export default {
 
 <style scoped>
 
-#title-row {
-  padding-top: 40px;
+#main-row {
+  padding-top: 60px;
 }
+
+.recipe-card-div{
+    margin-bottom: -10px;
+}
+
+.infos{
+    margin-right: 2rem;
+    margin-bottom: 1rem;
+    width: 90%;
+}
+
+.division{
+    margin-left: 2rem;
+}
+
 </style>

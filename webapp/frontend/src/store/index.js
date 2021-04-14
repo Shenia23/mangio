@@ -16,9 +16,15 @@ export default new Vuex.Store({
                 'activity_level': 3,
                 'objective': 0,
                 'tdee': 2762.46711,
-                'water_intake': 2171.9684256
-                // cambiar por Object 
-            }
+                'water_intake': 2171.9684256,
+                'objectives': {
+                    'energia': 2500,
+                    'grasa': 83,
+                    'proteina': 187,
+                    'carbohidratos': 250
+                }
+            },
+            
         }
     },
     getters: {
@@ -27,11 +33,17 @@ export default new Vuex.Store({
         },
         userdata: state => {
             return state.user.userdata
+        },
+        objectives: state =>{
+            return state.user.userdata['objectives']
         }
     },
     mutations: {
         setUserData(state, payload) {
             state.user.userdata = payload.userdata
+        },
+        setObjectives(state, payload) {
+            state.user.userdata.objectives = payload.objectives
         }
     },
     actions: {}

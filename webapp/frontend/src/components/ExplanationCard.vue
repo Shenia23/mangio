@@ -1,7 +1,7 @@
 <template>
   <v-card
     class="mx-auto"
-    max-width="400"
+    max-width="600"
   >
     <v-img
       :src="img"
@@ -18,7 +18,6 @@
 
     <v-card-actions>
 
-
       <v-spacer></v-spacer>
 
       <v-btn
@@ -32,9 +31,9 @@
     <v-expand-transition>
       <div v-show="show">
         <v-divider></v-divider>
-        <v-card-text>
-          Info extra! Algún gráfico, whatever
-        </v-card-text>
+          <v-card-text>
+            Info extra! Algún gráfico, whatever
+          </v-card-text>
       </div>
     </v-expand-transition>
   </v-card>

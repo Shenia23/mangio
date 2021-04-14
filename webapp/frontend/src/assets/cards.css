@@ -1,8 +1,3 @@
-.v-card{
-    margin-bottom: .5rem;
-    transition: box-shadow 0.3s;
-}
-
 .overline{
     color: green;
 }
@@ -23,13 +18,6 @@
     position: absolute;
     top: 0px;
     right: 0px;
-}
-
-.nutri-info{
-    margin-top: 1rem;
-    margin-right: 2rem;
-    margin-bottom: 2rem;
-    width: 100%;
 }
 
 .reload{

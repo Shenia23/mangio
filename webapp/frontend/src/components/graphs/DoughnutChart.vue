@@ -6,9 +6,6 @@
     data () {
       return {
         name: 'DoughnutChart',
-        props: {
-          chartData: Array
-        },
         options: {
           legend: {
             display: true
@@ -18,15 +15,8 @@
         },
       }
     },
-    watch: {
-      deep: true,
-      chartData: { // watch it
-        deep: true,
-        handler: function(newVal, oldVal){
-          console.log('Prop changed: ', newVal, ' | was: ', oldVal)
-          this.chartData = newVal
-        }
-      }
+    props: {
+      chartData: Object
     },
     methods: {
         reload(){

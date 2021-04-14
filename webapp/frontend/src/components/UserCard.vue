@@ -1,7 +1,7 @@
 <template>
   <v-card
     class="mx-auto"
-    max-width="400"
+    max-width="600"
   >
     <v-list-item 
         >

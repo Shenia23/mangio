@@ -12,13 +12,16 @@ from app.recommender.data_manager import recipes2dict
 
 recipe_nvalues = pd.merge(recipes, nvalues, on='Recipe_id', how='right')
 
-scaler = StandardScaler()
+comb_scaler = StandardScaler()
+recipe_scaler = StandardScaler()
 
-combined[TARGET_MACROS] = scaler.fit_transform(combined[TARGET_MACROS])
+combined[TARGET_MACROS] = comb_scaler.fit_transform(combined[TARGET_MACROS])
+
+scaled_recipes = recipe_nvalues.copy()
+scaled_recipes[TARGET_MACROS] = recipe_scaler.fit_transform(recipe_nvalues[TARGET_MACROS])
 
 # TODO filtrado extra para que no recomiende comidas de 100 kcal y cenas de 1000 kcal 
 # TODO implementar que se envíen recetas similares
-# TODO conectar con usuario (clase)
 
 class Recommender:
 
@@ -42,18 +45,21 @@ class Recommender:
 
         # recomendación fijada de desayuno y snacks
         for type in FIXED_FOOD_TYPES:
-            selected_recipe = self.get_fixed_recommendation(type)
+            selected_recipe = self.fixed_recommendation(type)
             selected_recipe['Comida'] = type
             recom = recom.append(selected_recipe)
 
         #recomendación combinada de comida y cena
         target_values = self.get_missing_macros(recom)
-        combined_recom = self.get_combined_recommendation(target_values)
+        combined_recom = self.combined_recommendation(target_values)
         recom = recom.append(combined_recom)
+        recom.reset_index(inplace=True)
+
+        self.most_similar(recom[recom.Comida=='comida'], n=5)
 
         return recom
     
-    def get_fixed_recommendation(self, type):
+    def fixed_recommendation(self, type):
         '''
         Pasos:
             1. Filtrado por categorías
@@ -67,14 +73,14 @@ class Recommender:
         selected_category = recipe_nvalues[recipe_nvalues['Tipo'].isin(CATEGORIES[type])]
         filtered_calories = Recommender.filter_by_range(
                                         df=selected_category,
-                                        column='energia',
+                                        column=KCAL,
                                         values=[calories*0.9, calories*1.1]
                                     )
         
         selected_recipe = filtered_calories.sample(n=1)
         return selected_recipe
     
-    def get_combined_recommendation(self, target_values):
+    def combined_recommendation(self, target_values):
         '''
         Usa la distancia euclidiana para encontrar los valores más cercanos a los target_values
         La receta con más kcal es la comida, y la que tiene menos la cena. 
@@ -82,18 +88,29 @@ class Recommender:
         :param target_values: gramos restantes de cada macro tras haber fijado las meriendas y desayunos
         :return combined_recom: df formada por la mejor combinación de comida y cena
         '''
-        scaled_targets = scaler.transform([target_values[TARGET_MACROS]])
+        scaled_targets = comb_scaler.transform([target_values[TARGET_MACROS]])
         eucl_dist = euclidean_distances(scaled_targets, combined[TARGET_MACROS].values).reshape(-1)
         min_ed_index = (np.where(eucl_dist == np.amin(eucl_dist)))[0]
 
         combined_ids = list(combined[['Recipe1','Recipe2']].iloc[min_ed_index[0]])
-
         combined_recom = recipe_nvalues[recipe_nvalues['Recipe_id'].isin((combined_ids))].copy()
         
-        combined_recom = combined_recom.sort_values('energia',ascending=False).reset_index()
+        combined_recom = combined_recom.sort_values(KCAL,ascending=False).reset_index()
         combined_recom['Comida'] = LUNCH
         combined_recom.at[1,'Comida'] = DINNER
         return combined_recom
+
+    def most_similar(self, recipe, n=1):
+        '''
+        Devuelve las recetas más similares
+        '''
+        scaled_recipe = recipe_scaler.transform(recipe[TARGET_MACROS])
+        eucl_dist = euclidean_distances(scaled_recipe, scaled_recipes[TARGET_MACROS]).reshape(-1)
+
+        most_similar_indexes = np.argsort(eucl_dist)[:n]
+        most_similar = recipe_nvalues.iloc[most_similar_indexes]
+
+        return most_similar
 
     def get_missing_macros(self, fixed_df):
         '''
@@ -116,7 +133,7 @@ class Recommender:
         macros_grams[KCAL] = self.tdee
         
         return pd.Series(macros_grams)
-    
+
     @staticmethod
     def filter_by_range(df, column, values):
         filtered_df = df[df[column].between(left=values[0], right=values[1])]
