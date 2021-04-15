@@ -25,8 +25,22 @@ def get_available_users():
     '''
     Devuelve lista de JSONs con todos los usuarios del sistema
     '''
+    files = os.listdir("./app/user/users")
+    predetermined_profiles = []
+    for filename in files:
+        with open("./app/user/users/"+filename,"r") as json_file:
+            predetermined_profiles.append(json.load(json_file))
+
+    profiles_dict = {}
+    profiles_dict["users"]= predetermined_profiles
     
-    pass
+    response = app.response_class(
+        response=json.dumps(profiles_dict),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
+    
 
 
 @app.route('/predeterminedUserProfiles', methods=['GET'])
@@ -51,8 +65,7 @@ def get_predetermined_profiles():
         mimetype='application/json'
     )
     return response
-    
-    return 
+
 
 
 @app.route('/recomendacion', methods=['GET','POST'])

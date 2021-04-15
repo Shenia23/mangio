@@ -7,6 +7,7 @@ export default new Vuex.Store({
     state: {
         user: {
             userdata: {
+                'username': 'francescademo',
                 'name': 'Francesca', // este sería el usuario sacado del form o de una request a flask
                 'age': 23,
                 'sex': 'Mujer',
@@ -23,7 +24,7 @@ export default new Vuex.Store({
     },
     getters: {
         username: state => {
-            return state.user.userdata.name
+            return state.user.userdata.username
         },
         userdata: state => {
             return state.user.userdata
@@ -31,6 +32,7 @@ export default new Vuex.Store({
     },
     mutations: {
         setUserData(state, payload) {
+            console.log("hola")
             state.user.userdata = payload.userdata
         }
     },

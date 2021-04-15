@@ -20,7 +20,7 @@
         <v-icon>mdi-account-multiple</v-icon>
       </v-tab>
 
-      <v-tab href="#tab-3">
+      <v-tab href="#tab-3" v-on:click="getExistingUsers">
         Acceder
         <v-icon>mdi-account-key</v-icon>
       </v-tab>
@@ -43,7 +43,7 @@
         :key="3"
         :value="'tab-3'"
       >
-      Acceder
+      <Users :users="this.users"/>
       </v-tab-item>
     </v-tabs-items>
   </v-card>
@@ -56,14 +56,16 @@
 <script>
 import Questionaire from "./Questionaire.vue";
 import PredeterminedProfiles from "./PredeterminedProfiles.vue"
+import Users from "./Users.vue"
 import axios from "axios";
 
 export default {
-  components: { Questionaire, PredeterminedProfiles},
+  components: { Questionaire, PredeterminedProfiles, Users},
   data: () => ({
       tab: null,
       text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      predetermined_profiles: null
+      predetermined_profiles: null,
+      users: null,
   }),
   methods: {
     getPredeterminedProfiles() {
@@ -75,6 +77,20 @@ export default {
 
           this.predetermined_profiles = response.data.predetermined_profiles;
           console.log(this.predetermined_profiles)
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    getExistingUsers() {
+      const path = `http://localhost:5000/availableUsers`;
+      axios
+        .get(path)
+        .then((response) => {
+          console.log(response)
+
+          this.users = response.data.users;
+          console.log(this.users)
         })
         .catch((error) => {
           console.log(error);

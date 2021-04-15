@@ -111,20 +111,25 @@ class User:
         '''Cálculo del consumo de agua diario en función del metabolismo basal y del factor de actividad física'''
 
         return 0.96 * self.get_tdee()
-
+ 
 def getUser(username):
     file_name= "./app/user/users/"+username+"_data.json"
     try:
         with open(file_name, 'r') as f:
             json_user = json.load(f)
     except:
-        print(f"User {username} doesn't exist")
-        return None
-    
-    user = json.loads(json_user) #es un DICT no un User
+        file_name= "./app/user/predetermined_profiles/"+username+"_data.json"
+        try:
+            with open(file_name, 'r') as f:
+                json_user = json.load(f)
+        
+        except:
+            print(f"User {username} doesn't exist")
+            return None
+    #user = json.loads(json_user) #es un DICT no un User
     #user = json2User(json.loads(json_user)) # para la CLASE User
 
-    return user
+    return json_user
 
 def json2User(json_user):
     #TODO añadir todos los params aquí o usar esto:

@@ -76,7 +76,7 @@ class Recommender:
     
     def get_combined_recommendation(self, target_values):
         '''
-        Usa la distancia euclidiana para encontrar los valores más cercanos a los target_values
+        Usa la distancia euclídea para encontrar los valores más cercanos a los target_values
         La receta con más kcal es la comida, y la que tiene menos la cena. 
 
         :param target_values: gramos restantes de cada macro tras haber fijado las meriendas y desayunos
@@ -128,6 +128,7 @@ def getRecommendation(username):
     y se obtienen las recomendaciones
     #TODO guardar recomendadores para cada user / tipo de user?
     '''
+    print("username",username)
     user = getUser(username)
     recommender = create_recommender(user) #posible nuevo metodo getRecommender (if exists) con pickle
     recommendation = recommender.recommend()
@@ -143,7 +144,7 @@ def create_recommender(user):
     '''
     recommender = Recommender(
                     tdee = user['tdee'],
-                    objective = user['user_objective']
+                    objective = user['objective']
                   )
 
     return recommender

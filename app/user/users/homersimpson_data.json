@@ -1,0 +1,26 @@
+{
+    "username": "homersimpson",
+    "name": "Homer Simpson",
+    "sex": "Hombre",
+    "age": 39,
+    "height": 176,
+    "body_type": "Endomorfo",
+    "activity_level": 1,
+    "liked_ingredients": [
+        "huevo",
+        "patata",
+        "queso",
+        "pollo",
+        "vino",
+        "arroz",
+        "canela"
+    ],
+    "disliked_ingredients": null,
+    "objective": 1,
+    "using_scale": false,
+    "weight": 120,
+    "bmi": 38.739669421487605,
+    "bmr": 2333.553,
+    "tdee": 2800.2635999999998,
+    "water_intake": 2688.2530559999996
+}
