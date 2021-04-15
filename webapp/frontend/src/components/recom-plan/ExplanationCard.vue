@@ -1,7 +1,6 @@
 <template>
   <v-card
     class="mx-auto"
-    max-width="600"
   >
     <v-img
       :src="img"
@@ -44,9 +43,17 @@
     data () {
       return {
        name: 'explanation-card',
-       img: require('../assets/fruit.jpg'),
+       img: require('../../assets/fruit.jpg'),
        show: false,
       }
     },
   }
 </script>
+
+<style scoped>
+
+.v-card{
+  margin-top: 2rem;
+}
+
+</style>s

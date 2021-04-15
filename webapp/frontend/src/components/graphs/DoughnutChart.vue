@@ -1,5 +1,8 @@
 <script>
   import { Doughnut } from 'vue-chartjs'
+  import ChartJsPluginDataLabels from 'chartjs-plugin-datalabels'
+  window.Chart.plugins.register(ChartJsPluginDataLabels);
+  //Chart.defaults.global.plugins.datalabels.display = false
 
   export default {
     extends: Doughnut,
@@ -11,7 +14,17 @@
             display: true
           },
           responsive: true,
-          maintainAspectRatio: false
+          maintainAspectRatio: true,
+          tooltips: {
+              enabled: false
+          },
+          plugins:{
+            datalabels: {
+              formatter: function (value) {
+                return value + '%'
+              },
+            }
+          }
         },
       }
     },
@@ -23,7 +36,8 @@
             this.renderChart(this.chartData, this.options);
         },
     },
-    mounted () {
+    mounted () {    
+      //this.addPlugin(ChartJSPluginDatalabels);
       this.renderChart(this.chartData, this.options);
     },
   }

@@ -5,7 +5,6 @@
     <v-col cols="12" md="6">
     <!-- COL 1: cards de RECOMENDACIONES y RECETAS-->
         <v-card
-        max-width="700"
         class="division"
         >
         <v-row id="title-row">
@@ -111,12 +110,12 @@
 
 <script>
 import axios from "axios";
-import ExplanationCard from './ExplanationCard.vue';
-import UserCard from './UserCard.vue';
-import NutritionalInfo from './NutritionalInfo';
+import ExplanationCard from './recom-plan/ExplanationCard.vue';
+import UserCard from './recom-plan/UserCard.vue';
+import NutritionalInfo from './recom-plan/NutritionalInfo';
 import DoughnutChart from './graphs/DoughnutChart.vue';
 import BarChart from './graphs/BarChart.vue';
-import RecipeInfo from './RecipeInfo.vue';
+import RecipeInfo from './recom-plan/RecipeInfo.vue';
 
 export default {
   name: "Recomendacion",
@@ -224,12 +223,16 @@ export default {
 }
 
 .infos{
-    margin-right: 2rem;
-    margin-bottom: 1rem;
+    margin:auto;
     width: 90%;
 }
 
+.stats{
+    margin: auto;
+}
+
 .division{
+    width: 100%;
     margin-left: 2rem;
 }
 

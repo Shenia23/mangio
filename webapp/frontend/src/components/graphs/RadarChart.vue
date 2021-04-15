@@ -1,13 +1,13 @@
 <script>
-  import { Bar } from 'vue-chartjs'
+  import { Radar } from 'vue-chartjs'
 
   export default {
-    extends: Bar,
+    extends: Radar,
     data () {
       return {
-        name: 'BarChart',
+        name: 'RadarChart',
         options: {
-            barValueSpacing: 20,
+            barValueSpacing: 100,
             scales: {
                 yAxes: [{
                     ticks: {
@@ -19,7 +19,7 @@
                 display: true
             },
             responsive: true,
-            maintainAspectRatio: false,
+            maintainAspectRatio: true,
         }
       }
     },

@@ -1,26 +1,34 @@
 <template>
-  <v-row>
-    <v-col md="6">
-      <v-card
-        class="main"
-        max-width="400"
-      >
-        <div class="chart-div">
-        <doughnut-chart key="chart_key" ref="dChart" :chartData="chartData"></doughnut-chart>
-        </div>
-      </v-card>
-    </v-col>
+  <div>
+    <v-row>
+      <v-col md="6">
+        <v-card
+          class="main"
+        >
+          <doughnut-chart key="chart_key" ref="dChart" :chartData="chartData"></doughnut-chart>
+        </v-card>
+      </v-col>
 
-    <v-col md="6">
-      <v-card
-        class="ain"
-        max-width="400"
-      >
-        <div>
-        <bar-chart ref="bChart" :chartData="objectivesData"></bar-chart>
-        </div>
-      </v-card>
-    </v-col>
+      <v-col md="6">
+        <v-card
+          class="main"
+          >          
+            <radar-chart ref="rChart" :chartData="radarData"></radar-chart>
+          </v-card>
+        
+      </v-col>
+
+    </v-row>
+        <v-card
+        class="main"
+        >
+          <bar-chart style="height: 300px" ref="bChart" :chartData="objectivesData"></bar-chart>
+        </v-card>
+    <v-row>
+
+    </v-row>
+  </div>
+
     <!--
     <div class="objectives subtitle-2">
       <v-row class="font-weight-bold">
@@ -48,15 +56,15 @@
       </v-row>
     </div>
     -->
-  </v-row>
 </template>
 
 <script>
-import DoughnutChart from './graphs/DoughnutChart.vue'
-import BarChart from './graphs/BarChart.vue'
+import DoughnutChart from '../graphs/DoughnutChart.vue'
+import BarChart from '../graphs/BarChart.vue'
+import RadarChart from '../graphs/RadarChart.vue'
 
   export default {
-  components: { DoughnutChart, BarChart },
+  components: { DoughnutChart, BarChart, RadarChart },
       data: () => ({
         name: 'nutritional-info',
         chartData: {
@@ -64,9 +72,9 @@ import BarChart from './graphs/BarChart.vue'
             datasets: [{
                 borderWidth: 1,
                 borderColor: [
-                '#184d47',
-                '#96bb7c',
-                '#fad586'              
+                '#ffffff',
+                '#ffffff',
+                '#ffffff'              
                 ],
                 backgroundColor: [
                 '#184d47',
@@ -98,6 +106,38 @@ import BarChart from './graphs/BarChart.vue'
               {
                   label: "Objetivo",
                   data: [7,8,6],
+                  borderWidth: 2,
+                  minBarLength: 2,
+                  borderColor: [
+                  '#184d47',
+                  '#96bb7c',
+                  '#fad586'              
+                  ],
+              },
+          ]
+      },
+      radarData:{
+        labels: ["Desayuno","Merienda","Comida","Snack","Cena"],
+          datasets: [
+              {
+                  label: "Valor",
+                  data: [4,6,7,2,10],
+                  borderWidth: 1,
+                  minBarLength: 100,
+                  borderColor: [
+                  '#184d47',
+                  '#96bb7c',
+                  '#fad586'              
+                  ],
+                  backgroundColor: [
+                  '#185d47',
+                  '#96bb7c',
+                  '#fad586',        
+                  ],
+              },
+              {
+                  label: "Objetivo",
+                  data: [7,8,6,3,11],
                   borderWidth: 2,
                   minBarLength: 2,
                   borderColor: [
@@ -151,12 +191,13 @@ import BarChart from './graphs/BarChart.vue'
               macro_goals.push(this.objectives[element])
             });
 
-            this.chartData.datasets[0].data = values_sum;
+            this.chartData.datasets[0].data = this.getPercentages(values_sum);
             this.objectivesData.datasets[0].data = values_sum;
             this.objectivesData.datasets[1].data = macro_goals;
 
             this.$refs.dChart.reload();
             this.$refs.bChart.reload();
+            this.$refs.rChart.reload();
         },
         getSum(type) {
         var sum = 0;
@@ -165,6 +206,14 @@ import BarChart from './graphs/BarChart.vue'
         });
         return sum.toFixed(0);
         },
+        getPercentages(sums){
+          var pctg = []
+          var total = sums.reduce((a, b) => parseInt(a) + parseInt(b), 0)
+          sums.forEach( e => {
+            pctg.push( (e*100 / total).toFixed(2))
+          })
+          return pctg
+        }
     },
   }
 </script>
@@ -172,11 +221,11 @@ import BarChart from './graphs/BarChart.vue'
 <style scoped>
 
 .main{
+  margin-bottom: 1rem;
   padding: 20px;
 }
 
 .chart-div{
-    width: 230px; 
     margin: auto;
 }
 
