@@ -7,19 +7,32 @@
       return {
         name: 'RadarChart',
         options: {
-            barValueSpacing: 100,
+
             scales: {
                 yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
+                    display: false,
+                }],
+            },
+            scale: {
+              ticks: {
+                callback: function(value) {
+                    return ""
+                    },
+                beginAtZero: true
+              }
             },
             legend: {
                 display: true
             },
             responsive: true,
             maintainAspectRatio: true,
+            plugins:{
+            datalabels: {
+              formatter: function (value) {
+                return ''
+              },
+            }
+          }
         }
       }
     },

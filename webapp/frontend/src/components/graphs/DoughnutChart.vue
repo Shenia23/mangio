@@ -10,6 +10,7 @@
       return {
         name: 'DoughnutChart',
         options: {
+          cutoutPercentage: 40,
           legend: {
             display: true
           },

@@ -36,6 +36,9 @@ export default new Vuex.Store({
         },
         objectives: state =>{
             return state.user.userdata['objectives']
+        },
+        waterIntake: state =>{
+            return state.user.userdata['water_intake']
         }
     },
     mutations: {
