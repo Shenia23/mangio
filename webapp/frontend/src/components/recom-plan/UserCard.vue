@@ -1,7 +1,6 @@
 <template>
   <v-card
-    class="mx-auto"
-    max-width="400"
+    class="mx-auto main"
   >
     <v-list-item 
         >
@@ -63,7 +62,7 @@
       return {
        name: 'user-card',
        show: false,
-       img: require('../assets/fruit.jpg'),
+       img: require('../../assets/fruit.jpg'),
       }
     },
   }
@@ -81,6 +80,10 @@
 
 #avatar-icon{
     margin: auto;
+}
+
+.main{
+  margin-bottom: 1rem;
 }
 
 </style>

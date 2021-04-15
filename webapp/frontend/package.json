@@ -13,6 +13,7 @@
   "dependencies": {
     "axios": ">=0.19.0",
     "chart.js": "2.7.2",
+    "chartjs-plugin-datalabels": "^1.0.0",
     "child": "^0.0.3",
     "material-design-icons-iconfont": "^6.1.0",
     "mdb-ui-kit": "^3.4.0",
