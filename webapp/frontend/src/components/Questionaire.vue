@@ -81,7 +81,7 @@
             :disabled="loading3"
             color="blue-grey"
             class="ma-2 white--text"
-            @click= "getBalanza"
+            @click="loader = 'loading3'"
           >
             Conectar con balanza
             <v-icon right dark> mdi-bluetooth </v-icon>
@@ -201,36 +201,6 @@ export default {
     },
   }),
   methods: {
-    getBalanza(){
-        console.log("BALANZA REACHED")
-        const path = "http://localhost:5000/balanza";
-        var altura = this.height
-        axios
-        .post(path, altura)
-        .then((res) => {
-          this.balanzaData = res.data
-          this.balanzaData = JSON.stringify(this.balanzaData,null,2)
-          console.log(this.balanzaData)
-        })
-        .catch((error) => {
-          console.error(error);
-
-        });
- 
-        this.weight = this.balanzaData["weight"]
-        this.body_fat = this.balanzaData["body_fat"];
-        this.bone_mass = this.balanzaData["bone_mass"];
-        this.protein = this.balanzaData["proteine"];
-        this.lean_body_mass = this.balanzaData["lean_mass"];
-        this.metabolic_age = this.balanzaData["metab_age"];
-        this.muscle_mass = this.balanzaData["muscle_mass"];
-        this.water = this.balanzaData["water"];
-        this.bmi = this.weight / ((height/100)*(height/100))
-        //this.visceral_fat = this.balanzaData["visceral_fat"];
-        //this.basal_metabolism = this.balanzaData["basal_metabolism"]; 
-
-    },
-
     toggle_using_scale() {
       if (this.using_scale) {
         this.using_scale = false;
@@ -252,17 +222,6 @@ export default {
         liked_ingredients: this.ingredients,
         using_scale: this.using_scale,
         scale_data: this.mi_scale_data,
-        body_fat: this.body_fat,
-        bone_mass: this.bone_mass,
-        protein: this.protein,
-        lean_body_mass: this.lean_body_mass,
-        metabolic_age: this.metabolic_age,
-        water: this.water,
-        bmi: this.bmi,
-        muscle_mass: this.muscle_mass,
-        visceral_fat: this.visceral_fat,
-        basal_metabolism: this.basal_metabolism
-
       };
       console.log(new_user);
 
