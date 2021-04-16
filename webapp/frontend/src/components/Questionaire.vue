@@ -225,9 +225,9 @@ export default {
         this.metabolic_age = this.balanzaData["metab_age"];
         this.muscle_mass = this.balanzaData["muscle_mass"];
         this.water = this.balanzaData["water"];
-        this.bmi = this.balanzaData["bmi"];
-        this.visceral_fat = this.balanzaData["visceral_fat"];
-        this.basal_metabolism = this.balanzaData["metab_basal"]; 
+        this.bmi = this.weight / ((height/100)*(height/100))
+        //this.visceral_fat = this.balanzaData["visceral_fat"];
+        //this.basal_metabolism = this.balanzaData["basal_metabolism"]; 
 
     },
 
