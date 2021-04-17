@@ -68,16 +68,16 @@ import RadarChart from '../graphs/RadarChart.vue'
       data: () => ({
         name: 'nutritional-info',
         chartData: {
-            labels: ["Proteínas","Grasas","Carbohidratos"],
+            labels: ["Proteínas","Grasas","Carbos"],
             datasets: [{
                 borderWidth: 1,
                 borderColor: [
-                '#ffffff',
+                'rgb(224, 144, 224)',
                 '#ffffff',
                 '#ffffff'              
                 ],
                 backgroundColor: [
-                '#184d47',
+                'rgb(224, 144, 224)',
                 '#96bb7c',
                 '#fad586',        
                 ],
@@ -85,65 +85,61 @@ import RadarChart from '../graphs/RadarChart.vue'
                 }]
           },
         objectivesData: {
-          labels: ["Proteínas","Grasas","Carbohidratos"],
+          labels: ["Desayuno","Merienda","Comida","Snack","Cena"],
           datasets: [
               {
                   label: "Valor",
-                  data: [4,6,7],
+                  data: [],
                   borderWidth: 1,
                   minBarLength: 100,
                   borderColor: [
-                  '#184d47',
+                    '#3f9b8be0',
+                  'rgb(233, 174, 66)',          
                   '#96bb7c',
-                  '#fad586'              
+                  '#fad586',
+                  'rgb(224, 144, 224)',
                   ],
                   backgroundColor: [
-                  '#185d47',
-                  '#96bb7c',
-                  '#fad586',        
+                    '#3f9b8be0',
+                    'rgb(233, 174, 66, 0.7)' ,
+                  '#96bb7ce0',
+                  '#fad586e0',     
+                  'rgb(224, 144, 224, 0.7)',
                   ],
               },
               {
                   label: "Objetivo",
-                  data: [7,8,6],
+                  data: [20, 10, 35, 10, 25],
                   borderWidth: 2,
                   minBarLength: 2,
                   borderColor: [
-                  '#184d47',
+                    '#3f9b8be0',
+                  'rgb(233, 174, 66)',   
                   '#96bb7c',
-                  '#fad586'              
+                  '#fad586',
+                  'rgb(224, 144, 224)',
                   ],
               },
           ]
       },
       radarData:{
-        labels: ["Desayuno","Merienda","Comida","Snack","Cena"],
+          labels: ["Proteínas","Grasas","Carbos"],
           datasets: [
               {
-                  label: "Valor",
-                  data: [4,6,7,2,10],
-                  borderWidth: 1,
-                  minBarLength: 100,
+                  label: "Objetivo",
+                  data: [],
                   borderColor: [
-                  '#184d47',
-                  '#96bb7c',
-                  '#fad586'              
-                  ],
-                  backgroundColor: [
-                  '#185d47',
-                  '#96bb7c',
-                  '#fad586',        
+                  '#184d47'         
                   ],
               },
               {
-                  label: "Objetivo",
-                  data: [7,8,6,3,11],
-                  borderWidth: 2,
-                  minBarLength: 2,
+                  label: "Valor",
+                  data: [],
                   borderColor: [
-                  '#184d47',
-                  '#96bb7c',
-                  '#fad586'              
+                  '#96bb7c',           
+                  ],
+                  backgroundColor: [
+                  '#96bb7ce0',      
                   ],
               },
           ]
@@ -184,6 +180,7 @@ import RadarChart from '../graphs/RadarChart.vue'
             var values = ['proteina','grasa','carbohidratos'];
             var values_sum = []
             var macro_goals = []
+            var recipes_kcal = []
 
             values.forEach(element => {
               var e_sum = this.getSum(element);
@@ -191,9 +188,15 @@ import RadarChart from '../graphs/RadarChart.vue'
               macro_goals.push(this.objectives[element])
             });
 
+            this.objectivesData.labels.forEach(element => {
+              var receta = this.recipes.find(o => o.Comida == element.toLowerCase())
+              recipes_kcal.push(receta['energia'].toFixed(2))
+            })
+
             this.chartData.datasets[0].data = this.getPercentages(values_sum);
-            this.objectivesData.datasets[0].data = values_sum;
-            this.objectivesData.datasets[1].data = macro_goals;
+            this.objectivesData.datasets[0].data = this.getPercentages(recipes_kcal);
+            this.radarData.datasets[0].data = macro_goals;
+            this.radarData.datasets[1].data = values_sum;
 
             this.$refs.dChart.reload();
             this.$refs.bChart.reload();
@@ -234,6 +237,7 @@ import RadarChart from '../graphs/RadarChart.vue'
   padding: 5%;
   border-radius: 10px;
   background-color: rgb(197, 236, 182);
+  color: #3f9b8be0;
 }
 
 </style>s

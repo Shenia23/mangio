@@ -8,18 +8,36 @@
         class="division"
         >
         <v-row id="title-row">
-            <v-col cols="12" md="9">
-                <h3 class="headline mb-2"> Plan de Alimentación de Hoy para {{this.$store.getters.username}} </h3>
+            <v-col cols="12" md=3>
+                <img height="160px" :src="apiin" />
             </v-col>
-            <v-col cols="12" md="1">
+            <v-col cols="12" md="7" class="stats">
+                <h4 class="headline mb-2"> Plan de Alimentación de Hoy para {{this.$store.getters.username}} </h4>
+            </v-col>
+            <v-col cols="12" md="2" class="stats">
                 <v-icon class="reload"
                 @click="reload">
                 mdi-cached
                 </v-icon>
             </v-col>
         </v-row>
-        
-        <p class="overline text-left" style="margin-left:35px"> Vasos de awa: 2.5 </p>
+
+        <div class="overline text-left" style="margin-left:35px">
+            <p > Vasos de awa: {{ waterGlasses }} </p>
+            <v-rating 
+                :value="waterGlasses"
+                background-color="green lighten-3"
+                color="green"
+                :length="ratingsLen"
+                :full-icon="mdiStar"
+                :half-icon="mdiStarHalfFull"
+                dense
+                half-increments
+                readonly
+                size="14"
+            ></v-rating>
+        </div>
+
         <div
         v-for="(comida, index) in comidas"
         :key="index"
@@ -140,8 +158,17 @@ export default {
                 'comida': 'mdi-pasta',
                 'merienda': 'mdi-food-croissant',
                 'cena': 'mdi-noodles'
-              }
+              },
+          apiin: require('../assets/apiín.png')
     };
+  },
+  computed: {
+    waterGlasses(){
+        return this.$store.getters.waterIntake/250
+    },
+    ratingsLen(){
+        return Math.ceil(this.$store.getters.waterIntake/250)
+    }
   },
   watch: { 
       	rec: function(newVal, oldVal) { // watch it
@@ -157,7 +184,7 @@ export default {
         axios
         .post(path, targetUser)
         .then((res) => {
-          this.rec = res.data;
+          this.rec = res.data
           this.rec.forEach(element => {
             element.overlay = false
           })
@@ -177,7 +204,7 @@ export default {
                         'activity_level': 2, 
                         'objective': 0, 
                         'tdee': 2762.46711,
-                        'water_intake': 2181.9684256}
+                        'water_intake': 300}
         this.$store.commit("setUserData", {
             userdata: userData,
         }); 

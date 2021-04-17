@@ -11,7 +11,11 @@
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        maxTicksLimit : 5,
+                        callback: function(value) {
+                        return value + '%'
+                        },
                     }
                 }]
             },
