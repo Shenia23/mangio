@@ -22,7 +22,7 @@ class User:
         self.activity_level= activity_level  # Nivel de actividad física del usuario (de los definidos en el Excel)
         self.liked_ingredients = liked_ingredients
         self.disliked_ingredients = disliked_ingredients
-        self.objective = objective # Ganar masa muscular, mantenerse, adelgazar
+        self.objective = objective # Ganar masa muscular [3], mantenerse [2], adelgazar [1]
         self.using_scale = using_scale
         
         if using_scale == False:

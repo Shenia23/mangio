@@ -23,7 +23,7 @@
                   <v-avatar color="rgb(113, 192, 113)" class="mr-4"><v-icon>mdi-face</v-icon></v-avatar>
                   <strong class="title"> Usuario {{ n }}: {{users[n-1].username}} </strong>
                   <v-spacer></v-spacer>
-                  <v-btn icon>
+                  <v-btn icon @click="setUser(users[n - 1])">
                     <v-icon>mdi-chevron-double-right</v-icon>
                   </v-btn>
                 </v-row>
@@ -84,6 +84,14 @@ export default {
     objectives: ["Perder peso", "Mantener", "Ganar peso"],
   }),
   methods:{ 
+
+    setUser(userData) {
+      // FUNCION a introducir en el código de usuarios!
+      console.log(userData);
+      this.$store.commit("setUserData", {
+        userdata: userData,
+      });
+    },
       
   }
 };
