@@ -12,8 +12,8 @@
        
       </v-card-text>
 
-      <v-card-text class="white--text pt-0">
-          Mangio! es una aplicación para el apoyo al seguimiento de buenos hábitos de alimentación a través de la generación de un plan de comidas saludable. Ha sido realizada para la asignatura de Laboratorio de Proyectos del Grado de Ingeniería de Tecnologías de Telecomunicación de Universidad de Vigo
+      <v-card-text class="white--text pt-1">
+          <b>Mangio! es una aplicación para el apoyo al seguimiento de buenos hábitos de alimentación a través de la generación de un plan de comidas saludable. Ha sido realizada para la asignatura de Laboratorio de Proyectos del Grado de Ingeniería de Tecnologías de Telecomunicación de Universidad de Vigo </b>
       </v-card-text>
 
       <v-divider></v-divider>

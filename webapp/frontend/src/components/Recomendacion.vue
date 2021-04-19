@@ -199,8 +199,9 @@ export default {
         });
     },
     setUser() { // FUNCION a introducir en el código de usuarios!
-        var userData = {'name': 'cpinon', // este sería el usuario sacado del form o de una request a flask
-                        'age': 23, 
+        var userData = {'username':'francescademo',
+                        'name': 'Francesca', // este sería el usuario sacado del form o de una request a flask
+                        'age': 24, 
                         'sex': 'Mujer', 
                         'weight': 65, 
                         'height': 165, 
@@ -241,7 +242,7 @@ export default {
         }
   },
   created() {
-      this.setUser();
+      //this.setUser();
       this.getRecomendacion();
   }
 };

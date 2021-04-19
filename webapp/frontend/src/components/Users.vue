@@ -1,15 +1,11 @@
 <template>
-  <v-container>
-    <div>
-      <h1 class="title">Selección de perfil predeterminado</h1>
+  <v-container >
+      <div>
+      <h1 class="title">Selección de usuario</h1>
     </div>
     <v-row align="center">
       <v-item-group v-model="window" class="shrink mr-6" mandatory tag="v-flex">
-        <v-item
-          v-for="n in predetermined_profiles.length"
-          :key="n"
-          v-slot="{ active, toggle }"
-        >
+        <v-item v-for="n in users.length" :key="n" v-slot="{ active, toggle }">
           <div>
             <v-btn :input-value="active" icon @click="toggle">
               <v-icon>mdi-record</v-icon>
@@ -20,49 +16,47 @@
 
       <v-col>
         <v-window v-model="window" class="elevation-1" vertical>
-          <v-window-item v-for="n in predetermined_profiles.length" :key="n">
+          <v-window-item v-for="n in users.length" :key="n">
             <v-card flat>
               <v-card-text>
                 <v-row class="mb-4" align="center">
-                  <v-avatar color="rgb(113, 192, 113)" class="mr-4"
-                    ><v-icon>mdi-face</v-icon></v-avatar
-                  >
-                  <strong class="title">
-                    Usuario {{ n }}:
-                    {{ predetermined_profiles[n - 1].username }}
-                  </strong>
+                  <v-avatar color="rgb(113, 192, 113)" class="mr-4"><v-icon>mdi-face</v-icon></v-avatar>
+                  <strong class="title"> Usuario {{ n }}: {{users[n-1].username}} </strong>
                   <v-spacer></v-spacer>
-                  <v-btn icon @click="setUser(predetermined_profiles[n - 1])">
+                  <v-btn icon @click="setUser(users[n - 1])">
                     <v-icon>mdi-chevron-double-right</v-icon>
                   </v-btn>
                 </v-row>
 
-                <p><b>Nombre</b> : {{ predetermined_profiles[n - 1].name }}</p>
-                <p><b>Edad</b> : {{ predetermined_profiles[n - 1].age }}</p>
-                <p><b>Sexo</b> : {{ predetermined_profiles[n - 1].sex }}</p>
                 <p>
-                  <b>Altura</b> : {{ predetermined_profiles[n - 1].height }}
+                  <b>Nombre</b> : {{users[n-1].name}}
                 </p>
-
-                <p><b>Peso</b> : {{ predetermined_profiles[n - 1].weight }}</p>
                 <p>
-                  <b>Tipo de cuerpo</b> :
-                  {{ predetermined_profiles[n - 1].body_type }}
+                  <b>Edad</b> : {{users[n-1].age}}
                 </p>
-
                 <p>
-                  <b>Nivel de actividad</b> :
-                  {{
-                    activity_types[
-                      predetermined_profiles[n - 1].activity_level - 1
-                    ]
-                  }}
+                  <b>Sexo</b> : {{users[n-1].sex}}
+                </p>
+                <p>
+                  <b>Altura</b> : {{users[n-1].height}}
                 </p>
 
                 <p>
-                  <b>Objetivo</b> :
-                  {{ objectives[predetermined_profiles[n - 1].objective - 1] }}
+                  <b>Peso</b> : {{users[n-1].weight}}
                 </p>
+                <p>
+                  <b>Tipo de cuerpo</b> : {{users[n-1].body_type}}
+                </p>
+
+                <p>
+                  <b>Nivel de actividad</b> : {{activity_types[users[n-1].activity_level-1]}}
+                </p>
+
+                <p>
+                  <b>Objetivo</b> : {{objectives[users[n-1].objective-1]}}
+                </p>
+
+                
               </v-card-text>
             </v-card>
           </v-window-item>
@@ -75,8 +69,8 @@
 <script>
 export default {
   props: {
-    predetermined_profiles: Array,
-  },
+   users: Array
+ },
   data: () => ({
     length: 3,
     window: 0,
@@ -89,7 +83,8 @@ export default {
     ],
     objectives: ["Perder peso", "Mantener", "Ganar peso"],
   }),
-  methods: {
+  methods:{ 
+
     setUser(userData) {
       // FUNCION a introducir en el código de usuarios!
       console.log(userData);
@@ -97,7 +92,8 @@ export default {
         userdata: userData,
       });
     },
-  },
+      
+  }
 };
 </script>
 

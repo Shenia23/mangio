@@ -22,7 +22,7 @@ class User:
         self.activity_level= activity_level  # Nivel de actividad física del usuario (de los definidos en el Excel)
         self.liked_ingredients = liked_ingredients
         self.disliked_ingredients = disliked_ingredients
-        self.objective = objective # Ganar masa muscular, mantenerse, adelgazar
+        self.objective = objective # Ganar masa muscular [3], mantenerse [2], adelgazar [1]
         self.using_scale = using_scale
         
         if using_scale == False:
@@ -111,20 +111,25 @@ class User:
         '''Cálculo del consumo de agua diario en función del metabolismo basal y del factor de actividad física'''
 
         return 0.96 * self.get_tdee()
-
+ 
 def getUser(username):
     file_name= "./app/user/users/"+username+"_data.json"
     try:
         with open(file_name, 'r') as f:
             json_user = json.load(f)
     except:
-        print(f"User {username} doesn't exist")
-        return None
-
-    user = json_user #es un DICT no un User
+        file_name= "./app/user/predetermined_profiles/"+username+"_data.json"
+        try:
+            with open(file_name, 'r') as f:
+                json_user = json.load(f)
+        
+        except:
+            print(f"User {username} doesn't exist")
+            return None
+    #user = json.loads(json_user) #es un DICT no un User
     #user = json2User(json.loads(json_user)) # para la CLASE User
 
-    return user
+    return json_user
 
 def json2User(json_user):
     #TODO añadir todos los params aquí o usar esto:
