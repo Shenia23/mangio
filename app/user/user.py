@@ -120,8 +120,8 @@ def getUser(username):
     except:
         print(f"User {username} doesn't exist")
         return None
-    
-    user = json.loads(json_user) #es un DICT no un User
+
+    user = json_user #es un DICT no un User
     #user = json2User(json.loads(json_user)) # para la CLASE User
 
     return user

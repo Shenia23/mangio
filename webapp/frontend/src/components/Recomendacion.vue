@@ -16,26 +16,31 @@
             </v-col>
             <v-col cols="12" md="2" class="stats">
                 <v-icon class="reload"
+                size="30px"
                 @click="reload">
                 mdi-cached
                 </v-icon>
             </v-col>
         </v-row>
 
-        <div class="overline text-left" style="margin-left:35px">
-            <p > Vasos de awa: {{ waterGlasses }} </p>
-            <v-rating 
-                :value="waterGlasses"
-                background-color="green lighten-3"
-                color="green"
-                :length="ratingsLen"
-                :full-icon="mdiStar"
-                :half-icon="mdiStarHalfFull"
-                dense
-                half-increments
-                readonly
-                size="14"
-            ></v-rating>
+        <div class="overline text-left" style="margin:35px">
+            <v-row>
+                <v-col md="4">
+                    <div @mouseover="active = true" @mouseleave="active = false">
+                        <v-icon size="40px"> mdi-cup </v-icon>
+                        {{ waterGlasses }}
+                    </div>
+                </v-col>
+                <v-col md="6">
+                    <div v-show="active" 
+                    class="dialog text-center"> 
+                        <div> ¡Hidratarse es importante! </div>
+                        Deberías beber {{ this.$store.getters.waterIntake.toFixed(0) }} ml de agua al día
+                    </div>
+                </v-col>
+            </v-row>
+            
+
         </div>
 
         <div
@@ -148,7 +153,7 @@ export default {
     NutritionalInfo
       return {
           rec: [], // recommendation full json
-          overlay: false,
+          active: false,
           zIndex: 1,
           recom_key: 0,
           comidas: ['desayuno','snack','comida','merienda','cena'],
@@ -194,7 +199,7 @@ export default {
         });
     },
     setUser() { // FUNCION a introducir en el código de usuarios!
-        var userData = {'name': 'Francesca', // este sería el usuario sacado del form o de una request a flask
+        var userData = {'name': 'cpinon', // este sería el usuario sacado del form o de una request a flask
                         'age': 23, 
                         'sex': 'Mujer', 
                         'weight': 65, 
@@ -230,7 +235,10 @@ export default {
     },
     getImageSrc(index){
         return this.rec[index].image_src
-    }
+    },
+    mouseOver: function(){
+            this.active = !this.active;   
+        }
   },
   created() {
       this.setUser();
@@ -239,7 +247,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 #main-row {
   padding-top: 60px;
@@ -256,6 +264,14 @@ export default {
 
 .stats{
     margin: auto;
+}
+
+.dialog{
+    margin:auto;
+    position: absolute;
+    width: 400px;
+    border-radius: 10px;
+    background-color: rgb(197, 236, 182);
 }
 
 .division{

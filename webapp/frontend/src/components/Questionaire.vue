@@ -146,10 +146,13 @@
           @changeSelectedIngredients="ingredients = $event"
         ></Ingredients>
 
-        <v-btn color="success" class="mr-4" @click="createUser">
+        <p color="success" class="btn btn-1" @click="createUser">
+          <svg>
+            <rect x="0" y="0" fill="none" width="100%" height="100%"/>
+          </svg>
           Crear nuevo usuario
-        </v-btn>
-        <v-btn text> Cancel </v-btn>
+        </p>
+
       </v-stepper-content>
     </v-stepper>
   </v-container>
@@ -243,7 +246,7 @@ export default {
 </script>
 
 
-<style scoped>
+<style scoped lang="scss">
 .formulario {
   margin-top: 1cm;
   background-color: rgb(113, 192, 113);
@@ -353,4 +356,149 @@ input {
   position: absolute;
   width: 200px;
 }
+
+
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,900);
+
+//colors
+$red: #E1332D;
+$white: #fff;
+
+//base styles
+
+* {
+  box-sizing: inherit;
+  transition-property: all;
+  transition-duration: .6s;
+  transition-timing-function: ease;
+}
+
+  
+  p {
+    background: rgba($white, 0);
+    margin: auto;
+    line-height: 1.4;
+    padding: .25em;
+    text-decoration: none;
+    
+  }
+//default button
+.btn {
+  color: green;
+  cursor: pointer;
+  // display: block;
+  font-size:16px;
+  font-weight: 400;
+  line-height: 45px;
+  max-width: 250px; 
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 100%; 
+  
+  
+}
+
+/////////////////////////////////
+//button one
+///////////////////////////////
+.btn-1 {
+  background: white;
+  font-weight: 100;
+  
+  svg {
+    height: 45px;
+    left: 0;
+    position: absolute;
+    top: 0; 
+    width: 100%; 
+  }
+  
+  rect {
+    fill: none;
+    stroke: green;
+    stroke-width: 2;
+    stroke-dasharray: 422, 0;
+    transition: all 0.35s linear;
+  }
+}
+
+.btn-1:hover {
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: green;
+  
+  rect {
+    stroke-width: 5;
+    stroke-dasharray: 15, 410;
+    stroke-dashoffset: 48;
+    transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+}
+
+////////////////////////////
+//button two
+//////////////////////////
+.btn-2 {
+    letter-spacing: 0;
+}
+
+.btn-2:hover,
+.btn-2:active {
+  letter-spacing: 5px;
+}
+
+.btn-2:after,
+.btn-2:before {
+  backface-visibility: hidden;
+  border: 1px solid rgba(#fff, 0);
+  bottom: 0px;
+  content: " ";
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  transition: all 280ms ease-in-out;
+  width: 0;
+}
+
+.btn-2:hover:after,
+.btn-2:hover:before {
+  backface-visibility: hidden;
+  border-color: #fff;
+  transition: width 350ms ease-in-out;
+  width: 70%;
+}
+
+.btn-2:hover:before {
+  bottom: auto;
+  top: 0;
+  width: 70%;
+}
+
+/////////////////////////////
+//button -3 
+///////////////////////////
+.btn-3 {
+  background: lighten($red, 3%);  
+  border: 1px solid darken($red, 4%);
+  box-shadow: 0px 2px 0 darken($red, 5%), 2px 4px 6px darken($red, 2%);
+  font-weight: 900;
+  letter-spacing: 1px;
+  transition: all 150ms linear;
+}
+
+.btn-3:hover {
+  background: darken($red, 1.5%);
+  border: 1px solid rgba(#000, .05);
+  box-shadow: 1px 1px 2px rgba(#fff, .2);
+  color: lighten($red, 18%); 
+  text-decoration: none;
+  text-shadow: -1px -1px 0 darken($red, 9.5%);
+  transition: all 250ms linear;
+}
+
+
+
+
 </style>

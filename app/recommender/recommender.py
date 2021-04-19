@@ -160,7 +160,7 @@ def create_recommender(user):
     '''
     recommender = Recommender(
                     tdee = user['tdee'],
-                    objective = user['user_objective']
+                    objective = user['objective']
                   )
 
     return recommender
