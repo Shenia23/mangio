@@ -118,21 +118,11 @@ class Recommender:
         :return missing: df con las cantidades de macros que faltan por recomendar
         '''
         total = fixed_df[TARGET_MACROS].sum()
-        macros_goals = self.get_macros_in_grams()
+        macros_goals = pd.Series(get_macro_objectives(self.tdee, self.objective))
         missing = macros_goals-total
         
         return missing
 
-    def get_macros_in_grams(self):
-        '''
-        :return macros_grams: pd.series con los gramos que corresponden a cada macro
-        '''
-        macros_grams = dict()
-        for macro, value in MACROS.items():
-            macros_grams[macro] = np.mean(value[self.objective])*self.tdee/(value[CAL_GRAM]*100)
-        macros_grams[KCAL] = self.tdee
-        
-        return pd.Series(macros_grams)
 
     @staticmethod
     def filter_by_range(df, column, values):
@@ -143,13 +133,12 @@ def getRecommendation(username):
     '''
     Método conectado con Flask, se instancia el recomendador a partir de los datos de usuario
     y se obtienen las recomendaciones
-    #TODO guardar recomendadores para cada user / tipo de user?
     '''
     print("username",username)
     user = getUser(username)
     recommender = create_recommender(user) #posible nuevo metodo getRecommender (if exists) con pickle
-    recommendation = recommender.recommend()
     print(f'Recommendation for user with tdee={recommender.tdee} and objective={recommender.objective}')
+    recommendation = recommender.recommend()
     return recipes2dict(recommendation)
 
 def create_recommender(user): 

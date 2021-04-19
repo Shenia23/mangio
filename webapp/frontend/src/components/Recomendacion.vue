@@ -169,11 +169,8 @@ export default {
   },
   computed: {
     waterGlasses(){
-        return this.$store.getters.waterIntake/250
-    },
-    ratingsLen(){
         return Math.ceil(this.$store.getters.waterIntake/250)
-    }
+    },
   },
   watch: { 
       	rec: function(newVal, oldVal) { // watch it
@@ -198,22 +195,6 @@ export default {
           console.error(error);
         });
     },
-    setUser() { // FUNCION a introducir en el código de usuarios!
-        var userData = {'username':'francescademo',
-                        'name': 'Francesca', // este sería el usuario sacado del form o de una request a flask
-                        'age': 24, 
-                        'sex': 'Mujer', 
-                        'weight': 65, 
-                        'height': 165, 
-                        'body_type': 'Mesomorfo', 
-                        'activity_level': 2, 
-                        'objective': 0, 
-                        'tdee': 2762.46711,
-                        'water_intake': 300}
-        this.$store.commit("setUserData", {
-            userdata: userData,
-        }); 
-    },  
     reload(){
         this.getRecomendacion()
     },
@@ -242,7 +223,6 @@ export default {
         }
   },
   created() {
-      //this.setUser();
       this.getRecomendacion();
   }
 };

@@ -221,7 +221,7 @@ export default {
         height: this.height.val,
         body_type: this.body_type,
         activity_level: this.activity_types.indexOf(this.selected_activity) + 1,
-        objective: this.objectives.indexOf(this.selected_activity) + 1,
+        objective: this.objectives.indexOf(this.objective) + 1,
         liked_ingredients: this.ingredients,
         using_scale: this.using_scale,
         scale_data: this.mi_scale_data,

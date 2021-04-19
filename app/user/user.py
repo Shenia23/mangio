@@ -3,6 +3,8 @@ import os
 from types import SimpleNamespace
 import jsonpickle
 
+from app.recommender.recom_constants import get_macro_objectives
+
 class User:
     
     '''Esta clase define un perfil de un usuario de nuestro sistema, con todos los datos necesarios para generar recomendaciones.
@@ -49,7 +51,9 @@ class User:
             self.metabolic_age = scale_data["metabolic_age"]
             self.tdee= self.get_tdee()
             self.water_intake = self.get_daily_water_intake()
-        
+
+        self.set_macro_objectives()
+
         if serialize  == True:
             self.user_to_json()
 
@@ -75,6 +79,7 @@ class User:
         user_str += " objective = "+ str(self.objective) +","
         user_str += " bmr = "+ str(self.bmr) +","
         user_str += " tdee = "+ str(self.tdee) +","
+        user_str += " macro_objectives = "+ str(self.macro_objectives) +","
         user_str += " liked_ingredients = "+ str(self.liked_ingredients) +"}"
         return user_str
         
@@ -111,6 +116,13 @@ class User:
         '''Cálculo del consumo de agua diario en función del metabolismo basal y del factor de actividad física'''
 
         return 0.96 * self.get_tdee()
+
+    def set_macro_objectives(self):
+
+        ''' Cálculo de los objetivos de las macros en gramos para las gráficas y explicaciones '''
+
+        macro_objectives = get_macro_objectives(self.tdee, self.objective)
+        self.macro_objectives = macro_objectives
  
 def getUser(username):
     file_name= "./app/user/users/"+username+"_data.json"
@@ -134,7 +146,6 @@ def getUser(username):
 def json2User(json_user):
     #TODO añadir todos los params aquí o usar esto:
     # https://stackoverflow.com/questions/6578986/how-to-convert-json-data-into-a-python-object
-    # o guardar los objetos con pickle en vez de en json
     user = json.loads(json_user, object_hook=lambda d: SimpleNamespace(**d))
     
     return user
