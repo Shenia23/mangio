@@ -15,10 +15,10 @@ export default new Vuex.Store({
                 'height': 165,
                 'body_type': 'Mesomorfo',
                 'activity_level': 3,
-                'objective': 0,
+                'objective': 1,
                 'tdee': 2762.46711,
                 'water_intake': 2171.9684256,
-                'objectives': {
+                'macro_objectives': {
                     'energia': 2500,
                     'grasa': 83,
                     'proteina': 187,
@@ -36,7 +36,7 @@ export default new Vuex.Store({
             return state.user.userdata
         },
         objectives: state =>{
-            return state.user.userdata['objectives']
+            return state.user.userdata['macro_objectives']
         },
         waterIntake: state =>{
             return state.user.userdata['water_intake']

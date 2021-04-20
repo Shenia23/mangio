@@ -8,6 +8,7 @@
               :elevation="hover ? 14 : 2"
               :class="{ 'on-hover': hover }"
               :id="item.title"
+              @click="change_opacity(item.title)"
               height="375px"
             >
               <v-img :src="item.img" size="100px">
@@ -19,13 +20,13 @@
                   </v-row>
                 </v-card-title>
               </v-img>
-              <v-btn
+              <v-btn overline
                 :class="{ 'show-btns': hover }"
                 :color="transparent"
                 @click="change_opacity(item.title)"
               >
                 {{ item.title }}
-              </v-btn>
+              </v-btn >
             </v-card>
           </v-hover>
         </v-col>

@@ -180,21 +180,27 @@ import RadarChart from '../graphs/RadarChart.vue'
             var values = ['proteina','grasa','carbohidratos'];
             var values_sum = []
             var macro_goals = []
-            var recipes_kcal = []
 
             values.forEach(element => {
               var e_sum = this.getSum(element);
               values_sum.push(e_sum)
-              macro_goals.push(this.objectives[element])
+
+              var macro_objectives = this.$store.getters.objectives
+              macro_goals.push(macro_objectives[element].toFixed(0))
             });
 
+            var recipes_kcal = []
             this.objectivesData.labels.forEach(element => {
               var receta = this.recipes.find(o => o.Comida == element.toLowerCase())
               recipes_kcal.push(receta['energia'].toFixed(2))
             })
 
+            // chart -> porcentaje macros
             this.chartData.datasets[0].data = this.getPercentages(values_sum);
+            // bar -> porcentaje que ocupa cada comida vs objetivos
             this.objectivesData.datasets[0].data = this.getPercentages(recipes_kcal);
+
+            // radar -> macros (gramos) objetivo vs recomendacion
             this.radarData.datasets[0].data = macro_goals;
             this.radarData.datasets[1].data = values_sum;
 

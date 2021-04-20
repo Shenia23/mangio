@@ -1,1 +1,26 @@
-"{\"username\": \"francesca_demo\",\"name\": \"Francesca\", \"sex\": \"Mujer\", \"age\": 27, \"height\": 165, \"body_type\": \"Mesomorfo\", \"activity_level\": 4, \"liked_ingredients\": [\"cebolla\", \"huevo\"], \"disliked_ingredients\": null, \"user_objective\": 1, \"weight\": 65, \"bmi\": 23.875114784205696, \"bmr\": 1455.6930000000002, \"tdee\": 2511.0704250000003, \"water_intake\": 2410.6276080000002}"
+{
+    "username": "francescademo",
+    "name": "Francesca",
+    "sex": "Mujer",
+    "age": 43,
+    "height": 170,
+    "body_type": "Ectomorfo",
+    "activity_level": 2,
+    "liked_ingredients": [
+        "huevo"
+    ],
+    "disliked_ingredients": null,
+    "objective": 3,
+    "using_scale": false,
+    "weight": 65,
+    "bmi": 22.49134948096886,
+    "bmr": 1390.1270000000002,
+    "tdee": 1911.4246250000003,
+    "water_intake": 1834.9676400000003,
+    "macro_objectives": {
+        "grasa": 42.47610277777778,
+        "proteina": 143.35684687500003,
+        "carbohidratos": 238.92807812500004,
+        "energia": 1911.4246250000003
+    }
+}
