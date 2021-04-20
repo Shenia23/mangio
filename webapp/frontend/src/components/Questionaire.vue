@@ -23,7 +23,6 @@
         <v-text-field
           v-model="name"
           :counter="30"
-          :rules="nameRules"
           label="Nombre"
           style="margin-bottom: 10px"
         ></v-text-field>
@@ -51,8 +50,8 @@
           min="150"
           style="margin-bottom: 20px"
         ></v-slider>
-        <v-btn color="primary" @click="e6 = 2"> Continue </v-btn>
-        <v-btn text> Cancel </v-btn>
+        <v-btn color="primary" @click="e6 = 2"> Continuar </v-btn>
+        <v-btn text> Cancelar </v-btn>
       </v-stepper-content>
 
       <v-stepper-step :complete="e6 > 2" step="2" editable>
@@ -102,8 +101,8 @@
           <BodyType :body_type="body_type" @changeBodyType="body_type = $event">
           </BodyType>
         </div>
-        <v-btn color="primary" @click="e6 = 3"> Continue </v-btn>
-        <v-btn text> Cancel </v-btn>
+        <v-btn color="primary" @click="e6 = 3"> Continuar </v-btn>
+        <v-btn text> Cancelar </v-btn>
       </v-stepper-content>
 
       <v-stepper-step :complete="e6 > 3" step="3" editable>
@@ -128,8 +127,16 @@
           label="Selecciona tu objetivo nutricional"
           solo
         ></v-select>
-        <v-btn color="primary" @click="e6 = 4"> Continue </v-btn>
-        <v-btn text> Cancel </v-btn>
+        <v-btn
+          color="primary"
+          @click="
+            e6 = 4;
+            created();
+          "
+        >
+          Continuar
+        </v-btn>
+        <v-btn text> Cancelar </v-btn>
       </v-stepper-content>
 
       <v-stepper-step step="4" editable>
@@ -140,16 +147,65 @@
         >
       </v-stepper-step>
       <v-stepper-content step="4">
-        <Ingredients
-          id="ingredients"
-          :ingredients="ingredients"
-          @changeSelectedIngredients="ingredients = $event"
-        ></Ingredients>
+        <div id="gustos">
+          <Tinder
+            ref="tinder"
+            key-name="id"
+            :queue.sync="queue"
+            :offset-y="10"
+            @submit="onSubmit"
+          >
+            <template slot-scope="scope">
+              <div
+                class="pic"
+                :style="{
+            'background-image': `url(${scope.data.id})`
+                }"
+              />
+              
+            </template>
+            <img
+              class="like-pointer"
+              slot="like"
+              src="../assets/like-txt_tinder.png"
+            />
+            <img
+              class="nope-pointer"
+              slot="nope"
+              src="../assets/nope-txt_tinder.png"
+            />
+            <img
+              class="super-pointer"
+              slot="super"
+              src="../assets/super-txt_tinder.png"
+            />
+            <img
+              class="rewind-pointer"
+              slot="rewind"
+              src="../assets/rewind-txt_tinder.png"
+            />
+          </Tinder>
+          <div class="btns">
+            <img src="../assets/rewind_tinder.png" @click="decide('rewind')" />
+            <img src="../assets/nope_tinder.png" @click="decide('nope')" />
+            <img
+              src="../assets/super-like_tinder.png"
+              @click="decide('super')"
+            />
+            <img src="../assets/like_tinder.png" @click="decide('like')" />
+            <img src="../assets/help_tinder.png" @click="decide('help')" />
+          </div>
+        </div>
 
-        <v-btn color="success" class="mr-4" @click="createUser">
+        <v-btn
+          color="success"
+          style="margin-top: 10px"
+          class="mr-4"
+          @click="createUser"
+        >
           Crear nuevo usuario
         </v-btn>
-        <v-btn text> Cancel </v-btn>
+        <v-btn text> Cancelar </v-btn>
       </v-stepper-content>
     </v-stepper>
   </v-container>
@@ -160,10 +216,42 @@ import BodyType from "./BodyType.vue";
 import Ingredients from "./Ingredients.vue";
 import axios from "axios";
 import VueSwing from "vue-swing";
+import Tinder from "vue-tinder";
 
 export default {
-  components: { BodyType, Ingredients, VueSwing },
+  components: { BodyType, Ingredients, VueSwing, Tinder },
   data: () => ({
+    source: [
+      "./static/carne_arroz.jpeg",
+      "./static/pescado_patatas.jpeg",
+      "./static/carne_pasta.jpeg",
+      "./static/pollo_arroz.jpeg",
+      "./static/legumbres_arroz.jpeg",
+      "./static/pollo_verduras_arroz.jpeg",
+      "./static/pasta_verduras.jpeg ",
+      "./static/ternera_patatas.jpeg",
+      "./static/pescado_arroz_verduras.jpeg",
+      "./static/verduras_huevo_patatas.jpeg",
+      "./static/pescado_legumbres_patatas.jpeg",
+      "./static/verduras_pasta.jpeg",
+    ],
+    /*source: [
+      "AdelieBreeding_ZH-CN1750945258",
+      "BarcolanaTrieste_ZH-CN5745744257",
+      "RedRocksArches_ZH-CN5664546697",
+      "NationalDay70_ZH-CN1636316274",
+      "LofotenSurfing_ZH-CN5901239545",
+      "UgandaGorilla_ZH-CN5826117482",
+      "FeatherSerpent_ZH-CN5706017355",
+      "VancouverFall_ZH-CN9824386829",
+      "WallofPeace_ZH-CN5582031878",
+      "SanSebastianFilm_ZH-CN5506786379",
+      "CommonLoon_ZH-CN5437917206",
+    ],*/
+    queue: [],
+    offset: 0,
+    history: [],
+    id: "",
     e6: 1,
     sex_options: ["Hombre", "Mujer"],
     activity_types: [
@@ -183,6 +271,7 @@ export default {
     ingredients: ["empty"],
     age: "",
     selected_activity: "",
+    objective: "",
     selected_sex: "",
     mi_scale_data: {
       weight: 63.95,
@@ -200,6 +289,7 @@ export default {
       metabolic_age: 48,
     },
   }),
+
   methods: {
     toggle_using_scale() {
       if (this.using_scale) {
@@ -237,6 +327,41 @@ export default {
         .catch((err) => {
           console.log(err);
         });
+    },
+    created() {
+      console.log("Hola");
+      this.mock();
+    },
+    mock(count = 5, append = true) {
+      const list = [];
+      for (let i = 0; i < count; i++) {
+        list.push({ id: this.source[this.offset] });
+        console.log("Lista " + this.source[this.offset]);
+
+        this.offset++;
+      }
+      if (append) {
+        this.queue = this.queue.concat(list);
+      } else {
+        this.queue.unshift(...list);
+      }
+    },
+    onSubmit({ item }) {
+      if (this.queue.length < 3) {
+        this.mock();
+      }
+      this.history.push(item);
+    },
+    async decide(choice) {
+      if (choice === "rewind") {
+        if (this.history.length) {
+          this.$refs.tinder.rewind([this.history.pop()]);
+        }
+      } else if (choice === "help") {
+        window.open("https://shanlh.github.io/vue-tinder");
+      } else {
+        this.$refs.tinder.decide(choice);
+      }
     },
   },
 };
@@ -353,4 +478,97 @@ input {
   position: absolute;
   width: 200px;
 }
+
+
+#gustos .vue-tinder {
+  left: 0;
+  right: 0;
+  bottom: 30px;
+  margin: auto;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 300px;
+  max-width: 355px;
+  
+}
+
+.nope-pointer,
+.like-pointer {
+  position: absolute;
+  z-index: 1;
+  top: 20px;
+  width: 64px;
+  height: 64px;
+}
+
+.nope-pointer {
+  right: 10px;
+}
+
+.like-pointer {
+  left: 10px;
+}
+
+.super-pointer {
+  position: absolute;
+  z-index: 1;
+  bottom: 80px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 112px;
+  height: 78px;
+}
+
+.rewind-pointer {
+  position: absolute;
+  z-index: 1;
+  top: 20px;
+  right: 10px;
+  width: 112px;
+  height: 78px;
+}
+
+.pic {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.btns {
+  left: 0;
+  right: 0;
+  bottom: 30px;
+  margin: auto;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 300px;
+  max-width: 355px;
+}
+
+.btns img {
+  margin-right: 12px;
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btns img:nth-child(2n + 1) {
+  width: 53px;
+}
+
+.btns img:nth-child(2n) {
+  width: 65px;
+}
+
+.btns img:nth-last-child(1) {
+  margin-right: 0;
+}
+
 </style>
