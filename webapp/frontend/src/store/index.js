@@ -40,7 +40,26 @@ export default new Vuex.Store({
         },
         waterIntake: state =>{
             return state.user.userdata['water_intake']
-        }
+        },
+        tdee: state =>{
+            return Math.round(state.user.userdata['tdee'])
+        },
+        cals_obj: state =>{
+            switch(state.user.userdata
+                ['objective']){
+                   case 0: return Math.round(state.user.userdata['tdee']) - 500
+                   case 1: return Math.round(state.user.userdata['tdee']) 
+                   case 2: return Math.round(state.user.userdata['tdee']) + 500
+               }
+        },
+        objetivo: state =>{
+           switch(state.user.userdata
+            ['objective']){
+               case 0: return "perder peso"
+               case 1: return "mantenerte en tu peso"
+               case 2: return "ganar peso"
+           }
+        },
     },
     mutations: {
         setUserData(state, payload) {
