@@ -51,7 +51,6 @@
           style="margin-bottom: 20px"
         ></v-slider>
         <v-btn color="primary" @click="e6 = 2"> Continuar </v-btn>
-        <v-btn text> Cancelar </v-btn>
       </v-stepper-content>
 
       <v-stepper-step :complete="e6 > 2" step="2" editable>
@@ -102,7 +101,6 @@
           </BodyType>
         </div>
         <v-btn color="primary" @click="e6 = 3"> Continuar </v-btn>
-        <v-btn text> Cancelar </v-btn>
       </v-stepper-content>
 
       <v-stepper-step :complete="e6 > 3" step="3" editable>
@@ -136,10 +134,9 @@
         >
           Continuar
         </v-btn>
-        <v-btn text> Cancelar </v-btn>
       </v-stepper-content>
 
-      <v-stepper-step step="4" editable>
+      <v-stepper-step step="4" editable @click="created()">
         Tus preferencias de comida
         <small style="margin-top: 3px">
           Nos gustaría además recomendarte comida que te guste... aunque a veces
@@ -147,7 +144,58 @@
         >
       </v-stepper-step>
       <v-stepper-content step="4">
+        <div id="completed_tinder">
+          <v-snackbar
+            v-model="snackbar"
+            :timeout="snackbar_timeout"
+            absolute
+            centered
+            color="green accent-4"
+            elevation="24"
+          >
+            <b>Preferencias de comida completadas</b>
+            <template v-slot:action="{ attrs }">
+              <v-btn
+                color="green"
+                text
+                v-bind="attrs"
+                @click="snackbar = false"
+              >
+                Close
+              </v-btn>
+            </template>
+          </v-snackbar>
+        </div>
+
         <div id="gustos">
+          <v-dialog
+            v-model="dialog"
+            transition="dialog-top-transition"
+            max-width="600"
+          >
+            <template>
+              <v-card>
+                <v-toolbar style="background-color: rgb(113, 192, 113)" dark>
+                  <h1 class="title">
+                    Ayuda: cuestionario de gustos
+                  </h1></v-toolbar
+                >
+                <v-card-text style="margin-top: 3px">
+                  Para conocer mejor tus gustos, hemos planteado esta pequeña
+                  encuesta simulando el estilo de Tinder, pulsa
+                  <b>me gusta</b> para recetas que te gusten,
+                  <b> no me gusta</b> para aquellas que no te gusten y utiliza
+                  el <b>"super-like"</b> para aquellas que te encanten. Si te
+                  equivocas en alguna elección, puedes volver atrás y corregirla
+                  :)
+                </v-card-text>
+                <v-card-actions class="justify-end">
+                  <v-btn text @click="dialog = false">Close</v-btn>
+                </v-card-actions>
+              </v-card>
+            </template>
+          </v-dialog>
+
           <Tinder
             ref="tinder"
             key-name="id"
@@ -195,7 +243,6 @@
             <img src="../assets/help_tinder.png" @click="decide('help')" />
           </div>
         </div>
-
         <p color="success" class="btn btn-1" @click="createUser">
           <svg>
             <rect x="0" y="0" fill="none" width="100%" height="100%" />
@@ -217,37 +264,33 @@ import Tinder from "vue-tinder";
 export default {
   components: { BodyType, Ingredients, VueSwing, Tinder },
   data: () => ({
-    source: [
-      "./static/carne_arroz.jpeg",
-      "./static/pescado_patatas.jpeg",
-      "./static/carne_pasta.jpeg",
-      "./static/pollo_arroz.jpeg",
-      "./static/legumbres_arroz.jpeg",
-      "./static/pollo_verduras_arroz.jpeg",
-      "./static/pasta_verduras.jpeg ",
-      "./static/ternera_patatas.jpeg",
-      "./static/pescado_arroz_verduras.jpeg",
-      "./static/verduras_huevo_patatas.jpeg",
-      "./static/pescado_legumbres_patatas.jpeg",
-      "./static/verduras_pasta.jpeg",
-    ],
-    /*source: [
-      "AdelieBreeding_ZH-CN1750945258",
-      "BarcolanaTrieste_ZH-CN5745744257",
-      "RedRocksArches_ZH-CN5664546697",
-      "NationalDay70_ZH-CN1636316274",
-      "LofotenSurfing_ZH-CN5901239545",
-      "UgandaGorilla_ZH-CN5826117482",
-      "FeatherSerpent_ZH-CN5706017355",
-      "VancouverFall_ZH-CN9824386829",
-      "WallofPeace_ZH-CN5582031878",
-      "SanSebastianFilm_ZH-CN5506786379",
-      "CommonLoon_ZH-CN5437917206",
-    ],*/
+    source: {
+      "./static/carne_arroz.jpeg": ["Carne", "Arroz"],
+      "./static/pescado_patatas.jpeg": ["Pescado", "Patatas"],
+      "./static/carne_pasta.jpeg": ["Carne", "Pasta"],
+      "./static/pollo_arroz.jpeg": ["Pollo", "Arroz"],
+      "./static/legumbres_arroz.jpeg": ["Legumbres", "Arroz"],
+      "./static/pollo_verduras_arroz.jpeg": ["Pollo", "Verduras"],
+      "./static/pasta_verduras.jpeg ": ["Pasta", "Verduras"],
+      "./static/ternera_patatas.jpeg": ["Carne", "Patatas"],
+      "./static/pescado_arroz_verduras.jpeg": ["Pescado", "Arroz", "Verduras"],
+      "./static/verduras_huevo_patatas.jpeg": ["Verduras", "Huevo", "Patatas"],
+      "./static/pescado_legumbres_patatas.jpeg": [
+        "Pescado",
+        "Legumbres",
+        "Patatas",
+      ],
+      "./static/verduras_pasta.jpeg": ["Verduras", "Pasta"],
+    },
     queue: [],
     offset: 0,
     history: [],
+    choices:[],
     id: "",
+    last_clicked: "",
+    snackbar: false,
+    snackbar_timeout: 1500,
+    dialog: false,
     e6: 1,
     sex_options: ["Hombre", "Mujer"],
     activity_types: [
@@ -328,11 +371,26 @@ export default {
       console.log("Hola");
       this.mock();
     },
-    mock(count = 5, append = true) {
+    hideTinder() {
+      var x = document.getElementById("gustos");
+
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+        this.snackbar = true;
+      }
+
+
+      for(var i = 0; i<this.choices.length;i++){
+
+        console.log(Object.values(this.source)[i] + ":"+this.choices[i])
+      }
+    },
+    mock(count = 12, append = true) {
       const list = [];
       for (let i = 0; i < count; i++) {
-        list.push({ id: this.source[this.offset] });
-        console.log("Lista " + this.source[this.offset]);
+        list.push({ id: Object.keys(this.source)[this.offset] });
 
         this.offset++;
       }
@@ -343,19 +401,31 @@ export default {
       }
     },
     onSubmit({ item }) {
-      if (this.queue.length < 3) {
-        this.mock();
+      if (this.queue.length == 0) {
+        this.hideTinder();
       }
+
       this.history.push(item);
+      this.choices.push(this.last_clicked);
+      console.log("History length:", this.history.length);
+      console.log("Queue length:", this.queue.length);
     },
     async decide(choice) {
       if (choice === "rewind") {
         if (this.history.length) {
           this.$refs.tinder.rewind([this.history.pop()]);
+          this.choices.pop();
         }
       } else if (choice === "help") {
-        window.open("https://shanlh.github.io/vue-tinder");
+        this.dialog = true;
       } else {
+        if (choice === "like") {
+          this.last_clicked = "like";
+        } else if (choice === "nope") {
+          this.last_clicked = "nope";
+        } else if (choice === "super") {
+          this.last_clicked = "super";
+        }
         this.$refs.tinder.decide(choice);
       }
     },
@@ -482,6 +552,7 @@ input {
   margin: auto;
   height: 300px;
   display: flex;
+  margin-top: 2%;
   align-items: center;
   justify-content: center;
   min-width: 300px;
@@ -546,6 +617,8 @@ input {
 }
 
 .btns img {
+  margin-bottom: 4%;
+
   margin-right: 12px;
   box-shadow: 0 4px 9px rgba(0, 0, 0, 0.15);
   border-radius: 50%;
