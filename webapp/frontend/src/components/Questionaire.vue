@@ -269,18 +269,21 @@ export default {
       "./static/pescado_patatas.jpeg": ["Pescado", "Patatas"],
       "./static/carne_pasta.jpeg": ["Carne", "Pasta"],
       "./static/pollo_arroz.jpeg": ["Pollo", "Arroz"],
-      "./static/legumbres_arroz.jpeg": ["Legumbres", "Arroz"],
+      "./static/legumbres_patatas.jpeg": ["Legumbres", "Patatas"],
       "./static/pollo_verduras_arroz.jpeg": ["Pollo", "Verduras"],
       "./static/pasta_verduras.jpeg ": ["Pasta", "Verduras"],
-      "./static/ternera_patatas.jpeg": ["Carne", "Patatas"],
+      "./static/carne_patatas.jpeg": ["Carne", "Patatas"],
       "./static/pescado_arroz_verduras.jpeg": ["Pescado", "Arroz", "Verduras"],
-      "./static/verduras_huevo_patatas.jpeg": ["Verduras", "Huevo", "Patatas"],
+      "./static/verduras_huevo_patatas.jpeg": ["Verduras", "Huevos", "Patatas"],
       "./static/pescado_legumbres_patatas.jpeg": [
         "Pescado",
         "Legumbres",
         "Patatas",
       ],
       "./static/verduras_pasta.jpeg": ["Verduras", "Pasta"],
+      "./static/carne_legumbres.jpeg": ["Carne", "Legumbres"],
+      "./static/verduras_huevos.jpeg": ["Verduras", "Huevos"],
+      "./static/huevos_patatas.jpeg" : ["Huevos", "Patatas"]
     },
     queue: [],
     offset: 0,
@@ -338,6 +341,14 @@ export default {
       }
     },
     createUser() {
+      var preferences = [];
+      var categories = Object.values(this.source)
+      for(var i = 0; i < this.history.length; i++){
+
+        preferences.push({categories: categories[i], rating: this.choices[i]})
+
+      }
+
       var new_user = {
         username: this.username,
         name: this.name,
@@ -351,6 +362,7 @@ export default {
         liked_ingredients: this.ingredients,
         using_scale: this.using_scale,
         scale_data: this.mi_scale_data,
+        preferences: preferences
       };
       console.log(new_user);
 
@@ -387,7 +399,7 @@ export default {
         console.log(Object.values(this.source)[i] + ":"+this.choices[i])
       }
     },
-    mock(count = 12, append = true) {
+    mock(count = 14, append = true) {
       const list = [];
       for (let i = 0; i < count; i++) {
         list.push({ id: Object.keys(this.source)[this.offset] });

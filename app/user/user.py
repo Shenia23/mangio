@@ -11,8 +11,8 @@ class User:
         Además, almacena los parámetros necesarios para la monitorización de su estado físico a través de la bascula Xiaomi.'''
     
     def __init__(self, username,name, sex, age, height, weight, 
-                 body_type, activity_level, liked_ingredients,
-                 objective, disliked_ingredients = None,scale_data = None ,using_scale = False, serialize  = False ):
+                 body_type, activity_level, preferences,
+                 objective ,scale_data = None ,using_scale = False, serialize  = False ):
         
         '''Constructor de la clase de usuario, scale_data es un dict con los parámetros de la báscula'''
         self.username = username
@@ -22,10 +22,11 @@ class User:
         self.height = height
         self.body_type = body_type # Ectomorfo, mesomorfo, o endomorfo
         self.activity_level= activity_level  # Nivel de actividad física del usuario (de los definidos en el Excel)
-        self.liked_ingredients = liked_ingredients
-        self.disliked_ingredients = disliked_ingredients
+        self.preferences = preferences
         self.objective = objective # Ganar masa muscular [3], mantenerse [2], adelgazar [1]
         self.using_scale = using_scale
+        
+        print(self.preferences)
         
         if using_scale == False:
             
@@ -80,7 +81,7 @@ class User:
         user_str += " bmr = "+ str(self.bmr) +","
         user_str += " tdee = "+ str(self.tdee) +","
         user_str += " macro_objectives = "+ str(self.macro_objectives) +","
-        user_str += " liked_ingredients = "+ str(self.liked_ingredients) +"}"
+        user_str += " preferences = "+ str(self.preferences) +"}"
         return user_str
         
     def get_bmi(self):
@@ -123,6 +124,10 @@ class User:
 
         macro_objectives = get_macro_objectives(self.tdee, self.objective)
         self.macro_objectives = macro_objectives
+        
+    def get_tastes(self):
+        
+        '''TODO: Devuelve las scores de cada categoría en base a los ratings que haga de cada conjunto de categorías'''
  
 def getUser(username):
     file_name= "./app/user/users/"+username+"_data.json"
@@ -160,7 +165,7 @@ def createNewUser(new_user_data, serialize  = True):
                     height = new_user_data['height'],
                     body_type = new_user_data ['body_type'],
                     activity_level = new_user_data['activity_level'],
-                    liked_ingredients = new_user_data['liked_ingredients'],
+                    preferences = new_user_data['preferences'],
                     objective = new_user_data['objective'],
                     using_scale = new_user_data['using_scale'],
                     serialize  = serialize )

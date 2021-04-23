@@ -1,0 +1,96 @@
+{
+    "username": "demo",
+    "name": "demo",
+    "sex": "Hombre",
+    "age": 21,
+    "height": 174,
+    "body_type": "Mesomorfo",
+    "activity_level": 2,
+    "preferences": [
+        {
+            "categories": {
+                "id": "./static/carne_arroz.jpeg"
+            },
+            "rating": "like"
+        },
+        {
+            "categories": {
+                "id": "./static/pescado_patatas.jpeg"
+            },
+            "rating": "nope"
+        },
+        {
+            "categories": {
+                "id": "./static/carne_pasta.jpeg"
+            },
+            "rating": "like"
+        },
+        {
+            "categories": {
+                "id": "./static/pollo_arroz.jpeg"
+            },
+            "rating": "super"
+        },
+        {
+            "categories": {
+                "id": "./static/legumbres_arroz.jpeg"
+            },
+            "rating": "like"
+        },
+        {
+            "categories": {
+                "id": "./static/pollo_verduras_arroz.jpeg"
+            },
+            "rating": "nope"
+        },
+        {
+            "categories": {
+                "id": "./static/pasta_verduras.jpeg "
+            },
+            "rating": "like"
+        },
+        {
+            "categories": {
+                "id": "./static/ternera_patatas.jpeg"
+            },
+            "rating": "nope"
+        },
+        {
+            "categories": {
+                "id": "./static/pescado_arroz_verduras.jpeg"
+            },
+            "rating": "super"
+        },
+        {
+            "categories": {
+                "id": "./static/verduras_huevo_patatas.jpeg"
+            },
+            "rating": "like"
+        },
+        {
+            "categories": {
+                "id": "./static/pescado_legumbres_patatas.jpeg"
+            },
+            "rating": "like"
+        },
+        {
+            "categories": {
+                "id": "./static/verduras_pasta.jpeg"
+            },
+            "rating": "like"
+        }
+    ],
+    "objective": 2,
+    "using_scale": false,
+    "weight": 95,
+    "bmi": 31.37798916633637,
+    "bmr": 2101.387,
+    "tdee": 2889.407125,
+    "water_intake": 2773.83084,
+    "macro_objectives": {
+        "grasa": 96.31357083333334,
+        "proteina": 216.705534375,
+        "carbohidratos": 288.9407125,
+        "energia": 2889.407125
+    }
+}

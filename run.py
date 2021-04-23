@@ -89,7 +89,7 @@ def create_user():
     print ("Is request json: ", request.is_json)
     new_user_data = request.get_json()
     print ("JSON content: ",new_user_data)
-
+    print("Tastes user: ", new_user_data["preferences"])
     new_user = createNewUser(new_user_data)
     
     new_user_json = json.dumps(new_user.__dict__)
