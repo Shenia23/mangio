@@ -1,0 +1,111 @@
+{
+    "username": "demo2",
+    "name": "aa",
+    "sex": "Mujer",
+    "age": 20,
+    "height": 182,
+    "body_type": "Mesomorfo",
+    "activity_level": 3,
+    "preferences": [
+        {
+            "categories": [
+                "Carne",
+                "Arroz"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Pescado",
+                "Patatas"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Pasta"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Pollo",
+                "Arroz"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Legumbres",
+                "Arroz"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Pollo",
+                "Verduras"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Pasta",
+                "Verduras"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Patatas"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Pescado",
+                "Arroz",
+                "Verduras"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Verduras",
+                "Huevo",
+                "Patatas"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Pescado",
+                "Legumbres",
+                "Patatas"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Verduras",
+                "Pasta"
+            ],
+            "rating": "super"
+        }
+    ],
+    "objective": 3,
+    "using_scale": false,
+    "weight": 65,
+    "bmi": 19.623233908948194,
+    "bmr": 1519.8750000000002,
+    "tdee": 2355.8062500000005,
+    "water_intake": 2261.5740000000005,
+    "macro_objectives": {
+        "grasa": 52.351250000000014,
+        "proteina": 176.68546875000004,
+        "carbohidratos": 294.47578125000007,
+        "energia": 2355.8062500000005
+    }
+}

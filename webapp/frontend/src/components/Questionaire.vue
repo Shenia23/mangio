@@ -23,7 +23,6 @@
         <v-text-field
           v-model="name"
           :counter="30"
-          :rules="nameRules"
           label="Nombre"
           style="margin-bottom: 10px"
         ></v-text-field>
@@ -51,8 +50,7 @@
           min="150"
           style="margin-bottom: 20px"
         ></v-slider>
-        <v-btn color="primary" @click="e6 = 2"> Continue </v-btn>
-        <v-btn text> Cancel </v-btn>
+        <v-btn color="primary" @click="e6 = 2"> Continuar </v-btn>
       </v-stepper-content>
 
       <v-stepper-step :complete="e6 > 2" step="2" editable>
@@ -102,8 +100,7 @@
           <BodyType :body_type="body_type" @changeBodyType="body_type = $event">
           </BodyType>
         </div>
-        <v-btn color="primary" @click="e6 = 3"> Continue </v-btn>
-        <v-btn text> Cancel </v-btn>
+        <v-btn color="primary" @click="e6 = 3"> Continuar </v-btn>
       </v-stepper-content>
 
       <v-stepper-step :complete="e6 > 3" step="3" editable>
@@ -128,11 +125,18 @@
           label="Selecciona tu objetivo nutricional"
           solo
         ></v-select>
-        <v-btn color="primary" @click="e6 = 4"> Continue </v-btn>
-        <v-btn text> Cancel </v-btn>
+        <v-btn
+          color="primary"
+          @click="
+            e6 = 4;
+            created();
+          "
+        >
+          Continuar
+        </v-btn>
       </v-stepper-content>
 
-      <v-stepper-step step="4" editable>
+      <v-stepper-step step="4" editable @click="created()">
         Tus preferencias de comida
         <small style="margin-top: 3px">
           Nos gustaría además recomendarte comida que te guste... aunque a veces
@@ -140,19 +144,111 @@
         >
       </v-stepper-step>
       <v-stepper-content step="4">
-        <Ingredients
-          id="ingredients"
-          :ingredients="ingredients"
-          @changeSelectedIngredients="ingredients = $event"
-        ></Ingredients>
+        <div id="completed_tinder">
+          <v-snackbar
+            v-model="snackbar"
+            :timeout="snackbar_timeout"
+            absolute
+            centered
+            color="green accent-4"
+            elevation="24"
+          >
+            <b>Preferencias de comida completadas</b>
+            <template v-slot:action="{ attrs }">
+              <v-btn
+                color="green"
+                text
+                v-bind="attrs"
+                @click="snackbar = false"
+              >
+                Close
+              </v-btn>
+            </template>
+          </v-snackbar>
+        </div>
 
+        <div id="gustos">
+          <v-dialog
+            v-model="dialog"
+            transition="dialog-top-transition"
+            max-width="600"
+          >
+            <template>
+              <v-card>
+                <v-toolbar style="background-color: rgb(113, 192, 113)" dark>
+                  <h1 class="title">
+                    Ayuda: cuestionario de gustos
+                  </h1></v-toolbar
+                >
+                <v-card-text style="margin-top: 3px">
+                  Para conocer mejor tus gustos, hemos planteado esta pequeña
+                  encuesta simulando el estilo de Tinder, pulsa
+                  <b>me gusta</b> para recetas que te gusten,
+                  <b> no me gusta</b> para aquellas que no te gusten y utiliza
+                  el <b>"super-like"</b> para aquellas que te encanten. Si te
+                  equivocas en alguna elección, puedes volver atrás y corregirla
+                  :)
+                </v-card-text>
+                <v-card-actions class="justify-end">
+                  <v-btn text @click="dialog = false">Close</v-btn>
+                </v-card-actions>
+              </v-card>
+            </template>
+          </v-dialog>
+
+          <Tinder
+            ref="tinder"
+            key-name="id"
+            :queue.sync="queue"
+            :offset-y="10"
+            @submit="onSubmit"
+          >
+            <template slot-scope="scope">
+              <div
+                class="pic"
+                :style="{
+                  'background-image': `url(${scope.data.id})`,
+                }"
+              />
+            </template>
+            <img
+              class="like-pointer"
+              slot="like"
+              src="../assets/like-txt_tinder.png"
+            />
+            <img
+              class="nope-pointer"
+              slot="nope"
+              src="../assets/nope-txt_tinder.png"
+            />
+            <img
+              class="super-pointer"
+              slot="super"
+              src="../assets/super-txt_tinder.png"
+            />
+            <img
+              class="rewind-pointer"
+              slot="rewind"
+              src="../assets/rewind-txt_tinder.png"
+            />
+          </Tinder>
+          <div class="btns">
+            <img src="../assets/rewind_tinder.png" @click="decide('rewind')" />
+            <img src="../assets/nope_tinder.png" @click="decide('nope')" />
+            <img
+              src="../assets/super-like_tinder.png"
+              @click="decide('super')"
+            />
+            <img src="../assets/like_tinder.png" @click="decide('like')" />
+            <img src="../assets/help_tinder.png" @click="decide('help')" />
+          </div>
+        </div>
         <p color="success" class="btn btn-1" @click="createUser">
           <svg>
-            <rect x="0" y="0" fill="none" width="100%" height="100%"/>
+            <rect x="0" y="0" fill="none" width="100%" height="100%" />
           </svg>
           Crear nuevo usuario
         </p>
-
       </v-stepper-content>
     </v-stepper>
   </v-container>
@@ -163,10 +259,41 @@ import BodyType from "./BodyType.vue";
 import Ingredients from "./Ingredients.vue";
 import axios from "axios";
 import VueSwing from "vue-swing";
+import Tinder from "vue-tinder";
 
 export default {
-  components: { BodyType, Ingredients, VueSwing },
+  components: { BodyType, Ingredients, VueSwing, Tinder },
   data: () => ({
+    source: {
+      "./static/carne_arroz.jpeg": ["Carne", "Arroz"],
+      "./static/pescado_patatas.jpeg": ["Pescado", "Patatas"],
+      "./static/carne_pasta.jpeg": ["Carne", "Pasta"],
+      "./static/pollo_arroz.jpeg": ["Pollo", "Arroz"],
+      "./static/legumbres_patatas.jpeg": ["Legumbres", "Patatas"],
+      "./static/pollo_verduras_arroz.jpeg": ["Pollo", "Verduras"],
+      "./static/pasta_verduras.jpeg ": ["Pasta", "Verduras"],
+      "./static/carne_patatas.jpeg": ["Carne", "Patatas"],
+      "./static/pescado_arroz_verduras.jpeg": ["Pescado", "Arroz", "Verduras"],
+      "./static/verduras_huevo_patatas.jpeg": ["Verduras", "Huevos", "Patatas"],
+      "./static/pescado_legumbres_patatas.jpeg": [
+        "Pescado",
+        "Legumbres",
+        "Patatas",
+      ],
+      "./static/verduras_pasta.jpeg": ["Verduras", "Pasta"],
+      "./static/carne_legumbres.jpeg": ["Carne", "Legumbres"],
+      "./static/verduras_huevos.jpeg": ["Verduras", "Huevos"],
+      "./static/huevos_patatas.jpeg" : ["Huevos", "Patatas"]
+    },
+    queue: [],
+    offset: 0,
+    history: [],
+    choices:[],
+    id: "",
+    last_clicked: "",
+    snackbar: false,
+    snackbar_timeout: 1500,
+    dialog: false,
     e6: 1,
     sex_options: ["Hombre", "Mujer"],
     activity_types: [
@@ -186,6 +313,7 @@ export default {
     ingredients: ["empty"],
     age: "",
     selected_activity: "",
+    objective: "",
     selected_sex: "",
     mi_scale_data: {
       weight: 63.95,
@@ -203,6 +331,7 @@ export default {
       metabolic_age: 48,
     },
   }),
+
   methods: {
     toggle_using_scale() {
       if (this.using_scale) {
@@ -212,6 +341,14 @@ export default {
       }
     },
     createUser() {
+      var preferences = [];
+      var categories = Object.values(this.source)
+      for(var i = 0; i < this.history.length; i++){
+
+        preferences.push({categories: categories[i], rating: this.choices[i]})
+
+      }
+
       var new_user = {
         username: this.username,
         name: this.name,
@@ -225,6 +362,7 @@ export default {
         liked_ingredients: this.ingredients,
         using_scale: this.using_scale,
         scale_data: this.mi_scale_data,
+        preferences: preferences
       };
       console.log(new_user);
 
@@ -240,6 +378,68 @@ export default {
         .catch((err) => {
           console.log(err);
         });
+    },
+    created() {
+      console.log("Hola");
+      this.mock();
+    },
+    hideTinder() {
+      var x = document.getElementById("gustos");
+
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+        this.snackbar = true;
+      }
+
+
+      for(var i = 0; i<this.choices.length;i++){
+
+        console.log(Object.values(this.source)[i] + ":"+this.choices[i])
+      }
+    },
+    mock(count = 14, append = true) {
+      const list = [];
+      for (let i = 0; i < count; i++) {
+        list.push({ id: Object.keys(this.source)[this.offset] });
+
+        this.offset++;
+      }
+      if (append) {
+        this.queue = this.queue.concat(list);
+      } else {
+        this.queue.unshift(...list);
+      }
+    },
+    onSubmit({ item }) {
+      if (this.queue.length == 0) {
+        this.hideTinder();
+      }
+
+      this.history.push(item);
+      this.choices.push(this.last_clicked);
+      console.log("History length:", this.history.length);
+      console.log("Queue length:", this.queue.length);
+    },
+    async decide(choice) {
+      if (choice === "rewind") {
+        if (this.history.length) {
+          this.$refs.tinder.rewind([this.history.pop()]);
+          this.choices.pop();
+        }
+      } else if (choice === "help") {
+        this.dialog = true;
+      } else {
+        if (choice === "like") {
+          this.last_clicked = "like";
+        } else if (choice === "nope") {
+          this.last_clicked = "nope";
+        } else if (choice === "super") {
+          this.last_clicked = "super";
+        }
+        this.$refs.tinder.decide(choice);
+      }
     },
   },
 };
@@ -357,12 +557,103 @@ input {
   width: 200px;
 }
 
+#gustos .vue-tinder {
+  left: 0;
+  right: 0;
+  bottom: 30px;
+  margin: auto;
+  height: 300px;
+  display: flex;
+  margin-top: 2%;
+  align-items: center;
+  justify-content: center;
+  min-width: 300px;
+  max-width: 355px;
+}
 
+.nope-pointer,
+.like-pointer {
+  position: absolute;
+  z-index: 1;
+  top: 20px;
+  width: 64px;
+  height: 64px;
+}
+
+.nope-pointer {
+  right: 10px;
+}
+
+.like-pointer {
+  left: 10px;
+}
+
+.super-pointer {
+  position: absolute;
+  z-index: 1;
+  bottom: 80px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 112px;
+  height: 78px;
+}
+
+.rewind-pointer {
+  position: absolute;
+  z-index: 1;
+  top: 20px;
+  right: 10px;
+  width: 112px;
+  height: 78px;
+}
+
+.pic {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.btns {
+  left: 0;
+  right: 0;
+  bottom: 30px;
+  margin: auto;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 300px;
+  max-width: 355px;
+}
+
+.btns img {
+  margin-bottom: 4%;
+
+  margin-right: 12px;
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btns img:nth-child(2n + 1) {
+  width: 53px;
+}
+
+.btns img:nth-child(2n) {
+  width: 65px;
+}
+
+.btns img:nth-last-child(1) {
+  margin-right: 0;
+}
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,100,900);
 
 //colors
-$red: #E1332D;
+$red: #e1332d;
 $white: #fff;
 
 //base styles
@@ -370,34 +661,30 @@ $white: #fff;
 * {
   box-sizing: inherit;
   transition-property: all;
-  transition-duration: .6s;
+  transition-duration: 0.6s;
   transition-timing-function: ease;
 }
 
-  
-  p {
-    background: rgba($white, 0);
-    margin: auto;
-    line-height: 1.4;
-    padding: .25em;
-    text-decoration: none;
-    
-  }
+p {
+  background: rgba($white, 0);
+  margin: auto;
+  line-height: 1.4;
+  padding: 0.25em;
+  text-decoration: none;
+}
 //default button
 .btn {
   color: green;
   cursor: pointer;
   // display: block;
-  font-size:16px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 45px;
-  max-width: 250px; 
+  max-width: 250px;
   position: relative;
   text-decoration: none;
   text-transform: uppercase;
-  width: 100%; 
-  
-  
+  width: 100%;
 }
 
 /////////////////////////////////
@@ -406,15 +693,15 @@ $white: #fff;
 .btn-1 {
   background: white;
   font-weight: 100;
-  
+
   svg {
     height: 45px;
     left: 0;
     position: absolute;
-    top: 0; 
-    width: 100%; 
+    top: 0;
+    width: 100%;
   }
-  
+
   rect {
     fill: none;
     stroke: green;
@@ -428,7 +715,7 @@ $white: #fff;
   font-weight: 900;
   letter-spacing: 1px;
   color: green;
-  
+
   rect {
     stroke-width: 5;
     stroke-dasharray: 15, 410;
@@ -441,7 +728,7 @@ $white: #fff;
 //button two
 //////////////////////////
 .btn-2 {
-    letter-spacing: 0;
+  letter-spacing: 0;
 }
 
 .btn-2:hover,
@@ -477,10 +764,10 @@ $white: #fff;
 }
 
 /////////////////////////////
-//button -3 
+//button -3
 ///////////////////////////
 .btn-3 {
-  background: lighten($red, 3%);  
+  background: lighten($red, 3%);
   border: 1px solid darken($red, 4%);
   box-shadow: 0px 2px 0 darken($red, 5%), 2px 4px 6px darken($red, 2%);
   font-weight: 900;
@@ -490,15 +777,11 @@ $white: #fff;
 
 .btn-3:hover {
   background: darken($red, 1.5%);
-  border: 1px solid rgba(#000, .05);
-  box-shadow: 1px 1px 2px rgba(#fff, .2);
-  color: lighten($red, 18%); 
+  border: 1px solid rgba(#000, 0.05);
+  box-shadow: 1px 1px 2px rgba(#fff, 0.2);
+  color: lighten($red, 18%);
   text-decoration: none;
   text-shadow: -1px -1px 0 darken($red, 9.5%);
   transition: all 250ms linear;
 }
-
-
-
-
 </style>

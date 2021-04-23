@@ -1,0 +1,132 @@
+{
+    "username": "demo3",
+    "name": "demo",
+    "sex": "Hombre",
+    "age": 21,
+    "height": 169,
+    "body_type": "Ectomorfo",
+    "activity_level": 3,
+    "preferences": [
+        {
+            "categories": [
+                "Carne",
+                "Arroz"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Pescado",
+                "Patatas"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Pasta"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Pollo",
+                "Arroz"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Legumbres",
+                "Patatas"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Pollo",
+                "Verduras"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Pasta",
+                "Verduras"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Patatas"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Pescado",
+                "Arroz",
+                "Verduras"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Verduras",
+                "Huevos",
+                "Patatas"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Pescado",
+                "Legumbres",
+                "Patatas"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Verduras",
+                "Pasta"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Legumbres"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Verduras",
+                "Huevos"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Huevos",
+                "Patatas"
+            ],
+            "rating": "super"
+        }
+    ],
+    "objective": 3,
+    "using_scale": false,
+    "weight": 93,
+    "bmi": 32.561885088057146,
+    "bmr": 2048.872,
+    "tdee": 3175.7516,
+    "water_intake": 3048.721536,
+    "macro_objectives": {
+        "grasa": 70.57225777777778,
+        "proteina": 238.18137,
+        "carbohidratos": 396.96895000000006,
+        "energia": 3175.7516
+    }
+}
