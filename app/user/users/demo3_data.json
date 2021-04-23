@@ -1,4 +1,12 @@
-preferences = [
+{
+    "username": "demo3",
+    "name": "demo",
+    "sex": "Hombre",
+    "age": 21,
+    "height": 169,
+    "body_type": "Ectomorfo",
+    "activity_level": 3,
+    "preferences": [
         {
             "categories": [
                 "Carne",
@@ -107,41 +115,18 @@ preferences = [
             ],
             "rating": "super"
         }
-    ]
-def get_ratings(preferences):
-    
-    ratings = {
-    "Carne":0,
-    "Pollo":0,
-    "Pescado":0,
-    "Legumbres":0,
-    "Verduras":0,
-    "Patatas":0,
-    "Arroz":0,
-    "Pasta":0,
-    "Huevos":0
+    ],
+    "objective": 3,
+    "using_scale": false,
+    "weight": 93,
+    "bmi": 32.561885088057146,
+    "bmr": 2048.872,
+    "tdee": 3175.7516,
+    "water_intake": 3048.721536,
+    "macro_objectives": {
+        "grasa": 70.57225777777778,
+        "proteina": 238.18137,
+        "carbohidratos": 396.96895000000006,
+        "energia": 3175.7516
     }
-    
-    for preference in preferences:
-        
-        for category in preference["categories"]:
-            
-            if preference["rating"] == "like":
-                
-                ratings[category] += 1/len(preference["categories"])
-                
-            elif preference["rating"] == "nope":
-                
-                ratings[category] -= 1/len(preference["categories"])
-
-            
-            elif preference["rating"] == "super":
-                
-                ratings[category] += 1.1 * 1/len(preference["categories"])
-
-    
-    
-    return ratings       
-
-                
-print(get_ratings(preferences))
+}
