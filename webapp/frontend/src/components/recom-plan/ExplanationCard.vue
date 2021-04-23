@@ -2,17 +2,15 @@
   <v-card class="mx-auto">
     <v-img :src="img" height="150px"></v-img>
 
-    <v-card-title> Explicación </v-card-title>
-
     <v-row>
       <v-col md="4" style="margin: auto">
         <img height="150px" :src="cabocha" />
       </v-col>
-      <v-col md="7" style="margin: auto">
-        <v-card-subtitle style="font-size: 140%">
+      <v-col md="8" style="margin: auto">
+        <v-card-subtitle style="font-size: 120%">
           Basándonos en tu objetivo de <b>{{ this.$store.getters.objetivo}}</b> creemos que una distribución
           de macronutrientes con un <b>{{this.getPercentages(this.$store.getters.objectives)[0]}}%
-          de proteína </b>, un <b>{{this.getPercentages(this.$store.getters.objectives)[2]}}% de carbohidratos </b>
+          de proteína</b>, un <b>{{this.getPercentages(this.$store.getters.objectives)[2]}}% de carbohidratos </b>
           y un <b>{{this.getPercentages(this.$store.getters.objectives)[1]}}% de grasa </b> es la más apropiada
           para ti. Además como tienes un TDEE de <b>{{ this.$store.getters.tdee}}</b> calorías, te hemos recomendado 
           un plan con un consumo diario de <b>{{this.$store.getters.cals_obj}}</b> calorías para cumplir tu objetivo. 
@@ -24,7 +22,7 @@
       </v-col>
     </v-row>
 
-    <v-card-actions>
+    <v-card-actions id="card-action">
       <v-spacer></v-spacer>
 
       <v-btn icon @click="show = !show">
@@ -55,7 +53,7 @@
     data () {
       return {
        name: 'explanation-card',
-       img: require('../../assets/fruit.jpg'),
+       img: require('../../assets/hq_fruit.jpeg'),
        cabocha: require('../../assets/colaboza.png'),
        show: false,
       };
@@ -81,5 +79,9 @@
 <style scoped>
 .v-card {
   margin-top: 2rem;
+}
+
+#card-action {
+  margin-top: -3rem;
 }
 </style>

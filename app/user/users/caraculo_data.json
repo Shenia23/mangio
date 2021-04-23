@@ -1,0 +1,125 @@
+{
+    "username": "caraculo",
+    "name": "Igor",
+    "sex": "Hombre",
+    "age": 15,
+    "height": 172,
+    "body_type": "Ectomorfo",
+    "activity_level": 1,
+    "preferences": [
+        {
+            "categories": [
+                "Carne",
+                "Arroz"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Pescado",
+                "Patatas"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Pasta"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Pollo",
+                "Arroz"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Legumbres",
+                "Patatas"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Pollo",
+                "Verduras"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Pasta",
+                "Verduras"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Patatas"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Pescado",
+                "Arroz",
+                "Verduras"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Verduras",
+                "Huevos",
+                "Patatas"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Pescado",
+                "Legumbres",
+                "Patatas"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Verduras",
+                "Pasta"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Legumbres"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Verduras",
+                "Huevos"
+            ],
+            "rating": "like"
+        }
+    ],
+    "objective": 3,
+    "using_scale": false,
+    "weight": 65,
+    "bmi": 21.971335857220122,
+    "bmr": 1719.411,
+    "tdee": 2063.2932,
+    "water_intake": 1980.761472,
+    "macro_objectives": {
+        "energia": 2063.2932,
+        "grasa": 45.85096,
+        "proteina": 154.74699,
+        "carbohidratos": 257.91165
+    }
+}
