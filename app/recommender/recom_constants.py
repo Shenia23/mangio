@@ -69,8 +69,8 @@ def get_macro_objectives(tdee, objective):
     :return macros_grams: dict con los gramos que corresponden a cada macro
     '''
     macros_grams = dict()
+    macros_grams[KCAL] = tdee
     for macro, value in MACROS.items():
         macros_grams[macro] = np.mean(value[objective])*tdee/(value[CAL_GRAM]*100)
-    macros_grams[KCAL] = tdee
     
     return macros_grams

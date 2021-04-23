@@ -35,6 +35,7 @@ class Recommender:
             DINNER:     self.tdee * 0.25
         }
         self.objective = objective
+        self.iterations = 5
         
 
     def recommend(self):
@@ -43,21 +44,33 @@ class Recommender:
         '''
         recom = pd.DataFrame()
 
+        for i in range(self.iterations):
+            # recomendación fijada de desayuno y snacks
+            day = self.get_daily_recommendation()
+            day['iteration'] = i
+            recom = recom.append(day)
+    
+        recom.reset_index(inplace=True)
+        best_recom = self.select_best_recom(recom)
+
+        return best_recom
+
+    def get_daily_recommendation(self):
+        '''
+        Devuelve una recomandación para un día
+        '''
         # recomendación fijada de desayuno y snacks
+        day = pd.DataFrame()
         for type in FIXED_FOOD_TYPES:
             selected_recipe = self.fixed_recommendation(type)
             selected_recipe['Comida'] = type
-            recom = recom.append(selected_recipe)
+            day = day.append(selected_recipe)
 
         #recomendación combinada de comida y cena
-        target_values = self.get_missing_macros(recom)
-        combined_recom = self.combined_recommendation(target_values)
-        recom = recom.append(combined_recom)
-        recom.reset_index(inplace=True)
-
-        self.most_similar(recom[recom.Comida=='comida'], n=5)
-
-        return recom
+        combined_recom = self.combined_recommendation(self.get_missing_macros(day))
+        day = day.append(combined_recom)
+        
+        return day
     
     def fixed_recommendation(self, type):
         '''
@@ -85,7 +98,7 @@ class Recommender:
         Usa la distancia euclídea para encontrar los valores más cercanos a los target_values
         La receta con más kcal es la comida, y la que tiene menos la cena. 
 
-        :param target_values: gramos restantes de cada macro tras haber fijado las meriendas y desayunos
+        :param target_values: df gramos restantes de cada macro tras haber fijado las meriendas y desayunos
         :return combined_recom: df formada por la mejor combinación de comida y cena
         '''
         scaled_targets = comb_scaler.transform([target_values[TARGET_MACROS]])
@@ -99,6 +112,25 @@ class Recommender:
         combined_recom['Comida'] = LUNCH
         combined_recom.at[1,'Comida'] = DINNER
         return combined_recom
+
+    def select_best_recom(self, recom):
+        '''
+        Escoge la mejor recomendación diaria entre varias
+        '''
+        target_macros = pd.DataFrame(get_macro_objectives(self.tdee, self.objective), index=[1])
+        columns = TARGET_MACROS.copy()
+        columns.append('iteration')
+        recom_macros = recom[columns].groupby('iteration').sum()
+
+        scaler = StandardScaler()
+        recom_macros[TARGET_MACROS] = scaler.fit_transform(recom_macros[TARGET_MACROS])
+        target_macros = scaler.transform(target_macros)
+
+        recom_macros['score'] = euclidean_distances(target_macros, recom_macros[TARGET_MACROS]).reshape(-1)
+        best_iteration = recom_macros['score'].idxmin()
+
+        return recom[recom['iteration'] == best_iteration]
+
 
     def most_similar(self, recipe, n=1):
         '''
