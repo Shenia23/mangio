@@ -53,7 +53,7 @@
     data () {
       return {
        name: 'explanation-card',
-       img: require('../../assets/hq_fruit.jpeg'),
+       img: require('../../assets/hq_fruit.png'),
        cabocha: require('../../assets/colaboza.png'),
        show: false,
       };

@@ -69,7 +69,7 @@ class Recommender:
         #recomendación combinada de comida y cena
         combined_recom = self.combined_recommendation(self.get_missing_macros(day))
         day = day.append(combined_recom)
-        
+
         return day
     
     def fixed_recommendation(self, type):
@@ -131,7 +131,6 @@ class Recommender:
 
         return recom[recom['iteration'] == best_iteration]
 
-
     def most_similar(self, recipe, n=1):
         '''
         Devuelve las recetas más similares
@@ -155,6 +154,12 @@ class Recommender:
         
         return missing
 
+    def get_preferences_score(self, x=2):
+        sigmoid = ((1/1+np.e**(-x/2)-0.5)*1.9)
+        return sigmoid
+
+    def get_combined_sore(self, recipe_df):
+        return self.alpha*recipe_df['distance']-(1-self.alpha)*recipe_df['preferences_score']
 
     @staticmethod
     def filter_by_range(df, column, values):
