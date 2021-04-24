@@ -125,7 +125,7 @@ class User:
         macro_objectives = get_macro_objectives(self.tdee, self.objective)
         self.macro_objectives = macro_objectives
         
-    def get_tastes(self):
+    def get_ratings(self):
         
         '''TODO: Devuelve las scores de cada categoría en base a los ratings que haga de cada conjunto de categorías'''
  

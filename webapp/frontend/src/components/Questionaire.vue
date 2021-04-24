@@ -265,30 +265,30 @@ export default {
   components: { BodyType, Ingredients, VueSwing, Tinder },
   data: () => ({
     source: {
-      "./static/carne_arroz.jpeg": ["Carne", "Arroz"],
+      "./static/pollo_verduras_arroz.jpeg": ["Pollo", "Verduras", "Arroz"],
       "./static/pescado_patatas.jpeg": ["Pescado", "Patatas"],
-      "./static/carne_pasta.jpeg": ["Carne", "Pasta"],
-      "./static/pollo_arroz.jpeg": ["Pollo", "Arroz"],
-      "./static/legumbres_patatas.jpeg": ["Legumbres", "Patatas"],
-      "./static/pollo_verduras_arroz.jpeg": ["Pollo", "Verduras"],
-      "./static/pasta_verduras.jpeg ": ["Pasta", "Verduras"],
-      "./static/carne_patatas.jpeg": ["Carne", "Patatas"],
-      "./static/pescado_arroz_verduras.jpeg": ["Pescado", "Arroz", "Verduras"],
-      "./static/verduras_huevo_patatas.jpeg": ["Verduras", "Huevos", "Patatas"],
-      "./static/pescado_legumbres_patatas.jpeg": [
-        "Pescado",
-        "Legumbres",
-        "Patatas",
-      ],
-      "./static/verduras_pasta.jpeg": ["Verduras", "Pasta"],
+
       "./static/carne_legumbres.jpeg": ["Carne", "Legumbres"],
+      "./static/pescado_arroz_verduras.jpeg": ["Pescado", "Arroz", "Verduras"],
+
+      "./static/carne_pasta.jpeg": ["Carne", "Pasta"],
+      "./static/pescado_patatas.jpeg": ["Pescado", "Patatas"],
+      "./static/carne_patatas.jpeg": ["Carne", "Patatas"],
+
       "./static/verduras_huevos.jpeg": ["Verduras", "Huevos"],
-      "./static/huevos_patatas.jpeg" : ["Huevos", "Patatas"]
+      "./static/pollo_arroz.jpeg": ["Pollo", "Arroz"],
+      "./static/legumbres.jpeg": ["Legumbres"],
+      "./static/verduras_pasta.jpeg": ["Verduras", "Pasta"],
+
+      "./static/pescado_legumbres.jpeg": ["Pescado", "Legumbres"],
+      "./static/pollo_pasta.jpeg": ["Pollo", "Pasta"],
+      "./static/huevos_patatas.jpeg": ["Huevos", "Patatas"],
+      "./static/carne_arroz.jpeg": ["Carne", "Arroz"],
     },
     queue: [],
     offset: 0,
     history: [],
-    choices:[],
+    choices: [],
     id: "",
     last_clicked: "",
     snackbar: false,
@@ -342,11 +342,12 @@ export default {
     },
     createUser() {
       var preferences = [];
-      var categories = Object.values(this.source)
-      for(var i = 0; i < this.history.length; i++){
-
-        preferences.push({categories: categories[i], rating: this.choices[i]})
-
+      var categories = Object.values(this.source);
+      for (var i = 0; i < this.history.length; i++) {
+        preferences.push({
+          categories: categories[i],
+          rating: this.choices[i],
+        });
       }
 
       var new_user = {
@@ -362,7 +363,7 @@ export default {
         liked_ingredients: this.ingredients,
         using_scale: this.using_scale,
         scale_data: this.mi_scale_data,
-        preferences: preferences
+        preferences: preferences,
       };
       console.log(new_user);
 
@@ -393,13 +394,11 @@ export default {
         this.snackbar = true;
       }
 
-
-      for(var i = 0; i<this.choices.length;i++){
-
-        console.log(Object.values(this.source)[i] + ":"+this.choices[i])
+      for (var i = 0; i < this.choices.length; i++) {
+        console.log(Object.values(this.source)[i] + ":" + this.choices[i]);
       }
     },
-    mock(count = 14, append = true) {
+    mock(count = Object.values(this.source).length, append = true) {
       const list = [];
       for (let i = 0; i < count; i++) {
         list.push({ id: Object.keys(this.source)[this.offset] });
