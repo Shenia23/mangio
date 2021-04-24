@@ -1,4 +1,12 @@
-preferences = [
+{
+    "username": "demo5",
+    "name": "adsdas",
+    "sex": "Hombre",
+    "age": 21,
+    "height": 184,
+    "body_type": "Endomorfo",
+    "activity_level": 4,
+    "preferences": [
         {
             "categories": [
                 "Pollo",
@@ -24,8 +32,8 @@ preferences = [
         {
             "categories": [
                 "Pescado",
-                "Verduras",
-                "Arroz"
+                "Arroz",
+                "Verduras"
             ],
             "rating": "nope"
         },
@@ -98,58 +106,18 @@ preferences = [
             ],
             "rating": "like"
         }
-    ]
-
-
-
-ocurrences = {"Carne":4,
-    "Pollo":3,
-    "Pescado":3,
-    "Legumbres":3,
-    "Verduras":5,
-    "Patatas":3,
-    "Arroz":4,
-    "Pasta":3,
-    "Huevos":3
+    ],
+    "objective": 2,
+    "using_scale": false,
+    "weight": 90,
+    "bmi": 26.583175803402646,
+    "bmr": 2082.667,
+    "tdee": 3592.600575,
+    "water_intake": 3448.8965519999997,
+    "macro_objectives": {
+        "energia": 3592.600575,
+        "grasa": 119.7533525,
+        "proteina": 269.445043125,
+        "carbohidratos": 359.26005749999996
     }
-     
-            
-    
-def get_ratings(preferences):
-    
-    
-
-    ratings = {
-    "Carne":0,
-    "Pollo":0,
-    "Pescado":0,
-    "Legumbres":0,
-    "Verduras":0,
-    "Patatas":0,
-    "Arroz":0,
-    "Pasta":0,
-    "Huevos":0
-    }
-    
-    for preference in preferences:
-        
-        for i, category in enumerate(preference["categories"]):
-            
-            factors = [1,0.75,0.75] #factor de correción según la importancia (distinción entre ingredientes principales y secundarios)
-            
-            if preference["rating"] == "like":
-                
-                ratings[category] += 1/ocurrences[category] * factors[i]
-                
-            elif preference["rating"] == "nope":
-                
-                ratings[category] -= 1/ocurrences[category] * factors[i]
-
-            elif preference["rating"] == "super":
-                
-                ratings[category] += 1.1/ocurrences[category] * factors[i]
-
-    return ratings       
-
-                
-print(get_ratings(preferences))
+}
