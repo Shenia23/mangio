@@ -362,12 +362,21 @@ def filter_dataset():
 
 
 def filter_dataset_100():
-    '''Filters the dataset to keep recipes with parse rate > 85%'''
+    '''Filters the dataset to keep recipes with parse rate == 100%'''
     recipes = pd.read_csv('../../data/output_with_rates.csv', sep='|')
     recipes_filtered = recipes[recipes['parse_rate'] == 1.0]
     recipes_filtered.to_csv(
         '../../data/filtered_recipes_100.csv', index=False, header=True, sep='|')
 
+    return
+
+def filter_ingredient_100(ingredient):
+    '''Filters the dataset to keep recipes with parse rate == 100% and an ingredient'''
+    recipes = pd.read_csv('../../data/output_with_rates.csv', sep='|')
+    recipes_filtered = recipes[recipes['parse_rate'] == 1.0]
+    recipes_filtered = recipes_filtered[recipes_filtered['Ingredientes'].str.contains(ingredient)]
+    recipes_filtered.to_csv(
+        '../../data/filtered_' + ingredient + '_100.csv', index=False, header=True, sep='|')
     return
 
 

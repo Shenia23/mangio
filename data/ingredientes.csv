@@ -16798,7 +16798,7 @@ Recipe_id,Ingrediente,Cantidad,Unidad,Indice,Grams,Total_Grams
 19627,ron,1,vaso,818,250,250.0
 19627,helado de nata,4,None,14,,
 19627,azúcar,4,cucharadas,936,10,40.0
-19602,almendra,2,vasos,530,250,500.0
+19602,leche de almendra,2,vasos,17,250,500.0
 19602,plátano,1,unidad,721,0,0.0
 19602,dátil,10,unidades,687,0,0.0
 16296,huevo,2,None,150,,
@@ -29921,7 +29921,7 @@ Recipe_id,Ingrediente,Cantidad,Unidad,Indice,Grams,Total_Grams
 52637,queso parmesano,,None,92,,
 52637,pimienta,1,pizca,901,1,1.0
 52637,leche,,None,27,,
-51987,gallo,400,g,334,1,400.0
+51987,macarrones,400,g,939,1,400.0
 51987,puerro,1,None,653,,
 51987,calabacín,1,None,603,,
 51987,pimiento,1,None,650,,
@@ -30265,7 +30265,7 @@ Recipe_id,Ingrediente,Cantidad,Unidad,Indice,Grams,Total_Grams
 27551,aceite de oliva,,None,410,,
 27551,sal,,None,908,,
 27551,pimienta,,None,901,,
-27542,huevo,300,g,150,1,300.0
+27542,espagueti,300,g,938,1,300.0
 27542,tomate frito,500,g,929,1,500.0
 27542,alcaparra,15,g,592,1,15.0
 27542,aceituna,250,g,673,1,250.0
@@ -49000,7 +49000,7 @@ Recipe_id,Ingrediente,Cantidad,Unidad,Indice,Grams,Total_Grams
 55653,tomate,1,unidad,667,0,0.0
 55653,pimiento rojo,1,unidad,651,0,0.0
 55631,arroz,1,paquete,428,0,0.0
-55631,arroz,1,paquete,428,0,0.0
+55631,espagueti,1,paquete,938,0,0.0
 55631,espinaca,1,None,628,,
 55631,mango,1,unidad,702,0,0.0
 55631,zanahoria,1,unidad,672,0,0.0
@@ -52382,3 +52382,33 @@ Recipe_id,Ingrediente,Cantidad,Unidad,Indice,Grams,Total_Grams
 5,vainilla,1,cucharada,931,10,10.0
 5,leche,75,centilitros,27,1,75.0
 5,nuez moscada,,None,891,,
+53094,salsa de queso,,caja,916,,
+53094,mantequilla,20,gr,419,1,20.0
+53094,harina,30,gr,482,1,30.0
+53094,leche,,vaso,27,250,
+53094,sal,,None,908,,
+53094,pimienta,,None,901,,
+53094,queso parmesano,,None,92,,
+51987,macarrones,400,g,939,1,400.0
+51987,puerro,1,None,653,,
+51987,calabacín,1,None,603,,
+51987,pimiento,1,None,650,,
+51987,apio,1,None,593,,
+51987,tomate,250,g,667,1,250.0
+51987,chorizo,200,g,181,1,200.0
+51987,aceite de oliva,,None,410,,
+51987,queso,100,g,77,1,100.0
+27542,espagueti,300,g,938,1,300.0
+27542,tomate,500,g,667,1,500.0
+27542,alcaparra,15,g,592,1,15.0
+27542,aceituna,250,g,673,1,250.0
+27542,anchoas,50,g,275,1,50.0
+27542,orégano,1,cucharadita,892,7,7.0
+27542,aceite de oliva,,None,410,,
+27542,sal,,None,908,,
+55631,arroz,1,paquete,428,0,0.0
+55631,espagueti,1,paquete,938,0,0.0
+55631,espinaca,1,None,628,,
+55631,mango,1,unidad,702,0,0.0
+55631,zanahoria,1,unidad,672,0,0.0
+55631,albahaca,1,None,589,,

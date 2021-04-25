@@ -1,0 +1,132 @@
+{
+    "username": "Pablo",
+    "name": "Garc\u00eda",
+    "sex": "Hombre",
+    "age": 21,
+    "height": 175,
+    "body_type": "Mesomorfo",
+    "activity_level": 3,
+    "preferences": [
+        {
+            "categories": [
+                "Carne",
+                "Arroz"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Pescado",
+                "Patatas"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Pasta"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Pollo",
+                "Arroz"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Legumbres",
+                "Patatas"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Pollo",
+                "Verduras"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Pasta",
+                "Verduras"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Patatas"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Pescado",
+                "Arroz",
+                "Verduras"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Verduras",
+                "Huevos",
+                "Patatas"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Pescado",
+                "Legumbres",
+                "Patatas"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Verduras",
+                "Pasta"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Legumbres"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Verduras",
+                "Huevos"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Huevos",
+                "Patatas"
+            ],
+            "rating": "super"
+        }
+    ],
+    "objective": 3,
+    "using_scale": false,
+    "weight": 78,
+    "bmi": 25.46938775510204,
+    "bmr": 1872.6399999999999,
+    "tdee": 2902.592,
+    "water_intake": 2786.48832,
+    "macro_objectives": {
+        "energia": 2902.592,
+        "grasa": 64.50204444444445,
+        "proteina": 217.69440000000003,
+        "carbohidratos": 362.824
+    }
+}
