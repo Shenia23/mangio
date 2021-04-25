@@ -1,12 +1,17 @@
 <template>
   <div class="recommendation-body" id="main-row">
     
-    <v-row >
+    <div class="row">
     <v-col cols="12" md="6">
     <!-- COL 1: cards de RECOMENDACIONES y RECETAS-->
+        <div style="display: flex">
         <v-card
+        :loading="loading"
         class="division"
         >
+        <template slot="progress" id="loading">
+            <v-progress-linear color="green" height="6" indeterminate></v-progress-linear>
+        </template>
         <v-row id="title-row">
             <v-col cols="12" md=3>
                 <img height="160px" :src="apiin" />
@@ -109,6 +114,7 @@
         </div>
         </div>
         </v-card>
+    </div>
     </v-col>
     <v-col cols="12" md=6 class="stats">
     <!-- COL 2: STATS de las comidas + EXPLICACIÓN-->
@@ -127,7 +133,7 @@
 
        
     </v-col>
-    </v-row>
+    </div>
   </div>
 </template>
 
@@ -164,7 +170,8 @@ export default {
                 'merienda': 'mdi-food-croissant',
                 'cena': 'mdi-noodles'
               },
-          apiin: require('../assets/apiín.png')
+          apiin: require('../assets/apiín.png'),
+          loading: true,
     };
   },
   computed: {
@@ -190,12 +197,14 @@ export default {
           this.rec.forEach(element => {
             element.overlay = false
           })
+          this.loading = false
         })
         .catch((error) => {
           console.error(error);
         });
     },
     reload(){
+        this.loading = true
         this.getRecomendacion()
     },
     //overlay methods
@@ -258,6 +267,12 @@ export default {
 .division{
     width: 100%;
     margin-left: 2rem;
+    padding-bottom: 1rem;
 }
+
+#randomrow{
+    margin: 0;
+}
+
 
 </style>

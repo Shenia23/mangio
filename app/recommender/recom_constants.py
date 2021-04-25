@@ -2,6 +2,8 @@
 File with all the constant values required for the recommender
 '''
 
+ITERATIONS = 4
+
 BREAKFAST = 'desayuno'
 LUNCH = 'comida'
 DINNER = 'cena'
@@ -61,6 +63,18 @@ MACROS = {
         CAL_GRAM: 4
     }
 }
+
+PREFERENCE_CATEGORIES = [
+    "Carne",
+    "Pollo",
+    "Pescado",
+    "Legumbres",
+    "Verduras",
+    "Patatas",
+    "Arroz",
+    "Pasta",
+    "Huevos"
+]
 
 import numpy as np
 

@@ -43,6 +43,14 @@ def fill_grams(df):
     
     return result.drop(['Index'], axis=1)
 
+def getBedcaCategory(row):
+    cat = bedca['categoria'][bedca['indice']==row]
+    return cat.values[0]
+
+def append_category(df):
+    df['Category'] = df['Indice'].apply(getBedcaCategory)
+
+
 def drop_evaluation(original,result):
     original_recipes = original['Recipe_id'].unique()
     result_recipes = result['Recipe_id'].unique()
@@ -53,5 +61,6 @@ def drop_evaluation(original,result):
 if __name__ == "__main__":
     ing = pd.read_csv('../../data/ingredientes.csv')
     result = fill_grams(ing)
+    append_category(result)
     drop_evaluation(ing,result)
     result.to_csv('../../data/ingredients_100.csv',index=False)
