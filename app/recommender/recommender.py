@@ -145,9 +145,11 @@ class Recommender:
         daily_recom['combined_score'] = self.get_combined_score(daily_recom['preference_score'].values, daily_recom['nutritional_score'].values)
         best_iteration = daily_recom['combined_score'].idxmin()
 
+        '''
         if calculate_nutritional_score:
             print(daily_recom)
             print('Best iteration:', best_iteration)
+        '''
 
         return recom[recom['iteration'] == best_iteration]
 
@@ -237,8 +239,8 @@ def getRecommendation(username):
     y se obtienen las recomendaciones
     '''
     print("Recommendation for ",username)
-    start = time.time()
     recommender = create_recommender(getUser(username))
+    start = time.time()
     recommendation = recommender.recommend()
     end = time.time()
     print("Recommendation time: ", end-start)

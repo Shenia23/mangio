@@ -50,7 +50,6 @@ def getBedcaCategory(row):
 def append_category(df):
     df['Category'] = df['Indice'].apply(getBedcaCategory)
 
-
 def drop_evaluation(original,result):
     original_recipes = original['Recipe_id'].unique()
     result_recipes = result['Recipe_id'].unique()
