@@ -232,6 +232,7 @@
               src="../assets/rewind-txt_tinder.png"
             />
           </Tinder>
+          <br>
           <div class="btns">
             <img src="../assets/rewind_tinder.png" @click="decide('rewind')" />
             <img src="../assets/nope_tinder.png" @click="decide('nope')" />
@@ -243,6 +244,11 @@
             <img src="../assets/help_tinder.png" @click="decide('help')" />
           </div>
         </div>
+        <br>
+        <br>
+
+        <DialogUserCreationSuccess v-model="showDialogUserSuccess"/>
+
         <p color="success" class="btn btn-1" @click="createUser">
           <svg>
             <rect x="0" y="0" fill="none" width="100%" height="100%" />
@@ -260,9 +266,10 @@ import Ingredients from "./Ingredients.vue";
 import axios from "axios";
 import VueSwing from "vue-swing";
 import Tinder from "vue-tinder";
+import DialogUserCreationSuccess from "./DialogUserCreationSuccess.vue"
 
 export default {
-  components: { BodyType, Ingredients, VueSwing, Tinder },
+  components: { BodyType, Ingredients, VueSwing, Tinder, DialogUserCreationSuccess },
   data: () => ({
     source: {
       "./static/pollo_verduras_arroz.jpeg": ["Pollo", "Verduras", "Arroz"],
@@ -285,6 +292,7 @@ export default {
       "./static/huevos_patatas.jpeg": ["Huevos", "Patatas"],
       "./static/carne_arroz.jpeg": ["Carne", "Arroz"],
     },
+    showDialogUserSuccess:false,
     queue: [],
     offset: 0,
     history: [],
@@ -340,6 +348,13 @@ export default {
         this.using_scale = true;
       }
     },
+    setUser(userData) {
+      // FUNCION a introducir en el código de usuarios!
+      console.log(userData);
+      this.$store.commit("setUserData", {
+        userdata: userData,
+      });
+    },
     createUser() {
       var preferences = [];
       var categories = Object.values(this.source);
@@ -375,6 +390,8 @@ export default {
       })
         .then((res) => {
           console.log(res);
+          this.setUser(res)
+          this.showDialogUserSuccess = true;
         })
         .catch((err) => {
           console.log(err);
@@ -561,12 +578,12 @@ input {
   right: 0;
   bottom: 30px;
   margin: auto;
-  height: 300px;
+  height: 370px;
   display: flex;
   margin-top: 2%;
   align-items: center;
   justify-content: center;
-  min-width: 300px;
+  min-width: 70%;
   max-width: 355px;
 }
 

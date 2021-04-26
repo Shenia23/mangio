@@ -1,0 +1,134 @@
+{
+    "username": "demo_5",
+    "name": "ada",
+    "sex": "Hombre",
+    "age": 21,
+    "height": 177,
+    "body_type": "Mesomorfo",
+    "activity_level": 2,
+    "preferences": [
+        {
+            "categories": [
+                "Pollo",
+                "Verduras",
+                "Arroz"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Pescado",
+                "Patatas"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Legumbres"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Pescado",
+                "Arroz",
+                "Verduras"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Pasta"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Patatas"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Verduras",
+                "Huevos"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Pollo",
+                "Arroz"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Legumbres"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Verduras",
+                "Pasta"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Pescado",
+                "Legumbres"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Pollo",
+                "Pasta"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Huevos",
+                "Patatas"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Arroz"
+            ],
+            "rating": "like"
+        }
+    ],
+    "ratings": {
+        "Carne": 1.05,
+        "Pollo": 0.36666666666666664,
+        "Pescado": 0.3333333333333333,
+        "Legumbres": -0.3333333333333333,
+        "Verduras": 0.32,
+        "Patatas": 0.775,
+        "Arroz": 0.76875,
+        "Pasta": -0.22499999999999998,
+        "Huevos": 0.6083333333333334
+    },
+    "objective": 2,
+    "using_scale": false,
+    "weight": 96,
+    "bmi": 30.642535669826675,
+    "bmr": 2130.146,
+    "tdee": 2928.9507500000004,
+    "water_intake": 2811.7927200000004,
+    "macro_objectives": {
+        "energia": 2928.9507500000004,
+        "grasa": 97.63169166666667,
+        "proteina": 219.67130625000001,
+        "carbohidratos": 292.895075
+    }
+}
