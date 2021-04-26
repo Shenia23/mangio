@@ -1,0 +1,33 @@
+{
+    "username": "foodie",
+    "name": "Manolo",
+    "sex": "Hombre",
+    "age": 13,
+    "height": 165,
+    "body_type": "Mesomorfo",
+    "activity_level": 1,
+    "ratings": {
+        "Carne": 0.5,
+        "Pollo": -0.3333333333333333,
+        "Pescado": 0.3333333333333333,
+        "Legumbres": -0.33333333333333326,
+        "Verduras": 0.0,
+        "Patatas": -0.25,
+        "Arroz": 0.0,
+        "Pasta": 0.75,
+        "Huevos": -0.5833333333333333
+    },
+    "objective": 3,
+    "using_scale": false,
+    "weight": 65,
+    "bmi": 23.875114784205696,
+    "bmr": 1697.9,
+    "tdee": 2037.48,
+    "water_intake": 1955.9808,
+    "macro_objectives": {
+        "energia": 2037.48,
+        "grasa": 45.27733333333333,
+        "proteina": 152.811,
+        "carbohidratos": 254.685
+    }
+}

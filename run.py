@@ -69,7 +69,6 @@ def get_predetermined_profiles():
     return response
 
 
-
 @app.route('/recomendacion', methods=['GET', 'POST'])
 @cross_origin()
 def get_recomendacion():

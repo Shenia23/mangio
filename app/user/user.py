@@ -22,8 +22,7 @@ class User:
         self.height = height
         self.body_type = body_type # Ectomorfo, mesomorfo, o endomorfo
         self.activity_level= activity_level  # Nivel de actividad física del usuario (de los definidos en el Excel)
-        self.preferences = preferences
-        self.ratings = self.get_ratings()
+        self.ratings = self.get_ratings(preferences)
         self.objective = objective # Ganar masa muscular [3], mantenerse [2], adelgazar [1]
         self.using_scale = using_scale
         
@@ -82,7 +81,7 @@ class User:
         user_str += " bmr = "+ str(self.bmr) +","
         user_str += " tdee = "+ str(self.tdee) +","
         user_str += " macro_objectives = "+ str(self.macro_objectives) +","
-        user_str += " preferences = "+ str(self.preferences) +","
+        #user_str += " preferences = "+ str(self.preferences) +","
         user_str += " ratings = "+ str(self.ratings) +"}"
         return user_str
         
@@ -127,7 +126,7 @@ class User:
         macro_objectives = get_macro_objectives(self.tdee, self.objective)
         self.macro_objectives = macro_objectives
         
-    def get_ratings(self):
+    def get_ratings(self, preferences):
         
         '''Devuelve las scores de cada categoría en base a los ratings que haga de cada conjunto de categorías'''
         
@@ -155,7 +154,7 @@ class User:
                     "Huevos":0
                     }
     
-        for preference in self.preferences:
+        for preference in preferences:
             
             for i, category in enumerate(preference["categories"]):
                 

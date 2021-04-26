@@ -264,22 +264,11 @@ def create_recommender(user):
     :param user: es un dict con la info sacada del json correspondiente 
     Método para crear recommender a partir de un perfil de usuario 
     '''
-    preferences = {
-        "Carne": 1.05, 
-        "Pollo": -0.3333333333333333, 
-        "Pescado": 0.3666666666666667, 
-        "Legumbres": 0.8833333333333334, 
-        "Verduras": 0.4, 
-        "Patatas": 0.275, 
-        "Arroz": 0.0, 
-        "Pasta": 0.25, 
-        "Huevos": 0.6833333333333333
-    }
 
     recommender = Recommender(
                     tdee = user['tdee'],
                     objective = user['objective'],
-                    preferences = preferences #TODO coger preferencias del usuario
+                    preferences = user['ratings']
                   )
 
     return recommender

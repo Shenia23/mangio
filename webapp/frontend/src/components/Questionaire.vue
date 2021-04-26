@@ -389,8 +389,9 @@ export default {
         data: new_user,
       })
         .then((res) => {
-          console.log(res);
-          this.setUser(res)
+          console.log('RESPUESTA:')
+          console.log(res.data);
+          this.setUser(res.data)
           this.showDialogUserSuccess = true;
         })
         .catch((err) => {

@@ -14,10 +14,6 @@ export default new Vuex.Store({
                 "height": 170,
                 "body_type": "Ectomorfo",
                 "activity_level": 2,
-                "liked_ingredients": [
-                    "huevo"
-                ],
-                "disliked_ingredients": null,
                 "objective": 3,
                 "using_scale": false,
                 "weight": 65,

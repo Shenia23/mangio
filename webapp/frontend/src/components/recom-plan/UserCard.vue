@@ -74,7 +74,8 @@
         <v-divider></v-divider>
 
         <v-card-text>
-          Gustos
+          ¡Tenemos en cuenta tus gustos!
+          Según tu información, intentaremos recomendarte recetas que lleven {{ most_liked }}, y evitar las que tengan {{ least_liked }}.
         </v-card-text>
           
       </div>
@@ -93,6 +94,18 @@
        goals: ['','Bajar de peso','Mantener el peso','Subir de peso']
       }
     },
+    computed: {
+      most_liked () {
+        var obj = this.$store.getters.userdata.ratings
+        var maxKey = Object.keys(obj).reduce((a, b) => obj[a] > obj[b] ? a : b);
+        return maxKey
+      },
+      least_liked () {
+        var obj = this.$store.getters.userdata.ratings
+        var minKey = Object.keys(obj).reduce((a, b) => obj[a] < obj[b] ? a : b);
+        return minKey
+      }
+    }
   }
 </script>
 
