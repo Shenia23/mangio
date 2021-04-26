@@ -23,10 +23,11 @@ class User:
         self.body_type = body_type # Ectomorfo, mesomorfo, o endomorfo
         self.activity_level= activity_level  # Nivel de actividad física del usuario (de los definidos en el Excel)
         self.preferences = preferences
+        self.ratings = self.get_ratings()
         self.objective = objective # Ganar masa muscular [3], mantenerse [2], adelgazar [1]
         self.using_scale = using_scale
         
-        print(self.preferences)
+    
         
         if using_scale == False:
             
@@ -81,7 +82,8 @@ class User:
         user_str += " bmr = "+ str(self.bmr) +","
         user_str += " tdee = "+ str(self.tdee) +","
         user_str += " macro_objectives = "+ str(self.macro_objectives) +","
-        user_str += " preferences = "+ str(self.preferences) +"}"
+        user_str += " preferences = "+ str(self.preferences) +","
+        user_str += " ratings = "+ str(self.ratings) +"}"
         return user_str
         
     def get_bmi(self):
@@ -127,7 +129,51 @@ class User:
         
     def get_ratings(self):
         
-        '''TODO: Devuelve las scores de cada categoría en base a los ratings que haga de cada conjunto de categorías'''
+        '''Devuelve las scores de cada categoría en base a los ratings que haga de cada conjunto de categorías'''
+        
+        ocurrences = {"Carne":4,
+                    "Pollo":3,
+                    "Pescado":3,
+                    "Legumbres":3,
+                    "Verduras":5,
+                    "Patatas":3,
+                    "Arroz":4,
+                    "Pasta":3,
+                    "Huevos":3
+                    }
+                    
+
+        ratings = {
+                    "Carne":0,
+                    "Pollo":0,
+                    "Pescado":0,
+                    "Legumbres":0,
+                    "Verduras":0,
+                    "Patatas":0,
+                    "Arroz":0,
+                    "Pasta":0,
+                    "Huevos":0
+                    }
+    
+        for preference in self.preferences:
+            
+            for i, category in enumerate(preference["categories"]):
+                
+                factors = [1,0.75,0.75] #factor de correción según la importancia (distinción entre ingredientes principales y secundarios)
+                
+                if preference["rating"] == "like":
+                    
+                    ratings[category] += 1/ocurrences[category] * factors[i]
+                    
+                elif preference["rating"] == "nope":
+                    
+                    ratings[category] -= 1/ocurrences[category] * factors[i]
+
+                elif preference["rating"] == "super":
+                    
+                    ratings[category] += 1.1/ocurrences[category] * factors[i]
+
+        return ratings  
  
 def getUser(username):
     file_name= "./app/user/users/"+username+"_data.json"

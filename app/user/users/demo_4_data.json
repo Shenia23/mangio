@@ -1,15 +1,16 @@
 {
-    "username": "caraculo",
-    "name": "Igor",
-    "sex": "Hombre",
-    "age": 15,
-    "height": 172,
-    "body_type": "Ectomorfo",
-    "activity_level": 1,
+    "username": "demo_4",
+    "name": "da",
+    "sex": "Mujer",
+    "age": 21,
+    "height": 184,
+    "body_type": "Mesomorfo",
+    "activity_level": 3,
     "preferences": [
         {
             "categories": [
-                "Carne",
+                "Pollo",
+                "Verduras",
                 "Arroz"
             ],
             "rating": "like"
@@ -19,47 +20,12 @@
                 "Pescado",
                 "Patatas"
             ],
-            "rating": "nope"
-        },
-        {
-            "categories": [
-                "Carne",
-                "Pasta"
-            ],
-            "rating": "like"
-        },
-        {
-            "categories": [
-                "Pollo",
-                "Arroz"
-            ],
-            "rating": "nope"
-        },
-        {
-            "categories": [
-                "Legumbres",
-                "Patatas"
-            ],
-            "rating": "like"
-        },
-        {
-            "categories": [
-                "Pollo",
-                "Verduras"
-            ],
-            "rating": "like"
-        },
-        {
-            "categories": [
-                "Pasta",
-                "Verduras"
-            ],
             "rating": "like"
         },
         {
             "categories": [
                 "Carne",
-                "Patatas"
+                "Legumbres"
             ],
             "rating": "like"
         },
@@ -73,17 +39,35 @@
         },
         {
             "categories": [
-                "Verduras",
-                "Huevos",
+                "Carne",
+                "Pasta"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Carne",
                 "Patatas"
             ],
             "rating": "like"
         },
         {
             "categories": [
-                "Pescado",
-                "Legumbres",
-                "Patatas"
+                "Verduras",
+                "Huevos"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Pollo",
+                "Arroz"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Legumbres"
             ],
             "rating": "like"
         },
@@ -96,30 +80,55 @@
         },
         {
             "categories": [
-                "Carne",
+                "Pescado",
                 "Legumbres"
             ],
             "rating": "like"
         },
         {
             "categories": [
-                "Verduras",
-                "Huevos"
+                "Pollo",
+                "Pasta"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Huevos",
+                "Patatas"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Arroz"
             ],
             "rating": "like"
         }
     ],
-    "objective": 3,
+    "ratings": {
+        "Carne": 1.0,
+        "Pollo": 1.0,
+        "Pescado": 1.0,
+        "Legumbres": 0.8333333333333333,
+        "Verduras": 0.7,
+        "Patatas": 0.75,
+        "Arroz": 0.75,
+        "Pasta": 0.75,
+        "Huevos": 0.5833333333333333
+    },
+    "objective": 2,
     "using_scale": false,
-    "weight": 65,
-    "bmi": 21.971335857220122,
-    "bmr": 1719.411,
-    "tdee": 2063.2932,
-    "water_intake": 1980.761472,
+    "weight": 81,
+    "bmi": 23.92485822306238,
+    "bmr": 1671.9070000000002,
+    "tdee": 2591.4558500000003,
+    "water_intake": 2487.7976160000003,
     "macro_objectives": {
-        "energia": 2063.2932,
-        "grasa": 45.85096,
-        "proteina": 154.74699,
-        "carbohidratos": 257.91165
+        "energia": 2591.4558500000003,
+        "grasa": 86.38186166666668,
+        "proteina": 194.35918875000004,
+        "carbohidratos": 259.14558500000004
     }
 }
