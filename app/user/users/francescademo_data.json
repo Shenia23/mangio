@@ -6,10 +6,6 @@
     "height": 170,
     "body_type": "Ectomorfo",
     "activity_level": 2,
-    "liked_ingredients": [
-        "huevo"
-    ],
-    "disliked_ingredients": null,
     "objective": 3,
     "using_scale": false,
     "weight": 65,
@@ -22,5 +18,16 @@
         "proteina": 143.35684687500003,
         "carbohidratos": 238.92807812500004,
         "energia": 1911.4246250000003
+    },
+    "preferences": {
+        "Carne": 1.05, 
+        "Pollo": -0.3333333333333333, 
+        "Pescado": 0.3666666666666667, 
+        "Legumbres": 0.8833333333333334, 
+        "Verduras": 0.4, 
+        "Patatas": 0.275, 
+        "Arroz": 0.0, 
+        "Pasta": 0.25, 
+        "Huevos": 0.6833333333333333
     }
 }

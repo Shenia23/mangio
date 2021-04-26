@@ -7,22 +7,29 @@ export default new Vuex.Store({
     state: {
         user: {
             userdata: {
-                'username': 'francescademo',
-                'name': 'Francesca', // este sería el usuario sacado del form o de una request a flask
-                'age': 23,
-                'sex': 'Mujer',
-                'weight': 65,
-                'height': 165,
-                'body_type': 'Mesomorfo',
-                'activity_level': 3,
-                'objective': 1,
-                'tdee': 2762.46711,
-                'water_intake': 2171.9684256,
-                'macro_objectives': {
-                    'energia': 2500,
-                    'grasa': 83,
-                    'proteina': 187,
-                    'carbohidratos': 250
+                "username": "francescademo",
+                "name": "Francesca",
+                "sex": "Mujer",
+                "age": 43,
+                "height": 170,
+                "body_type": "Ectomorfo",
+                "activity_level": 2,
+                "liked_ingredients": [
+                    "huevo"
+                ],
+                "disliked_ingredients": null,
+                "objective": 3,
+                "using_scale": false,
+                "weight": 65,
+                "bmi": 22.49134948096886,
+                "bmr": 1390.1270000000002,
+                "tdee": 1911.4246250000003,
+                "water_intake": 1834.9676400000003,
+                "macro_objectives": {
+                    "grasa": 42.47610277777778,
+                    "proteina": 143.35684687500003,
+                    "carbohidratos": 238.92807812500004,
+                    "energia": 1911.4246250000003
                 }
             },
             

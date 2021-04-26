@@ -14,5 +14,5 @@ end = time.time()
 print("Recommendation time: ", end-start)
 print(recommendation[['Recipe_id','Comida','Total_Grams','Nombre','energia','proteina','grasa','carbohidratos']])
 
-recommendation['pref_score'] = recommendation['Recipe_id'].apply(Recommender.get_preferences_score, preferences = preferences)
+recommendation['pref_score'] = recommendation['Recipe_id'].apply(recommender.preference_score)
 print(recommendation[['Nombre','pref_score']])

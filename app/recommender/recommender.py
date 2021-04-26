@@ -108,23 +108,33 @@ class Recommender:
         :return combined_recom: df formada por la mejor combinación de comida y cena
         '''
         eucl_dist = Recommender.get_euclidean_distances([target_values[TARGET_MACROS]], combined, comb_scaler)
-        lowest_indexes = np.argpartition(eucl_dist, 20)
+        k=20
+        lowest_indexes = np.argpartition(eucl_dist, k)
 
         lowest_score_combinations = pd.DataFrame()
-        for index in lowest_indexes[:20]:
+        '''
+        for index in lowest_indexes[:10]:
             combined_ids = combined.loc[index, ['Recipe1','Recipe2']].to_list()
             combined_recom = recipe_nvalues.loc[combined_ids].copy()
             combined_recom['iteration'] = index
             combined_recom['nutritional_score'] = eucl_dist[index]/2
             lowest_score_combinations = lowest_score_combinations.append(combined_recom)
+        '''
 
-        best_combination = self.select_best_recom(lowest_score_combinations, calculate_nutritional_score=False).copy()
-        best_combination['Comida'] = LUNCH
-        best_combination.at[best_combination[KCAL].idxmin(),['Comida']] = DINNER
+        lowest_score_combinations = combined.loc[lowest_indexes[:k]].copy()
+        lowest_score_combinations['nutritional_score'] = eucl_dist[lowest_indexes[:k]]
+        lowest_score_combinations['preference_score'] = lowest_score_combinations.apply(self.get_preference_scores, axis=1)
+        lowest_score_combinations['combined_score'] = self.get_combined_score(lowest_score_combinations['preference_score'].values, lowest_score_combinations['nutritional_score'].values)
+        best_iteration = lowest_score_combinations['combined_score'].idxmin()
 
-        return best_combination
+        combined_ids = lowest_score_combinations.loc[best_iteration, ['Recipe1','Recipe2']].to_list()
+        combined_recom = recipe_nvalues.loc[combined_ids].copy()
+        combined_recom['Comida'] = LUNCH
+        combined_recom.at[combined_recom[KCAL].idxmin(),['Comida']] = DINNER
 
-    def select_best_recom(self, recom, calculate_nutritional_score = True):
+        return combined_recom
+
+    def select_best_recom(self, recom):
         '''
         Escoge la mejor recomendación diaria entre varias:
          1. Calcula la score de preferencias
@@ -132,24 +142,17 @@ class Recommender:
          3. Calcula la score pondrada combinada y escoge la mínima
         '''
 
-        recom['preference_score'] = recom.index.to_series().apply(Recommender.get_preferences_score, preferences=self.preferences)
+        recom['preference_score'] = recom['Recipe_id'].apply(self.preference_score)
 
         columns = TARGET_MACROS.copy()
         columns += ['iteration','preference_score','nutritional_score']
         daily_recom = recom[columns].groupby('iteration').sum()
-        
-        if calculate_nutritional_score:
-            target_macros = pd.Series(get_macro_objectives(self.tdee, self.objective))
-            daily_recom['nutritional_score'] = Recommender.get_euclidean_distances([target_macros], daily_recom, StandardScaler(), scale_df=True)
+
+        target_macros = pd.Series(get_macro_objectives(self.tdee, self.objective))
+        daily_recom['nutritional_score'] = Recommender.get_euclidean_distances([target_macros], daily_recom, StandardScaler(), scale_df=True)
 
         daily_recom['combined_score'] = self.get_combined_score(daily_recom['preference_score'].values, daily_recom['nutritional_score'].values)
         best_iteration = daily_recom['combined_score'].idxmin()
-
-        '''
-        if calculate_nutritional_score:
-            print(daily_recom)
-            print('Best iteration:', best_iteration)
-        '''
 
         return recom[recom['iteration'] == best_iteration]
 
@@ -174,6 +177,27 @@ class Recommender:
         missing = macros_goals-total
         
         return missing
+
+    def get_preference_scores(self, recipe_ids):
+        '''
+        Devuelve la score de preferencias de una lista de ids de recetas
+        '''
+        recipe_ids = recipe_ids[['Recipe1','Recipe2']]
+        total_score = 0
+        for recipe_id in recipe_ids:
+            total_score += self.preference_score(recipe_id)
+
+        return total_score
+
+    def preference_score(self, recipe_id):
+        '''
+        Devuelve la score de preferencias de una receta
+            1. Calcula la score de cada ingrediente individual según su categoría
+            2. La score de la receta es su suma
+        '''
+        ing_rec = ingredients[ingredients['Recipe_id']==recipe_id].copy()
+        ing_rec['score'] = ing_rec['Category'].apply(lambda category: self.preferences.get(category, 0))
+        return ing_rec['score'].sum()
 
     def get_combined_score(self, preference_scores, nutritional_scores):
         '''
@@ -217,17 +241,6 @@ class Recommender:
 
         return eucl_dist
 
-    @staticmethod   
-    def get_preferences_score(recipe_id, preferences):
-        '''
-        Devuelve la score de preferencias de una receta
-            1. Calcula la score de cada ingrediente individual según su categoría
-            2. La score de la receta es su suma
-        '''
-        ing_rec = ingredients[ingredients['Recipe_id']==recipe_id].copy()
-        ing_rec['score'] = ing_rec['Category'].apply(lambda category: preferences.get(category, 0))
-        return ing_rec['score'].sum()
-
     @staticmethod
     def filter_by_range(df, column, values):
         filtered_df = df[df[column].between(left=values[0], right=values[1])]
@@ -251,12 +264,17 @@ def create_recommender(user):
     :param user: es un dict con la info sacada del json correspondiente 
     Método para crear recommender a partir de un perfil de usuario 
     '''
-    preferences = {'Carne': 1.05, 
-                    'Pollo': 0.3333333333333333, 
-                    'Pescado': 0.3666666666666667, 
-                    'Legumbres': 0.8833333333333334, 
-                    'Verduras': -0.4, 'Patatas': 0.275, 'Arroz': 0.0, 'Pasta': 0.25, 
-                    'Huevos': -0.5833333333333333}
+    preferences = {
+        "Carne": 1.05, 
+        "Pollo": -0.3333333333333333, 
+        "Pescado": 0.3666666666666667, 
+        "Legumbres": 0.8833333333333334, 
+        "Verduras": 0.4, 
+        "Patatas": 0.275, 
+        "Arroz": 0.0, 
+        "Pasta": 0.25, 
+        "Huevos": 0.6833333333333333
+    }
 
     recommender = Recommender(
                     tdee = user['tdee'],
