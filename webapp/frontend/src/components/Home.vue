@@ -18,7 +18,7 @@
     <body class="landing-page landing-page2">
 
        <div class="wrapper">
-            <div class="parallax filter-gradient green" data-color="green">
+            <div class="parallax filter-gradient light-green" data-color="light-green">
                 <div class= "container">
                     <div class="row">
                         <div class="col-md-7  hidden-xs">
@@ -32,8 +32,8 @@
                                 <br>
                                 <h2> Tu app nutricional </h2>
                                 <div class="buttons" >
-                                    <a href="https://github.com/Shenia23/mangio" class="btn" style="color:grey">
-                                    <i class="fa fa-github" style="color:grey"></i> Explicación
+                                    <a href="https://github.com/Shenia23/mangio" class="btn" style="color:#3E4243">
+                                    <i class="fa fa-github" style="color:#3E4243"></i> Explicación
                                     </a>
                                 </div>
                             </div>
