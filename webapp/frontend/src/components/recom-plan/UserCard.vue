@@ -75,7 +75,7 @@
 
         <v-card-text>
           ¡Tenemos en cuenta tus gustos!
-          Según tu información, intentaremos recomendarte recetas que lleven {{ most_liked }}, y evitar las que tengan {{ least_liked }}.
+          Según tu información, intentaremos recomendarte recetas con {{ most_liked }}, y evitar las que lleven {{ least_liked }}.
         </v-card-text>
           
       </div>

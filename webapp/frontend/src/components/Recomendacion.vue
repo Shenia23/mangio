@@ -66,7 +66,8 @@
                 <v-list-item 
                     v-if="r.Comida==comida" 
                     class="receta"
-                    @click="displayInfo(index,r)"
+                    @mouseover="displayOptions=index"
+                    @mouseout="displayOptions = null"
                 >
                 <v-overlay
                 :z-index="zIndex"
@@ -86,26 +87,46 @@
                     </div>
                 </div>
                 </v-overlay>
-                    <v-list class="info_receta">
-                        <v-list-item-title class="body-1" >
-                        <p class="text-left font-weight-bold">
-                                {{ r.Nombre }}
-                            </p> 
-                        </v-list-item-title>
-                        <v-list-item-subtitle> 
-                            <p class="text-left caption">
-                                {{ r.energia.toFixed(1) }} kcal
-                            </p> 
-                        </v-list-item-subtitle>
-                    </v-list>
-                    <v-divider></v-divider>
-                    <v-list-item-avatar 
-                    size="60" 
-                    color="#FAD7A0"
-                    rounded>
-                        <img v-if="r.image_src !== 'None'" :src="getImageSrc(index)" />
-                        <v-icon size="35" v-else> {{ default_icon[comida] }} </v-icon>
-                    </v-list-item-avatar>
+                <v-list class="info_receta">
+                    <v-list-item-title class="body-1" >
+                    <div class="text-left font-weight-bold">
+                            {{ r.Nombre }}
+                        </div> 
+                    </v-list-item-title>
+                    <v-list-item-subtitle> 
+                        <p class="text-left caption">
+                            {{ r.energia.toFixed(1) }} kcal
+                        </p> 
+                    </v-list-item-subtitle>
+                </v-list>
+
+                <v-divider></v-divider>
+                
+                <v-list-item-avatar 
+                size="60" 
+                color="#FAD7A0"
+                rounded>
+                    <img v-if="r.image_src !== 'None'" :src="getImageSrc(index)" />
+                    <v-icon size="35" v-else> {{ default_icon[comida] }} </v-icon>
+                </v-list-item-avatar>
+
+                <v-icon 
+                size="25px"
+                class="option-icon"
+                v-show="displayOptions===index"
+                @click="displayInfo(index,r)"
+                >
+                    mdi-information-outline
+                </v-icon>
+                <v-icon 
+                size="25px"
+                class="option-icon"
+                v-show="displayOptions===index"
+                :class="{'reroll': animated}" @animationend="animated=false"
+                @click="reroll(index)"
+                >
+                    mdi-rotate-right
+                </v-icon>
                 </v-list-item>
             </div>
             </v-list-item-content>
@@ -172,6 +193,8 @@ export default {
               },
           apiin: require('../assets/apiín.png'),
           loading: true,
+          displayOptions: null,
+          animated: false
     };
   },
   computed: {
@@ -203,6 +226,27 @@ export default {
           console.error(error);
         });
     },
+    reroll(index){
+        const path = "http://localhost:5000/reroll";
+        var reroll_params = {
+            username: this.$store.getters.username,
+            recipe_id: this.rec[index]['Recipe_id'],
+            food_type: this.rec[index]['Comida']
+        }
+        this.animated=true
+        axios
+        .post(path, reroll_params)
+        .then((res) => {
+          console.log(res.data[0])
+          var new_rec = res.data[0]
+          new_rec['overlay'] = false
+          this.animated=false
+          this.$set(this.rec, index, new_rec)
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
     reload(){
         this.loading = true
         this.getRecomendacion()
@@ -213,6 +257,7 @@ export default {
     },
     exitOverlay(index){
         this.setOverlay(index,false)
+        this.displayOptions=null
         this.forceRerender()
     },
     forceRerender() {
@@ -252,6 +297,11 @@ export default {
     width: 90%;
 }
 
+.option-icon{
+    margin-left: 10px;
+    color: green;
+}
+
 .stats{
     margin: auto;
 }
@@ -274,5 +324,20 @@ export default {
     margin: 0;
 }
 
+.reroll {
+  animation-name: spin;
+  animation-duration: 1000ms;
+  animation-iteration-count: 3;
+  animation-timing-function: linear; 
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
 
 </style>

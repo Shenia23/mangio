@@ -16,15 +16,11 @@ recipe_nvalues = recipe_nvalues.set_index('Recipe_id', drop=False)
 recipe_nvalues.index.name = 'index'
 
 comb_scaler = StandardScaler()
-recipe_scaler = StandardScaler()
 
 combined[TARGET_MACROS] = comb_scaler.fit_transform(combined[TARGET_MACROS])
 
-scaled_recipes = recipe_nvalues.copy()
-scaled_recipes[TARGET_MACROS] = recipe_scaler.fit_transform(recipe_nvalues[TARGET_MACROS])
 
 # TODO filtrado extra para que no recomiende comidas de 100 kcal y cenas de 1000 kcal 
-# TODO implementar que se envíen recetas similares
 
 class Recommender:
 
@@ -156,14 +152,29 @@ class Recommender:
 
         return recom[recom['iteration'] == best_iteration]
 
-    def most_similar(self, recipe, n=1):
+    def most_similar(self, recipe_id, food_type, n=1):
         '''
         Devuelve las recetas más similares
         '''
-        eucl_dist = Recommender.get_euclidean_distances(recipe, scaled_recipes, recipe_scaler)
+        recipe = recipe_nvalues.loc[recipe_id]
+        calories = recipe[KCAL]
+        self.alpha -= 0.1
 
-        most_similar_indexes = np.argsort(eucl_dist)[:n]
-        most_similar = recipe_nvalues.iloc[most_similar_indexes]
+        limited_recipes = Recommender.filter_by_range(
+                                        df=recipe_nvalues,
+                                        column=KCAL,
+                                        values=[calories*0.8, calories*1.2]
+                                    ).reset_index()
+        limited_recipes = limited_recipes[limited_recipes['Recipe_id']!=recipe_id]
+
+        eucl_dist = Recommender.get_euclidean_distances([recipe[TARGET_MACROS]], limited_recipes, StandardScaler(), scale_df=True)
+        limited_recipes['nutritional_score'] = eucl_dist
+        limited_recipes['preference_score'] = limited_recipes['Recipe_id'].apply(self.preference_score)
+        limited_recipes['combined_score'] = self.get_combined_score(limited_recipes['preference_score'].values, limited_recipes['nutritional_score'].values)
+        best_reroll = limited_recipes['combined_score'].idxmin()
+
+        most_similar = limited_recipes.iloc[[best_reroll]].copy()
+        most_similar['Comida'] = food_type
 
         return most_similar
 
@@ -258,6 +269,12 @@ def getRecommendation(username):
     end = time.time()
     print("Recommendation time: ", end-start)
     return recipes2dict(recommendation)
+
+def getReroll(username, recipe_id, food_type):
+    print("Reroll for ",username)
+    recommender = create_recommender(getUser(username))
+    reroll = recommender.most_similar(recipe_id, food_type)
+    return recipes2dict(reroll)
 
 def create_recommender(user): 
     '''

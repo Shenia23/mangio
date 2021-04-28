@@ -4,7 +4,7 @@ import json
 from flask_cors import CORS, cross_origin
 import requests
 from app.user.user import User, createNewUser
-from app.recommender.recommender import getRecommendation
+from app.recommender.recommender import getRecommendation, getReroll
 import os
 
 app = Flask(__name__,
@@ -12,7 +12,7 @@ app = Flask(__name__,
             template_folder="./dist")
 cors = CORS(app, support_credentials=True,
             resources={r"/api/*": {"origins": "*"}})
-
+app.config['TESTING'] = True
 
 @app.route('/api/random')
 def random_number():
@@ -71,11 +71,23 @@ def get_predetermined_profiles():
 
 @app.route('/recomendacion', methods=['GET', 'POST'])
 @cross_origin()
-def get_recomendacion():
+def recommendate():
     user = request.get_json()
     data = getRecommendation(user['username'])
     response = app.response_class(
         response=json.dumps(data),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
+
+@app.route('/reroll', methods=['GET', 'POST'])
+@cross_origin()
+def reroll():
+    params = request.get_json()
+    reroll = getReroll(params['username'], params['recipe_id'], params['food_type'])
+    response = app.response_class(
+        response=json.dumps(reroll),
         status=200,
         mimetype='application/json'
     )
