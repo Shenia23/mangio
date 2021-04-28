@@ -1,7 +1,8 @@
 
 <template >
+
   <v-app  >
-    <v-toolbar color="light-green" class="vToolbar" app>
+    <v-toolbar color="#8bc34a" class="vToolbar" app>
       <span class='hidden-sm-and-up'>
         <v-toolbar-side-icon @click='sidebar = !sidebar'> </v-toolbar-side-icon>
       </span>
@@ -12,9 +13,9 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class='hidden-xs-only'>
-        <v-btn color="light-green" :depressed="true" v-for='item in menuItems' :key='item.title' :to='item.path'>
-          <v-icon left dark>{{ item.icon }}</v-icon>
-          {{ item.title }}
+        <v-btn class="items" :depressed="true" v-for='item in menuItems' :key='item.title' :to='item.path'>
+          <v-icon size=30 color="white" left dark class="itemIcon">{{ item.icon }}</v-icon>
+          <p class="itemTitle" style="font-weight:bold;" > {{ item.title }} </p>
         </v-btn>
       </v-toolbar-items>
     </v-toolbar>
@@ -52,23 +53,48 @@ export default {
 
 
 <style>
+
+
+@import url('https://fonts.googleapis.com/css?family=Cairo');
+
+
 .footer{
   margin-top: 100px;
 }
 
 .vTitle{
-font-family: "Gill Sans";
+font-family: 'Cairo', sans-serif;
+font-weight: 'bold';
+color: white;
+text-shadow: 1px 1px 2px #000000;
 font-size: 300%;
     cursor: pointer;
 
 }
 
-.vToolbar{
-  color:rgb(51, 161, 51);
-   max-height: 10%;
-   width: 100%;
+
+.itemTitle{
+  font-family: 'Cairo', sans-serif;
+  color:white;
+  margin-top:5%;
+  font-size:150%
+  
+}
+
+
+.items{
+
+   font-size:200%;
+   background:#8bc34a!important
 
 }
+
+.vToolbar{
+   max-height: 10%;
+   width: 100%;
+   background:l#49a34c!important
+}
+
 
 #app {
   font-family: "Bodoni MT", Helvetica, sans-serif;
@@ -79,5 +105,7 @@ font-size: 300%;
   background: #fffbf0;
 
 }
-</style>
 
+
+
+</style>
