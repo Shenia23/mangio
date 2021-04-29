@@ -57,7 +57,7 @@
         >
             <v-list-item-content>
             <div class="overline text-left" style="margin-left:20px"> 
-                {{ comida }}
+                {{ comida }} 
             </div>
             <div v-for="(r, index) in rec"
                 :key="index"
@@ -66,11 +66,12 @@
                 <v-list-item 
                     v-if="r.Comida==comida" 
                     class="receta"
-                    @click="displayInfo(index,r)"
+                    @mouseover="displayOptions=index"
+                    @mouseout="displayOptions = null"
                 >
                 <v-overlay
                 :z-index="zIndex"
-                :value="r.overlay"
+                :value="overlay === index"
                 >
                 <div class="recipe-info-card">
                     <recipe-info :recipe="r" :default_icon="default_icon"></recipe-info>
@@ -79,33 +80,53 @@
                             class="white--text"
                             size="30px"
                             color="orange"
-                            @click="exitOverlay(index)"
+                            @click="exitOverlay()"
                         >
                             mdi-close 
                         </v-icon>
                     </div>
                 </div>
                 </v-overlay>
-                    <v-list class="info_receta">
-                        <v-list-item-title class="body-1" >
-                        <p class="text-left font-weight-bold">
-                                {{ r.Nombre }}
-                            </p> 
-                        </v-list-item-title>
-                        <v-list-item-subtitle> 
-                            <p class="text-left caption">
-                                {{ r.energia.toFixed(1) }} kcal
-                            </p> 
-                        </v-list-item-subtitle>
-                    </v-list>
-                    <v-divider></v-divider>
-                    <v-list-item-avatar 
-                    size="60" 
-                    color="#FAD7A0"
-                    rounded>
-                        <img v-if="r.image_src !== 'None'" :src="getImageSrc(index)" />
-                        <v-icon size="35" v-else> {{ default_icon[comida] }} </v-icon>
-                    </v-list-item-avatar>
+                <v-list class="info_receta">
+                    <v-list-item-title class="body-1" >
+                    <div class="text-left font-weight-bold">
+                            {{ r.Nombre }}
+                        </div> 
+                    </v-list-item-title>
+                    <v-list-item-subtitle> 
+                        <p class="text-left caption">
+                            {{ r.energia.toFixed(1) }} kcal
+                        </p> 
+                    </v-list-item-subtitle>
+                </v-list>
+
+                <v-divider></v-divider>
+                
+                <v-list-item-avatar 
+                size="60" 
+                color="#FAD7A0"
+                rounded>
+                    <img v-if="r.image_src !== 'None'" :src="getImageSrc(index)" />
+                    <v-icon size="35" v-else> {{ default_icon[comida] }} </v-icon>
+                </v-list-item-avatar>
+
+                <v-icon 
+                size="25px"
+                class="option-icon"
+                v-show="displayOptions===index"
+                @click="displayInfo(index,r)"
+                >
+                    mdi-information-outline
+                </v-icon>
+                <v-icon 
+                size="25px"
+                class="option-icon"
+                v-show="displayOptions===index"
+                :class="{'reroll': animated}" @animationend="animated=false"
+                @click="reroll(index)"
+                >
+                    mdi-rotate-right
+                </v-icon>
                 </v-list-item>
             </div>
             </v-list-item-content>
@@ -172,6 +193,9 @@ export default {
               },
           apiin: require('../assets/apiín.png'),
           loading: true,
+          displayOptions: null,
+          overlay: -1,
+          animated: false
     };
   },
   computed: {
@@ -194,10 +218,26 @@ export default {
         .post(path, targetUser)
         .then((res) => {
           this.rec = res.data
-          this.rec.forEach(element => {
-            element.overlay = false
-          })
           this.loading = false
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    reroll(index){
+        const path = "http://localhost:5000/reroll";
+        var reroll_params = {
+            username: this.$store.getters.username,
+            recipe_id: this.rec[index]['Recipe_id'],
+            food_type: this.rec[index]['Comida']
+        }
+        this.animated=true
+        axios
+        .post(path, reroll_params)
+        .then((res) => {
+          var new_rec = res.data[0]
+          this.animated=false
+          this.$set(this.rec, index, new_rec)
         })
         .catch((error) => {
           console.error(error);
@@ -207,29 +247,19 @@ export default {
         this.loading = true
         this.getRecomendacion()
     },
-    //overlay methods
     displayInfo(index,recipe){
-        this.setOverlay(index,true)
+        this.overlay = index
     },
-    exitOverlay(index){
-        this.setOverlay(index,false)
-        this.forceRerender()
-    },
-    forceRerender() {
-      this.recom_key += 1; 
-    },
-    setOverlay(index, value){
-        var updatedRec = this.rec[index]
-        updatedRec.overlay = value
-        this.$set(this.rec, index, updatedRec)
-        console.log(this.rec[index].overlay)
+    exitOverlay(){
+        this.overlay = -1
+        this.displayOptions=null
     },
     getImageSrc(index){
         return this.rec[index].image_src
     },
     mouseOver: function(){
-            this.active = !this.active;   
-        }
+        this.active = !this.active;   
+    }
   },
   created() {
       this.getRecomendacion();
@@ -250,6 +280,11 @@ export default {
 .infos{
     margin:auto;
     width: 90%;
+}
+
+.option-icon{
+    margin-left: 10px;
+    color: green;
 }
 
 .stats{
@@ -274,5 +309,20 @@ export default {
     margin: 0;
 }
 
+.reroll {
+  animation-name: spin;
+  animation-duration: 800ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear; 
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
 
 </style>
