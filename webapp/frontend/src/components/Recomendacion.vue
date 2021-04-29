@@ -57,7 +57,7 @@
         >
             <v-list-item-content>
             <div class="overline text-left" style="margin-left:20px"> 
-                {{ comida }}
+                {{ comida }} 
             </div>
             <div v-for="(r, index) in rec"
                 :key="index"
@@ -71,7 +71,7 @@
                 >
                 <v-overlay
                 :z-index="zIndex"
-                :value="r.overlay"
+                :value="isOverlay(index)"
                 >
                 <div class="recipe-info-card">
                     <recipe-info :recipe="r" :default_icon="default_icon"></recipe-info>
@@ -80,7 +80,7 @@
                             class="white--text"
                             size="30px"
                             color="orange"
-                            @click="exitOverlay(index)"
+                            @click="exitOverlay()"
                         >
                             mdi-close 
                         </v-icon>
@@ -194,6 +194,7 @@ export default {
           apiin: require('../assets/apiín.png'),
           loading: true,
           displayOptions: null,
+          overlay: -1,
           animated: false
     };
   },
@@ -217,9 +218,6 @@ export default {
         .post(path, targetUser)
         .then((res) => {
           this.rec = res.data
-          this.rec.forEach(element => {
-            element.overlay = false
-          })
           this.loading = false
         })
         .catch((error) => {
@@ -239,7 +237,6 @@ export default {
         .then((res) => {
           console.log(res.data[0])
           var new_rec = res.data[0]
-          new_rec['overlay'] = false
           this.animated=false
           this.$set(this.rec, index, new_rec)
         })
@@ -251,23 +248,22 @@ export default {
         this.loading = true
         this.getRecomendacion()
     },
-    //overlay methods
     displayInfo(index,recipe){
-        this.setOverlay(index,true)
+        this.overlay = index
     },
-    exitOverlay(index){
-        this.setOverlay(index,false)
+    exitOverlay(){
+        this.overlay = -1
         this.displayOptions=null
-        this.forceRerender()
     },
     forceRerender() {
       this.recom_key += 1; 
     },
-    setOverlay(index, value){
-        var updatedRec = this.rec[index]
-        updatedRec.overlay = value
-        this.$set(this.rec, index, updatedRec)
-        console.log(this.rec[index].overlay)
+    isOverlay(index){
+        if(this.overlay === index){
+            return true
+        } 
+        return false
+
     },
     getImageSrc(index){
         return this.rec[index].image_src
@@ -326,8 +322,8 @@ export default {
 
 .reroll {
   animation-name: spin;
-  animation-duration: 1000ms;
-  animation-iteration-count: 3;
+  animation-duration: 800ms;
+  animation-iteration-count: infinite;
   animation-timing-function: linear; 
 }
 
