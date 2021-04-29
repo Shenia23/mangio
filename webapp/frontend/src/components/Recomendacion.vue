@@ -10,7 +10,7 @@
         class="division"
         >
         <template slot="progress" id="loading">
-            <v-progress-linear color="green" height="6" indeterminate></v-progress-linear>
+            <v-progress-linear color="var(--main-green)" height="6" indeterminate></v-progress-linear>
         </template>
         <v-row id="title-row">
             <v-col cols="12" md=3>
@@ -284,7 +284,7 @@ export default {
 
 .option-icon{
     margin-left: 10px;
-    color: green;
+    color: var(--main-green);
 }
 
 .stats{

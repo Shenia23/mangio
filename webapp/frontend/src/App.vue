@@ -1,8 +1,8 @@
 
 <template >
 
-  <v-app  >
-    <v-toolbar color="#8bc34a" class="vToolbar" app>
+  <v-app>
+    <v-toolbar color="var(--main-green)" class="vToolbar" app>
       <span class='hidden-sm-and-up'>
         <v-toolbar-side-icon @click='sidebar = !sidebar'> </v-toolbar-side-icon>
       </span>
@@ -57,6 +57,10 @@ export default {
 
 @import url('https://fonts.googleapis.com/css?family=Cairo');
 
+:root {
+    --main-green:#87c441;
+}
+
 
 .footer{
   margin-top: 100px;
@@ -85,14 +89,13 @@ font-size: 300%;
 .items{
 
    font-size:200%;
-   background:#8bc34a!important
+   background:var(--main-green)!important
 
 }
 
 .vToolbar{
    max-height: 10%;
    width: 100%;
-   background:l#49a34c!important
 }
 
 
