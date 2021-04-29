@@ -238,12 +238,4 @@ import RadarChart from '../graphs/RadarChart.vue'
     margin: auto;
 }
 
-.objectives{
-  margin: auto;
-  padding: 5%;
-  border-radius: 10px;
-  background-color: rgb(197, 236, 182);
-  color: #3f9b8be0;
-}
-
 </style>s

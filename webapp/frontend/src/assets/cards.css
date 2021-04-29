@@ -1,5 +1,5 @@
 .overline{
-    color: green;
+    color: var(--main-green);
 }
 
 .receta{
@@ -30,7 +30,7 @@
     background-color: transparent;
 }
 .receta:hover{
-    border-color:green;
+    border-color: var(--main-green);
 }
 
 .v-card:hover{

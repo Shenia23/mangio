@@ -465,7 +465,7 @@ export default {
 <style scoped lang="scss">
 .formulario {
   margin-top: 1cm;
-  background-color: rgb(113, 192, 113);
+  background-color: var(--main-green);
   margin: auto;
   width: 95%;
   border: 2px solid rgb(97, 213, 97);
@@ -533,7 +533,7 @@ input {
 }
 
 .checkbox-form .item input:checked ~ .checkmark {
-  background-color: green;
+  background-color: var(--main-green);
 }
 
 .checkbox-form .checkmark:after {
@@ -690,7 +690,7 @@ p {
 }
 //default button
 .btn {
-  color: green;
+  color: var(--main-green);
   cursor: pointer;
   // display: block;
   font-size: 16px;
@@ -720,7 +720,7 @@ p {
 
   rect {
     fill: none;
-    stroke: green;
+    stroke: var(--main-green);
     stroke-width: 2;
     stroke-dasharray: 422, 0;
     transition: all 0.35s linear;
@@ -730,7 +730,7 @@ p {
 .btn-1:hover {
   font-weight: 900;
   letter-spacing: 1px;
-  color: green;
+  color: var(--main-green);
 
   rect {
     stroke-width: 5;
