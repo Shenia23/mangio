@@ -71,7 +71,7 @@
                 >
                 <v-overlay
                 :z-index="zIndex"
-                :value="isOverlay(index)"
+                :value="overlay === index"
                 >
                 <div class="recipe-info-card">
                     <recipe-info :recipe="r" :default_icon="default_icon"></recipe-info>
@@ -235,7 +235,6 @@ export default {
         axios
         .post(path, reroll_params)
         .then((res) => {
-          console.log(res.data[0])
           var new_rec = res.data[0]
           this.animated=false
           this.$set(this.rec, index, new_rec)
@@ -255,22 +254,12 @@ export default {
         this.overlay = -1
         this.displayOptions=null
     },
-    forceRerender() {
-      this.recom_key += 1; 
-    },
-    isOverlay(index){
-        if(this.overlay === index){
-            return true
-        } 
-        return false
-
-    },
     getImageSrc(index){
         return this.rec[index].image_src
     },
     mouseOver: function(){
-            this.active = !this.active;   
-        }
+        this.active = !this.active;   
+    }
   },
   created() {
       this.getRecomendacion();
