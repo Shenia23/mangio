@@ -1,0 +1,33 @@
+Recipe_id,Ingrediente,Cantidad,Unidad,Indice,Grams,Total_Grams
+7251,champiñón,250,gramos,614,1,250.0
+7251,ajo,3,unidades,587,0,0.0
+7251,vino,80,mililitros,825,1,80.0
+7251,perejil,1,cucharada,899,10,10.0
+7251,mantequilla,1,cucharada sopera,419,17,17.0
+7251,sal,1,pizca,908,1,1.0
+7251,pimienta,1,pizca,901,1,1.0
+58075,pollo,500,gramos,242,1,500.0
+58075,tomate,300,gramos,667,1,300.0
+58075,sal,1,pizca,908,1,1.0
+58075,pimienta negra,1,pizca,902,1,1.0
+58075,cerveza,150,mililitros,781,1,150.0
+58075,azúcar,1,pizca,936,1,1.0
+55714,galleta,200,gramos,469,1,200.0
+55714,plátano,1.5,unidades,721,0,0.0
+55714,leche,1.5,vasos,27,250,375.0
+38885,patata,2,None,643,,
+38885,pimienta,1,pizca,901,1,1.0
+38885,arroz,100,gramos,428,1,100.0
+38885,pavo,1,kilo,226,1000,1000.0
+38885,garbanzo,300,gramos,550,1,300.0
+38885,sal,1,cucharadita,908,7,7.0
+38885,zanahoria,2,None,672,,
+38885,ajo,1,diente,587,3,3.0
+38885,orégano,1,pizca,892,1,1.0
+38885,pollo,1,cucharada,242,10,10.0
+73689,lacón,1,kilogramo,207,1000,1000.0
+73689,grelo,450,gramos,630,1,450.0
+73689,chorizo,200,gramos,181,1,200.0
+73689,patata,3,None,643,,
+73689,sal,1,cucharada,908,10,10.0
+73689,pimentón,2,pellizcos,900,1,2.0

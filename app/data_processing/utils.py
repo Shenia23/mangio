@@ -212,7 +212,7 @@ def extract_quantity(ingredient):
         return eval((re.findall(r"[-+]?\d*/\d+", ingredient)[0]).replace('⁄', '/').replace('⅟', '1/'))
 
     if len(re.findall(r"[-+]?\d*\.\d+|\d+", ingredient)) != 0:
-        return re.findall(r"[-+]?\d*\.\d+|\d+", ingredient)[0]
+        return max(re.findall(r"[-+]?\d*\.\d+|\d+", ingredient))
 
     for fraction in unicode_fractions:
         if fraction in ingredient:
@@ -513,7 +513,6 @@ def main():
 
     # extraction_analysis()
     extracted_ingredients = extract_ingredients_to_csv(recipes)
-    recipes_ingredients_df.to_csv('../../data/ingredientes_demostracion.csv', index=False, header=True, sep=',')
     # filter_dataset_100()
 
     return
@@ -545,7 +544,9 @@ def main2():
     #measure_average_rate(recipes, bedca_ingredients,ingredients_id,bedca_ingredients_lower)
 
     # extraction_analysis()
-    extract_ingredients_to_csv(recipes)
+    recipes_ingredients_df=extract_ingredients_to_csv(recipes)
+    recipes_ingredients_df.to_csv('../../data/ingredientes_demostracion.csv', index=False, header=True, sep=',')
+
     # filter_dataset_100()
 
     return
