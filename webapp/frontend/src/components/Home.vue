@@ -274,23 +274,27 @@ export default {
 };
 </script>
 
-  <style>
-@import "../assets/css/bootstrap.css";
-@import "../assets/css/landing-page.css";
-@import "http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css";
-@import "../assets/css/pe-icon-7-stroke.css";
-@import "http://fonts.googleapis.com/css?family=Open+Sans:300italic,400,300";
+<style scoped>
 
-.btn {
-  background-color: #ebebeb;
-  color: grey;
-  padding: 10px;
-  font-size: 180%;
-  height: 180%;
-  width: 80%;
-}
-.btn:hover {
-  background: rgb(182, 182, 182);
-}
+  @import 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap-grid.min.css';
+  @import "../assets/css/landing-page.css";
+  @import "http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css";
+  @import "../assets/css/pe-icon-7-stroke.css";
+  @import "http://fonts.googleapis.com/css?family=Open+Sans:300italic,400,300";
+
+  
+  
+  .btn {
+    background-color: #ebebeb;
+    color: grey;
+    padding: 10px;
+    font-size: 180%;
+    height: 180%;
+    width: 80%;
+  }
+  .btn:hover {
+    background: rgb(182, 182, 182);
+  }
+  
 </style>
 
