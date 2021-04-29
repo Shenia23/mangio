@@ -5,7 +5,7 @@
     </div>
     <v-form ref="form" v-model="valid" lazy-validation class="formulario">
       <v-text-field
-        v-model="name"
+        v-model="recipe_name"
         :counter="40"
         label="Nombre de la receta"
         required
@@ -40,7 +40,7 @@
         <v-icon> add_circle_outline</v-icon>
       </v-btn>
 
-      <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate">
+      <v-btn :disabled="!valid" color="success" class="mr-4" @click="createRecipe">
         CREACIÓN DE NUEVA RECETA
       </v-btn>
     </v-form>
@@ -79,11 +79,13 @@
 <script>
 import BodyType from "./BodyType.vue";
 import Ingredients from "./Ingredients.vue";
+import axios from "axios";
+
 export default {
   components: { BodyType, Ingredients },
   data: () => ({
     valid: true,
-    name: "",
+    recipe_name: "",
     selected_ingredient: "",
     selected_unit:"",
     selected_quantity:"",
@@ -1095,6 +1097,28 @@ export default {
       this.recipe_ingredients.push(new_ingredient); // push item to existing array
       this.clean_ingredient_inputs();
     },
+    createRecipe() {
+      
+
+      var new_recipe = {
+        creator: this.$store.getters.username,
+        recipe_name: this.recipe_name,
+        ingredients: this.recipe_ingredients
+      };
+
+      axios({
+        baseURL: "http://localhost:5000",
+        url: "/newRecipe",
+        method: "post",
+        data: new_recipe,
+      })
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     
   },
 };
@@ -1110,7 +1134,6 @@ export default {
   border: 3px solid rgb(97, 213, 97);
   padding: 10px;
   border-radius: 25px;
-
   justify-content: flex-end;
   text-align: right;
   line-height: 50px;
@@ -1127,17 +1150,14 @@ input {
   width: 100px;
   height: 100px;
 }
-
 .table{
   margin-top:20px;
   border: 3px solid rgb(141, 232, 141);
   width: 80%;
   margin: auto;
   margin-top:40px;
-
   justify-content: flex-end;
   background-color: rgb(177, 235, 179);
-
-
 }
 </style>
+
