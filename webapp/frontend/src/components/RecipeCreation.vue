@@ -1,80 +1,223 @@
 <template>
-  <v-container>
-    <div>
-      <h1 class="title">Creación de recetas</h1>
-    </div>
-    <v-form ref="form" v-model="valid" lazy-validation class="formulario">
-      <v-text-field
-        v-model="recipe_name"
-        :counter="40"
-        label="Nombre de la receta"
-        required
-        style="margin-bottom: 10px"
-      ></v-text-field>
+  <div class="recommendation-body" id="main-row">
+    <v-container>
+      <div>
+        <v-row id="title-row" style="margin: 35px">
+          <h1 class="tituloRC">Creación de recetas</h1>
+        </v-row>
+      </div>
+      <div class="row">
+        <v-col cols="12" md="6">
+          <!-- COL 1: cards de RECOMENDACIONES y RECETAS-->
+          <v-form ref="form" v-model="valid" lazy-validation class="formulario">
 
-      <v-autocomplete
-        v-model="selected_ingredient"
-        :items="ingredients"
-        dense
-        filled
-        label="Escoge un ingrediente"
-      ></v-autocomplete>
+            <v-autocomplete
+              v-model="selected_ingredient"
+              :items="ingredients"
+              dense
+              filled
+              label="Escoge un ingrediente"
+            ></v-autocomplete>
 
-      <v-text-field
-      v-model="selected_quantity"
-      label="Cantidad"
-      required
-      type="number"
-      style="margin-bottom:20px;"
-    ></v-text-field>
+            <v-text-field
+              v-model="selected_quantity"
+              label="Cantidad"
+              required
+              type="number"
+              style="margin-bottom: 20px"
+            ></v-text-field>
 
-      <v-autocomplete
-        v-model="selected_unit"
-        :items="units"
-        dense
-        filled
-        label="Escoge la unidad"
-      ></v-autocomplete>
+            <v-autocomplete
+              v-model="selected_unit"
+              :items="units"
+              dense
+              filled
+              label="Escoge la unidad"
+            ></v-autocomplete>
 
-      <v-btn color="green" fab dark style="margin-right: 20px" @click="addIngredient(selected_ingredient, selected_quantity,selected_unit)">
-        <v-icon> add_circle_outline</v-icon>
-      </v-btn>
+            <div class="buttonHolder">
+             <v-btn text>
+              Añadir ingrediente
+            </v-btn>
+            <v-btn
+            
+              color="green"
+              fab
+              dark
+              @click="
+                addIngredient(
+                  selected_ingredient,
+                  selected_quantity,
+                  selected_unit
+                )
+              "
+            >
+            
+              <v-icon> add_circle_outline</v-icon>
+            </v-btn>
+            </div>
 
-      <v-btn :disabled="!valid" color="success" class="mr-4" @click="createRecipe">
-        CREACIÓN DE NUEVA RECETA
-      </v-btn>
-    </v-form>
+              <!-- results of <div v-for="item in list"></div>  -->
+              <div class="buttonHolder">
+                <img width="40%" height="40%" src="../assets/colaboza.png" />
+              </div>
+              <div>
+                <h4 class="coltext">
+                  Tu ayuda para hacer crecer a Mangio! significa mucho para
+                  nosotros.
+                </h4>
+              </div>
 
-<v-simple-table class="table">
-    <template v-slot:default>
-      <thead>
-        <tr>
-          <th class="text-left">
-            Ingrediente
-          </th>
-          <th class="text-left">
-            Cantidad
-          </th>
-          <th class="text-left">
-            Unidad
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          v-for="item in recipe_ingredients"
-          :key="item.name"
-        >
-          <td class="text-left">{{ item.name }}</td>
-          <td class="text-left">{{ item.quantity }}</td>
-          <td class="text-left">{{ item.unit }}</td>
-        </tr>
-      </tbody>
-    </template>
-  </v-simple-table>
+            <v-text-field
+              v-model="name"
+              :counter="40"
+              label="Nombre de la receta"
+              required
+              style="margin-bottom: 3px"
+            ></v-text-field>
 
-  </v-container>
+              <v-text-field
+              v-model="comensales"
+              :counter="40"
+              label="Número de comensales"
+              required
+              style="margin-bottom: 3px"
+            ></v-text-field>
+
+            <div class="buttonHolder">
+             <v-btn
+              :disabled="!valid"
+              color="success"
+              class="mr-4"
+              @click="validate"
+            >
+              CREACIÓN DE NUEVA RECETA
+            </v-btn>
+          </div>
+
+           
+          </v-form>
+        </v-col>
+
+        <v-col cols="12" md="6" class="stats">
+          <!-- COL 2: STATS de las comidas + EXPLICACIÓN-->
+          <v-simple-table class="table">
+            <template v-slot:default>
+              <thead>
+                <tr>
+                  <th style="font-size: 40%; color:black" class="text-left">Ingrediente</th>
+                  <th style="font-size: 40%; color:black" class="text-left">Cantidad</th>
+                  <th style="font-size: 40%; color:black" class="text-left">Unidad</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in recipe_ingredients" :key="item.name">
+                  <td class="text-left">{{ item.name }}</td>
+                  <td class="text-left">{{ item.quantity }}</td>
+                  <td class="text-left">{{ item.unit }}</td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
+        </v-col>
+      </div>
+    </v-container>
+  </div>
 </template>
+
+
+<style scoped>
+.column_wrapper {
+  column-count: 2;
+}
+
+.buttonHolder{ text-align: center; }
+
+
+.coltext {
+  font-size: 15px;
+  margin-top: 1px;
+  margin-bottom: 8%;
+  margin-top: -8%;
+  color:var(--main-darkgreen);
+
+
+}
+
+.formulario {
+  font-family: "Cairo", sans-serif;
+  margin-top: 1cm;
+  background-color: white;
+  margin: auto;
+  width: 95%;
+  border: 3px solid var(--main-green);
+  padding: 30px;
+  border-radius: 25px;
+  justify-content: flex-end;
+  text-align: left;
+  line-height: 50px;
+
+}
+
+.text-left {
+  font-size: 402px;
+}
+
+.tituloRC {
+  font-family: "Cairo", sans-serif;
+  font-weight:bold;
+  margin-top: 1cm;
+  margin-bottom: 5cm;
+  background-color: white;
+  margin: auto;
+  width: 95%;
+  border: 3px solid var(--main-green);
+  padding: 20px;
+  border-radius: 10px;
+  justify-content: flex-end;
+  text-align: center;
+  line-height: 30px;
+}
+
+.stats {
+  font-family: "Cairo", sans-serif;
+  margin-top: 1cm;
+  background-color: white;
+  margin: auto;
+  width: 95%;
+  height: 140%;
+  border: 3px solid var(--main-green);
+  padding: 45px;
+  border-radius: 25px;
+  justify-content: flex-end;
+  text-align: left;
+}
+
+input {
+  height: 20px;
+  flex: 0 0 200px;
+  margin-left: 10px;
+}
+.inbtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+}
+
+.table {
+  border: 3px solid var(--main-green);
+  width: 95%;
+  margin: auto;
+  margin-top: 0px;
+  font-size: 50px;
+
+  justify-content: flex-end;
+}
+</style>
+
+
 
 <script>
 import BodyType from "./BodyType.vue";
@@ -87,9 +230,10 @@ export default {
     valid: true,
     recipe_name: "",
     selected_ingredient: "",
-    selected_unit:"",
-    selected_quantity:"",
-    recipe_ingredients: [],
+    selected_unit: "",
+    selected_quantity: "",
+    comensals:"",
+    recipe_ingredients: ["", "", "", "", "", "", "", "", "", "", "", "","",""],
     ingredients: [
       "Arroz con leche",
       "Batido de chocolate",
@@ -1075,7 +1219,6 @@ export default {
       "gramo",
       "ml",
     ],
-    
   }),
   methods: {
     validate() {
@@ -1087,23 +1230,28 @@ export default {
     resetValidation() {
       this.$refs.form.resetValidation();
     },
-    clean_ingredient_inputs(){
-      this.selected_ingredient="";
-      this.selected_quantity="";
-      this.selected_unit="";
+    clean_ingredient_inputs() {
+      this.selected_ingredient = "";
+      this.selected_quantity = "";
+      this.selected_unit = "";
     },
-    addIngredient(selected_ingredient,selected_quantity, selected_unit) {
-      var new_ingredient = { "name":selected_ingredient, "quantity":selected_quantity, "unit":selected_unit };
-      this.recipe_ingredients.push(new_ingredient); // push item to existing array
+    addIngredient(selected_ingredient, selected_quantity, selected_unit) {
+      var new_ingredient = {
+        name: selected_ingredient,
+        quantity: selected_quantity,
+        unit: selected_unit,
+      };
+      this.recipe_ingredients.unshift(new_ingredient); // push item to existing array
+      if (this.recipe_ingredients[this.recipe_ingredients.length - 1] === "") {
+        this.recipe_ingredients.pop();
+      }
       this.clean_ingredient_inputs();
     },
     createRecipe() {
-      
-
       var new_recipe = {
         creator: this.$store.getters.username,
         recipe_name: this.recipe_name,
-        ingredients: this.recipe_ingredients
+        ingredients: this.recipe_ingredients,
       };
 
       axios({
@@ -1119,45 +1267,8 @@ export default {
           console.log(err);
         });
     },
-    
   },
 };
 </script>
 
-
-<style scoped>
-.formulario {
-  margin-top: 1cm;
-  background-color: rgb(155, 245, 158);
-  margin: auto;
-  width: 80%;
-  border: 3px solid rgb(97, 213, 97);
-  padding: 10px;
-  border-radius: 25px;
-  justify-content: flex-end;
-  text-align: right;
-  line-height: 50px;
-}
-input {
-  height: 20px;
-  flex: 0 0 200px;
-  margin-left: 10px;
-}
-.inbtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100px;
-  height: 100px;
-}
-.table{
-  margin-top:20px;
-  border: 3px solid rgb(141, 232, 141);
-  width: 80%;
-  margin: auto;
-  margin-top:40px;
-  justify-content: flex-end;
-  background-color: rgb(177, 235, 179);
-}
-</style>
 
