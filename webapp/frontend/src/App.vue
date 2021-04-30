@@ -17,6 +17,9 @@
           <v-icon size=30 color="white" left dark class="itemIcon">{{ item.icon }}</v-icon>
           <p class="itemTitle" style="font-weight:bold;" > {{ item.title }} </p>
         </v-btn>
+        <v-btn class="items" :depressed="true" >
+          <p class="itemTitle" style="font-weight:bold;" > @{{ this.$store.getters.username}} </p>
+        </v-btn>
       </v-toolbar-items>
     </v-toolbar>
 
@@ -45,7 +48,7 @@ export default {
         { title: 'Nuevo usuario', path: '/nuevoUsuario', icon: 'fiber_new' },
         { title: 'Plan de alimentación', path: '/planalimentacion', icon: 'fastfood' },
         { title: 'Nuevas recetas', path: '/nuevasrecetas', icon: 'add_circle' },
-        { title: this.$store.getters.username}
+        
       ]
     }
   }
