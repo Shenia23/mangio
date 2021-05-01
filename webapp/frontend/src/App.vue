@@ -59,6 +59,10 @@ export default {
 
 :root {
     --main-green:#87c441;
+    --main-orange: #ffc039;
+    --main-orange-pale: #ffc0395f;
+    --main-yellow: #fad586;
+    --main-yellow-pale: #fad586c0;
 }
 
 

@@ -101,15 +101,6 @@
                 </v-list>
 
                 <v-divider></v-divider>
-                
-                <v-list-item-avatar 
-                size="60" 
-                color="#FAD7A0"
-                rounded>
-                    <img v-if="r.image_src !== 'None'" :src="getImageSrc(index)" />
-                    <v-icon size="35" v-else> {{ default_icon[comida] }} </v-icon>
-                </v-list-item-avatar>
-
                 <v-icon 
                 size="25px"
                 class="option-icon"
@@ -127,6 +118,15 @@
                 >
                     mdi-rotate-right
                 </v-icon>
+                
+                <v-list-item-avatar 
+                size="60" 
+                color="#FAD7A0"
+                rounded>
+                    <img v-if="r.image_src !== 'None'" :src="getImageSrc(index)" />
+                    <v-icon size="35" v-else> {{ default_icon[comida] }} </v-icon>
+                </v-list-item-avatar>
+
                 </v-list-item>
             </div>
             </v-list-item-content>

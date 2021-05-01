@@ -4,7 +4,7 @@
       <h1 class="title">Cuestionario de preferencias nutricionales</h1>
     </div>
     <v-stepper v-model="e6" vertical>
-      <v-stepper-step :complete="e6 > 4" step="1" editable>
+      <v-stepper-step :complete="e6 > 1" step="1" color="var(--main-orange)" editable>
         ¿Quién eres?
         <small style="margin-top: 3px"
           >Cuéntanos un poco sobre ti, esto nos ayudará a personalizar tu plan
@@ -45,15 +45,17 @@
           v-model="height.val"
           :label="height.label"
           :thumb-color="height.color"
+          color="var(--main-orange)"
+          track-color="var(--main-orange-pale)"
           thumb-label="always"
           max="220"
           min="150"
           style="margin-bottom: 20px"
         ></v-slider>
-        <v-btn color="primary" @click="e6 = 2"> Continuar </v-btn>
+        <v-btn color="var(--main-orange)" @click="e6 = 2"> Continuar </v-btn>
       </v-stepper-content>
 
-      <v-stepper-step :complete="e6 > 2" step="2" editable>
+      <v-stepper-step :complete="e6 > 2" step="2" color="var(--main-orange)" editable>
         ¿Cuánto pesas?
         <small style="margin-top: 3px">
           Recuerda, puedes conectarte con una balanza Xiaomi para una estimación
@@ -91,6 +93,8 @@
             v-model="weight.val"
             :label="weight.label"
             :thumb-color="weight.color"
+            color="var(--main-orange)"
+            track-color="var(--main-orange-pale)"
             thumb-label="always"
             max="150"
             min="40"
@@ -100,10 +104,10 @@
           <BodyType :body_type="body_type" @changeBodyType="body_type = $event">
           </BodyType>
         </div>
-        <v-btn color="primary" @click="e6 = 3"> Continuar </v-btn>
+        <v-btn color="var(--main-orange)" @click="e6 = 3"> Continuar </v-btn>
       </v-stepper-content>
 
-      <v-stepper-step :complete="e6 > 3" step="3" editable>
+      <v-stepper-step :complete="e6 > 3" step="3" color="var(--main-orange)" editable>
         Actividad física y objetivos nutricionales
         <small style="margin-top: 3px">
           Saber cuánto te mueves y cuál es tu objetivo nos ayudará a adaptar el
@@ -126,7 +130,7 @@
           solo
         ></v-select>
         <v-btn
-          color="primary"
+          color="var(--main-orange)"
           @click="
             e6 = 4;
             created();
@@ -136,7 +140,7 @@
         </v-btn>
       </v-stepper-content>
 
-      <v-stepper-step step="4" editable @click="created()">
+      <v-stepper-step step="4"  color="var(--main-orange)" editable @click="created()">
         Tus preferencias de comida
         <small style="margin-top: 3px">
           Nos gustaría además recomendarte comida que te guste... aunque a veces
@@ -156,7 +160,7 @@
             <b>Preferencias de comida completadas</b>
             <template v-slot:action="{ attrs }">
               <v-btn
-                color="green"
+                color="var(--main-orange)"
                 text
                 v-bind="attrs"
                 @click="snackbar = false"
@@ -175,7 +179,7 @@
           >
             <template>
               <v-card>
-                <v-toolbar style="background-color: rgb(113, 192, 113)" dark>
+                <v-toolbar style="background-color: var(--main-green)" dark>
                   <h1 class="title">
                     Ayuda: cuestionario de gustos
                   </h1></v-toolbar
@@ -463,6 +467,8 @@ export default {
 
 
 <style scoped lang="scss">
+
+
 .formulario {
   margin-top: 1cm;
   background-color: var(--main-green);
@@ -533,7 +539,7 @@ input {
 }
 
 .checkbox-form .item input:checked ~ .checkmark {
-  background-color: var(--main-green);
+  background-color: var(--main-orange);
 }
 
 .checkbox-form .checkmark:after {
@@ -690,7 +696,7 @@ p {
 }
 //default button
 .btn {
-  color: var(--main-green);
+  color: var(--main-orange);
   cursor: pointer;
   // display: block;
   font-size: 16px;
@@ -720,7 +726,7 @@ p {
 
   rect {
     fill: none;
-    stroke: var(--main-green);
+    stroke: var(--main-orange);
     stroke-width: 2;
     stroke-dasharray: 422, 0;
     transition: all 0.35s linear;
@@ -730,7 +736,7 @@ p {
 .btn-1:hover {
   font-weight: 900;
   letter-spacing: 1px;
-  color: var(--main-green);
+  color: var(--main-orange);
 
   rect {
     stroke-width: 5;
