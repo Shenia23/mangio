@@ -89,7 +89,13 @@
               :disabled="!valid"
               color="success"
               class="mr-4"
-              @click="validate"
+              @click="
+                createRecipe(
+                    name,
+                    comensales
+                )
+              
+              "
             >
               CREACIÓN DE NUEVA RECETA
             </v-btn>
@@ -233,6 +239,7 @@ export default {
     selected_unit: "",
     selected_quantity: "",
     comensals:"",
+    ingredients_list: [],
     recipe_ingredients: ["", "", "", "", "", "", "", "", "", "", "", "","",""],
     ingredients: [
       "Arroz con leche",
@@ -1241,19 +1248,22 @@ export default {
         quantity: selected_quantity,
         unit: selected_unit,
       };
+      this.ingredients_list.push(new_ingredient)
       this.recipe_ingredients.unshift(new_ingredient); // push item to existing array
       if (this.recipe_ingredients[this.recipe_ingredients.length - 1] === "") {
         this.recipe_ingredients.pop();
       }
       this.clean_ingredient_inputs();
     },
-    createRecipe() {
+    createRecipe(name,comensals) {
       var new_recipe = {
         creator: this.$store.getters.username,
-        recipe_name: this.recipe_name,
-        ingredients: this.recipe_ingredients,
+        recipe_name: name,
+        ingredients: this.ingredients_list,
+        comensales: comensals,
       };
-
+      this.recipe_ingredients= ["", "", "", "", "", "", "", "", "", "", "", "","",""],
+      this.ingredients_list=[],
       axios({
         baseURL: "http://localhost:5000",
         url: "/newRecipe",

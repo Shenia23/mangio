@@ -135,10 +135,10 @@ def create_recipe():
         ingredient_string = ingredient['quantity']+ " " + ingredient['unit'] + " " + ingredient['name'].lower()
         all_ingredients.append(ingredient_string)
 
-    user_recipes_df = pd.read_csv("./data/user_recipes.csv", usecols =["Creador","Nombre","Ingredientes"])
+    user_recipes_df = pd.read_csv("./data/user_recipes.csv", usecols =["Creador","Nombre","Comensales","Ingredientes"])
 
 
-    d = {'Creador': [new_recipe_data["creator"]], 'Nombre': [new_recipe_data["recipe_name"]], "Ingredientes" : [', '.join(all_ingredients)]}
+    d = {'Creador': [new_recipe_data["creator"]], 'Nombre': [new_recipe_data["recipe_name"]], 'Comensales': [new_recipe_data["comensales"]], "Ingredientes" : [', '.join(all_ingredients)]}
     new_recipe_df = pd.DataFrame(data=d)
 
     user_recipes_df = user_recipes_df.append(new_recipe_df)
