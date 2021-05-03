@@ -11,22 +11,25 @@ class User:
         Además, almacena los parámetros necesarios para la monitorización de su estado físico a través de la bascula Xiaomi.'''
     
     def __init__(self, username,name, sex, age, height, weight, 
-                 body_type, activity_level, preferences,
-                 objective ,scale_data = None ,using_scale = False, serialize  = False ):
+                 body_type, activity_level, preferences,alpha,
+                 objective,scale_data = None ,using_scale = False, serialize  = False):
         
         '''Constructor de la clase de usuario, scale_data es un dict con los parámetros de la báscula'''
         self.username = username
         self.name = name
         self.sex = sex
         self.age = age
+        self.alpha = alpha
+        self.preferences = preferences
         self.height = height
         self.body_type = body_type # Ectomorfo, mesomorfo, o endomorfo
         self.activity_level= activity_level  # Nivel de actividad física del usuario (de los definidos en el Excel)
         self.ratings = self.get_ratings(preferences)
         self.objective = objective # Ganar masa muscular [3], mantenerse [2], adelgazar [1]
+        print(self.objective)
         self.using_scale = using_scale
         
-    
+        
         
         if using_scale == False:
             
@@ -202,6 +205,7 @@ def json2User(json_user):
    
 
 def createNewUser(new_user_data, serialize  = True):
+
     new_user = User(username=new_user_data['username'],
                     name= new_user_data['name'],
                     age= new_user_data['age'],
@@ -211,9 +215,11 @@ def createNewUser(new_user_data, serialize  = True):
                     body_type = new_user_data ['body_type'],
                     activity_level = new_user_data['activity_level'],
                     preferences = new_user_data['preferences'],
+                    alpha = new_user_data['alpha'],
                     objective = new_user_data['objective'],
                     using_scale = new_user_data['using_scale'],
-                    serialize  = serialize )
+                    serialize  = serialize,
+                   )
     return new_user
     
 def main():

@@ -1,11 +1,9 @@
 {
-    "username": "demo_1",
-    "name": "demo",
+    "username": "Rom\u00e1n_lab",
+    "name": "Riquelme",
     "sex": "Hombre",
-    "age": 31,
-    "height": 180,
-    "body_type": "Mesomorfo",
-    "activity_level": 3,
+    "age": 44,
+    "alpha": 0,
     "preferences": [
         {
             "categories": [
@@ -42,55 +40,55 @@
                 "Carne",
                 "Pasta"
             ],
-            "rating": "super"
+            "rating": "like"
         },
         {
             "categories": [
                 "Carne",
                 "Patatas"
             ],
-            "rating": "super"
+            "rating": "like"
         },
         {
             "categories": [
                 "Verduras",
                 "Huevos"
             ],
-            "rating": "super"
+            "rating": "like"
         },
         {
             "categories": [
                 "Pollo",
                 "Arroz"
             ],
-            "rating": "super"
+            "rating": "like"
         },
         {
             "categories": [
                 "Legumbres"
             ],
-            "rating": "nope"
+            "rating": "like"
         },
         {
             "categories": [
                 "Verduras",
                 "Pasta"
             ],
-            "rating": "nope"
+            "rating": "like"
         },
         {
             "categories": [
                 "Pescado",
                 "Legumbres"
             ],
-            "rating": "nope"
+            "rating": "like"
         },
         {
             "categories": [
                 "Pollo",
                 "Pasta"
             ],
-            "rating": "nope"
+            "rating": "like"
         },
         {
             "categories": [
@@ -107,28 +105,31 @@
             "rating": "like"
         }
     ],
+    "height": 212,
+    "body_type": "Mesomorfo",
+    "activity_level": 3,
     "ratings": {
-        "Carne": 1.05,
-        "Pollo": 0.36666666666666664,
-        "Pescado": 0.3333333333333333,
-        "Legumbres": -0.3333333333333333,
-        "Verduras": 0.32,
-        "Patatas": 0.775,
-        "Arroz": 0.76875,
-        "Pasta": -0.22499999999999998,
-        "Huevos": 0.6083333333333334
+        "Carne": 1.0,
+        "Pollo": 1.0,
+        "Pescado": 1.0,
+        "Legumbres": 0.8333333333333333,
+        "Verduras": 0.7,
+        "Patatas": 0.75,
+        "Arroz": 0.75,
+        "Pasta": 0.75,
+        "Huevos": 0.5833333333333333
     },
     "objective": 2,
     "using_scale": false,
-    "weight": 93,
-    "bmi": 28.703703703703702,
-    "bmr": 2036.3550000000002,
-    "tdee": 3156.3502500000004,
-    "water_intake": 3030.0962400000003,
+    "weight": 75,
+    "bmi": 16.687433250266995,
+    "bmr": 1861.1359999999997,
+    "tdee": 2884.7607999999996,
+    "water_intake": 2769.3703679999994,
     "macro_objectives": {
-        "energia": 3156.3502500000004,
-        "grasa": 105.21167500000001,
-        "proteina": 236.72626875000003,
-        "carbohidratos": 315.63502500000004
+        "energia": 2884.7607999999996,
+        "grasa": 64.10579555555555,
+        "proteina": 216.35706,
+        "carbohidratos": 360.59509999999995
     }
 }

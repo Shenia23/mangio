@@ -9,7 +9,9 @@ const routerOptions = [
   {path: '/perfilusuario', component: 'UserProfile'},
   {path: '/planalimentacion', component: 'Recomendacion'},
   {path: '/nuevasrecetas', component: 'RecipeCreation'},
-  {path: '/perfiles', component: 'About'}
+  {path: '/perfiles', component: 'About'},
+  {path: '/lab', component: 'Laboratory'}
+
 
 ]
 const routes = routerOptions.map(route => {

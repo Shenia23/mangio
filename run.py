@@ -118,6 +118,35 @@ def create_user():
     )
     return response
 
+@app.route('/newUserLab', methods=['GET','POST'])
+@cross_origin()
+def createLabUser():
+    '''Crea un nuevo usuario de prueba de atributos y almacena sus datos en un JSON'''
+    
+    new_user_data = request.get_json()
+    print("New_user_data:",new_user_data)
+    username = new_user_data['username']
+    with open("./app/user/users/"+username+'_data.json', "r") as jsonFile:
+        
+        json_file = json.load(jsonFile)
+        print("Before:", json_file)
+        json_file['username'] = str(new_user_data['username']) + "_lab"
+        json_file['weight'] = new_user_data['weight']
+        json_file['alpha'] = new_user_data['alpha']
+        json_file['height'] = new_user_data['height']
+        json_file['activity_level'] = new_user_data['activity_level']
+        json_file['objective'] = new_user_data['objective']
+        print("After;", json_file)
+        new_user = createNewUser(json_file)
+        new_user_json = json.dumps(new_user.__dict__)
+        response = app.response_class(
+            response=new_user_json,
+            status=200,
+            mimetype='application/json'
+        )
+        return response
+
+
 
 @app.route('/newRecipe', methods=['GET','POST'])
 @cross_origin()
