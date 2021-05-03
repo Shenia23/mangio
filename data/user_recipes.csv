@@ -1,3 +1,4 @@
-,Creador,Ingredientes,Nombre
-0,demo_3,"100 ml batido de chocolate, 11 gr arroz con leche",Receta_demo
-
+,Creador,Ingredientes,Nombre,Comensales
+0,francescademo,"2 gr batido de soja, 2 cucharadita batido de chocolate, 2 cucharilla batido de fresa",Pis,
+1,francescademo,"1 kg batido de soja, 2 taza batido de soja",Sojada,
+0,francescademo,2 cucharadita batido de chocolate,2,2

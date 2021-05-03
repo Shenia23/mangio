@@ -91,7 +91,7 @@
        name: 'user-card',
        show: false,
        img: require('../../assets/fruit.jpg'),
-       goals: ['','Bajar de peso','Mantener el peso','Subir de peso']
+       goals: ['Bajar de peso','Mantener el peso','Subir de peso']
       }
     },
     computed: {
