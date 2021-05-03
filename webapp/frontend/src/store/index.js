@@ -17,6 +17,7 @@ export default new Vuex.Store({
                 "objective": 2,
                 "using_scale": false,
                 "weight": 65,
+                "alpha":0.70,
                 "bmi": 22.49134948096886,
                 "bmr": 1390.1270000000002,
                 "tdee": 1911.4246250000003,

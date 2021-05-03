@@ -328,16 +328,12 @@ export default {
         });
     },
     createUser() {
-
-        console.log(this.weight.val)
-        console.log(this.height.val)
-        console.log(this.activity_types.indexOf(this.selected_activity) + 1)
-        console.log(this.objectives.indexOf(this.objetivo))
-
+        
         var new_user = {
         username:this.$store.getters.username,
         weight: this.weight.val,
         height: this.height.val,
+        alpha: this.alpha,
         activity_level: this.activity_types.indexOf(this.selected_activity) + 1,
         objective: this.objectives.indexOf(this.objetivo),
       };
