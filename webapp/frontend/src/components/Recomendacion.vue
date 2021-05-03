@@ -339,7 +339,7 @@ export default {
         weight: this.weight.val,
         height: this.height.val,
         activity_level: this.activity_types.indexOf(this.selected_activity) + 1,
-        objective: this.objectives.indexOf(this.objective),
+        objective: this.objectives.indexOf(this.objetivo),
       };
 
       axios({

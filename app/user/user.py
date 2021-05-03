@@ -204,8 +204,6 @@ def json2User(json_user):
    
 
 def createNewUser(new_user_data, serialize  = True):
-    print("al ",new_user_data['activity_level'])
-    print("el ", new_user_data['objective'])
 
     new_user = User(username=new_user_data['username'],
                     name= new_user_data['name'],
