@@ -132,6 +132,7 @@ def createLabUser():
         print("Before:", json_file)
         json_file['username'] = str(new_user_data['username']) + "_lab"
         json_file['weight'] = new_user_data['weight']
+        json_file['alpha'] = new_user_data['alpha']
         json_file['height'] = new_user_data['height']
         json_file['activity_level'] = new_user_data['activity_level']
         json_file['objective'] = new_user_data['objective']

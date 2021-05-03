@@ -1,8 +1,9 @@
 {
-    "username": "Pelocho",
-    "name": "Diego Armando",
+    "username": "Rom\u00e1n",
+    "name": "Riquelme",
     "sex": "Hombre",
-    "age": 65,
+    "age": 44,
+    "alpha": "0.70",
     "preferences": [
         {
             "categories": [
@@ -10,21 +11,21 @@
                 "Verduras",
                 "Arroz"
             ],
-            "rating": "nope"
+            "rating": "like"
         },
         {
             "categories": [
                 "Pescado",
                 "Patatas"
             ],
-            "rating": "nope"
+            "rating": "like"
         },
         {
             "categories": [
                 "Carne",
                 "Legumbres"
             ],
-            "rating": "nope"
+            "rating": "like"
         },
         {
             "categories": [
@@ -32,28 +33,28 @@
                 "Arroz",
                 "Verduras"
             ],
-            "rating": "nope"
+            "rating": "like"
         },
         {
             "categories": [
                 "Carne",
                 "Pasta"
             ],
-            "rating": "nope"
+            "rating": "like"
         },
         {
             "categories": [
                 "Carne",
                 "Patatas"
             ],
-            "rating": "nope"
+            "rating": "like"
         },
         {
             "categories": [
                 "Verduras",
                 "Huevos"
             ],
-            "rating": "nope"
+            "rating": "like"
         },
         {
             "categories": [
@@ -80,7 +81,7 @@
                 "Pescado",
                 "Legumbres"
             ],
-            "rating": "nope"
+            "rating": "like"
         },
         {
             "categories": [
@@ -94,7 +95,7 @@
                 "Huevos",
                 "Patatas"
             ],
-            "rating": "nope"
+            "rating": "like"
         },
         {
             "categories": [
@@ -104,31 +105,31 @@
             "rating": "like"
         }
     ],
-    "height": 165,
-    "body_type": "Endomorfo",
-    "activity_level": 1,
+    "height": 168,
+    "body_type": "Mesomorfo",
+    "activity_level": 3,
     "ratings": {
-        "Carne": -0.5,
-        "Pollo": 0.3333333333333333,
-        "Pescado": -1.0,
-        "Legumbres": -0.16666666666666669,
-        "Verduras": -0.3,
-        "Patatas": -0.75,
-        "Arroz": 0.0,
-        "Pasta": 0.25,
-        "Huevos": -0.5833333333333333
+        "Carne": 1.0,
+        "Pollo": 1.0,
+        "Pescado": 1.0,
+        "Legumbres": 0.8333333333333333,
+        "Verduras": 0.7,
+        "Patatas": 0.75,
+        "Arroz": 0.75,
+        "Pasta": 0.75,
+        "Huevos": 0.5833333333333333
     },
-    "objective": 0,
+    "objective": 2,
     "using_scale": false,
-    "weight": 82,
-    "bmi": 30.119375573921033,
-    "bmr": 1580.39,
-    "tdee": 1896.468,
-    "water_intake": 1820.60928,
+    "weight": 75,
+    "bmi": 26.573129251700685,
+    "bmr": 1641.0040000000001,
+    "tdee": 2543.5562000000004,
+    "water_intake": 2441.8139520000004,
     "macro_objectives": {
-        "energia": 1896.468,
-        "grasa": 73.75153333333334,
-        "proteina": 213.35264999999998,
-        "carbohidratos": 94.8234
+        "energia": 2543.5562000000004,
+        "grasa": 56.52347111111112,
+        "proteina": 190.76671500000003,
+        "carbohidratos": 317.94452500000006
     }
 }
