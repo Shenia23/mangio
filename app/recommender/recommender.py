@@ -231,9 +231,9 @@ class Recommender:
         '''
         sigmoid_range = max_range * 2
         center = 0.5
-        curve = -1.5
+        curve = 1.5
 
-        sigmoid = ( ( 1/(1+np.e**(curve*x)) ) - center ) * sigmoid_range
+        sigmoid = ( ( 1/(1+np.e**(-curve*x)) ) - center ) * sigmoid_range
         return sigmoid
 
     @staticmethod
