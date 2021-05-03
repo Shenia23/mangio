@@ -66,7 +66,6 @@ export default new Vuex.Store({
     },
     mutations: {
         setUserData(state, payload) {
-            console.log("hola")
             state.user.userdata = payload.userdata
         },
         setObjectives(state, payload) {

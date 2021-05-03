@@ -6,6 +6,7 @@ import requests
 from app.user.user import User, createNewUser
 from app.recommender.recommender import getRecommendation, getReroll
 import os
+import pandas as pd
 
 app = Flask(__name__,
             static_folder="./dist/static",
@@ -13,6 +14,9 @@ app = Flask(__name__,
 cors = CORS(app, support_credentials=True,
             resources={r"/api/*": {"origins": "*"}})
 app.config['TESTING'] = True
+
+
+
 
 @app.route('/api/random')
 def random_number():
@@ -109,6 +113,42 @@ def create_user():
 
     response = app.response_class(
         response=new_user_json,
+        status=200,
+        mimetype='application/json'
+    )
+    return response
+
+
+@app.route('/newRecipe', methods=['GET','POST'])
+@cross_origin()
+def create_recipe():
+    '''Crea una nueva receta y la añade al sistema (vinculada a un usuario)'''
+    print("Recipe creation")
+    print("Is request json: ", request.is_json)
+    new_recipe_data = request.get_json()
+    print("JSON content: ", new_recipe_data)
+    
+    
+    all_ingredients = []
+    
+    for ingredient in new_recipe_data["ingredients"]:
+        ingredient_string = ingredient['quantity']+ " " + ingredient['unit'] + " " + ingredient['name'].lower()
+        all_ingredients.append(ingredient_string)
+
+    user_recipes_df = pd.read_csv("./data/user_recipes.csv", usecols =["Creador","Nombre","Ingredientes"])
+
+
+    d = {'Creador': [new_recipe_data["creator"]], 'Nombre': [new_recipe_data["recipe_name"]], "Ingredientes" : [', '.join(all_ingredients)]}
+    new_recipe_df = pd.DataFrame(data=d)
+
+    user_recipes_df = user_recipes_df.append(new_recipe_df)
+    user_recipes_df.to_csv("./data/user_recipes.csv")
+    print("Nueva receta añadida al df de recetas de usuarios")
+
+    #TODO: añadir parseamiento de ingredientes de la receta para extraer valores nutricionales
+
+    response = app.response_class(
+        response=new_recipe_data,
         status=200,
         mimetype='application/json'
     )

@@ -1,0 +1,33 @@
+Recipe_id,Ingrediente,Cantidad,Unidad,Indice,Grams,Total_Grams,Num_comensales,Category
+7251,champiñón,250.0,gramos,614,1.0,62.5,4.0,Verduras
+7251,ajo,3.0,unidad,587,15.0,11.25,4.0,Verduras
+7251,vino,80.0,mililitros,825,1.0,20.0,4.0,Bebidas
+7251,perejil,1.0,cucharada,899,10.0,2.5,4.0,Otros
+7251,mantequilla,1.0,cucharada sopera,419,17.0,4.25,4.0,Grasas y Aceites
+7251,sal,1.0,pizca,908,1.0,0.25,4.0,Otros
+7251,pimienta,1.0,pizca,901,1.0,0.25,4.0,Otros
+58075,pollo,500.0,gramos,242,1.0,500.0,1.0,Pollo
+58075,tomate,300.0,gramos,667,1.0,300.0,1.0,Verduras
+58075,sal,1.0,pizca,908,1.0,1.0,1.0,Otros
+58075,pimienta negra,1.0,pizca,902,1.0,1.0,1.0,Otros
+58075,cerveza,150.0,mililitros,781,1.0,150.0,1.0,Bebidas
+58075,azúcar,1.0,pizca,936,1.0,1.0,1.0,Otros
+55714,galleta,200.0,gramos,469,1.0,200.0,1.0,Cereales
+55714,plátano,1.5,unidad,721,80.0,120.0,1.0,Frutas
+55714,leche,1.5,vasos,27,250.0,375.0,1.0,Lácteos
+38885,patata,2.0,unidad,643,200.0,400.0,1.0,Patata
+38885,pimienta,1.0,pizca,901,1.0,1.0,1.0,Otros
+38885,arroz,100.0,gramos,428,1.0,100.0,1.0,Arroz
+38885,pavo,1.0,kilo,226,1000.0,1000.0,1.0,Carne
+38885,garbanzo,300.0,gramos,550,1.0,300.0,1.0,Legumbres
+38885,sal,1.0,cucharadita,908,7.0,7.0,1.0,Otros
+38885,zanahoria,2.0,unidad,672,100.0,200.0,1.0,Verduras
+38885,ajo,1.0,diente,587,3.0,3.0,1.0,Verduras
+38885,orégano,1.0,pizca,892,1.0,1.0,1.0,Otros
+38885,pollo,1.0,cucharada,242,10.0,10.0,1.0,Pollo
+73689,lacón,1.0,kilogramo,207,1000.0,1000.0,1.0,Carne
+73689,grelo,450.0,gramos,630,1.0,450.0,1.0,Verduras
+73689,chorizo,200.0,gramos,181,1.0,200.0,1.0,Carne
+73689,patata,3.0,unidad,643,200.0,600.0,1.0,Patata
+73689,sal,1.0,cucharada,908,10.0,10.0,1.0,Otros
+73689,pimentón,2.0,pellizcos,900,1.0,2.0,1.0,Otros

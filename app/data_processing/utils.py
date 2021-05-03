@@ -212,7 +212,7 @@ def extract_quantity(ingredient):
         return eval((re.findall(r"[-+]?\d*/\d+", ingredient)[0]).replace('⁄', '/').replace('⅟', '1/'))
 
     if len(re.findall(r"[-+]?\d*\.\d+|\d+", ingredient)) != 0:
-        return re.findall(r"[-+]?\d*\.\d+|\d+", ingredient)[0]
+        return max(re.findall(r"[-+]?\d*\.\d+|\d+", ingredient))
 
     for fraction in unicode_fractions:
         if fraction in ingredient:
@@ -445,7 +445,7 @@ def extract_ingredients_to_csv(recipes):  # TODO: reformatear
         columns=['Recipe_id', 'Ingrediente', 'Cantidad', 'Unidad', 'Indice', 'Grams', 'Total_Grams'])
     #recipe_ingredients_df=pd.read_csv('../../data/ingredientes.csv', sep='|',names=['Recipe_id', 'Ingrediente', 'Cantidad','Unidad','Indice','Grams','Total_Grams'])
 
-    recipes_ingredients = recipes[["Id", "Ingredientes"]].copy()
+    recipes_ingredients = recipes[["Recipe_id", "Ingredientes"]].copy()
 
     ingredients = pd.read_csv('../../data/bedca.csv')
     bedca_ingredients = ingredients["nombre"].tolist()
@@ -465,12 +465,12 @@ def extract_ingredients_to_csv(recipes):  # TODO: reformatear
         clean_ingr, rate, total, extracted = parse_ingredient_string(
             value["Ingredientes"], bedca_ingredients_lower_with_plurals)
         recipes_ingredients_df = add_recipe_ingredients_to_df(
-            recipes_ingredients_df, clean_ingr, value["Id"], bedca_ingredients_lower, bedca_ingredients_lower_plurals_dict)
+            recipes_ingredients_df, clean_ingr, value["Recipe_id"], bedca_ingredients_lower, bedca_ingredients_lower_plurals_dict)
 
-    recipes_ingredients_df.to_csv(
-        '../../data/ingredientes.csv', index=False, header=True, sep=',')
+    #recipes_ingredients_df.to_csv(
+    #    '../../data/ingredientes.csv', index=False, header=True, sep=',')
 
-    return
+    return recipes_ingredients_df
 
 
 def main():
@@ -512,11 +512,45 @@ def main():
     #measure_average_rate(recipes, bedca_ingredients,ingredients_id,bedca_ingredients_lower)
 
     # extraction_analysis()
-    extract_ingredients_to_csv(recipes)
+    extracted_ingredients = extract_ingredients_to_csv(recipes)
     # filter_dataset_100()
 
     return
 
+def main2():
+    recipes = pd.read_csv('../../data/ingredient_filtering_demonstration.csv', sep='|')
+    recipes = recipes[recipes['Ingredientes'].notna()]
+    recipes_ingredients = recipes[["Recipe_id", "Ingredientes"]].copy()
 
+    ingredients = pd.read_csv('../../data/bedca.csv')
+    bedca_ingredients = ingredients["nombre"].tolist()
+    bedca_ingredients_lower = [x.lower() for x in bedca_ingredients]
+
+    bedca_ingredients_lower_with_plurals = ingredients_to_plural(
+        bedca_ingredients_lower)  # ingredientes originales + plurales
+    bedca_ingredients_lower_plurals_dict = ingredients_to_plural_dict(
+        bedca_ingredients_lower)
+
+    recipes.reset_index(drop=True, inplace=True)
+    # measure_average_rate(recipes)
+    print("NUM_RECETAS: ", recipes_ingredients.shape[0])
+    
+
+
+    #clean_ingr, rate, total, extracted = parse_ingredient_string(ingredients_string, bedca_ingredients_lower_with_plurals, log_console=True)
+    #add_recipe_ingredients_to_df(recipe_ingredients_df,clean_ingr,ingredients_id,bedca_ingredients_lower,bedca_ingredients_lower_plurals_dict)
+    #print("EXTRACTED_INGREDIENTS: ", clean_ingr)
+
+    #measure_average_rate(recipes, bedca_ingredients,ingredients_id,bedca_ingredients_lower)
+
+    # extraction_analysis()
+    recipes_ingredients_df=extract_ingredients_to_csv(recipes)
+    recipes_ingredients_df.to_csv('../../data/ingredientes_demostracion.csv', index=False, header=True, sep=',')
+
+    # filter_dataset_100()
+
+    return
+
+    
 if __name__ == "__main__":
-    main()
+    main2()

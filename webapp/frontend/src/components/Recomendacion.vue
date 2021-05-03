@@ -17,7 +17,7 @@
                 <img height="160px" :src="apiin" />
             </v-col>
             <v-col cols="12" md="7" class="stats">
-                <h4 class="headline mb-2"> Tu Plan de Alimentación de Hoy </h4>
+                <h4 class="headline mb-2"> Tu plan de alimentación de hoy</h4>
             </v-col>
             <v-col cols="12" md="2" class="stats">
                 <v-icon class="reload"

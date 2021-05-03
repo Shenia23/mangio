@@ -71,20 +71,10 @@
           hide-details
         ></v-checkbox>
 
-        <div
-          v-if="using_scale == true"
-          class="if-balanza"
-          style="width: 50%; padding: 5px"
-        >
-          <v-btn
-            :loading="loading3"
-            :disabled="loading3"
-            color="blue-grey"
-            class="ma-2 white--text"
-            @click="loader = 'loading3'"
-          >
-            Conectar con balanza
+        <div v-if="using_scale == true" class="if-balanza">
+          <v-btn class="ma-2" outlined color="indigo">
             <v-icon right dark> mdi-bluetooth </v-icon>
+            Conectar con balanza
           </v-btn>
         </div>
 
@@ -154,7 +144,7 @@
             :timeout="snackbar_timeout"
             absolute
             centered
-            color="green accent-4"
+            color="var(--main-orange);"
             elevation="24"
           >
             <b>Preferencias de comida completadas</b>
@@ -236,7 +226,7 @@
               src="../assets/rewind-txt_tinder.png"
             />
           </Tinder>
-          <br>
+          <br />
           <div class="btns">
             <img src="../assets/rewind_tinder.png" @click="decide('rewind')" />
             <img src="../assets/nope_tinder.png" @click="decide('nope')" />
@@ -248,10 +238,10 @@
             <img src="../assets/help_tinder.png" @click="decide('help')" />
           </div>
         </div>
-        <br>
-        <br>
+        <br />
+        <br />
 
-        <DialogUserCreationSuccess v-model="showDialogUserSuccess"/>
+        <DialogUserCreationSuccess v-model="showDialogUserSuccess" />
 
         <p color="success" class="btn btn-1" @click="createUser">
           <svg>
@@ -270,10 +260,16 @@ import Ingredients from "./Ingredients.vue";
 import axios from "axios";
 import VueSwing from "vue-swing";
 import Tinder from "vue-tinder";
-import DialogUserCreationSuccess from "./DialogUserCreationSuccess.vue"
+import DialogUserCreationSuccess from "./DialogUserCreationSuccess.vue";
 
 export default {
-  components: { BodyType, Ingredients, VueSwing, Tinder, DialogUserCreationSuccess },
+  components: {
+    BodyType,
+    Ingredients,
+    VueSwing,
+    Tinder,
+    DialogUserCreationSuccess,
+  },
   data: () => ({
     source: {
       "./static/pollo_verduras_arroz.jpeg": ["Pollo", "Verduras", "Arroz"],
@@ -296,7 +292,7 @@ export default {
       "./static/huevos_patatas.jpeg": ["Huevos", "Patatas"],
       "./static/carne_arroz.jpeg": ["Carne", "Arroz"],
     },
-    showDialogUserSuccess:false,
+    showDialogUserSuccess: false,
     queue: [],
     offset: 0,
     history: [],
@@ -394,7 +390,7 @@ export default {
       })
         .then((res) => {
           console.log(res.data);
-          this.setUser(res.data)
+          this.setUser(res.data);
           this.showDialogUserSuccess = true;
         })
         .catch((err) => {
@@ -474,7 +470,7 @@ export default {
   background-color: var(--main-green);
   margin: auto;
   width: 95%;
-  border: 2px solid rgb(97, 213, 97);
+  border: 2px solid var(--main-green);
   padding: 10px;
   border-radius: 25px;
   justify-content: flex-end;

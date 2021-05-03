@@ -56,8 +56,16 @@ def drop_evaluation(original,result):
     print(f'{len(original_recipes)-len(result_recipes)} recipes dropped:')
     dropped_recipe_ids = list(set(original_recipes) - set(result_recipes))
     print(dropped_recipe_ids)
-
+    
+def demostracion():
+    ing = pd.read_csv('../../data/ingredientes_demostracion.csv')
+    result = fill_grams(ing)
+    append_category(result)
+    drop_evaluation(ing,result)
+    result.to_csv('../../data/ingredients_demostracion_filled.csv',index=False)
+    
 if __name__ == "__main__":
+    demostracion()
     ing = pd.read_csv('../../data/ingredientes.csv')
     result = fill_grams(ing)
     append_category(result)

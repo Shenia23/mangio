@@ -20,13 +20,9 @@
                   </v-row>
                 </v-card-title>
               </v-img>
-              <v-btn overline
-                :class="{ 'show-btns': hover }"
-                :color="transparent"
-                @click="change_opacity(item.title)"
-              >
-                {{ item.title }}
-              </v-btn >
+              <v-card-text :class="{ 'show-btns': hover }"
+                :color="transparent">{{ item.title }}</v-card-text>
+              
             </v-card>
           </v-hover>
         </v-col>

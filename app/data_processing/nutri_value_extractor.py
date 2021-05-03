@@ -1,10 +1,10 @@
 from utils import *
 from equivalences import equivalences
 
-
 bedca = pd.read_csv('../../data/bedca.csv',index_col=0)
 categorical_columns = ['nombre','categoria']
 bedca_columns = list(bedca.drop(columns=categorical_columns).columns)
+
 
 def nutri_value_extractor(ingredients):
     '''
@@ -22,6 +22,7 @@ def nutri_value_extractor(ingredients):
 
 
 if __name__ == "__main__":
+    
     ingredients = pd.read_csv('../../data/ingredients_100.csv')
     nutritional_values = nutri_value_extractor(ingredients)
     nutritional_values.to_csv('../../data/nutritional_values.csv', index=True)

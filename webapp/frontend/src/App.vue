@@ -17,6 +17,9 @@
           <v-icon size=30 color="white" left dark class="itemIcon">{{ item.icon }}</v-icon>
           <p class="itemTitle" style="font-weight:bold;" > {{ item.title }} </p>
         </v-btn>
+        <v-btn class="items" :depressed="true" >
+          <p class="itemTitle" style="font-weight:bold;" > @{{ this.$store.getters.username}} </p>
+        </v-btn>
       </v-toolbar-items>
     </v-toolbar>
 
@@ -44,7 +47,8 @@ export default {
       menuItems: [
         { title: 'Nuevo usuario', path: '/nuevoUsuario', icon: 'fiber_new' },
         { title: 'Plan de alimentación', path: '/planalimentacion', icon: 'fastfood' },
-        { title: 'Nuevas recetas', path: '/nuevasrecetas', icon: 'add_circle' }
+        { title: 'Nuevas recetas', path: '/nuevasrecetas', icon: 'add_circle' },
+        
       ]
     }
   }
@@ -63,6 +67,8 @@ export default {
     --main-orange-pale: #ffc0395f;
     --main-yellow: #fad586;
     --main-yellow-pale: #fad586c0;
+    --main-orange2: #f9e17a;
+    --main-darkgreen: #4caf50;
 }
 
 

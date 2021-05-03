@@ -51,7 +51,7 @@
 
 <style scoped>
 .lighten-1 {
-  background: rgb(113, 192, 113);
+  background: var(--main-green);
   width: 100%;
 }
 .footer-text{

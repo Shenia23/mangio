@@ -65,7 +65,7 @@
             </div>
           </div>
         </div>
-        <div class="section section-presentation">
+        <div class="section section-presentation" >
           <div class="container">
             <div class="row">
               <div class="col-md-5 hidden-xs">
@@ -283,7 +283,9 @@ export default {
   @import "http://fonts.googleapis.com/css?family=Open+Sans:300italic,400,300";
 
   
-  
+  .landing-page{
+      background: #ffffff;
+  }
   .btn {
     background-color: #ebebeb;
     color: grey;
