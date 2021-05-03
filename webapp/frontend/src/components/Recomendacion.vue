@@ -3,8 +3,8 @@
     <div class="row">
       <v-col cols="12" md="6">
         <!-- COL 1: cards de RECOMENDACIONES y RECETAS-->
-        <div style="display: flex">
-          <v-card :loading="loading" class="division">
+        <div>
+          <v-card :loading="loading" class="left">
             <template slot="progress" id="loading">
               <v-progress-linear
                 color="var(--main-green)"
@@ -16,10 +16,10 @@
               <v-col cols="12" md="3">
                 <img height="160px" :src="apiin" />
               </v-col>
-              <v-col cols="12" md="7" class="stats">
+              <v-col cols="12" md="7"  style="margin: auto">
                 <h4 class="headline mb-2">Tu plan de alimentación de hoy</h4>
               </v-col>
-              <v-col cols="12" md="2" class="stats">
+              <v-col cols="12" md="2"  style="margin: auto">
                 <v-icon class="reload" size="30px" @click="reload">
                   mdi-cached
                 </v-icon>
@@ -99,16 +99,6 @@
 
                         <v-divider></v-divider>
 
-                        <v-list-item-avatar size="60" color="#FAD7A0" rounded>
-                          <img
-                            v-if="r.image_src !== 'None'"
-                            :src="getImageSrc(index)"
-                          />
-                          <v-icon size="35" v-else>
-                            {{ default_icon[comida] }}
-                          </v-icon>
-                        </v-list-item-avatar>
-
                         <v-icon
                           size="25px"
                           class="option-icon"
@@ -127,6 +117,16 @@
                         >
                           mdi-rotate-right
                         </v-icon>
+
+                        <v-list-item-avatar size="60" color="#FAD7A0" rounded>
+                          <img
+                            v-if="r.image_src !== 'None'"
+                            :src="getImageSrc(index)"
+                          />
+                          <v-icon size="35" v-else>
+                            {{ default_icon[comida] }}
+                          </v-icon>
+                        </v-list-item-avatar>
                       </v-list-item>
                     </div>
                   </v-list-item-content>
@@ -136,13 +136,16 @@
           </v-card>
         </div>
 
+        <v-card class="left" style="margin-top:2rem;">
         <v-container>
           <v-form ref="form" v-model="valid" lazy-validation class="formulario">
-            <h3>Prueba a cambiar tus atributos!</h3>
+            <h3>¡Prueba a cambiar tus atributos!</h3>
             <v-card-text>
               <v-slider
                 v-model="weight.val"
                 step="1"
+                color="var(--main-orange)"
+                track-color="var(--main-orange-pale)"
                 thumb-label
                 min="40"
                 max="150"
@@ -163,6 +166,8 @@
               <v-slider
                 v-model="height.val"
                 step="1"
+                color="var(--main-orange)"
+                track-color="var(--main-orange-pale)"
                 min="130"
                 max="220"
                 label="ALTURA"
@@ -184,6 +189,8 @@
                 step="0.01"
                 min="0"
                 max="1"
+                color="var(--main-orange)"
+                track-color="var(--main-orange-pale)"
                 label="VALOR NUTRICIONAL - GUSTOS"
                 thumb-label
                 ticks
@@ -203,6 +210,7 @@
             </div>
           </v-form>
         </v-container>
+      </v-card>
       </v-col>
       <v-col cols="12" md="6" class="stats">
         <!-- COL 2: STATS de las comidas + EXPLICACIÓN-->
@@ -308,7 +316,7 @@ export default {
     getRecomendacion(lab) {
       const path = "http://localhost:5000/recomendacion";
 
-      if (lab == 1) {
+      if (lab) {
         var targetUser = {
           username: this.$store.getters.username.concat("", "_lab"),
         };
@@ -346,7 +354,7 @@ export default {
       })
         .then((res) => {
           console.log(res.data);
-          this.getRecomendacion(1)
+          this.getRecomendacion(true)
         })
         .catch((err) => {
           console.log(err);
@@ -431,7 +439,7 @@ export default {
 }
 
 .stats {
-  margin: auto;
+  margin-top: -11px;
 }
 
 .dialog {
@@ -442,8 +450,7 @@ export default {
   background-color: rgb(197, 236, 182);
 }
 
-.division {
-  width: 100%;
+.left {
   margin-left: 2rem;
   padding-bottom: 1rem;
 }

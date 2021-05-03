@@ -31,7 +31,7 @@
               </div>
               <div class="col-md-5">
                 <div class="description text-center">
-                  <h1>Mangio!</h1>
+                  <img contain :src="logo" height="100px" />
                   <br />
                   <h2>Tu app nutricional</h2>
                   <div class="buttons">
@@ -244,6 +244,7 @@ export default {
   data() {
     return {
       randomNumber: 0,
+      logo: require('./assets/img/logos/logo-web.png'),
     };
   },
   methods: {

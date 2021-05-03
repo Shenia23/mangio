@@ -1,9 +1,9 @@
 {
-    "username": "Rom\u00e1n_lab",
+    "username": "Rom\u00e1n_lab_lab",
     "name": "Riquelme",
     "sex": "Hombre",
     "age": 44,
-    "alpha": 0.08,
+    "alpha": 0.7,
     "preferences": [
         {
             "categories": [
@@ -119,7 +119,7 @@
         "Pasta": 0.75,
         "Huevos": 0.5833333333333333
     },
-    "objective": 0,
+    "objective": 2,
     "using_scale": false,
     "weight": 75,
     "bmi": 21.913805697589478,
@@ -128,8 +128,8 @@
     "water_intake": 2568.3698400000003,
     "macro_objectives": {
         "energia": 2675.3852500000003,
-        "grasa": 104.04275972222224,
-        "proteina": 300.98084062500004,
-        "carbohidratos": 133.7692625
+        "grasa": 59.453005555555556,
+        "proteina": 200.65389375000004,
+        "carbohidratos": 334.42315625000003
     }
 }

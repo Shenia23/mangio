@@ -8,7 +8,8 @@
       </span>
       <v-toolbar-title class="vTitle" >
         <router-link to='/' tag='span' >
-          {{ appTitle }}
+          <img contain :src="logo" height="60px" style="margin-top: 20px;"/>
+          
         </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
@@ -44,6 +45,7 @@ export default {
     return {
       appTitle: 'Mangio!',
       sidebar: false,
+      logo: require('./components/assets/img/logos/logo-web.png'),
       menuItems: [
         { title: 'Nuevo usuario', path: '/nuevoUsuario', icon: 'fiber_new' },
         { title: 'Plan de alimentación', path: '/planalimentacion', icon: 'fastfood' },
@@ -91,7 +93,7 @@ font-size: 300%;
   font-family: 'Cairo', sans-serif;
   color:white;
   margin-top:5%;
-  font-size:150%
+  font-size:120%
   
 }
 
