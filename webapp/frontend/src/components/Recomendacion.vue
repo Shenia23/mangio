@@ -3,8 +3,8 @@
     <div class="row">
       <v-col cols="12" md="6">
         <!-- COL 1: cards de RECOMENDACIONES y RECETAS-->
-        <div>
-          <v-card :loading="loading" class="left">
+        <div style="">
+          <v-card :loading="loading" class="left" style="display: flow-root">
             <template slot="progress" id="loading">
               <v-progress-linear
                 color="var(--main-green)"
@@ -439,7 +439,7 @@ export default {
 }
 
 .stats {
-  margin-top: -11px;
+  
 }
 
 .dialog {
