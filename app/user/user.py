@@ -19,14 +19,16 @@ class User:
         self.name = name
         self.sex = sex
         self.age = age
+        self.preferences = preferences
         self.height = height
         self.body_type = body_type # Ectomorfo, mesomorfo, o endomorfo
         self.activity_level= activity_level  # Nivel de actividad física del usuario (de los definidos en el Excel)
         self.ratings = self.get_ratings(preferences)
         self.objective = objective # Ganar masa muscular [3], mantenerse [2], adelgazar [1]
+        print(self.objective)
         self.using_scale = using_scale
         
-    
+        
         
         if using_scale == False:
             
@@ -202,6 +204,9 @@ def json2User(json_user):
    
 
 def createNewUser(new_user_data, serialize  = True):
+    print("al ",new_user_data['activity_level'])
+    print("el ", new_user_data['objective'])
+
     new_user = User(username=new_user_data['username'],
                     name= new_user_data['name'],
                     age= new_user_data['age'],

@@ -459,6 +459,8 @@ export default {
 
 
 <style scoped lang="scss">
+
+
 .formulario {
   margin-top: 1cm;
   background-color: var(--main-green);

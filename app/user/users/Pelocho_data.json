@@ -1,0 +1,134 @@
+{
+    "username": "Pelocho",
+    "name": "Diego Armando",
+    "sex": "Hombre",
+    "age": 65,
+    "preferences": [
+        {
+            "categories": [
+                "Pollo",
+                "Verduras",
+                "Arroz"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Pescado",
+                "Patatas"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Legumbres"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Pescado",
+                "Arroz",
+                "Verduras"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Pasta"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Patatas"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Verduras",
+                "Huevos"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Pollo",
+                "Arroz"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Legumbres"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Verduras",
+                "Pasta"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Pescado",
+                "Legumbres"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Pollo",
+                "Pasta"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Huevos",
+                "Patatas"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Arroz"
+            ],
+            "rating": "like"
+        }
+    ],
+    "height": 165,
+    "body_type": "Endomorfo",
+    "activity_level": 1,
+    "ratings": {
+        "Carne": -0.5,
+        "Pollo": 0.3333333333333333,
+        "Pescado": -1.0,
+        "Legumbres": -0.16666666666666669,
+        "Verduras": -0.3,
+        "Patatas": -0.75,
+        "Arroz": 0.0,
+        "Pasta": 0.25,
+        "Huevos": -0.5833333333333333
+    },
+    "objective": 0,
+    "using_scale": false,
+    "weight": 82,
+    "bmi": 30.119375573921033,
+    "bmr": 1580.39,
+    "tdee": 1896.468,
+    "water_intake": 1820.60928,
+    "macro_objectives": {
+        "energia": 1896.468,
+        "grasa": 73.75153333333334,
+        "proteina": 213.35264999999998,
+        "carbohidratos": 94.8234
+    }
+}
