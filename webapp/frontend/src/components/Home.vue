@@ -26,7 +26,7 @@
             <div class="row">
               <div class="col-md-7 hidden-xs">
                 <div class="parallax-image">
-                  <img src="../assets/img/showcases/showcase-2/mac1.png" />
+                  <img src="../assets/img/showcases/showcase-2/mac3.png" />
                 </div>
               </div>
               <div class="col-md-5">
@@ -142,7 +142,7 @@
               <div class="col-md-6 col-md-offset-1">
                 <div class="demo-image">
                   <img
-                    src="../assets/img/showcases/showcase-2/examples/home_6.jpg"
+                    src="../assets/img/showcases/showcase-2/ipad_creacion_recetas.png"
                     alt=""
                   />
                 </div>
