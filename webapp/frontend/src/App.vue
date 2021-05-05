@@ -117,8 +117,7 @@ font-size: 300%;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background: #fffbf0;
-
+  background: linear-gradient(180deg, rgba(255,251,240,1) 0%, rgba(135,196,65,1) 90%);
 }
 
 

@@ -1,9 +1,9 @@
 {
-    "username": "Rom\u00e1n_lab_lab",
-    "name": "Riquelme",
+    "username": "test-shenia",
+    "name": "Testtt",
     "sex": "Hombre",
-    "age": 44,
-    "alpha": 0.7,
+    "age": 24,
+    "alpha": 0.70,
     "preferences": [
         {
             "categories": [
@@ -40,28 +40,28 @@
                 "Carne",
                 "Pasta"
             ],
-            "rating": "like"
+            "rating": "nope"
         },
         {
             "categories": [
                 "Carne",
                 "Patatas"
             ],
-            "rating": "like"
+            "rating": "nope"
         },
         {
             "categories": [
                 "Verduras",
                 "Huevos"
             ],
-            "rating": "like"
+            "rating": "nope"
         },
         {
             "categories": [
                 "Pollo",
                 "Arroz"
             ],
-            "rating": "like"
+            "rating": "nope"
         },
         {
             "categories": [
@@ -95,41 +95,41 @@
                 "Huevos",
                 "Patatas"
             ],
-            "rating": "like"
+            "rating": "nope"
         },
         {
             "categories": [
                 "Carne",
                 "Arroz"
             ],
-            "rating": "like"
+            "rating": "nope"
         }
     ],
-    "height": 185,
+    "height": 177,
     "body_type": "Mesomorfo",
     "activity_level": 3,
     "ratings": {
-        "Carne": 1.0,
-        "Pollo": 1.0,
+        "Carne": -0.5,
+        "Pollo": 0.3333333333333333,
         "Pescado": 1.0,
         "Legumbres": 0.8333333333333333,
-        "Verduras": 0.7,
-        "Patatas": 0.75,
-        "Arroz": 0.75,
-        "Pasta": 0.75,
-        "Huevos": 0.5833333333333333
+        "Verduras": 0.30000000000000004,
+        "Patatas": -0.25,
+        "Arroz": 0.0,
+        "Pasta": 0.25,
+        "Huevos": -0.5833333333333333
     },
-    "objective": 2,
+    "objective": 0,
     "using_scale": false,
-    "weight": 75,
-    "bmi": 21.913805697589478,
-    "bmr": 1726.055,
-    "tdee": 2675.3852500000003,
-    "water_intake": 2568.3698400000003,
+    "weight": 85,
+    "bmi": 27.13141179099237,
+    "bmr": 1958.6310000000003,
+    "tdee": 3035.8780500000007,
+    "water_intake": 2914.4429280000004,
     "macro_objectives": {
-        "energia": 2675.3852500000003,
-        "grasa": 59.453005555555556,
-        "proteina": 200.65389375000004,
-        "carbohidratos": 334.42315625000003
+        "energia": 3035.8780500000007,
+        "grasa": 118.06192416666669,
+        "proteina": 341.5362806250001,
+        "carbohidratos": 151.79390250000003
     }
 }

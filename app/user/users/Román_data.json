@@ -3,7 +3,7 @@
     "name": "Riquelme",
     "sex": "Hombre",
     "age": 44,
-    "alpha": "0.70",
+    "alpha": 0.70,
     "preferences": [
         {
             "categories": [

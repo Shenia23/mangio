@@ -10,7 +10,7 @@ preferences = {'Carne': 1.05,
 
 columns = ['Recipe_id','Comida','Total_Grams','Nombre','energia','proteina','grasa','carbohidratos']
 
-recommender = Recommender(2000, 2, preferences)
+recommender = Recommender(2000, 2, preferences, 0.7)
 start = time.time()
 recommendation = recommender.recommend()
 end = time.time()

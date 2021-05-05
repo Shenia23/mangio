@@ -24,7 +24,7 @@ combined[TARGET_MACROS] = comb_scaler.fit_transform(combined[TARGET_MACROS])
 
 class Recommender:
 
-    def __init__(self, tdee, objective,alpha, preferences=None):
+    def __init__(self, tdee, objective, preferences, alpha=0.7):
         self.tdee = tdee
         self.calories = {
             BREAKFAST:  self.tdee * 0.2,
@@ -218,7 +218,7 @@ class Recommender:
         '''
         max_range = nutritional_scores.max()
         scaled_preferences = Recommender.sigmoid(preference_scores, max_range=max_range)
-        return self.alpha*nutritional_scores-(1-self.alpha)*scaled_preferences
+        return self.alpha*nutritional_scores - (1-self.alpha)*scaled_preferences
 
     @staticmethod
     def sigmoid(x, max_range):

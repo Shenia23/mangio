@@ -320,7 +320,7 @@ export default {
     body_type: "default",
     ingredients: ["empty"],
     age: "",
-    alpha: "0.70",
+    alpha: 0.70,
     selected_activity: "",
     objective: "",
     selected_sex: "",
