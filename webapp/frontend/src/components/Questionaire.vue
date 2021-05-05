@@ -712,7 +712,7 @@ p {
 ///////////////////////////////
 .btn-1 {
   background: white;
-  font-weight: 100;
+  font-weight: 500;
 
   svg {
     height: 45px;

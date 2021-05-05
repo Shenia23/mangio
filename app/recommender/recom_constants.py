@@ -11,7 +11,7 @@ SNACK = 'snack'
 MERIENDA = 'merienda'
 
 CATEGORIES = {
-    BREAKFAST:  ['Desayuno','Entrante'],
+    BREAKFAST:  ['Desayuno','Merienda'],
     LUNCH:      ['Plato principal','Entrante','Acompañamiento'],
     SNACK:      ['Merienda','Cumpleaños','Postre'],
     MERIENDA:   ['Merienda','Cumpleaños','Postre'],
