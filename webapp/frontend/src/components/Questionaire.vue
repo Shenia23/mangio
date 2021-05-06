@@ -3,7 +3,7 @@
     <div>
       <h1 class="title">Cuestionario de preferencias nutricionales</h1>
     </div>
-    <v-stepper v-model="e6" vertical>
+    <v-stepper v-model="e6" vertical class="elevation-0">
       <v-stepper-step :complete="e6 > 1" step="1" color="var(--main-orange)" editable>
         ¿Quién eres?
         <small style="margin-top: 3px"

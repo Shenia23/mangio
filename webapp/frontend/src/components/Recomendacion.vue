@@ -198,15 +198,10 @@
             </v-card-text>
 
             <div class="buttonHolder">
-              <v-btn
-                :disabled="!valid"
-                color="success"
-                class="mr-4"
+               <p class="btn btn-2" @click="createUser">
 
-                @click="createUser"
-              >
-                GENERAR PLAN
-              </v-btn>
+                  Crear nuevo usuario
+                 </p>
             </div>
           </v-form>
         </v-container>
@@ -297,7 +292,7 @@ export default {
       loading: true,
       displayOptions: null,
       overlay: -1,
-      animated: false,
+      animated: false
     };
   },
 
@@ -336,7 +331,6 @@ export default {
         });
     },
     createUser() {
-        
         var new_user = {
         username:this.$store.getters.username,
         weight: this.weight.val,
@@ -438,10 +432,6 @@ export default {
   color: var(--main-green);
 }
 
-.stats {
-  
-}
-
 .dialog {
   margin: auto;
   position: absolute;
@@ -473,5 +463,98 @@ export default {
   to {
     transform: rotate(360deg);
   }
+}
+
+p {
+  background: rgba(#ffffff, 0);
+  margin: auto;
+  line-height: 1.4;
+  padding: 0.25em;
+  text-decoration: none;
+}
+
+.btn {
+  color: var(--main-green);
+  cursor: pointer;
+  // display: block;
+  font-size: 16px;
+  background: none;
+  font-weight: 400;
+  line-height: 45px;
+  max-width: 300px;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.btn-1 {
+  background: white;
+  font-weight: 500;
+
+  svg {
+    height: 45px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  rect {
+    fill: none;
+    stroke: var(--main-orange);
+    stroke-width: 2;
+    stroke-dasharray: 422, 0;
+    transition: all 0.35s linear;
+  }
+}
+
+.btn-1:hover {
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: var(--main-orange);
+
+  rect {
+    stroke-width: 5;
+    stroke-dasharray: 15, 410;
+    stroke-dashoffset: 48;
+    transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+}
+
+.btn-2 {
+    letter-spacing: 0;
+}
+
+.btn-2:hover,
+.btn-2:active {
+  letter-spacing: 3px;
+}
+
+.btn-2:after,
+.btn-2:before {
+  backface-visibility: hidden;
+  border: 1px solid rgba(#000, 0);
+  bottom: 0px;
+  content: " ";
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  transition: all 280ms ease-in-out;
+  width: 0;
+}
+
+.btn-2:hover:after,
+.btn-2:hover:before {
+  backface-visibility: hidden;
+  border-color: var(--main-green);
+  transition: width 400ms ease-in-out;
+  width: 75%;
+}
+
+.btn-2:hover:before {
+  bottom: auto;
+  top: 0;
+  width: 75%;
 }
 </style>
