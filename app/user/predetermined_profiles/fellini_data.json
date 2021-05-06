@@ -1,0 +1,137 @@
+{
+    "username": "fellini",
+    "name": "Federico Mangiellini",
+    "sex": "Hombre",
+    "age": 44,
+    "alpha": 0.7,
+    "preferences": [
+        {
+            "categories": [
+                "Pollo",
+                "Verduras",
+                "Arroz"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Pescado",
+                "Patatas"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Legumbres"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Pescado",
+                "Arroz",
+                "Verduras"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Pasta"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Patatas"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Verduras",
+                "Huevos"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Pollo",
+                "Arroz"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Legumbres"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Verduras",
+                "Pasta"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Pescado",
+                "Legumbres"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Pollo",
+                "Pasta"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Huevos",
+                "Patatas"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Arroz"
+            ],
+            "rating": "nope"
+        }
+    ],
+    "height": 183,
+    "body_type": "Endomorfo",
+    "activity_level": 1,
+    "ratings": {
+        "Carne": -0.5,
+        "Pollo": 0.3333333333333333,
+        "Pescado": 0.36666666666666664,
+        "Legumbres": -0.8333333333333333,
+        "Verduras": 0.45500000000000007,
+        "Patatas": 0.275,
+        "Arroz": 0.018750000000000017,
+        "Pasta": 0.775,
+        "Huevos": 0.6416666666666667
+    },
+    "objective": 0,
+    "using_scale": false,
+    "weight": 95,
+    "bmi": 28.367523664486843,
+    "bmr": 1991.0490000000002,
+    "tdee": 2389.2588,
+    "water_intake": 2293.688448,
+    "macro_objectives": {
+        "energia": 2389.2588,
+        "grasa": 92.91562,
+        "proteina": 268.79161500000004,
+        "carbohidratos": 119.46294
+    },
+    "image_path": "../static/predetermined_1.png",
+    "custom_text": "Federico es un entusiasta del cine, pero no tanto del deporte. Sabe que se ha pasado comiendo de más los últimos años, y quiere comenzar a controlar más su alimentación."
+}

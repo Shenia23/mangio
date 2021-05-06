@@ -7,10 +7,10 @@
     >
 
       <v-card>
-        <v-card-title class="headline" >
-          Creación de usuario  completada
+        <v-card-title class="headline">
+          Perfil seleccionado
         </v-card-title>
-        <v-card-text>Pulsa <b>IR AL PLAN</b> para ver tu plan de alimentación personalizado.</v-card-text>
+        <v-card-text>Pulsa <b>IR AL PLAN</b> para ver el plan de alimentación para este perfil.</v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn

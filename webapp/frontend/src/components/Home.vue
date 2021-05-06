@@ -130,6 +130,7 @@
             <br />
             <div class="row">
               <div class="col-md-5">
+                <br /><br /><br /><br /><br /><br />
                 <h4 class="header-text">Nuevas recetas</h4>
                 <p>
                   En la línea de incorporar de alguna manera técnicas de

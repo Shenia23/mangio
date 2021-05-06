@@ -1,0 +1,137 @@
+{
+    "username": "smangione",
+    "name": "Sergio Mangione",
+    "sex": "Hombre",
+    "age": 25,
+    "alpha": 0.7,
+    "preferences": [
+        {
+            "categories": [
+                "Pollo",
+                "Verduras",
+                "Arroz"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Pescado",
+                "Patatas"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Legumbres"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Pescado",
+                "Arroz",
+                "Verduras"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Pasta"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Patatas"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Verduras",
+                "Huevos"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Pollo",
+                "Arroz"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Legumbres"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Verduras",
+                "Pasta"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Pescado",
+                "Legumbres"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Pollo",
+                "Pasta"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Huevos",
+                "Patatas"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Arroz"
+            ],
+            "rating": "like"
+        }
+    ],
+    "height": 174,
+    "body_type": "Mesomorfo",
+    "activity_level": 4,
+    "ratings": {
+        "Carne": 0.525,
+        "Pollo": 0.4000000000000001,
+        "Pescado": -0.3333333333333333,
+        "Legumbres": 0.8666666666666667,
+        "Verduras": 0.015000000000000013,
+        "Patatas": -0.22499999999999998,
+        "Arroz": 0.41250000000000003,
+        "Pasta": -0.22499999999999998,
+        "Huevos": 0.6166666666666667
+    },
+    "objective": 2,
+    "using_scale": false,
+    "weight": 66,
+    "bmi": 21.79944510503369,
+    "bmr": 1675.6170000000002,
+    "tdee": 2890.4393250000003,
+    "water_intake": 2774.8217520000003,
+    "macro_objectives": {
+        "energia": 2890.4393250000003,
+        "grasa": 64.23198500000001,
+        "proteina": 216.78294937500002,
+        "carbohidratos": 361.3049156250001
+    },
+    "image_path": "../static/predetermined_3.png",
+    "custom_text": "Sergio ha estado en buena forma toda su vida, manteniendo siempre unas costumbres saludables. Ahora quiere empezar a entrenar más duro para aprobar unas oposiciones."
+}

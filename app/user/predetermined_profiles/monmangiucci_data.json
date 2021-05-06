@@ -1,0 +1,138 @@
+{
+    "username": "monmangiucci",
+    "name": "Monica Mangiucci",
+    "sex": "Mujer",
+    "age": 78,
+    "alpha": 0.7,
+    "preferences": [
+        {
+            "categories": [
+                "Pollo",
+                "Verduras",
+                "Arroz"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Pescado",
+                "Patatas"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Legumbres"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Pescado",
+                "Arroz",
+                "Verduras"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Pasta"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Patatas"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Verduras",
+                "Huevos"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Pollo",
+                "Arroz"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Legumbres"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Verduras",
+                "Pasta"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Pescado",
+                "Legumbres"
+            ],
+            "rating": "nope"
+        },
+        {
+            "categories": [
+                "Pollo",
+                "Pasta"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Huevos",
+                "Patatas"
+            ],
+            "rating": "super"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Arroz"
+            ],
+            "rating": "like"
+        }
+    ],
+    "height": 160,
+    "body_type": "Mesomorfo",
+    "activity_level": 1,
+    "ratings": {
+        "Carne": 1.05,
+        "Pollo": -0.3333333333333333,
+        "Pescado": -0.3333333333333333,
+        "Legumbres": 0.3583333333333334,
+        "Verduras": 0.09999999999999998,
+        "Patatas": 0.8,
+        "Arroz": -0.375,
+        "Pasta": 0.75,
+        "Huevos": 0.6166666666666667
+    },
+    "objective": 1,
+    "using_scale": false,
+    "weight": 65,
+    "bmi": 25.390624999999996,
+    "bmr": 1207.967,
+    "tdee": 1449.5604,
+    "water_intake": 1391.577984,
+    "macro_objectives": {
+        "energia": 1449.5604,
+        "grasa": 48.31868000000001,
+        "proteina": 108.71703000000001,
+        "carbohidratos": 144.95604
+    },
+    "image_path": "../static/predetermined_2.png",
+    "custom_text":  "Mónica está cansada de pensar en que hacer de comer todos los días. Ha empezado a utilizar Mangio! para tener más ideas de recetas y controlar su salud."
+
+}
