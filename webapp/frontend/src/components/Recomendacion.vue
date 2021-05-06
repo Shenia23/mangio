@@ -92,7 +92,8 @@
                           </v-list-item-title>
                           <v-list-item-subtitle>
                             <p class="text-left caption">
-                              {{ r.energia.toFixed(1) }} kcal
+                              {{ r.energia.toFixed(1) }} kcal 
+                              <v-icon size="15px" color="var(--main-orange)" v-if="likes(r)"> mdi-star-outline </v-icon>
                             </p>
                           </v-list-item-subtitle>
                         </v-list>
@@ -372,6 +373,10 @@ export default {
         .catch((error) => {
           console.error(error);
         });
+    },
+    likes(recipe) {
+        console.log(recipe)
+        return recipe['preference_score'] > 0.7
     },
     reload() {
       this.loading = true;
