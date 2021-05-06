@@ -117,8 +117,8 @@ font-size: 300%;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background: linear-gradient(180deg, rgba(255,251,240,1) 0%, rgba(135,196,65,1) 90%);
-}
+background: rgb(242,211,153);
+background: linear-gradient(90deg, rgba(242,211,153,1) 0%, rgba(252,242,188,1) 24%, rgba(255,244,198,1) 70%, rgba(242,211,153,1) 100%);}
 
 
 
