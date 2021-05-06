@@ -35,7 +35,7 @@
                       </strong>
                       <v-spacer></v-spacer>
                     </v-row>
-                    <br><br><br><br>
+                    <br><br>
                     <p style="font-size: 20px">
                       <b>Nombre</b> : {{ predetermined_profiles[n - 1].name }}
                     </p>
@@ -74,6 +74,7 @@
                 </v-card>
               </v-col>
               <v-col cols="12" md="2">
+                <br><br><br>
                 <v-img
                   center
                   max-height="600"
@@ -83,12 +84,12 @@
                 ></v-img>
               </v-col>
               <v-col cols="12" md="4">
-                <br><br><br><br><br><br><br><br>
-                <p style="font-size: 30px"> <i>"{{predetermined_profiles[n - 1].custom_text}}"</i></p>
+                <br><br><br><br><br>
+                <p style="font-size: 25px"> <i>"{{predetermined_profiles[n - 1].custom_text}}"</i></p>
               </v-col>
             </div>
             <DialogPredetProfileSelected v-model="showPredetSelected" />
-            <br /><br />
+            
             <p
               color="success"
               class="btn btn-1"
