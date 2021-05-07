@@ -140,7 +140,7 @@
         <v-card class="left" style="margin-top:2rem;">
         <v-container>
           <v-form ref="form" v-model="valid" lazy-validation class="formulario">
-            <h3>¡Prueba a cambiar tus atributos!</h3>
+            <h3>¡Prueba a cambiar o ajustar tus atributos!</h3>
             <v-card-text>
               <v-slider
                 v-model="weight.val"
