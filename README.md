@@ -32,4 +32,5 @@ Dependencias de python en requirements.txt
 
 ## Sources
 
-(El repo que usaremos para pillar los datos de la Xiaomi)
+https://github.com/IanHarvey/bluepy
+https://github.com/lolouk44/xiaomi_mi_scale
