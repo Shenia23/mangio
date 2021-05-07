@@ -32,5 +32,6 @@ Dependencias de python en requirements.txt
 
 ## Sources
 
-https://github.com/IanHarvey/bluepy
+https://github.com/IanHarvey/bluepy 
+
 https://github.com/lolouk44/xiaomi_mi_scale
