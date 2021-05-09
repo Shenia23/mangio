@@ -18,6 +18,7 @@ CATEGORIES = {
     DINNER:     ['Cena','Entrante','Plato principal','Acompañamiento']
 }
 
+
 TDEE_MULTIPLIERS = {
     BREAKFAST:  0.2,
     SNACK:      0.1,
@@ -33,6 +34,12 @@ FIXED_FOOD_TYPES = [BREAKFAST, SNACK, MERIENDA]
 GAIN = 2
 MANTAIN = 1
 LOSS = 0
+
+TDEE_OBJECTIVE = {
+    GAIN: 500,
+    MANTAIN: 0,
+    LOSS: -500
+}
 
 #MACROS
 KCAL = 'energia'

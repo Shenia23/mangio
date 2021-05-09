@@ -25,7 +25,8 @@ combined[TARGET_MACROS] = comb_scaler.fit_transform(combined[TARGET_MACROS])
 class Recommender:
 
     def __init__(self, tdee, objective, preferences, alpha=0.7):
-        self.tdee = tdee
+        self.tdee = tdee + TDEE_OBJECTIVE[objective]
+        print(tdee, self.tdee)
         self.calories = {
             BREAKFAST:  self.tdee * 0.2,
             SNACK:      self.tdee * 0.1,
