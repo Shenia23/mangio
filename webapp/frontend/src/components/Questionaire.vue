@@ -145,7 +145,6 @@
             absolute
             centered
             color="var(--main-orange);"
-            elevation="24"
           >
             <b>Preferencias de comida completadas</b>
             <template v-slot:action="{ attrs }">
@@ -291,6 +290,7 @@ export default {
       "./static/pollo_pasta.jpeg": ["Pollo", "Pasta"],
       "./static/huevos_patatas.jpeg": ["Huevos", "Patatas"],
       "./static/carne_arroz.jpeg": ["Carne", "Arroz"],
+      "./static/verduras_patatas.jpeg": ["Verduras","Patatas"]
     },
     showDialogUserSuccess: false,
     queue: [],
@@ -466,7 +466,9 @@ export default {
 
 <style scoped lang="scss">
 
-
+.step{
+  $stepper-elevation:0;
+}
 .formulario {
   margin-top: 1cm;
   background-color: var(--main-green);
