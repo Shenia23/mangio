@@ -3,7 +3,7 @@ import os
 from types import SimpleNamespace
 import jsonpickle
 
-from app.recommender.recom_constants import get_macro_objectives
+from app.recommender.recom_constants import get_macro_objectives, TDEE_OBJECTIVE
 
 class User:
     
@@ -126,7 +126,7 @@ class User:
 
         ''' Cálculo de los objetivos de las macros en gramos para las gráficas y explicaciones '''
 
-        macro_objectives = get_macro_objectives(self.tdee, self.objective)
+        macro_objectives = get_macro_objectives(self.tdee + TDEE_OBJECTIVE[self.objective], self.objective)
         self.macro_objectives = macro_objectives
         
     def get_ratings(self, preferences):

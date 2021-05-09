@@ -127,10 +127,10 @@
     "tdee": 2389.2588,
     "water_intake": 2293.688448,
     "macro_objectives": {
-        "energia": 2389.2588,
-        "grasa": 92.91562,
-        "proteina": 268.79161500000004,
-        "carbohidratos": 119.46294
+        "energia": 1889.258800,
+        "grasa": 73.471176,
+        "proteina": 212.541615,
+        "carbohidratos": 94.462940
     },
     "image_path": "../static/predetermined_1.png",
     "custom_text": "Federico es un entusiasta del cine, pero no tanto del deporte. Sabe que se ha pasado comiendo de más los últimos años, y quiere comenzar a controlar más su alimentación."

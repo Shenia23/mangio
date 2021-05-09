@@ -10,9 +10,7 @@
         <v-card-subtitle style="font-size: 120%">
           Tu índice de masa corporal es <b>{{this.$store.getters.bmi}}</b>: según la OMS eres una persona que <b>{{this.$store.getters.bmiText}}</b>.
           Además, tu BMR (energía que gasta tu cuerpo en sus funciones vitales diariamente) es de <b>{{this.$store.getters.bmr}}</b> calorías.
-          Se incrementa en <b>{{this.$store.getters.tdeeBmr}}</b> calorías por <b>{{this.$store.getters.tdeeText}}</b> física que realizas semanalmente, 
-          para 
-
+          Se incrementa en <b>{{this.$store.getters.tdeeBmr}}</b> calorías por <b>{{this.$store.getters.tdeeText}}</b> física que realizas. 
           <br><br>
           Haz click para saber más.
         </v-card-subtitle>

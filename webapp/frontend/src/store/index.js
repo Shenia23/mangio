@@ -108,7 +108,7 @@ export default new Vuex.Store({
           },
           tdeeBmr: state => {//anxo
       
-            return state.user.userdata['tdee'].toFixed(2) - state.user.userdata['bmr'].toFixed(2)
+            return Math.round(state.user.userdata['tdee'].toFixed(2) - state.user.userdata['bmr'].toFixed(2))
           },
           tdeeText: state => {//anxo
       
@@ -117,7 +117,7 @@ export default new Vuex.Store({
             switch (factor) {
               case 0: return "la escasa actividad"
               case 1: return "la escasa actividad"
-              case 2: return "la actividad"
+              case 2: return "la cantidad de actividad"
               case 3: return "la gran actividad"
               case 4: return "la enorme cantidad de actividad"
       
