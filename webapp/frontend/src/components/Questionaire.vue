@@ -3,7 +3,7 @@
     <div>
       <h1 class="title">Cuestionario de preferencias nutricionales</h1>
     </div>
-    <v-stepper v-model="e6" vertical>
+    <v-stepper class="step" v-model="e6" vertical e>
       <v-stepper-step :complete="e6 > 1" step="1" color="var(--main-orange)" editable>
         ¿Quién eres?
         <small style="margin-top: 3px"
@@ -145,7 +145,6 @@
             absolute
             centered
             color="var(--main-orange);"
-            elevation="24"
           >
             <b>Preferencias de comida completadas</b>
             <template v-slot:action="{ attrs }">
@@ -466,7 +465,9 @@ export default {
 
 <style scoped lang="scss">
 
-
+.step{
+  $stepper-elevation:0;
+}
 .formulario {
   margin-top: 1cm;
   background-color: var(--main-green);
