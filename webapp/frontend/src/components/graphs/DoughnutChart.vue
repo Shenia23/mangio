@@ -24,7 +24,7 @@
               formatter: function (value) {
                 return value + '%'
               },
-            }
+            },
           }
         },
       }

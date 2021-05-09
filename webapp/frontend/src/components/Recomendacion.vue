@@ -296,7 +296,6 @@ export default {
       animated: false
     };
   },
-
   computed: {
     waterGlasses() {
       return Math.ceil(this.$store.getters.waterIntake / 250);
@@ -348,7 +347,6 @@ export default {
         data: new_user,
       })
         .then((res) => {
-          console.log(res.data);
           this.getRecomendacion(true)
         })
         .catch((err) => {
@@ -375,8 +373,7 @@ export default {
         });
     },
     likes(recipe) {
-        console.log(recipe)
-        return recipe['preference_score'] > 0.7
+        return recipe['preference_score'] > 0.8
     },
     reload() {
       this.loading = true;
