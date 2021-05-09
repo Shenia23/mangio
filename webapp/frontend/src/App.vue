@@ -47,7 +47,7 @@ export default {
       sidebar: false,
       logo: require('./components/assets/img/logos/logo-web.png'),
       menuItems: [
-        { title: 'Nuevo usuario', path: '/nuevoUsuario', icon: 'fiber_new' },
+        { title: 'Usuarios', path: '/nuevoUsuario', icon: 'person' },
         { title: 'Plan de alimentación', path: '/planalimentacion', icon: 'fastfood' },
         { title: 'Nuevas recetas', path: '/nuevasrecetas', icon: 'add_circle' },
         

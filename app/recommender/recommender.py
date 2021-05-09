@@ -150,7 +150,9 @@ class Recommender:
         daily_recom['combined_score'] = self.get_combined_score(daily_recom['preference_score'].values, daily_recom['nutritional_score'].values)
         best_iteration = daily_recom['combined_score'].idxmin()
 
-        return recom[recom['iteration'] == best_iteration]
+        best_recom = recom[recom['iteration'] == best_iteration]
+
+        return best_recom
 
     def most_similar(self, recipe_id, food_type, n=1):
         '''

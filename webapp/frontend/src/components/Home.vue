@@ -41,7 +41,7 @@
                       style="color: #3e4243"
                     >
                       <i class="fa fa-github" style="color: #3e4243"></i>
-                      Explicación
+                      Github
                     </a>
                   </div>
                 </div>
@@ -53,12 +53,12 @@
           <div class="container text-center">
             <h4 class="header-text">Tecnologías</h4>
             <p>
-              Mangio! está construída con cariño, empleando las siguientes
+              Mangio! está construida con cariño, empleando las siguientes
               tecnologías:<br />
             </p>
             <div class="logos">
               <ul class="list-unstyled">
-                <li><img src="../assets/img/logos/flask.png" /></li>
+                <li><img  src="../assets/img/logos/flask.png" /></li>
                 <li><img src="../assets/img/logos/vuejs.png" /></li>
                 <li><img src="../assets/img/logos/ble.png" /></li>
               </ul>

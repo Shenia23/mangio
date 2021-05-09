@@ -3,7 +3,7 @@ import numpy as np
 
 from config import ingredients, nvalues, images
 
-wanted_columns = ['Recipe_id','Categoria','Nombre','Valoracion','Dificultad','Tipo','Comida']
+wanted_columns = ['Recipe_id','Categoria','Nombre','Valoracion','Dificultad','Tipo','Comida','preference_score']
 macros = ['energia','grasa','proteina','fibra','carbohidratos','Recipe_id']
 
 def recipes2dict(recommendations):
@@ -28,6 +28,7 @@ def recipes2dict(recommendations):
     for recipe in recom:
         recipe['Ingredientes'] =  ing[ing['Recipe_id']==recipe['Recipe_id']].set_index('Recipe_id').to_dict('records')
     
+    print(recom)
     return recom
 
 def updateRecipeName(df):
