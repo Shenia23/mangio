@@ -290,6 +290,7 @@ export default {
       "./static/pollo_pasta.jpeg": ["Pollo", "Pasta"],
       "./static/huevos_patatas.jpeg": ["Huevos", "Patatas"],
       "./static/carne_arroz.jpeg": ["Carne", "Arroz"],
+      "./static/verduras_patatas.jpeg": ["Verduras","Patatas"]
     },
     showDialogUserSuccess: false,
     queue: [],
