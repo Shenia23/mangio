@@ -54,6 +54,12 @@ export default new Vuex.Store({
         tdee: state =>{
             return Math.round(state.user.userdata['tdee'])
         },
+        bmi: state =>{
+            return Math.round(state.user.userdata['bmi'])
+        },
+        bmr: state =>{
+            return Math.round(state.user.userdata['bmr'])
+        },
         cals_obj: state =>{
             switch(state.user.userdata
                 ['objective']){
@@ -88,6 +94,53 @@ export default new Vuex.Store({
                 case 2: return "Ganar peso"
             }
          },
+         bmiText: state => {//anxo
+            var auxbmi
+            var bmi = state.user.userdata['bmi']
+            if (bmi < 18.5) return "esta por debajo de su peso ideal"
+            else if (bmi > 18.5 && bmi < 24.9) return "esta dentro de su peso ideal"
+            else if (bmi > 25 && bmi < 26.9) return "esta un poco por encima de su peso"
+            else if (bmi > 27 && bmi < 29.9) return "esta bastante por encima de su peso"
+            else if (bmi > 30 && bmi < 34.9) return "está muy por encima de su peso"
+            else if (bmi > 35 && bmi < 39.9) return "está muy por encima de su peso"
+            else if (bmi > 40) return "está muy por encima de su peso"
+            
+          },
+          tdeeBmr: state => {//anxo
+      
+            return state.user.userdata['tdee'].toFixed(2) - state.user.userdata['bmr'].toFixed(2)
+          },
+          tdeeText: state => {//anxo
+      
+            var factor = state.user.userdata['activity_level']
+      
+            switch (factor) {
+              case 0: return "la escasa actividad"
+              case 1: return "la escasa actividad"
+              case 2: return "la actividad"
+              case 3: return "la gran actividad"
+              case 4: return "la enorme cantidad de actividad"
+      
+            }
+          },
+          macroText: state => {//anxo
+            switch (state.user.userdata
+            ['objective']) {
+              case 0: return "Cualquier tipo de dieta en la que se consuma menos energía de la que se utiliza dará lugar a la pérdida de peso. Las proteínas también son importantes para ayudarte a mantener la masa muscular. Además, reducimos un poco la cantidad de hidratos de carbono y aumentamos las grasas en tus dietas ya que son muy importantes en el metabolismo, contribuyendo en la asimilación de vitaminas de tu organismo y funcionando como reserva de energía."
+              case 1: return "Una dieta saludable que no pretende ni adelgazar ni engordar se basa en ingerir la misma energía que consume tu cuerpo. Una proporción similar entre proteínas y grasas se alimentará a tus músculos adecuadamente y ayudará en la asimilación de vitaminas de tu organismo, mientras que un mayor porcentaje de hidratos de carbono te aportará la energía necesaria para afrontar el día a día."
+              case 2: return "Para ganar masa muscular aumentamos la ingesta de carbohidratos. Además, es importante ingerir proteínas ya que es el componente principal de los músculos. Reducimos el porcentaje de grasas en la dieta, aunque no del todo, ya que son muy importantes en el metabolismo, contribuyendo en la asimilación de vitaminas de tu organismo y funcionando como reserva de energía."
+      
+            }
+          },
+          exerciseRec: state => {//anxo
+            switch (state.user.userdata['activity_level']) {
+              case 0: return "Recomendamos comenzar una rutina de ejercicio físico, que te ayudará en el control del peso y mejorará tu calidad de vida."
+              case 1: return "Pese a que ya haces ejercicio, te recomiendo aumentar la frecuencia o intensidad de los entrenamientos."
+              case 2: return "Recuerda continuar con tu rutina de ejercicio semanal, es fundamental para tener una calidad de vida saludable."
+              case 3: return "Con la cantidad de ejercicio que haces, intenta no saltarte comidas, ya que es muy importante no descuidar la alimentación."
+              case 4: return "Con la cantidad de ejercicio que haces, intenta no saltarte comidas, ya que es muy importante no descuidar la alimentación."
+            }
+          },
     },
     mutations: {
         setUserData(state, payload) {
