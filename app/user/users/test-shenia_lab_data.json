@@ -119,7 +119,7 @@
         "Pasta": 0.25,
         "Huevos": -0.5833333333333333
     },
-    "objective": 0,
+    "objective": 1,
     "using_scale": false,
     "weight": 85,
     "bmi": 27.13141179099237,
@@ -128,8 +128,8 @@
     "water_intake": 2914.4429280000004,
     "macro_objectives": {
         "energia": 3035.8780500000007,
-        "grasa": 118.06192416666669,
-        "proteina": 341.5362806250001,
-        "carbohidratos": 151.79390250000003
+        "grasa": 101.19593500000002,
+        "proteina": 227.69085375000006,
+        "carbohidratos": 303.58780500000006
     }
 }

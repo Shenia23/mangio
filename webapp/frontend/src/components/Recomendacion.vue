@@ -201,7 +201,7 @@
             <div class="buttonHolder">
                <p class="btn btn-2" @click="createUser">
 
-                  Crear nuevo usuario
+                  CREAR PLAN
                  </p>
             </div>
           </v-form>
