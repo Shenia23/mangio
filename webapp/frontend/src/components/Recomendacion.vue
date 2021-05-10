@@ -347,11 +347,22 @@ export default {
         data: new_user,
       })
         .then((res) => {
+          this.setUser(res.data)
           this.getRecomendacion(true)
         })
         .catch((err) => {
           console.log(err);
         });
+    },
+    setUser(userData) {
+      var original_user = this.$store.getters.userdata.username
+
+      this.$store.commit("setUserData", {
+        userdata: userData,
+      });
+      this.$store.commit("setUsername", {
+        username: original_user,
+      });
     },
     reroll(index) {
       const path = "http://localhost:5000/reroll";

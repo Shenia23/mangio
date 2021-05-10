@@ -146,6 +146,9 @@ export default new Vuex.Store({
         setUserData(state, payload) {
             state.user.userdata = payload.userdata
         },
+        setUsername(state, payload) {
+            state.user.userdata.username = payload.username
+        },
         setObjectives(state, payload) {
             state.user.userdata.objectives = payload.objectives
         }
