@@ -183,7 +183,7 @@ def getUser(username):
         with open(file_name, 'r') as f:
             json_user = json.load(f)
     except:
-        file_name= "./app/user/predetermined_profiles/"+username+"_data.json"
+        file_name= "./app/user/users/predet_"+username+"_data.json"
         try:
             with open(file_name, 'r') as f:
                 json_user = json.load(f)
