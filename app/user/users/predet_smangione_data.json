@@ -133,5 +133,6 @@
         "carbohidratos": 423.804916
     },
     "image_path": "../static/predetermined_3.png",
+    "icon_path": "../static/predetermined_3_face.png",
     "custom_text": "Sergio ha estado en buena forma toda su vida, manteniendo siempre unas costumbres saludables. Ahora quiere empezar a entrenar más duro para aprobar unas oposiciones."
 }
