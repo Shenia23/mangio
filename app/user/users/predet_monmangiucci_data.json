@@ -133,6 +133,7 @@
         "carbohidratos": 144.95604
     },
     "image_path": "../static/predetermined_2.png",
+    "icon_path": "../static/predetermined_2_face.png",
     "custom_text":  "Mónica está cansada de pensar en que hacer de comer todos los días. Ha empezado a utilizar Mangio! para tener más ideas de recetas y controlar su salud."
 
 }

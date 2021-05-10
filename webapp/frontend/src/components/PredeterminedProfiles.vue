@@ -26,8 +26,14 @@
                 <v-card flat>
                   <v-card-text>
                     <v-row class="mb-4" align="center">
-                      <v-avatar color="rgb(113, 192, 113)" class="mr-4"
-                        ><v-icon>mdi-face</v-icon></v-avatar
+                      <v-avatar color="white" class="mr-4"
+                        ><v-img
+                  center
+                  max-height="80"
+                  max-width="60"
+                  contain
+                  :src="predetermined_profiles[n - 1].icon_path"
+                ></v-img></v-avatar
                       >
                       <strong class="title">
                         Usuario {{ n }}:

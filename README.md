@@ -8,7 +8,7 @@ Mangio! es un proyecto universitario centrado en proponer un plan de alimentaci�
 
 Se basa en inputs sacados de la báscula Xiaomi My Body (BMI, masa muscular...) y las preferencias personales (objetivos, ingredientes habituales, feedback) para seleccionar un conjunto de recetas óptimas para una dieta equilibrada.
 
-Se emplea un dataset de recetas españolas para las recomendaciones y se usa la base de datos BECDA para obtener los valores nutricionales correspondientes a cada una.
+Se emplea un dataset de recetas en español para las recomendaciones y se usa la base de datos BECDA para obtener los valores nutricionales correspondientes a cada una.
 
 ## Estructura
 
