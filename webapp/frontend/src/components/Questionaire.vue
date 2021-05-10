@@ -72,11 +72,20 @@
         ></v-checkbox>
 
         <div v-if="using_scale == true" class="if-balanza">
-          <v-btn class="ma-2" outlined color="indigo"
-          @click="getBalanza">
+          <v-btn class="ma-2" 
+          outlined color="indigo"
+          @click="getBalanza"
+          :loading="load_balanza"
+          >
             <v-icon right dark> mdi-bluetooth </v-icon>
             Conectar con balanza
           </v-btn>
+
+          <div v-show="loaded_balanza" style="margin-bottom: 1rem">
+            ¡Hemos recibido tus datos! 
+            Según la báscula, pesas {{ balanzaData['weight'] }} kg.
+            Puedes avanzar en la encuesta.
+          </div>
         </div>
 
         <div v-else class="if-not-balanza">
@@ -296,6 +305,8 @@ export default {
     showDialogUserSuccess: false,
     queue: [],
     offset: 0,
+    load_balanza: false,
+    loaded_balanza : false,
     history: [],
     choices: [],
     id: "",
@@ -314,7 +325,9 @@ export default {
     ],
     username: "",
     name: "",
-    balanzaData: [],
+    balanzaData: {
+      weight: 0
+    },
     using_scale: false,
     objectives: ["Perder peso", "Mantener", "Ganar peso"],
     height: { label: "Altura (cm)", val: 165, color: "red" },
@@ -352,18 +365,21 @@ export default {
       }
     },
     getBalanza(){
+      this.load_balanza = true
       const path = "http://localhost:5000/balanza"
       var altura = this.height
       console.log("BALANZA")
       axios
       .post(path, altura)
       .then((res) =>{
-        this.balanzaData = res.data
-        this.balanzaData = JSON.stringiry(this.balanzaData,null,2)
+        this.balanzaData = res.data//JSON.stringify(res.data,null,2)
         console.log(this.balanzaData)
+        this.loaded_balanza = true
+        this.load_balanza = false
       })
       .catch((err) =>{
         console.error(error)
+        this.load_balanza = false
       });
     },
     setUser(userData) {
@@ -396,7 +412,7 @@ export default {
         objective: this.objectives.indexOf(this.objective),
         liked_ingredients: this.ingredients,
         using_scale: this.using_scale,
-        scale_data: this.mi_scale_data,
+        scale_data: this.balanzaData,
         preferences: preferences,
       };
       console.log(new_user);
