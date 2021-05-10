@@ -72,7 +72,8 @@
         ></v-checkbox>
 
         <div v-if="using_scale == true" class="if-balanza">
-          <v-btn class="ma-2" outlined color="indigo">
+          <v-btn class="ma-2" outlined color="indigo"
+          @click="getBalanza">
             <v-icon right dark> mdi-bluetooth </v-icon>
             Conectar con balanza
           </v-btn>
@@ -313,6 +314,7 @@ export default {
     ],
     username: "",
     name: "",
+    balanzaData: [],
     using_scale: false,
     objectives: ["Perder peso", "Mantener", "Ganar peso"],
     height: { label: "Altura (cm)", val: 165, color: "red" },
@@ -348,6 +350,21 @@ export default {
       } else {
         this.using_scale = true;
       }
+    },
+    getBalanza(){
+      const path = "http://localhost:5000/balanza"
+      var altura = this.height
+      console.log("BALANZA")
+      axios
+      .post(path, altura)
+      .then((res) =>{
+        this.balanzaData = res.data
+        this.balanzaData = JSON.stringiry(this.balanzaData,null,2)
+        console.log(this.balanzaData)
+      })
+      .catch((err) =>{
+        console.error(error)
+      });
     },
     setUser(userData) {
       // FUNCION a introducir en el código de usuarios!
