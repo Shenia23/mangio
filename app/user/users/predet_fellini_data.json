@@ -133,5 +133,6 @@
         "carbohidratos": 94.462940
     },
     "image_path": "../static/predetermined_1.png",
+    "icon_path": "../static/predetermined_1_face.png",
     "custom_text": "Federico es un entusiasta del cine, pero no tanto del deporte. Sabe que los últimos años ha estado comiendo comiendo demasiado y quiere comenzar a controlar más su alimentación."
 }

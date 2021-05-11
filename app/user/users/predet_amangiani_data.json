@@ -133,5 +133,6 @@
         "carbohidratos": 215.10993000000002
     },
     "image_path": "../static/predetermined_4.png",
+    "icon_path": "../static/predetermined_4_face.png",
     "custom_text" : "Anna es una persona muy activa. Al llegar de la universidad tiene poco tiempo para hacerse la comida y Mangio! le ayuda a organizarse."
 }

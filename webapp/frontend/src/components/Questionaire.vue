@@ -81,7 +81,7 @@
             Conectar con balanza
           </v-btn>
 
-          <div v-show="loaded_balanza" style="margin-bottom: 1rem">
+          <div v-show="loaded_balanza" style="margin-bottom: 1rem" ref="balanzaText">
             ¡Hemos recibido tus datos! 
             Según la báscula, pesas {{ balanzaData['weight'] }} kg.
             Puedes avanzar en la encuesta.
@@ -374,12 +374,21 @@ export default {
       .then((res) =>{
         this.balanzaData = res.data//JSON.stringify(res.data,null,2)
         console.log(this.balanzaData)
+        var successText = "¡Hemos recibido tus datos!"+ 
+            "Según la báscula, pesas" + this.balanzaData['weight'] + " kg." +
+            "Puedes avanzar en la encuesta."
+        this.$refs.balanzaText.innerText = successText;
+        
         this.loaded_balanza = true
         this.load_balanza = false
       })
       .catch((err) =>{
-        console.error(error)
+        var errorText = "Parece que hay algun error... ¡Prueba de nuevo!"
+        this.$refs.balanzaText.innerText = errorText
+
+        this.loaded_balanza = true
         this.load_balanza = false
+        console.error(error)
       });
     },
     setUser(userData) {
