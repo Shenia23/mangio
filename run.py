@@ -16,14 +16,36 @@ cors = CORS(app, support_credentials=True,
 app.config['TESTING'] = True
 
 
-
-
 @app.route('/api/random')
 def random_number():
     response = {
         'randomNumber': randint(1, 100)
     }
     return jsonify(response)
+
+@app.route('/balanza', methods=['GET','POST'])
+@cross_origin()
+def get_datos_balanza():
+    '''
+    Devuelve un JSON con los datos de la balanza
+    '''
+    try:
+        altura = request.get_data()
+        data = getDatos(altura)
+        print("data: ", data)
+        response = app.response_class(
+            response = json.dumps(data),
+            status= 200,
+            mimetype = 'application/json'
+        )
+    except:
+        print("Balanza ERROR")
+        response = app.response_class(
+            response = "Balanza not implemented on this branch",
+            status= 400,
+            mimetype = 'application/json'
+        )
+    return response
 
 
 @app.route('/availableUsers', methods=['GET'])
