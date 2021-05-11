@@ -32,8 +32,8 @@ def get_datos_balanza():
     '''
     Devuelve un JSON con los datos de la balanza
     '''
-    altura = request.get_data()
     try:
+        altura = request.get_data()
         data = getDatos(altura)
         print("data: ", data)
         response = app.response_class(
@@ -45,7 +45,7 @@ def get_datos_balanza():
         print("Balanza ERROR")
         response = app.response_class(
             response = "Error cogiendo los datos en la balanza",
-            status= 400,
+            status= 500,
             mimetype = 'application/json'
         )
     return response
