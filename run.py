@@ -29,9 +29,10 @@ def get_datos_balanza():
     '''
     Devuelve un JSON con los datos de la balanza
     '''
+    '''
     try:
-        altura = request.get_data()
-        data = getDatos(altura)
+        #altura = request.get_data()
+        #data = getDatos(altura)
         print("data: ", data)
         response = app.response_class(
             response = json.dumps(data),
@@ -39,14 +40,14 @@ def get_datos_balanza():
             mimetype = 'application/json'
         )
     except:
-        print("Balanza ERROR")
-        response = app.response_class(
-            response = "Balanza not implemented on this branch",
-            status= 400,
-            mimetype = 'application/json'
-        )
+    '''
+    print("Throw not implemented error")
+    response = app.response_class(
+        response = "Error cogiendo los datos en la balanza",
+        status= 500,
+        mimetype = 'application/json'
+    )
     return response
-
 
 @app.route('/availableUsers', methods=['GET'])
 @cross_origin()
@@ -229,3 +230,6 @@ def catch_all(path):
     if app.debug:
         return requests.get('http://localhost:8080/{}'.format(path)).text
     return render_template("index.html")
+
+if __name__=='__main__':
+    app.run()

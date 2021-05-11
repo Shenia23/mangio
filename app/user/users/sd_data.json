@@ -1,0 +1,58 @@
+{
+    "username": "sd",
+    "name": "sda",
+    "sex": "Hombre",
+    "age": 23,
+    "alpha": 0.7,
+    "preferences": [
+        {
+            "categories": [
+                "Pollo",
+                "Verduras",
+                "Arroz"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Pescado",
+                "Patatas"
+            ],
+            "rating": "like"
+        },
+        {
+            "categories": [
+                "Carne",
+                "Legumbres"
+            ],
+            "rating": "like"
+        }
+    ],
+    "height": 165,
+    "body_type": "default",
+    "activity_level": 2,
+    "ratings": {
+        "Carne": 0.25,
+        "Pollo": 0.3333333333333333,
+        "Pescado": 0.3333333333333333,
+        "Legumbres": 0.25,
+        "Verduras": 0.15000000000000002,
+        "Patatas": 0.25,
+        "Arroz": 0.1875,
+        "Pasta": 0,
+        "Huevos": 0
+    },
+    "objective": 1,
+    "using_scale": true,
+    "weight": 81.75,
+    "bmi": 30.027548209366394,
+    "bmr": 1788.897,
+    "tdee": 2459.733375,
+    "water_intake": 2361.3440399999995,
+    "macro_objectives": {
+        "energia": 2459.733375,
+        "grasa": 81.9911125,
+        "proteina": 184.480003125,
+        "carbohidratos": 245.97333749999999
+    }
+}
