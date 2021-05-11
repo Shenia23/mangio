@@ -5,7 +5,6 @@ from flask_cors import CORS, cross_origin
 import requests
 from app.user.user import User, createNewUser
 from app.recommender.recommender import getRecommendation, getReroll
-from app.ReverseMiScale.bascula_data import getDatos
 import os
 import pandas as pd
 
@@ -32,9 +31,10 @@ def get_datos_balanza():
     '''
     Devuelve un JSON con los datos de la balanza
     '''
-    altura = request.get_data()
+    '''
     try:
-        data = getDatos(altura)
+        #altura = request.get_data()
+        #data = getDatos(altura)
         print("data: ", data)
         response = app.response_class(
             response = json.dumps(data),
@@ -42,12 +42,13 @@ def get_datos_balanza():
             mimetype = 'application/json'
         )
     except:
-        print("Balanza ERROR")
-        response = app.response_class(
-            response = "Error cogiendo los datos en la balanza",
-            status= 400,
-            mimetype = 'application/json'
-        )
+    '''
+    print("Throw not implemented error")
+    response = app.response_class(
+        response = "Error cogiendo los datos en la balanza",
+        status= 500,
+        mimetype = 'application/json'
+    )
     return response
 
 @app.route('/availableUsers', methods=['GET'])
