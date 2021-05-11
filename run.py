@@ -5,6 +5,7 @@ from flask_cors import CORS, cross_origin
 import requests
 from app.user.user import User, createNewUser
 from app.recommender.recommender import getRecommendation, getReroll
+from app.ReverseMiScale.bascula_data import getDatos
 import os
 import pandas as pd
 
