@@ -5,6 +5,7 @@ from flask_cors import CORS, cross_origin
 import requests
 from app.user.user import User, createNewUser
 from app.recommender.recommender import getRecommendation, getReroll
+from app.ReverseMiScale.bascula_data import getDatos
 import os
 import pandas as pd
 
@@ -25,6 +26,29 @@ def random_number():
     }
     return jsonify(response)
 
+@app.route('/balanza', methods=['GET','POST'])
+@cross_origin()
+def get_datos_balanza():
+    '''
+    Devuelve un JSON con los datos de la balanza
+    '''
+    altura = request.get_data()
+    try:
+        data = getDatos(altura)
+        print("data: ", data)
+        response = app.response_class(
+            response = json.dumps(data),
+            status= 200,
+            mimetype = 'application/json'
+        )
+    except:
+        print("Balanza ERROR")
+        response = app.response_class(
+            response = "Error cogiendo los datos en la balanza",
+            status= 400,
+            mimetype = 'application/json'
+        )
+    return response
 
 @app.route('/availableUsers', methods=['GET'])
 @cross_origin()
@@ -212,3 +236,6 @@ def catch_all(path):
     if app.debug:
         return requests.get('http://localhost:8080/{}'.format(path)).text
     return render_template("index.html")
+
+if __name__=='__main__':
+    app.run()

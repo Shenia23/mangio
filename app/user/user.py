@@ -12,7 +12,7 @@ class User:
     
     def __init__(self, username,name, sex, age, height, weight, 
                  body_type, activity_level, preferences,alpha,
-                 objective,scale_data = None ,using_scale = False, serialize  = False):
+                 objective,using_scale = False, scale_data = None,  serialize  = False):
         
         '''Constructor de la clase de usuario, scale_data es un dict con los parámetros de la báscula'''
         self.username = username
@@ -43,16 +43,7 @@ class User:
             
             self.weight = scale_data["weight"]
             self.bmi = scale_data["bmi"]
-            self.lean_body_mass = scale_data["lean_body_mass"]
-            self.bmr = scale_data["basal_metabolism"] 
-            self.body_fat = scale_data["body_fat"]
-            self.visceral_fat = scale_data["visceral_fat"]
-            self.muscle_mass = scale_data["muscle_mass"]
-            self.body_water = scale_data["water"]
-            self.bone_mass = scale_data["bone_mass"]
-            self.protein = scale_data["protein"]
-            self.body_condition =  scale_data["body_type"]
-            self.metabolic_age = scale_data["metabolic_age"]
+            self.bmr = scale_data["metab_basal"] 
             self.tdee= self.get_tdee()
             self.water_intake = self.get_daily_water_intake()
 
@@ -218,7 +209,8 @@ def createNewUser(new_user_data, serialize  = True):
                     alpha = new_user_data['alpha'],
                     objective = new_user_data['objective'],
                     using_scale = new_user_data['using_scale'],
-                    serialize  = serialize,
+                    scale_data = new_user_data['scale_data'],
+                    serialize  = serialize
                    )
     return new_user
     
