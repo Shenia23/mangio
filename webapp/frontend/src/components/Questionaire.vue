@@ -366,7 +366,7 @@ export default {
     },
     getBalanza(){
       this.load_balanza = true
-      const path = "http://localhost:5000/balanza"
+      const path = this.$store.getters.baseUrl + "/balanza"
       var altura = this.height
       console.log("BALANZA")
       axios
@@ -374,8 +374,8 @@ export default {
       .then((res) =>{
         this.balanzaData = res.data//JSON.stringify(res.data,null,2)
         console.log(this.balanzaData)
-        var successText = "¡Hemos recibido tus datos!"+ 
-            "Según la báscula, pesas" + this.balanzaData['weight'] + " kg." +
+        var successText = "¡Hemos recibido tus datos! "+ 
+            "Según nuestra báscula, pesas " + this.balanzaData['weight'].toFixed(2) + " kg. " +
             "Puedes avanzar en la encuesta."
         this.$refs.balanzaText.innerText = successText;
         
@@ -427,7 +427,7 @@ export default {
       console.log(new_user);
 
       axios({
-        baseURL: "http://localhost:5000",
+        baseURL: this.$store.getters.baseUrl,
         url: "/newUser",
         method: "post",
         data: new_user,

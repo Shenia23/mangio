@@ -69,7 +69,7 @@ export default {
   }),
   methods: {
     getPredeterminedProfiles() {
-      const path = `http://localhost:5000/predeterminedUserProfiles`;
+      const path = this.$store.getters.baseUrl + `/predeterminedUserProfiles`;
       axios
         .get(path)
         .then((response) => {
@@ -83,7 +83,7 @@ export default {
         });
     },
     getExistingUsers() {
-      const path = `http://localhost:5000/availableUsers`;
+      const path = this.$store.getters.baseUrl + `/availableUsers`;
       axios
         .get(path)
         .then((response) => {

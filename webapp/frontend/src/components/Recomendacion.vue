@@ -309,7 +309,7 @@ export default {
   },
   methods: {
     getRecomendacion(lab) {
-      const path = "http://localhost:5000/recomendacion";
+      const path = this.$store.getters.baseUrl + "/recomendacion";
 
       if (lab) {
         var targetUser = {
@@ -341,20 +341,31 @@ export default {
       };
 
       axios({
-        baseURL: "http://localhost:5000",
+        baseURL: this.$store.getters.baseUrl,
         url: "/newUserLab",
         method: "post",
         data: new_user,
       })
         .then((res) => {
+          this.setUser(res.data)
           this.getRecomendacion(true)
         })
         .catch((err) => {
           console.log(err);
         });
     },
+    setUser(userData) {
+      var original_user = this.$store.getters.userdata.username
+
+      this.$store.commit("setUserData", {
+        userdata: userData,
+      });
+      this.$store.commit("setUsername", {
+        username: original_user,
+      });
+    },
     reroll(index) {
-      const path = "http://localhost:5000/reroll";
+      const path = this.$store.getters.baseUrl + "/reroll";
       var reroll_params = {
         username: this.$store.getters.username,
         recipe_id: this.rec[index]["Recipe_id"],
