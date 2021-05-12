@@ -29,7 +29,10 @@ export default new Vuex.Store({
                     "energia": 1911.4246250000003
                 }
             },
-            
+        },
+        request: {
+            "ip": "localhost",
+            "port": 5000
         }
     },
     getters: {
@@ -141,6 +144,10 @@ export default new Vuex.Store({
               case 4: return "Con la cantidad de ejercicio que haces, intenta no saltarte comidas, ya que es muy importante no descuidar la alimentación."
             }
           },
+          baseUrl: state =>{
+              var url = "http://" + state.request.ip + ":" + state.request.port
+              return url
+          }
     },
     mutations: {
         setUserData(state, payload) {

@@ -1265,7 +1265,7 @@ export default {
       this.recipe_ingredients= ["", "", "", "", "", "", "", "", "", "", "", "","",""],
       this.ingredients_list=[],
       axios({
-        baseURL: "http://localhost:5000",
+        baseURL: this.$store.getters.baseUrl,
         url: "/newRecipe",
         method: "post",
         data: new_recipe,
