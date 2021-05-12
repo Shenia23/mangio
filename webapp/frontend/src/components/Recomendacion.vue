@@ -137,7 +137,14 @@
           </v-card>
         </div>
 
-        <v-card class="left" style="margin-top:2rem;">
+        <v-card class="left" style="margin-top:2rem;" :loading="loading_lab">
+          <template slot="progress" id="loading_lab">
+              <v-progress-linear
+                color="var(--main-green)"
+                height="6"
+                indeterminate
+              ></v-progress-linear>
+            </template>
         <v-container>
           <v-form ref="form" v-model="valid" lazy-validation class="formulario">
             <h3>¡Prueba a cambiar o ajustar tus atributos!</h3>
@@ -291,6 +298,7 @@ export default {
       selected_sex: "",
       apiin: require("../assets/apiín.png"),
       loading: true,
+      loading_lab: false,
       displayOptions: null,
       overlay: -1,
       animated: false
@@ -325,6 +333,7 @@ export default {
         .then((res) => {
           this.rec = res.data;
           this.loading = false;
+          this.loading_lab = false;
         })
         .catch((error) => {
           console.error(error);
@@ -339,7 +348,7 @@ export default {
         activity_level: this.activity_types.indexOf(this.selected_activity) + 1,
         objective: this.objectives.indexOf(this.objetivo),
       };
-
+      this.loading_lab = true;
       axios({
         baseURL: this.$store.getters.baseUrl,
         url: "/newUserLab",

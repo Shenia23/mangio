@@ -167,7 +167,8 @@ def createLabUser():
                 status=200,
                 mimetype='application/json'
             )
-    except:
+    except Exception as e:
+        print(e)
         with open("./app/user/users/predet_"+username+'_data.json', "r") as jsonFile:
             json_file = json.load(jsonFile)
             json_file['username'] = str(new_user_data['username']) + "_lab"
@@ -183,10 +184,9 @@ def createLabUser():
                 status=200,
                 mimetype='application/json'
             )
-    print(response)
+
+    print(new_user_json)
     return response
-
-
 
 @app.route('/newRecipe', methods=['GET','POST'])
 @cross_origin()

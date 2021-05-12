@@ -10,7 +10,7 @@
           <v-list-item>
               <div class="avatar">
                   <v-list-item-avatar 
-                  size="90" 
+                  size="70" 
                   color="#FAD7A0"
                   id="avatar-icon"
                   >
@@ -115,7 +115,7 @@
     border-style: dashed;
     border-radius: 50%;
     border-width: 1pt;
-    margin-right: 20px;
+    margin-right: 10px;
     padding: 5px;
 } 
 
