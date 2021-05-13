@@ -12,7 +12,7 @@ class User:
     
     def __init__(self, username,name, sex, age, height, weight, 
                  body_type, activity_level, preferences,alpha,
-                 objective,using_scale = False, scale_data = None,  serialize  = False):
+                 objective,using_scale = False, scale_data = None, serialize = False):
         
         '''Constructor de la clase de usuario, scale_data es un dict con los parámetros de la báscula'''
         self.username = username
@@ -196,7 +196,9 @@ def json2User(json_user):
    
 
 def createNewUser(new_user_data, serialize  = True):
-
+    if "scale_data" not in new_user_data:
+        new_user_data['scale_data'] = None
+    print(new_user_data)
     new_user = User(username=new_user_data['username'],
                     name= new_user_data['name'],
                     age= new_user_data['age'],
